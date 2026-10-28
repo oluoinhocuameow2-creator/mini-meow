@@ -12075,3 +12075,57 @@ html body #loginPage .meowLoginBox{
 #meowSideMenu .meowSideBrandImg{max-height:38px!important;height:38px!important}
 @media(max-width:600px){#meowSideMenu{width:min(285px,87vw)!important}#meowSideMenu .meowSideScroll{padding:7px 10px 14px!important}}
 </style>
+<script>
+/* 🚫 BLOCK */
+
+document.addEventListener("keydown",e=>{
+
+  let k=e.key.toLowerCase();
+
+  if(e.ctrlKey && ["s","p","u","c","x"].includes(k)){
+
+    e.preventDefault();
+
+    alert("⛔ Bị chặn!");
+
+  }
+
+  if(e.ctrlKey && e.shiftKey) e.preventDefault();
+
+  if(e.key==="F12") e.preventDefault();
+
+});
+
+["copy","cut","contextmenu","selectstart","dragstart"]
+
+.forEach(evt=>document.addEventListener(evt,e=>e.preventDefault()));
+
+window.print=()=>alert("⛔ Không được in!");
+
+/* 📸 BLUR */
+
+window.addEventListener("blur",()=>{
+
+  document.body.style.filter="blur(10px)";
+
+});
+
+window.addEventListener("focus",()=>{
+
+  document.body.style.filter="none";
+
+});
+
+/* 🔍 DEVTOOLS */
+
+setInterval(()=>{
+
+  if(window.outerWidth-window.innerWidth>160){
+
+    document.body.style.filter="blur(12px)";
+
+  }
+
+},500);
+
+</script>
