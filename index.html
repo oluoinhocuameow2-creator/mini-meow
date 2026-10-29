@@ -11570,9 +11570,11 @@ body:not(.meow-route-wallet) #meowIntegratedWallet{pointer-events:none}
 body.meow-route-home #homePage,body.meow-route-story #storyPage,body.meow-route-genre #meowGenrePage{visibility:visible}
 </style>
 <style>
-/* Canvas text surface: Reader Mode cannot extract chapter paragraphs from HTML. */
+/* Image-rendered chapter: two logical halves, tiled to avoid oversized images. */
 #readerContent .meow-canvas-line{display:block;width:100%;height:auto;margin:0 0 1.1em;pointer-events:none}
 #readerContent .meow-canvas-image{max-width:100%;height:auto;display:block;margin:18px auto;border-radius:12px}
+#readerContent .meow-chapter-half{display:block;width:100%;margin:0 0 22px}
+#readerContent .meow-chapter-half img.meow-chapter-text-image{display:block;width:100%;height:auto;margin:0;pointer-events:none;user-select:none;-webkit-user-drag:none}
 </style>
 <script>
 (function(){
@@ -11605,9 +11607,18 @@ function paint(){
    else text+=part.text;
  }
  if(text.trim())paragraphs.push({kind:'text',text});
+ // Split chapter into two image-based reading sections. Long sections are
+ // tiled into safe-size images to avoid browser canvas pixel limits.
+ const totalChars=paragraphs.reduce((n,p)=>n+(p.kind==='text'?p.text.length:0),0);
+ let charsSeen=0, halfIndex=0;
+ let half=document.createElement('div');half.className='meow-chapter-half';holder.appendChild(half);
  for(const part of paragraphs){
+  if(halfIndex===0 && charsSeen>=totalChars/2 && totalChars>0){
+   halfIndex=1;half=document.createElement('div');half.className='meow-chapter-half';holder.appendChild(half);
+  }
+  if(part.kind==='text')charsSeen+=part.text.length;
   if(part.kind==='image'){
-   const img=document.createElement('img');img.className='meow-canvas-image';img.src=part.src;img.alt='';img.loading='lazy';holder.appendChild(img);continue;
+   const img=document.createElement('img');img.className='meow-canvas-image';img.src=part.src;img.alt='';img.loading='lazy';half.appendChild(img);continue;
   }
   for(const para of part.text.split(/\n\s*\n/)){
    if(!para.trim())continue;
@@ -11625,11 +11636,21 @@ function paint(){
     }
    }
    if(line)lines.push(line);
-   canvas.width=Math.ceil(width*ratio);canvas.height=Math.ceil(Math.max(1,lines.length)*lineHeight*ratio+8*ratio);
-   canvas.style.width=width+'px';canvas.style.height=(Math.max(1,lines.length)*lineHeight+8)+'px';
-   canvas.className='meow-canvas-line';
-   const pen=canvas.getContext('2d');pen.scale(ratio,ratio);pen.font=fontSize+'px '+family;pen.fillStyle=color;pen.textBaseline='top';
-   lines.forEach((l,i)=>pen.fillText(l,4,i*lineHeight+3));holder.appendChild(canvas);
+   const maxLines=Math.max(1,Math.floor(1500/lineHeight));
+   for(let start=0;start<lines.length;start+=maxLines){
+    const tile=lines.slice(start,start+maxLines);
+    const tileHeight=Math.ceil(tile.length*lineHeight+8);
+    canvas.width=Math.ceil(width*ratio);canvas.height=Math.ceil(tileHeight*ratio);
+    const pen=canvas.getContext('2d');if(!pen)continue;
+    pen.scale(ratio,ratio);pen.font=fontSize+'px '+family;
+    pen.fillStyle=color;pen.textBaseline='top';
+    tile.forEach((l,i)=>pen.fillText(l,4,i*lineHeight+3));
+    const img=document.createElement('img');
+    img.className='meow-chapter-text-image';img.alt='';
+    img.width=width;img.height=tileHeight;img.decoding='async';
+    img.src=canvas.toDataURL('image/png');
+    half.appendChild(img);
+   }
   }
  }
  el.replaceChildren(holder);
@@ -12860,57 +12881,3 @@ html body.meowSiteDark #loginPage .meowLoginBox{
  html body #loginPage.meowAuthVisible:not([hidden]){background:rgba(42,25,52,.70)!important}
 }
 </style>
-<script>
-/* 🚫 BLOCK */
-
-document.addEventListener("keydown",e=>{
-
-  let k=e.key.toLowerCase();
-
-  if(e.ctrlKey && ["s","p","u","c","x"].includes(k)){
-
-    e.preventDefault();
-
-    alert("⛔ Bị chặn!");
-
-  }
-
-  if(e.ctrlKey && e.shiftKey) e.preventDefault();
-
-  if(e.key==="F12") e.preventDefault();
-
-});
-
-["copy","cut","contextmenu","selectstart","dragstart"]
-
-.forEach(evt=>document.addEventListener(evt,e=>e.preventDefault()));
-
-window.print=()=>alert("⛔ Không được in!");
-
-/* 📸 BLUR */
-
-window.addEventListener("blur",()=>{
-
-  document.body.style.filter="blur(10px)";
-
-});
-
-window.addEventListener("focus",()=>{
-
-  document.body.style.filter="none";
-
-});
-
-/* 🔍 DEVTOOLS */
-
-setInterval(()=>{
-
-  if(window.outerWidth-window.innerWidth>160){
-
-    document.body.style.filter="blur(12px)";
-
-  }
-
-},500);
-
-</script>
