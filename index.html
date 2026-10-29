@@ -3036,6 +3036,49 @@ html body #loginPage #meowRegisterAvatarFile{padding:7px!important;font-size:10p
 @media(max-width:520px){html body #loginPage.meowAuthVisible:not([hidden]){padding:8px!important}html body #loginPage .meowLoginBox{padding:17px 13px 13px!important;border-radius:18px!important}}
 </style>
 
+<style id="meow-reader-fragment-style">
+/* Các dòng chương là khối giao diện, không phải các đoạn article để Reader Mode quét. */
+#readerPage #readerContent .meow-chapter-line{display:block;margin:0 0 1.15em;text-indent:2em;overflow-wrap:anywhere}
+#readerPage #readerContent .meow-chapter-piece{display:inline}
+#readerPage #readerContent .meow-chapter-line img{max-width:100%}
+</style>
+<script id="meow-reader-fragment-script">
+function meowHardenChapterSurface(root){
+  if(!root || root.dataset.meowFragmented==='1')return;
+  // Tránh article / p dài vốn là tín hiệu mạnh của các thuật toán Readability.
+  // Chia các text node thành các span nhỏ, giữ nguyên textContent cho TTS.
+  const paragraphs=Array.from(root.querySelectorAll('p'));
+  paragraphs.forEach(p=>{
+    const line=document.createElement('div');
+    line.className='meow-chapter-line';
+    line.style.cssText=p.style.cssText;
+    for(const attr of Array.from(p.attributes)){
+      if(attr.name!=='style' && attr.name!=='class' && !attr.name.startsWith('on'))line.setAttribute(attr.name,attr.value);
+    }
+    while(p.firstChild)line.appendChild(p.firstChild);
+    p.replaceWith(line);
+  });
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  const nodes=[];
+  while(walker.nextNode()){
+    const node=walker.currentNode;
+    if(node.nodeValue.trim().length>80 && !node.parentElement?.closest('script,style,textarea'))nodes.push(node);
+  }
+  nodes.forEach(node=>{
+    const text=node.nodeValue;
+    const frag=document.createDocumentFragment();
+    // Giữ nguyên mọi ký tự và khoảng trắng, không đảo thứ tự nội dung.
+    for(let i=0;i<text.length;i+=72){
+      const span=document.createElement('span');
+      span.className='meow-chapter-piece';
+      span.textContent=text.slice(i,i+72);
+      frag.appendChild(span);
+    }
+    node.replaceWith(frag);
+  });
+  root.dataset.meowFragmented='1';
+}
+</script>
 <!-- Meow Reader: best-effort browser reading-mode deterrence (reader only) -->
 <meta name="google" content="notranslate">
 <style id="meow-reader-mode-guard">
@@ -7114,6 +7157,7 @@ function renderReader(){
   contentEl.setAttribute('data-reader-surface', 'meow-dynamic');
   contentEl.setAttribute('translate', 'no');
   contentEl.replaceChildren();
+  delete contentEl.dataset.meowFragmented;
   const text = String(body ?? "");
   if (text.trim()) {
     if (/<\/?[a-z][^>]*>/i.test(text)) {
@@ -7150,6 +7194,10 @@ function renderReader(){
       }
     });
   }
+
+  // Hạn chế trình duyệt nhận diện chương như một bài viết tĩnh.
+  // Không can thiệp dữ liệu Firebase, thứ tự văn bản, hình ảnh hay TTS.
+  if (typeof meowHardenChapterSurface === "function") meowHardenChapterSurface(contentEl);
 
   if (typeof applyMeowReaderSettings === "function") applyMeowReaderSettings(false);
   updateReaderButtons();
