@@ -7198,6 +7198,7 @@ function renderReader(){
   // Hạn chế trình duyệt nhận diện chương như một bài viết tĩnh.
   // Không can thiệp dữ liệu Firebase, thứ tự văn bản, hình ảnh hay TTS.
   if (typeof meowHardenChapterSurface === "function") meowHardenChapterSurface(contentEl);
+  if (typeof meowCanvasProtect === "function") meowCanvasProtect(contentEl);
 
   if (typeof applyMeowReaderSettings === "function") applyMeowReaderSettings(false);
   updateReaderButtons();
@@ -8099,7 +8100,7 @@ function meowTTSStartTimer(start,end,token){
 
 function meowTTSGetText(){
   const el = document.getElementById("readerContent");
-  return (el?.innerText || el?.textContent || "").replace(/\s+/g, " ").trim();
+  return (window.meowCanvasChapterText || el?.innerText || el?.textContent || "").replace(/\s+/g, " ").trim();
 }
 function meowTTSUpdateProgress(offset){
   const length = meowTTSFullText.length;
@@ -11568,6 +11569,84 @@ html body.meowSiteDark #loginPage.meowAuthVisible:not([hidden]){
 body:not(.meow-route-wallet) #meowIntegratedWallet{pointer-events:none}
 body.meow-route-home #homePage,body.meow-route-story #storyPage,body.meow-route-genre #meowGenrePage{visibility:visible}
 </style>
+<style>
+/* Canvas text surface: Reader Mode cannot extract chapter paragraphs from HTML. */
+#readerContent .meow-canvas-line{display:block;width:100%;height:auto;margin:0 0 1.1em;pointer-events:none}
+#readerContent .meow-canvas-image{max-width:100%;height:auto;display:block;margin:18px auto;border-radius:12px}
+</style>
+<script>
+(function(){
+'use strict';
+let sourceParts=[], active=false, painting=false;
+function extract(node, out){
+  for(const child of node.childNodes){
+    if(child.nodeType===3){if(child.textContent.trim())out.push({kind:'text',text:child.textContent});continue;}
+    if(child.nodeType!==1)continue;
+    if(child.tagName==='IMG'){out.push({kind:'image',src:child.currentSrc||child.src,alt:child.alt||''});continue;}
+    if(child.tagName==='BR'){out.push({kind:'text',text:'\n'});continue;}
+    const block=/^(P|DIV|SECTION|H[1-6]|LI|BLOCKQUOTE|PRE)$/i.test(child.tagName);
+    extract(child,out);
+    if(block)out.push({kind:'text',text:'\n\n'});
+  }
+}
+function paint(){
+ const el=document.getElementById('readerContent');
+ if(!el||!active||painting)return;
+ painting=true;
+ try{
+ const style=getComputedStyle(el), fontSize=parseFloat(style.fontSize)||19;
+ const family=style.fontFamily||'sans-serif', lineHeight=(parseFloat(style.lineHeight)||fontSize*2);
+ const width=Math.max(200,Math.floor(el.clientWidth||window.innerWidth-32));
+ const color=style.color, ratio=Math.min(2,window.devicePixelRatio||1);
+ const holder=document.createDocumentFragment();
+ const paragraphs=[];let text='';
+ for(const part of sourceParts){
+   if(part.kind==='image'){if(text.trim())paragraphs.push({kind:'text',text});text='';paragraphs.push(part);}
+   else text+=part.text;
+ }
+ if(text.trim())paragraphs.push({kind:'text',text});
+ for(const part of paragraphs){
+  if(part.kind==='image'){
+   const img=document.createElement('img');img.className='meow-canvas-image';img.src=part.src;img.alt='';img.loading='lazy';holder.appendChild(img);continue;
+  }
+  for(const para of part.text.split(/\n\s*\n/)){
+   if(!para.trim())continue;
+   const canvas=document.createElement('canvas');const ctx=canvas.getContext('2d');if(!ctx)continue;
+   ctx.font=fontSize+'px '+family;
+   const lines=[];let line='';
+   const words=para.replace(/\s+/g,' ').trim().split(' ');
+   for(const word of words){
+    let candidate=line?line+' '+word:word;
+    if(ctx.measureText(candidate).width>width-8&&line){lines.push(line);line=word;}
+    else line=candidate;
+    while(ctx.measureText(line).width>width-8&&line.length>1){
+      let cut=line.length-1;while(cut>1&&ctx.measureText(line.slice(0,cut)).width>width-8)cut--;
+      lines.push(line.slice(0,cut));line=line.slice(cut);
+    }
+   }
+   if(line)lines.push(line);
+   canvas.width=Math.ceil(width*ratio);canvas.height=Math.ceil(Math.max(1,lines.length)*lineHeight*ratio+8*ratio);
+   canvas.style.width=width+'px';canvas.style.height=(Math.max(1,lines.length)*lineHeight+8)+'px';
+   canvas.className='meow-canvas-line';
+   const pen=canvas.getContext('2d');pen.scale(ratio,ratio);pen.font=fontSize+'px '+family;pen.fillStyle=color;pen.textBaseline='top';
+   lines.forEach((l,i)=>pen.fillText(l,4,i*lineHeight+3));holder.appendChild(canvas);
+  }
+ }
+ el.replaceChildren(holder);
+ }finally{painting=false;}
+}
+window.meowCanvasProtect=function(el){
+ const parts=[];extract(el,parts);sourceParts=parts;
+ window.meowCanvasChapterText=parts.filter(x=>x.kind==='text').map(x=>x.text).join('');
+ active=true;paint();
+};
+let timer;
+window.addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(paint,180)});
+document.addEventListener('input',e=>{if(e.target.closest?.('#readerSettingsOverlay'))setTimeout(paint,20)});
+document.addEventListener('change',e=>{if(e.target.closest?.('#readerSettingsOverlay'))setTimeout(paint,20)});
+new MutationObserver(()=>{if(active&&!painting){clearTimeout(timer);timer=setTimeout(paint,50)}}).observe(document.documentElement,{attributes:true,subtree:true,attributeFilter:['class','style']});
+})();
+</script>
 </body>
 
 
