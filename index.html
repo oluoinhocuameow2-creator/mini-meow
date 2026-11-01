@@ -3622,7 +3622,20 @@ html body #meowReaderApp #storyPage>.meowStoryDetail{
 #readerPage #mrcChapterPanel textarea,#meowReaderCommentOverlay textarea{box-sizing:border-box!important;border:1.5px solid #efb1d0!important;border-radius:12px!important;background:#fffafd!important;color:#663a55!important}
 #readerPage #mrcChapterPanel .mrc-form button,#meowReaderCommentOverlay .mrc-form button{border:1px solid #e87daf!important;border-radius:12px!important;background:linear-gradient(125deg,#ff9bcc,#f078b4)!important;color:#fff!important;box-shadow:2px 3px 0 #d76a9c!important}
 @media(max-width:600px){#meowCommunityShelf.meowCommunityShelf{margin:12px 0 16px!important;padding:12px!important;border-radius:17px!important}#readerPage #mrcChapterPanel,#meowReaderCommentOverlay .mrc-panel{padding:11px!important}}
-</style></head>
+</style>
+<!-- Direct story/chapter links: do not flash Home or the intermediate story profile. -->
+<script id="meow-direct-entry-v15-early">
+(()=>{const q=new URLSearchParams(location.search);const story=q.get('story')||q.get('storyId')||q.get('id');if(story){const chapter=q.get('chapter');document.documentElement.classList.add(chapter?'meow-entry-chapter':'meow-entry-profile');}})();
+</script>
+<style id="meow-direct-entry-v15-style">
+html.meow-entry-chapter #homePage,html.meow-entry-chapter #storyPage,
+html.meow-entry-profile #homePage{display:none!important}
+html.meow-entry-chapter body::after,html.meow-entry-profile body::after{content:'🌸 Đang mở truyện…';position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#fff2f9;color:#b65386;font:600 17px 'Be Vietnam Pro',sans-serif;pointer-events:none}
+html.meow-entry-chapter.meow-entry-ready body::after,html.meow-entry-profile.meow-entry-ready body::after{display:none}
+html.meow-entry-chapter.meow-entry-ready #readerPage{display:block}
+html.meow-entry-profile.meow-entry-ready #storyPage{display:block}
+</style>
+</head>
 <body>
 <div id="meowStartupLoading" role="status" aria-label="Meow đang tải"><div class="meow-loading-center"><div class="meow-loading-circle"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiU7RJCaDnotJOXcR9w50HZR39YwP2FNlgTUFLOy0CEZ3hKeQUQhQbGaD2uWYCAO6S5Qj4UeGPPEeBoTHcECz9Zs6I6VHk6kvRW__zo4SkMCw6tBk35Rf7XoWU1E8E3Ft-JkMwOhGCd5XcCgzCniCyO1I3scO_DGWbVzKXLdcob2pAd6uKfRbcGR-5XpRc/s381/t%E1%BA%A3i%20xu%E1%BB%91ng%20%284%29.png" alt="Mini Meow"></div><span class="meow-loading-dots">Đang tải</span></div></div>
 <div id="meowAgeGate" role="dialog" aria-modal="true" aria-labelledby="meowAgeTitle">
@@ -14412,7 +14425,7 @@ html body #meowSiteFooter .meowFooterLayout{width:100%!important;max-width:1100p
   if(valid.has(route)){
    // Keep story URL untouched until Firebase has actually opened the requested page.
    restoring=true;
-   if(initialDeepLink){
+   if(initialDeepLink && !document.documentElement.classList.contains('meow-entry-chapter') && !document.documentElement.classList.contains('meow-entry-profile')){
     let tries=0;
     const attempt=()=>{
      if(window.meowLogoutToHomePending){deepLinkPending=false;restoring=false;return}
@@ -14425,7 +14438,8 @@ html body #meowSiteFooter .meowFooterLayout{width:100%!important;max-width:1100p
      setTimeout(attempt,650);
     };
     setTimeout(attempt,500);
-   }else setTimeout(()=>{try{open(route)}finally{restoring=false;schedule()}},750);
+   }else if(!initialDeepLink) setTimeout(()=>{try{open(route)}finally{restoring=false;schedule()}},750);
+   else {restoring=false;}
   }else schedule();
  }
  window.addEventListener('popstate',()=>{
@@ -14464,7 +14478,7 @@ html body #meowSiteFooter .meowFooterLayout{width:100%!important;max-width:1100p
  });
  // Deep links can arrive before Firebase has loaded the story's chapters.
  const q=new URLSearchParams(location.search);
- if(q.get('meowPage')==='chapter'&&q.get('story')&&q.get('chapter')){
+ if(q.get('meowPage')==='chapter'&&q.get('story')&&q.get('chapter')&&!document.documentElement.classList.contains('meow-entry-chapter')){
   let attempts=0;const story=q.get('story'),chapter=q.get('chapter');
   const retry=()=>{
    if(getRoute().story===story&&getRoute().chapter===chapter)return;
@@ -14477,6 +14491,113 @@ html body #meowSiteFooter .meowFooterLayout{width:100%!important;max-width:1100p
  }
 })();
 </script>
+
+<style id="meow-reader-paragraph-spacing-v14">
+/* Two-line breathing room between individual paragraphs, including inline comments. */
+#readerPage #readerContent > p,
+#readerPage #readerContent > .meow-chapter-line,
+#readerPage #readerContent > .mrc-paragraph,
+#readerPage #readerContent > .meow-chapter-half {
+  margin-bottom:2.2em!important;
+}
+#readerPage #readerContent > .mrc-canvas-paragraph {
+  margin-bottom:2em!important;
+}
+#readerPage #readerContent > .meow-paragraph-gap {
+  height:2.2em!important;
+}
+</style>
+
+<script id="meow-direct-entry-v15">
+(()=>{
+ const root=document.documentElement;
+ const chapterMode=root.classList.contains('meow-entry-chapter');
+ const profileMode=root.classList.contains('meow-entry-profile');
+ if(!chapterMode&&!profileMode)return;
+ const q=new URLSearchParams(location.search);
+ const wantedStory=q.get('story')||q.get('storyId')||q.get('id');
+ const wantedChapter=q.get('chapter');
+ const isShown=id=>{const e=document.getElementById(id);return !!e&&!e.hidden&&getComputedStyle(e).visibility!=='hidden'&&e.style.display!=='none'};
+ let completed=false;
+ function finish(){if(completed)return;completed=true;root.classList.add('meow-entry-ready');}
+ function check(){
+  const r=window.meowGetReaderRoute?.()||{};
+  if(chapterMode){if(String(r.story)===String(wantedStory)&&String(r.chapter)===String(wantedChapter)&&isShown('readerPage'))finish();}
+  else if(String(r.story)===String(wantedStory)&&isShown('storyPage'))finish();
+ }
+ let started=false;
+ async function launch(){
+  if(started||completed)return;
+  if(chapterMode&&typeof window.meowOpenChapterFromHistory!=='function')return;
+  if(profileMode&&typeof window.meowOpenStoryProfile!=='function')return;
+  started=true;
+  try{
+   if(chapterMode){
+    for(let i=0;i<12&&!completed;i++){
+     const ok=await window.meowOpenChapterFromHistory(wantedStory,wantedChapter);
+     check();if(ok||completed)break;
+     await new Promise(resolve=>setTimeout(resolve,450));
+    }
+   }else{await window.meowOpenStoryProfile(wantedStory);check();}
+  }catch(err){console.warn('Meow direct route:',err)}
+ }
+ function begin(){launch();const t=setInterval(()=>{check();if(completed)clearInterval(t)},130);setTimeout(()=>{clearInterval(t);if(!completed){root.classList.remove('meow-entry-chapter','meow-entry-profile');console.warn('Meow: chưa mở được link trực tiếp')}} ,16000)}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',begin,{once:true});else begin();
+ window.addEventListener('meow:chapter-opened',check);
+})();
+</script>
+
+<!-- V16: nới khoảng cách đoạn và khôi phục trực tiếp link Cá nhân / Ví khi mở URL mới -->
+<style id="meow-v16-reader-paragraph-spacing">
+#readerPage #readerContent .meow-chapter-line{margin-bottom:1.8em!important}
+#readerPage #readerContent .meow-chapter-line:last-child{margin-bottom:0!important}
+</style>
+<script id="meow-v16-direct-personal-wallet">
+(()=>{
+ 'use strict';
+ const KEY='meowPage';
+ const routeNow=()=>new URLSearchParams(location.search).get(KEY)||'';
+ const visible=(el)=>!!el&&!el.hidden&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden';
+ let lastRoute='';
+ function apply(route,fromPop=false){
+  if(!['personal','wallet'].includes(route))return false;
+  const profile=document.getElementById('meowProfileOverlay');
+  const wallet=document.getElementById('meowIntegratedWallet');
+  if(route==='personal'&&profile?.classList.contains('show')&&visible(profile))return true;
+  if(route==='wallet'&&wallet&&!wallet.hidden&&visible(wallet))return true;
+  if(route==='personal'){
+   if(typeof window.meowOpenProfile!=='function')return false;
+   window.meowSetExclusiveRoute?.('profile');
+   window.meowOpenProfile();
+  }else{
+   if(typeof window.meowOpenIntegratedWallet!=='function')return false;
+   window.meowSetExclusiveRoute?.('wallet');
+   window.meowOpenIntegratedWallet(true);
+  }
+  lastRoute=route;
+  return true;
+ }
+ function retry(route,attempt=0){
+  if(routeNow()!==route)return;
+  if(apply(route))return;
+  if(attempt<40)setTimeout(()=>retry(route,attempt+1),250);
+ }
+ function start(){
+  const route=routeNow();
+  if(['personal','wallet'].includes(route)){
+   // Reassert after the app's own initial route/history handlers have settled.
+   setTimeout(()=>retry(route),900);
+  }
+ }
+ window.addEventListener('popstate',()=>{
+  const route=routeNow();
+  if(['personal','wallet'].includes(route))setTimeout(()=>retry(route),80);
+ });
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});
+ else start();
+})();
+</script>
+
 </body>
 
 
