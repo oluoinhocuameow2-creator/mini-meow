@@ -12631,6 +12631,8 @@ body.meow-route-home #homePage,body.meow-route-story #storyPage,body.meow-route-
 #readerContent .meow-canvas-image{max-width:100%;height:auto;display:block;margin:18px auto;border-radius:12px}
 #readerContent .meow-chapter-half{display:block;width:100%;margin:0 0 22px}
 #readerContent .meow-chapter-half img.meow-chapter-text-image{display:block;width:100%;height:auto;margin:0;pointer-events:none;user-select:none;-webkit-user-drag:none}
+ #readerContent .mrc-inline-canvas-wrap{display:block!important;margin:0 0 7em!important;}
+ #readerContent .mrc-inline-canvas-wrap:last-child{margin-bottom:0!important;}
 #readerContent .meow-paragraph-gap{height:2.1em;display:block;clear:both}
 #readerContent .meow-chapter-half{content-visibility:auto;contain-intrinsic-size:auto 1000px}
 </style>
@@ -12661,7 +12663,7 @@ function paint(){
  const color=style.color;
  const readerBackground=getComputedStyle(document.getElementById('readerPage')).backgroundColor;
  // Sharper text, but keep memory bounded on mobile.
- const ratio=Math.min(2,Math.max(1.5,window.devicePixelRatio||1));
+ const ratio=Math.min(3,Math.max(2,window.devicePixelRatio||1));
  const paragraphs=[];let text='';
  for(const part of sourceParts){if(part.kind==='image'){if(text.trim())paragraphs.push({kind:'text',text});text='';paragraphs.push(part)}else text+=part.text}
  if(text.trim())paragraphs.push({kind:'text',text});
@@ -12686,7 +12688,7 @@ function paint(){
      const img=document.createElement('img');img.className='meow-canvas-image';img.src=part.src;img.alt='';img.loading='lazy';half.appendChild(img);continue;
     }
     charsSeen+=part.text.length;
-    paraQueue=part.text.split(/\n\s*\n/).filter(x=>x.trim());
+    paraQueue=part.text.split(/\n+/).map(x=>x.trim()).filter(Boolean);
     continue;
    }
    const para=paraQueue.shift();const lines=[];let line='';
@@ -12705,7 +12707,7 @@ function paint(){
     // Use a transparent-looking solid matching reader theme to avoid black canvas backgrounds.
     const readerBg=readerBackground;
     pen.fillStyle=readerBg&&readerBg!=='rgba(0, 0, 0, 0)'?readerBg:'#fffafc';pen.fillRect(0,0,width,h);
-    pen.font=fontSize+'px '+family;pen.fillStyle=color;pen.textBaseline='top';
+    pen.font='400 '+fontSize+'px '+family;pen.fillStyle=color;pen.textBaseline='top';
     tile.forEach((l,i)=>pen.fillText(l,5,i*lineHeight+4));
     const img=document.createElement('img');img.className='meow-chapter-text-image';img.alt='';img.width=width;img.height=h;img.decoding='async';img.src=canvas.toDataURL('image/png');if(start+maxLines>=lines.length){
       const wrapper=document.createElement('span');wrapper.className='mrc-inline-canvas-wrap';
@@ -12722,9 +12724,9 @@ function paint(){
       button.onclick=()=>window.meowReaderOpenParagraphComments?.(String(index));
       const fits=textEnd+34<=width;
       button.style.left=(fits?Math.max(5,textEnd+3):Math.max(5,width-32))+'px';
-      button.style.top=(fits?Math.max(0,(tile.length-1)*lineHeight-1):Math.max(0,(tile.length-1)*lineHeight+lineHeight-2))+'px';
+      button.style.top=(fits?Math.max(0,(tile.length-1)*lineHeight+Math.max(0,(lineHeight-25)/2)):Math.max(0,tile.length*lineHeight+2))+'px';
       wrapper.appendChild(button);half.appendChild(wrapper);
-      if(!fits)wrapper.style.marginBottom='29px';
+      if(!fits)wrapper.style.marginBottom=(lineHeight+8)+'px';
     }else half.appendChild(img);
     canvas.width=0;canvas.height=0;
    }
@@ -13105,6 +13107,7 @@ const created=x=>toTime(x.info?.createdAt??x.info?.created_at??x.info?.published
 // Xếp hạng theo tổng lượt đọc thực tế của TẤT CẢ chương, không theo lượt xem trang truyện.
 const meowRankingTotals=new Map();
 const MEOW_RANK_CACHE_KEY='meow_rank_totals_v3';
+const MEOW_RANK_ORDER_KEY='meow_rank_fixed_order_v1';
 const MEOW_RANK_CACHE_TTL=30*60*1000;
 let meowRankCacheSaveTimer=0,meowRankRenderTimer=0;
 try{
@@ -13121,7 +13124,7 @@ function saveMeowRankCache(){
 }
 function scheduleMeowRankRender(){
  if(meowRankRenderTimer)return;
- meowRankRenderTimer=setTimeout(()=>{meowRankRenderTimer=0;if(mode==='rank'&&!page.hidden){items.sort((a,b)=>count(b)-count(a));render()}},160);
+ meowRankRenderTimer=setTimeout(()=>{meowRankRenderTimer=0;if(mode==='rank'&&!page.hidden){render()}},160);
 }
 
 const count=x=>{
@@ -13141,23 +13144,39 @@ const count=x=>{
  const n=Number(i.totalChapterViews??i.totalReads??0);
  return Number.isFinite(n)&&n>0?n:0;
 };
+function freezeMeowRankingOrder(list){
+ let saved=[];
+ try{const raw=JSON.parse(localStorage.getItem(MEOW_RANK_ORDER_KEY)||'[]');if(Array.isArray(raw))saved=raw.map(String)}catch(_){}
+ const byId=new Map(list.map(x=>[String(x.id),x]));
+ let ordered=[];
+ if(saved.length){
+  // Existing stories keep their exact positions; newly added stories are appended only.
+  ordered=saved.filter(id=>byId.has(id)).map(id=>byId.get(id));
+  const known=new Set(ordered.map(x=>String(x.id)));
+  const added=list.filter(x=>!known.has(String(x.id))).sort((a,b)=>count(b)-count(a));
+  ordered.push(...added);
+ }else{
+  // Establish the initial order once, then never resort it because views changed.
+  ordered=[...list].sort((a,b)=>count(b)-count(a));
+ }
+ try{localStorage.setItem(MEOW_RANK_ORDER_KEY,JSON.stringify(ordered.map(x=>String(x.id))))}catch(_){}
+ return ordered;
+}
 async function hydrateRankingTotals(list,req){
- const queue=list.filter(x=>!meowRankingTotals.has(String(x.id)));
  let cursor=0;
  async function worker(){
-  while(cursor<queue.length && req===requestId && mode==='rank'){
-   const x=queue[cursor++];
+  while(cursor<list.length && req===requestId && mode==='rank'){
+   const x=list[cursor++];
    const value=await window.meowRankingReadViews?.(x.id);
    if(req!==requestId || mode!=='rank')return;
    if(value!==null && Number.isFinite(value)){
     meowRankingTotals.set(String(x.id),value);
     saveMeowRankCache();
-    // Batch updates to avoid repainting the entire ranking after every Firebase response.
-    /* Giữ nguyên thứ hạng đang xem, cập nhật sau lần mở kế tiếp để tránh nhảy card. */
    }
   }
  }
- await Promise.all(Array.from({length:Math.min(3,queue.length)},()=>worker()));
+ await Promise.all(Array.from({length:Math.min(3,list.length)},()=>worker()));
+ if(req===requestId && mode==='rank')scheduleMeowRankRender();
 }
 const cover=x=>x.info?.cover||x.info?.coverUrl||x.info?.coverImage||x.info?.imageUrl||x.info?.thumbnailUrl||'';
 const chapterCount=x=>{const c=x.data?.chapters;if(c&&typeof c==='object'&&!x.data?._catalogOnly)return Object.keys(c).length;return Number(x.info?.chapterCount??x.info?.totalChapters??x.data?.chapterCount??0)||0};
@@ -13205,7 +13224,7 @@ function render(){
  const list=document.createElement('div');list.className='mnr-ranking';items.slice(3).forEach((x,i)=>{const pos=i+4,b=document.createElement('button');b.type='button';b.className='mnr-rank';const num=document.createElement('span');num.className='mnr-number';num.textContent=pos;b.append(num);const im=document.createElement('img');im.alt='';im.loading='lazy';if(cover(x))im.src=cover(x);b.append(im);const info=document.createElement('span');info.className='mnr-rank-info';const name=document.createElement('strong');name.textContent=x.info?.name||x.id;const meta=document.createElement('small');meta.textContent=chapterCount(x).toLocaleString('vi-VN')+' chương';info.append(name,meta);b.append(info);const reads=document.createElement('span');reads.className='mnr-count';reads.textContent='◉ '+count(x).toLocaleString('vi-VN');b.append(reads);b.onclick=()=>openStory(x);list.append(b)});content.append(list);
  const jump=document.createElement('div');jump.className='mnr-jump';for(const [label,target] of [['↑',0],['↓',1]]){const btn=document.createElement('button');btn.textContent=label;btn.setAttribute('aria-label',target?'Xuống cuối bảng xếp hạng':'Lên đầu bảng xếp hạng');btn.onclick=()=>{page.scrollTo({top:target?page.scrollHeight:0,behavior:'smooth'})};jump.append(btn)}content.append(jump);
 }
-async function show(nextMode,fromHistory=false){window.meowNewRankHistoryBusy=true;if(!fromHistory){preservePrevious();history.pushState(navState('list',nextMode),'',location.href)}mode=nextMode;pageIndex=1;const req=++requestId;document.getElementById('meowSideClose')?.click();window.meowCloseIntegratedWallet?.();window.meowCloseProfile?.();document.body.classList.remove('meowGenrePageActive');const genre=$('meowGenrePage');if(genre){genre.hidden=true;genre.style.display='none'}for(const id of ['readerPage','storyPage']){const el=$(id);if(el)el.style.display='none'}const home=$('homePage');if(home){home.hidden=true;home.style.display='none'}page.hidden=false;page.style.display='block';document.body.classList.add('meowNewRankActive');page.scrollTop=0;$('mnrTitle').textContent=mode==='new'?'✦ Truyện mới cập nhật':'♛ Xếp hạng truyện';$('mnrSubtitle').textContent=mode==='new'?'Chỉ hiện truyện được thêm trong 7 ngày gần nhất · mới nhất trước':'Xếp hạng theo tổng lượt đọc của các chương';$('mnrContent').textContent='Đang tải danh sách...';$('mnrPagination').replaceChildren();try{const bridge=window.meowMenuBridge;if(!bridge)throw Error('Chưa tải xong dữ liệu');const all=bridge.stories();if(req!==requestId)return;items=all.filter(x=>x&&x.info).filter(x=>mode!=='new'||(created(x)>Date.now()-7*86400000&&created(x)<=Date.now())).sort(mode==='new'?(a,b)=>created(b)-created(a):((a,b)=>count(b)-count(a)));render();if(mode==='rank')void hydrateRankingTotals(items,req)}catch(e){$('mnrContent').textContent='Không tải được danh sách, bà thử lại nha.'}finally{setTimeout(()=>{window.meowNewRankHistoryBusy=false},350)}}
+async function show(nextMode,fromHistory=false){window.meowNewRankHistoryBusy=true;if(!fromHistory){preservePrevious();history.pushState(navState('list',nextMode),'',location.href)}mode=nextMode;pageIndex=1;const req=++requestId;document.getElementById('meowSideClose')?.click();window.meowCloseIntegratedWallet?.();window.meowCloseProfile?.();document.body.classList.remove('meowGenrePageActive');const genre=$('meowGenrePage');if(genre){genre.hidden=true;genre.style.display='none'}for(const id of ['readerPage','storyPage']){const el=$(id);if(el)el.style.display='none'}const home=$('homePage');if(home){home.hidden=true;home.style.display='none'}page.hidden=false;page.style.display='block';document.body.classList.add('meowNewRankActive');page.scrollTop=0;$('mnrTitle').textContent=mode==='new'?'✦ Truyện mới cập nhật':'♛ Xếp hạng truyện';$('mnrSubtitle').textContent=mode==='new'?'Chỉ hiện truyện được thêm trong 7 ngày gần nhất · mới nhất trước':'Xếp hạng theo tổng lượt đọc của các chương';$('mnrContent').textContent='Đang tải danh sách...';$('mnrPagination').replaceChildren();try{const bridge=window.meowMenuBridge;if(!bridge)throw Error('Chưa tải xong dữ liệu');const all=bridge.stories();if(req!==requestId)return;items=all.filter(x=>x&&x.info).filter(x=>mode!=='new'||(created(x)>Date.now()-7*86400000&&created(x)<=Date.now()));if(mode==='new')items.sort((a,b)=>created(b)-created(a));else items=freezeMeowRankingOrder(items);render();if(mode==='rank')void hydrateRankingTotals(items,req)}catch(e){$('mnrContent').textContent='Không tải được danh sách, bà thử lại nha.'}finally{setTimeout(()=>{window.meowNewRankHistoryBusy=false},350)}}
 // FIX: Home from New/Ranking must never return to cached wallet or remain behind ranking layer.
 function meowRankGoHome(){
   conceal();
@@ -14597,6 +14616,51 @@ html body #meowSiteFooter .meowFooterLayout{width:100%!important;max-width:1100p
  else start();
 })();
 </script>
+
+
+
+<style id="meow-v17-paragraph-spacing-sharp-text">
+/* Bản V18: đoạn gần nhau khoảng một dòng, chữ nhẹ hơn; icon bình luận nằm dưới đoạn. */
+#readerPage #readerContent .mrc-inline-canvas-wrap{
+  display:block!important;
+  margin-bottom:2em!important;
+}
+#readerPage #readerContent .mrc-inline-canvas-wrap:last-child{
+  margin-bottom:0!important;
+}
+#readerPage #readerContent .meow-chapter-half{
+  margin-bottom:0!important;
+}
+#readerPage #readerContent .meow-chapter-text-image{
+  image-rendering:auto;
+  -webkit-font-smoothing:antialiased;
+}
+</style>
+
+
+<style id="meow-v19-comment-inline-at-paragraph-end">
+/* Icon nằm sát sau dấu câu cuối đoạn; nếu cuối dòng không đủ chỗ thì tự xuống dòng, không đè chữ. */
+#readerPage #readerContent .mrc-inline-canvas-wrap{
+  display:block!important;
+  position:relative!important;
+  overflow:visible!important;
+  margin-bottom:2em!important;
+}
+#readerPage #readerContent .mrc-inline-canvas-comment{
+  position:absolute!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  left:0;
+  top:0;
+  margin:0!important;
+  width:27px!important;
+  height:25px!important;
+  min-width:27px!important;
+  min-height:25px!important;
+  transform:none!important;
+}
+</style>
 
 </body>
 
