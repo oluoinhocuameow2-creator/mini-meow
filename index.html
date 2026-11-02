@@ -2775,6 +2775,7 @@ body.meow-bulk-active #meowReaderApp{isolation:auto!important}
 .meowProfileAvatarWrap input{display:none}
 .meowProfileName{font-size:clamp(16px,3vw,21px);font-weight:900;color:#8d4f77;overflow-wrap:anywhere}
 .meowProfileId{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:7px;font-size:12px;color:#a87998}
+.meowProfileJoinedDate{margin-top:6px;font-size:11px;line-height:1.5;color:#a87998;overflow-wrap:anywhere}.meowProfileJoinedDate b{color:#b45d91;font-weight:800}body.meowSiteDark .meowProfileJoinedDate{color:#e1bfd9}body.meowSiteDark .meowProfileJoinedDate b{color:#ffd5eb}
 .meowProfileCopy{width:27px;height:27px;border:1px solid #fff;border-radius:9px;background:#ffffffa8;color:#b65e91}
 .meowProfileWalletLink{display:inline-flex;align-items:center;gap:6px;margin-top:9px;padding:8px 11px;border:1px solid #fff;border-radius:12px;background:#ffffffa6;color:#a64f83;text-decoration:none;font-size:11px;font-weight:800}
 .meowProfileStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:13px 0 20px}
@@ -5492,6 +5493,16 @@ function logout(){
     "MEOW_READER_ID"
   );
 
+  // Clear every ID alias used by the account-specific appearance settings.
+  // Otherwise the settings module can still resolve the previous account
+  // and keep applying that ID's custom wallpaper after logout.
+  try {
+    localStorage.removeItem("MEOW_ID");
+    localStorage.removeItem("meowCustomerId");
+    window.dispatchEvent(new Event("meow:account-logged-out"));
+  } catch (e) {
+    console.warn("Meow account appearance cleanup", e);
+  }
 
   if (typeof meowReadingHistoryUnsubscribe === "function") meowReadingHistoryUnsubscribe();
   meowReadingHistoryUnsubscribe = null;
@@ -6159,7 +6170,7 @@ async function meowRecentCommunityLoad(force=false){
     for(const [thread,comments] of Object.entries(chapter.threads)){
      for(const [key,c] of Object.entries(comments||{})){
       if(!c||typeof c.text!=='string')continue;
-      rows.push({sid:decodeURIComponent(sid),cid:decodeURIComponent(cid),key,type:thread==='chapter'?'chapter':'paragraph',name:c.name||'Độc giả',avatar:c.avatar||'',text:c.text,at:Number(c.at||0)});
+      rows.push({sid:decodeURIComponent(sid),cid:decodeURIComponent(cid),key,thread:String(thread),paragraphIndex:thread==='chapter'?null:Number(String(thread).replace(/^paragraph[:_-]?/,'')),type:thread==='chapter'?'chapter':'paragraph',name:c.name||'Độc giả',avatar:c.avatar||'',text:c.text,at:Number(c.at||0)});
      }
     }
    }
@@ -6184,7 +6195,7 @@ function meowRecentCommunityDraw(){
  if(!rows.length){host.textContent=meowCommunityCache.error||'Chưa có bình luận phù hợp nha ♡';return}
  const typeName={story:'Truyện',chapter:'Chương',paragraph:'Đoạn'};
  host.innerHTML=rows.map((r,i)=>`<button type="button" class="meowCommunityItem" data-community-idx="${i}"><span class="meowCommunityAvatar">${r.avatar?`<img src="${meowCommunityEscape(r.avatar)}" alt="" loading="lazy">`:'🐱'}</span><span class="meowCommunityItemText"><span><strong>${meowCommunityEscape(r.name)}</strong><em>✿ ${typeName[r.type]}</em><small>${r.at?new Date(r.at).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}):''}</small></span><span class="meowCommunityExcerpt">${meowCommunityEscape(r.text)}</span><i>${meowCommunityEscape(meowCommunityStoryName(r.sid))}${r.cid?' · Chương '+meowCommunityEscape(r.cid):''}</i></span></button>`).join('');
- host.querySelectorAll('[data-community-idx]').forEach((el,i)=>el.onclick=()=>{const r=rows[i];if(r)openStory(r.sid)});
+ host.querySelectorAll('[data-community-idx]').forEach((el,i)=>el.onclick=async()=>{const r=rows[i];if(!r)return;try{await openStory(r.sid);if(r.cid){let tries=0;const go=()=>{if(String(currentStoryId)!==String(r.sid)||!currentChapters?.[r.cid]){if(++tries<30)return setTimeout(go,150);return}openChapter(String(r.cid));if(r.type==='paragraph'&&Number.isFinite(r.paragraphIndex)){setTimeout(()=>window.meowReaderOpenParagraphComments?.(String(r.paragraphIndex)),650)}};go()}}catch(e){console.error('Meow comment deep link:',e)}});
 }
 async function meowRecentCommunityInit(force=false){
  const host=document.getElementById('meowCommunityList');if(!host)return;
@@ -6407,12 +6418,15 @@ function meowSetHomeShareLink() {
   meowRestoreDefaultTabTitle();
   try {
     const url = new URL(window.location.href);
-    if (!url.searchParams.has("story")) return;
-    url.searchParams.delete("story");
-    url.searchParams.delete("chapter");
-    const nextUrl = url.pathname + (url.search ? url.search : "") + url.hash;
+    // Remove every supported deep-link alias, not only ?story=...
+    ["story", "storyId", "id", "chapter"].forEach(key => url.searchParams.delete(key));
+    const hash = url.hash;
+    // Also clean legacy hash-style links such as #?story=abc&chapter=2.
+    let cleanHash = hash;
+    if (/^#\??(?:story|storyId|id|chapter)=/i.test(hash)) cleanHash = "";
+    const nextUrl = url.pathname + (url.search ? url.search : "") + cleanHash;
     window.history.replaceState(
-      { ...(window.history.state || {}), meowStoryId: null, meowHome: true },
+      { ...(window.history.state || {}), meowStoryId: null, meowChapterId: null, meowHome: true },
       "",
       nextUrl
     );
@@ -9120,6 +9134,8 @@ function meowProfileRender(){
  const id=String(currentCustomer.id||"");
  const name=String(currentCustomer.name||currentCustomer.displayName||currentCustomer.nickname||("Khách "+id));
  const avatar=meowProfileAvatarData();
+ const profileCreatedRaw=currentCustomer.createdAt??currentCustomer.created_at??currentCustomer.registeredAt??currentCustomer.joinedAt??currentCustomer.createdOn??null;
+ const profileCreatedDate=(()=>{if(profileCreatedRaw===null||profileCreatedRaw==="")return "Chưa có dữ liệu";let n=typeof profileCreatedRaw==="number"?profileCreatedRaw:Number(profileCreatedRaw);let d=Number.isFinite(n)&&n>0?new Date(n):new Date(profileCreatedRaw);if(!Number.isFinite(d.getTime()))return "Chưa có dữ liệu";return d.toLocaleDateString("vi-VN",{day:"2-digit",month:"2-digit",year:"numeric"})})();
  const profileOverlay=document.getElementById("meowProfileOverlay");
  if(profileOverlay){if(avatar)profileOverlay.style.setProperty("--meow-profile-avatar-bg", `url("${avatar}")`);else profileOverlay.style.removeProperty("--meow-profile-avatar-bg");}
  const purchasedIds=meowGetPurchasedStoryIds();
@@ -9134,7 +9150,7 @@ function meowProfileRender(){
  const recentHTML=recent.length?recent.map(({storyId,chapterId,story},index)=>{const info=story.info||{},ch=story.chapters?.[chapterId]||{};return `<div class="meowProfileLimitItem${index>=4?" is-extra":""}"${index>=4?' hidden':''}><button type="button" class="meowShelfRecentItem" data-continue-story="${escapeHTML(storyId)}" data-continue-chapter="${escapeHTML(chapterId)}">${info.cover?`<img class="meowShelfRecentCover" src="${escapeHTML(info.cover)}" alt="" loading="lazy">`:`<span class="meowShelfRecentCover">🐱</span>`}<span class="meowShelfRecentText"><strong>${escapeHTML(info.name||storyId)}</strong><span>📖 Chương ${escapeHTML(chapterId)}${ch.title?" · "+escapeHTML(ch.title):""}</span><span>Chạm để đọc tiếp →</span></span></button></div>`}).join("")+profileMoreButton(recent.length):`<div class="meowProfileEmpty">📖 Chưa có chương đang đọc.</div>`;
  root.innerHTML=`<div class="meowProfileHero">
   <div class="meowProfileAvatarWrap"><img id="meowProfileAvatarLarge" alt="Ảnh đại diện" src="${avatar}" style="${avatar?'':'display:none'}"><label for="meowProfileAvatarUpload">✦ Đổi ảnh</label><input id="meowProfileAvatarUpload" type="file" accept="image/*"></div>
-  <div><div class="meowProfileNameRow"><div class="meowProfileName">${escapeHTML(name)}</div><button type="button" class="meowNotifyBell" id="meowNotifyBell" aria-label="Thông báo" title="Thông báo">🔔<i id="meowNotifyBadge" hidden></i></button></div><div class="meowProfileId"><span>ID: <b id="meowProfileIdText">${escapeHTML(id)}</b></span><button type="button" class="meowProfileCopy" id="meowProfileCopyId" aria-label="Copy ID">⧉</button></div><a class="meowProfileWalletLink" href="#meowIntegratedWallet">👛 Ví của tôi</a></div>
+  <div><div class="meowProfileNameRow"><div class="meowProfileName">${escapeHTML(name)}</div><button type="button" class="meowNotifyBell" id="meowNotifyBell" aria-label="Thông báo" title="Thông báo">🔔<i id="meowNotifyBadge" hidden></i></button></div><div class="meowProfileId"><span>ID: <b id="meowProfileIdText">${escapeHTML(id)}</b></span><button type="button" class="meowProfileCopy" id="meowProfileCopyId" aria-label="Copy ID">⧉</button></div><div class="meowProfileJoinedDate" aria-label="Ngày tham gia">🌷 Ngày tham gia: <b>${escapeHTML(profileCreatedDate)}</b></div><a class="meowProfileWalletLink" href="#meowIntegratedWallet">👛 Ví của tôi</a></div>
   <div></div>
  </div>
  <div class="meowProfileStats">
@@ -12115,6 +12131,7 @@ upload.addEventListener('change',async()=>{const file=upload.files?.[0];if(!file
 removeImage.addEventListener('click',()=>{settings.image='';save()});
 $('mwsReset').addEventListener('click',()=>{settings=clean({});save()});
 window.addEventListener('storage',e=>{if(e.key==='MEOW_ID'||e.key==='meowCustomerId')syncAccount()});
+window.addEventListener('meow:account-logged-out',()=>syncAccount());
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncAccount()});
 setInterval(syncAccount,1500);
 syncAccount();
@@ -13160,6 +13177,7 @@ async function hydrateRankingTotals(list,req){
   }
  }
  await Promise.all(Array.from({length:Math.min(3,queue.length)},()=>worker()));
+ if(req===requestId&&mode==='rank'){items.sort((a,b)=>count(b)-count(a));render();}
 }
 const cover=x=>x.info?.cover||x.info?.coverUrl||x.info?.coverImage||x.info?.imageUrl||x.info?.thumbnailUrl||'';
 const chapterCount=x=>{const c=x.data?.chapters;if(c&&typeof c==='object'&&!x.data?._catalogOnly)return Object.keys(c).length;return Number(x.info?.chapterCount??x.info?.totalChapters??x.data?.chapterCount??0)||0};
@@ -13201,7 +13219,7 @@ function render(){
  const title=document.createElement('h2');title.className='mnr-podium-title';title.textContent='Top 3 nổi bật';podium.append(title);
  const stage=document.createElement('div');stage.className='mnr-podium-stage';
  const top=items.slice(0,3);
- top.forEach((x,i)=>{const card=document.createElement('button');card.type='button';card.className='mnr-podium-card mnr-podium-pos'+i+(i===podiumCenter?' is-center':'');card.style.setProperty('--podium-slot',String((podiumCenter-i+3)%3));card.setAttribute('aria-label','Hạng '+(i+1)+': '+(x.info?.name||x.id));const rank=document.createElement('b');rank.className='mnr-podium-number';rank.textContent=i+1;const im=document.createElement('img');im.loading='lazy';im.alt='Bìa truyện';if(cover(x))im.src=cover(x);const name=document.createElement('strong');name.textContent=x.info?.name||x.id;const author=document.createElement('small');author.textContent=x.info?.author||'';const reads=document.createElement('span');reads.className='mnr-podium-views';reads.textContent='◉ '+count(x).toLocaleString('vi-VN');card.append(rank,im,name,author,reads);card.onclick=()=>{if(podiumCenter!==i){podiumCenter=i;render()}else openStory(x)};stage.append(card)});
+ top.forEach((x,i)=>{const card=document.createElement('button');card.type='button';card.className='mnr-podium-card mnr-podium-pos'+i+(i===podiumCenter?' is-center':'');card.style.setProperty('--podium-slot',String((podiumCenter-i+3)%3));card.setAttribute('aria-label','Hạng '+(i+1)+': '+(x.info?.name||x.id));const rank=document.createElement('b');rank.className='mnr-podium-number';rank.textContent=i+1;const im=document.createElement('img');im.loading='lazy';im.alt='Bìa truyện';if(cover(x))im.src=cover(x);const name=document.createElement('strong');name.textContent=x.info?.name||x.id;const reads=document.createElement('span');reads.className='mnr-podium-views';reads.textContent='◉ '+count(x).toLocaleString('vi-VN');card.append(rank,im,name,reads);card.onclick=()=>openStory(x);stage.append(card)});
  podium.append(stage);
  const controls=document.createElement('div');controls.className='mnr-podium-controls';for(const [label,step] of [['‹',-1],['›',1]]){const button=document.createElement('button');button.type='button';button.textContent=label;button.setAttribute('aria-label',step<0?'Xem hạng trước':'Xem hạng sau');button.onclick=()=>{podiumCenter=(podiumCenter+step+top.length)%top.length;render()};controls.append(button)}podium.append(controls);content.append(podium);
  const list=document.createElement('div');list.className='mnr-ranking';items.slice(3).forEach((x,i)=>{const pos=i+4,b=document.createElement('button');b.type='button';b.className='mnr-rank';const num=document.createElement('span');num.className='mnr-number';num.textContent=pos;b.append(num);const im=document.createElement('img');im.alt='';im.loading='lazy';if(cover(x))im.src=cover(x);b.append(im);const info=document.createElement('span');info.className='mnr-rank-info';const name=document.createElement('strong');name.textContent=x.info?.name||x.id;const meta=document.createElement('small');meta.textContent=chapterCount(x).toLocaleString('vi-VN')+' chương';info.append(name,meta);b.append(info);const reads=document.createElement('span');reads.className='mnr-count';reads.textContent='◉ '+count(x).toLocaleString('vi-VN');b.append(reads);b.onclick=()=>openStory(x);list.append(b)});content.append(list);
@@ -13511,12 +13529,13 @@ html body.meowSiteDark #loginPage .meowLoginBox{
       var el=footer.querySelector('[data-meow-stat="'+key+'"]');
       if(!el)continue;
       var value=stats[key];
-      el.textContent=value==null?'—':Number(value).toLocaleString('vi-VN');
-      if(key!=='stories')el.title=stats[key+'Complete']?'Tổng từ dữ liệu chương':'Số tạm tính từ chương đã có thống kê; chương thiếu dữ liệu chưa được cộng';
+      el.textContent=value==null?'0':Number(value).toLocaleString('vi-VN');
+      if(key!=='stories')el.title=stats[key+'Complete']?'Tổng từ dữ liệu chương':'Đang cập nhật: số hiện tại tính từ dữ liệu đã tải; sẽ tự làm mới khi dữ liệu truyện/chương sẵn sàng';
     }
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});else refresh();
   window.addEventListener('pageshow',refresh);
+  ['meow:stories-updated','meow:catalog-ready','meow:chapters-updated','meow:firebase-data-ready'].forEach(function(name){window.addEventListener(name,refresh)});
   document.addEventListener('visibilitychange',function(){if(!document.hidden)refresh()});
   // Refresh periodically from data already in memory; never download entire chapter texts just for footer.
   setInterval(function(){if(!document.hidden)refresh()},15000);
@@ -14644,6 +14663,220 @@ html body #meowSiteFooter .meowFooterLayout{width:100%!important;max-width:1100p
   transform:none!important;
 }
 </style>
+
+
+<!-- MEOW HOME RECOVERY PATCH: keep Home visible after opening a shared story/chapter URL -->
+<script id="meow-home-recovery-patch">
+(function(){
+  const $ = id => document.getElementById(id);
+  let restoring = false;
+
+  function restoreHomeNow(){
+    if (restoring) return;
+    restoring = true;
+    try {
+      // Close page-level overlays that can sit above or hide the home catalog.
+      document.body.classList.remove('meowGenrePageActive','meowProfilePageOpen','meowNewRankActive');
+      const genre = $('meowGenrePage');
+      if (genre) { genre.hidden = true; genre.style.setProperty('display','none','important'); }
+      const rank = $('meowNewRankPage');
+      if (rank) { rank.hidden = true; rank.style.display = 'none'; }
+      ['storyPage','readerPage','loginPage'].forEach(id => {
+        const el = $(id);
+        if (el) { el.hidden = true; el.style.display = 'none'; }
+      });
+      const home = $('homePage');
+      if (home) {
+        home.hidden = false;
+        home.style.setProperty('display','block','important');
+        home.style.visibility = 'visible';
+        home.style.opacity = '1';
+      }
+      const main = $('readerMain');
+      if (main) { main.hidden = false; main.style.display = 'block'; }
+      try { window.meowCloseIntegratedWallet?.(); } catch(_){}
+      try { window.meowCloseProfile?.(); } catch(_){}
+      try { window.meowSetHomeShareLink?.(); } catch(_){}
+      document.title = 'Ổ Lười Nhỏ của Meow';
+      window.scrollTo({top:0, behavior:'instant'});
+
+      // If the catalog has not been rendered yet, ask the existing loader to fill it.
+      const grid = $('storyGrid');
+      if (grid && !grid.children.length) {
+        if (typeof window.loadStories === 'function') {
+          Promise.resolve(window.loadStories()).catch(e => console.warn('Meow Home recovery:',e));
+        } else if (typeof window.renderStories === 'function') {
+          try { window.renderStories(); } catch(e) { console.warn('Meow Home render:',e); }
+        }
+      }
+    } catch(e) {
+      console.warn('Meow Home recovery:',e);
+      const home = $('homePage');
+      if (home) { home.hidden = false; home.style.display = 'block'; }
+    } finally {
+      setTimeout(() => { restoring = false; }, 80);
+    }
+  }
+
+  // Run after legacy click handlers and URL-sync scripts have finished.
+  document.addEventListener('click', function(event){
+    let target = event.target?.closest?.(
+      '#readerHomeBtn, #backHomeBtn, #meowGenreBackHome, #meowLogoImage, #meowLogoFallback, .meowLogo, [data-meow-home], [data-meow-route="home"], [data-route="home"], [href="#home"], [href="?"]'
+    );
+    if (!target) {
+      const button = event.target?.closest?.('button,a,[role="button"]');
+      const label = String(button?.textContent || '').replace(/\s+/g,' ').trim().toLocaleLowerCase('vi');
+      if (button && /^(🏠\s*)?(trang chủ|home|về trang chủ)$/.test(label)) target = button;
+    }
+    if (!target) return;
+    setTimeout(restoreHomeNow, 0);
+    setTimeout(restoreHomeNow, 120);
+    setTimeout(restoreHomeNow, 420);
+  }, true);
+
+  // Expose one shared recovery function for other menu/home controls.
+  window.meowForceRestoreHome = restoreHomeNow;
+
+  // If browser history returns to a home entry with a stale/empty snapshot,
+  // repair visibility without forcing a full page reload.
+  window.addEventListener('popstate', function(){
+    setTimeout(function(){
+      const home = $('homePage'), story = $('storyPage'), reader = $('readerPage'), genre = $('meowGenrePage');
+      const anyMain = [home,story,reader,genre].some(el => el && !el.hidden && getComputedStyle(el).display !== 'none');
+      if (!anyMain) restoreHomeNow();
+    }, 160);
+  });
+
+  // Guard against a late navigation observer re-hiding Home after the click.
+  document.addEventListener('meow:show-home', restoreHomeNow);
+})();
+</script>
+
+
+<style id="meow-pixel-comments-and-menu-bg-fix">
+/* Pixel-cute comment shelf */
+#meowCommunityShelf{background:rgba(255,246,252,.94)!important;border:2px solid #f2b8d7!important;border-radius:18px!important;box-shadow:5px 5px 0 #e9b5d3,0 12px 26px #c783b51f!important;image-rendering:pixelated}
+#meowCommunityShelf .meowCommunityHeading h3{font-family:'Mali','Trebuchet MS',sans-serif!important;color:#b85e98!important;text-shadow:1px 1px 0 #ffe0f0}
+#meowCommunityShelf .meowCommunityItem{background:#fffafd!important;border:2px solid #f0c2dc!important;border-radius:12px!important;box-shadow:3px 3px 0 #f3d4e7!important}
+#meowCommunityShelf .meowCommunityAvatar{border:2px solid #f2b4d5!important;border-radius:9px!important;box-shadow:2px 2px 0 #f7d8ea!important}
+#meowCommunityShelf select,#meowCommunityShelf #meowCommentsRefresh{border:2px solid #f0c2dc!important;border-radius:10px!important;box-shadow:2px 2px 0 #f4d7e8!important}
+/* Reuse the selected site wallpaper on the side menu */
+#meowSideMenu{background-color:#fffafd!important;background-image:var(--meow-site-background-image,var(--meow-site-bg-image,none))!important;background-size:cover!important;background-position:center!important;background-repeat:repeat!important}
+#meowSideMenu:before{content:"";position:absolute;inset:0;background:rgba(255,249,253,.84);pointer-events:none;z-index:-1}
+body.meowSiteDark #meowSideMenu:before{background:rgba(48,36,56,.82)}
+</style>
+<script id="meow-home-menu-and-background-final-fix">
+(()=>{
+ const restore=()=>{try{window.meowForceRestoreHome?.();if(typeof meowRankGoHome==='function')meowRankGoHome();}catch(e){};const home=document.getElementById('homePage');if(home){home.hidden=false;home.style.setProperty('display','block','important')}for(const id of ['storyPage','readerPage','meowNewRankPage','meowGenrePage','meowIntegratedWallet','meowProfileOverlay']){const el=document.getElementById(id);if(el){el.hidden=true;el.style.setProperty('display','none','important')}}document.body.classList.remove('meowNewRankActive','meowGenrePageActive','meowProfilePageOpen','meow-route-wallet');document.body.style.overflow='';try{history.replaceState({...history.state,meowHome:true},'',location.pathname+location.search.replace(/([?&])(story|storyId|id|chapter)=[^&]*/g,'$1').replace(/[?&]$/,'')+location.hash)}catch(e){};};
+ document.addEventListener('click',e=>{const el=e.target.closest('#meowSideMenu button,#meowSideMenu a,[data-meow-home], [data-meow-route="home"], [data-route="home"]');if(!el)return;const txt=(el.textContent||'').replace(/[🏠🐱✨🌸🎀]/g,'').trim().toLowerCase();if(txt==='trang chủ'||txt==='home'||txt==='về trang chủ'||el.matches('[data-meow-home],[data-meow-route="home"],[data-route="home"]')){e.preventDefault();e.stopImmediatePropagation();restore();setTimeout(restore,100);setTimeout(restore,350)}},true);
+ function syncBg(){const candidates=[document.getElementById('homePage'),document.getElementById('meowReaderApp'),document.body];for(const el of candidates){if(!el)continue;const cs=getComputedStyle(el);let bg=cs.backgroundImage;if(bg&&bg!=='none'){document.documentElement.style.setProperty('--meow-site-background-image',bg);document.documentElement.style.setProperty('--meow-site-bg-image',bg);return}}}
+ document.addEventListener('click',()=>requestAnimationFrame(syncBg),true);new MutationObserver(syncBg).observe(document.body,{attributes:true,attributeFilter:['style','class']});window.addEventListener('pageshow',syncBg);syncBg();
+})();
+</script>
+
+
+<style id="meow-selected-wallpaper-menu-sync-v2">
+/* Menu luôn dùng đúng ảnh nền đã chọn trong Cài đặt web */
+body[data-mws-image] #meowSideMenu{
+ background-color:var(--mws-bg,#fffafd)!important;
+ background-image:linear-gradient(var(--mws-image-tint,rgba(255,247,252,.32)),var(--mws-image-tint,rgba(255,247,252,.32))),var(--mws-image-url)!important;
+ background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;
+}
+body[data-mws-bg] #meowSideMenu{background-color:var(--mws-bg)!important}
+#meowSideMenu{background-image:var(--meow-site-background-image,var(--meow-site-bg-image,none))!important;background-size:cover!important;background-position:center!important}
+#meowSideMenu:before{z-index:0!important}
+#meowSideMenu>*{position:relative;z-index:1}
+/* During the first 10 seconds, make featured-story genre and synopsis easy to see. */
+#meowFeaturedFive.meow-featured-intro-window .mf-genre,
+#meowFeaturedFive.meow-featured-intro-window .mf-synopsis{opacity:1!important;visibility:visible!important;display:block!important;max-height:6em!important;-webkit-line-clamp:4!important;overflow:hidden!important;animation:meowFeaturedIntroFade 10s ease-in-out both}
+@keyframes meowFeaturedIntroFade{0%,82%{opacity:1}100%{opacity:.78}}
+</style>
+<script id="meow-selected-wallpaper-and-featured-intro-v2">
+(()=>{
+ const root=document.documentElement,body=document.body,menu=document.getElementById('meowSideMenu');
+ function syncWallpaper(){
+  if(!menu)return;
+  const cs=getComputedStyle(body), imageUrl=cs.getPropertyValue('--mws-image-url').trim(), tint=cs.getPropertyValue('--mws-image-tint').trim();
+  if(body.hasAttribute('data-mws-image')&&imageUrl){
+   root.style.setProperty('--meow-site-background-image',`linear-gradient(${tint||'rgba(255,247,252,.32)'},${tint||'rgba(255,247,252,.32)'}),${imageUrl}`);
+   root.style.setProperty('--meow-site-bg-image',`linear-gradient(${tint||'rgba(255,247,252,.32)'},${tint||'rgba(255,247,252,.32)'}),${imageUrl}`);
+   menu.style.setProperty('background-image',`linear-gradient(${tint||'rgba(255,247,252,.32)'},${tint||'rgba(255,247,252,.32)'}),${imageUrl}`,'important');
+   menu.style.setProperty('background-size','cover','important');menu.style.setProperty('background-position','center','important');menu.style.setProperty('background-repeat','no-repeat','important');return;
+  }
+  const home=document.getElementById('homePage');
+  const candidates=[home,document.getElementById('meowReaderApp'),body];
+  for(const el of candidates){if(!el)continue;const bg=getComputedStyle(el).backgroundImage;if(bg&&bg!=='none'){root.style.setProperty('--meow-site-background-image',bg);root.style.setProperty('--meow-site-bg-image',bg);menu.style.setProperty('background-image',bg,'important');break}}
+ }
+ let introTimer=0,started=false;
+ function showFeaturedIntro(){const box=document.getElementById('meowFeaturedFive');if(!box||started||!box.querySelector('.mf-card'))return;started=true;box.classList.add('meow-featured-intro-window');clearTimeout(introTimer);introTimer=setTimeout(()=>box.classList.remove('meow-featured-intro-window'),10000)}
+ const featured=document.getElementById('meowFeaturedFive');if(featured){new MutationObserver(showFeaturedIntro).observe(featured,{childList:true,subtree:true});showFeaturedIntro()}
+ new MutationObserver(syncWallpaper).observe(body,{attributes:true,attributeFilter:['style','class','data-mws-image','data-mws-bg']});
+ document.addEventListener('click',()=>requestAnimationFrame(syncWallpaper),true);window.addEventListener('pageshow',syncWallpaper);window.addEventListener('load',()=>{syncWallpaper();showFeaturedIntro()},{once:true});syncWallpaper();
+})();
+</script>
+
+<script id="meow-footer-stats-and-join-date-live-patch">
+(function(){
+ 'use strict';
+ const fmt=n=>n===null||n===undefined||!Number.isFinite(Number(n))?'—':Number(n).toLocaleString('vi-VN');
+ function updateStats(){
+  const footer=document.getElementById('meowSiteFooter');
+  if(!footer)return;
+  try{
+   const stats=typeof window.meowFooterGetStoryStats==='function'?window.meowFooterGetStoryStats():null;
+   if(stats){
+    for(const key of ['stories','reads','words']){
+     const el=footer.querySelector('[data-meow-stat="'+key+'"]');
+     if(!el)continue;
+     const value=stats[key];
+     el.textContent=fmt(value);
+     if(key==='reads')el.title=stats.readsComplete?'Tổng lượt đọc từ dữ liệu chương đã tải':'Đang cập nhật khi dữ liệu lượt đọc/chương tải xong';
+     if(key==='words')el.title=stats.wordsComplete?'Tổng số chữ từ dữ liệu chương đã tải':'Đang cập nhật khi dữ liệu số chữ/chương tải xong';
+    }
+   }
+  }catch(e){console.debug('Meow footer stats pending',e)}
+ }
+ function dateFromCustomer(c){
+  if(!c)return 'Chưa có dữ liệu';
+  let raw=c.createdAt??c.created_at??c.registeredAt??c.registered_at??c.joinedAt??c.joined_at??c.createdOn??c.createdDate??null;
+  if(raw===null||raw==='')return 'Chưa có dữ liệu';
+  if(typeof raw==='object')raw=raw['.sv']||raw.timestamp||raw.value||null;
+  if(raw===null||raw==='')return 'Chưa có dữ liệu';
+  let n=typeof raw==='number'?raw:Number(raw);
+  let d=Number.isFinite(n)&&n>0?new Date(n):new Date(raw);
+  if(!Number.isFinite(d.getTime()))return 'Chưa có dữ liệu';
+  return d.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});
+ }
+ function updateJoinDate(){
+  let c=null;
+  try{c=typeof window.meowCheckinGetCustomer==='function'?window.meowCheckinGetCustomer():null}catch(_){}
+  if(!c){
+   try{const id=localStorage.getItem('MEOW_READER_ID');if(id&&window.meowCustomerCache)c=window.meowCustomerCache[id]||null}catch(_){}
+  }
+  const date=dateFromCustomer(c);
+  document.querySelectorAll('.meowProfileJoinedDate').forEach(row=>{
+   const b=row.querySelector('b');if(b&&b.textContent!==date)b.textContent=date;
+  });
+ }
+ function refresh(){updateStats();updateJoinDate()}
+ document.addEventListener('DOMContentLoaded',refresh);
+ window.addEventListener('load',refresh);
+ window.addEventListener('pageshow',refresh);
+ ['meow:stories-updated','meow:catalog-ready','meow:chapters-updated','meow:firebase-data-ready','meow:ranking-updated','meow:account-updated','meow:customer-updated','meow:profile-updated','meow:login-success'].forEach(n=>window.addEventListener(n,refresh));
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+ // Lightweight refresh: rely on Firebase/app events and a modest fallback interval.
+ // Avoid observing every DOM mutation, which can cause repeated full-page work and lag.
+ let refreshTimer=0;
+ function scheduleRefresh(){
+   if(refreshTimer)clearTimeout(refreshTimer);
+   refreshTimer=setTimeout(()=>{refreshTimer=0;if(!document.hidden)refresh()},250);
+ }
+ ['meow:stories-updated','meow:catalog-ready','meow:chapters-updated','meow:firebase-data-ready','meow:ranking-updated','meow:account-updated','meow:customer-updated','meow:profile-updated','meow:login-success','meow:account-logged-out'].forEach(n=>window.addEventListener(n,scheduleRefresh,{passive:true}));
+ let fastRuns=0;
+ const fast=setInterval(()=>{refresh();if(++fastRuns>=8)clearInterval(fast)},2500);
+ setInterval(()=>{if(!document.hidden)refresh()},15000);
+})();
+</script>
 
 </body>
 
