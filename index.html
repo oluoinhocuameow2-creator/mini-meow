@@ -3636,101 +3636,6 @@ html.meow-entry-chapter.meow-entry-ready body::after,html.meow-entry-profile.meo
 html.meow-entry-chapter.meow-entry-ready #readerPage{display:block}
 html.meow-entry-profile.meow-entry-ready #storyPage{display:block}
 </style>
-
-<style id="meow-profile-cover-safe-spin-fix">
-/* Profile cover: xoay cả ảnh bìa và viền/khung cùng nhau */
-#storyPage .meowStoryHead{min-width:0}
-#storyPage .meowDetailCover{
-  position:relative!important;
-  isolation:isolate;
-  overflow:visible!important;
-  perspective:900px;
-  transform-origin:center center;
-  animation:meowProfileCoverTurn 12s linear infinite;
-  flex-shrink:0!important;
-  border:3px solid rgba(255,255,255,.88);
-  box-shadow:0 12px 30px rgba(117,65,128,.22),0 0 0 6px rgba(255,255,255,.20);
-}
-#storyPage #detailCover{
-  position:relative;
-  z-index:2;
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:cover!important;
-  border-radius:inherit;
-  transform:none!important;
-  backface-visibility:visible;
-}
-/* Bệ và bóng trang trí đi cùng khung xoay */
-#storyPage .meowDetailCover::before{
-  content:"";
-  position:absolute;
-  z-index:1;
-  left:-9%;
-  right:-9%;
-  bottom:-7px;
-  height:13px;
-  border-radius:50%;
-  background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.7),rgba(218,173,238,.28),rgba(255,255,255,.62),rgba(255,255,255,.08));
-  border:1px solid rgba(255,255,255,.68);
-  box-shadow:0 7px 16px rgba(153,93,164,.18),inset 0 1px 4px rgba(255,255,255,.8);
-  pointer-events:none;
-}
-#storyPage .meowDetailCover::after{
-  content:"";
-  position:absolute;
-  z-index:0;
-  left:2%;
-  right:2%;
-  bottom:-12px;
-  height:10px;
-  border-radius:50%;
-  background:rgba(183,133,207,.16);
-  filter:blur(5px);
-  pointer-events:none;
-}
-@keyframes meowProfileCoverTurn{
-  0%{transform:rotateY(0deg)}
-  100%{transform:rotateY(360deg)}
-}
-@media(prefers-reduced-motion:reduce){
-  #storyPage .meowDetailCover{animation:none!important}
-}
-</style>
-
-<style id="meow-profile-cover-360-pedestal-still">
-/* Bệ tròn đứng yên; chỉ ảnh bìa và viền ảnh quay trọn 360 độ */
-#storyPage .meowDetailCover{
-  animation:none!important;
-  border:0!important;
-  box-shadow:none!important;
-  transform:none!important;
-  perspective:900px;
-  overflow:visible!important;
-}
-#storyPage #detailCover{
-  box-sizing:border-box!important;
-  border:3px solid rgba(255,255,255,.92)!important;
-  box-shadow:0 12px 30px rgba(117,65,128,.22),0 0 0 6px rgba(255,255,255,.20)!important;
-  transform-origin:center center!important;
-  animation:meowProfileCoverImage360 12s linear infinite!important;
-  backface-visibility:visible!important;
-}
-/* Các pseudo-element là bệ/bóng, vẫn gắn với khung tĩnh */
-#storyPage .meowDetailCover::before,
-#storyPage .meowDetailCover::after{
-  animation:none!important;
-  transform:none!important;
-}
-@keyframes meowProfileCoverImage360{
-  from{transform:rotateY(0deg)}
-  to{transform:rotateY(360deg)}
-}
-@media(prefers-reduced-motion:reduce){
-  #storyPage #detailCover{animation:none!important}
-}
-</style>
 </head>
 <body>
 <div id="meowStartupLoading" role="status" aria-label="Meow đang tải"><div class="meow-loading-center"><div class="meow-loading-circle"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiU7RJCaDnotJOXcR9w50HZR39YwP2FNlgTUFLOy0CEZ3hKeQUQhQbGaD2uWYCAO6S5Qj4UeGPPEeBoTHcECz9Zs6I6VHk6kvRW__zo4SkMCw6tBk35Rf7XoWU1E8E3Ft-JkMwOhGCd5XcCgzCniCyO1I3scO_DGWbVzKXLdcob2pAd6uKfRbcGR-5XpRc/s381/t%E1%BA%A3i%20xu%E1%BB%91ng%20%284%29.png" alt="Mini Meow"></div><span class="meow-loading-dots">Đang tải</span></div></div>
@@ -3764,7 +3669,7 @@ html.meow-entry-profile.meow-entry-ready #storyPage{display:block}
 
       <div class="meowPrincessSubtitle">♡ Ổ Lười Nhỏ Của Meow ♡</div>
       <div class="meowPrincessWelcome">✨ Chào mừng đến ổ truyện của Meow ✨</div>
-      <div class="meowAuthTabs"><button type="button" class="active" id="meowAuthLoginTab">💗 Đăng nhập</button><button type="button" id="meowAuthRegisterTab">✨ Đăng ký</button></div><div id="meowLoginForm"><div class="meowPrincessFieldLabel">♡ Tên hoặc Gmail của bạn</div><input id="readerCustomerIdentity" class="meowInput" type="text" maxlength="254" autocomplete="username" placeholder="🌷 Nhập tên hoặc Gmail đã đăng ký..."><div class="meowPrincessFieldLabel">♡ ID khách của bạn</div><input
+      <div class="meowAuthTabs"><button type="button" class="active" id="meowAuthLoginTab">💗 Đăng nhập</button><button type="button" id="meowAuthRegisterTab">✨ Đăng ký</button></div><div id="meowLoginForm"><div class="meowPrincessFieldLabel">♡ ID khách của bạn</div><input
         id="readerCustomerID"
         class="meowInput"
         placeholder="🐱 Nhập ID của bạn..."
@@ -3780,7 +3685,7 @@ html.meow-entry-profile.meow-entry-ready #storyPage{display:block}
       </button>
 
 
-      <div class="meowPrincessHelp">Chưa có tài khoản? Chọn <b>Đăng ký</b> để tạo ID mới nha ♡</div></div><div id="meowRegisterForm"><input id="meowRegisterName" class="meowInput" maxlength="45" placeholder="🌷 Tên hiển thị của bạn"><input id="meowRegisterEmail" class="meowInput" type="email" maxlength="254" autocomplete="email" placeholder="📧 Gmail của bạn"><input id="meowRegisterID" class="meowInput" maxlength="60" autocomplete="off" placeholder="🔐 ID tự chọn (VD: Meow@123)"><small class="meowIdHint">ID từ 8 ký tự, gồm chữ HOA, chữ thường, số và ký tự đặc biệt.</small><label>Chọn avatar </label><div class="meowAvatarChoices" id="meowAvatarChoices"><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBfWv6N4WqxS7hdDUuTJ7bw1kyGjU0jplbv5uTh2dZire-X7LzYAWxeRMToybH2L9IjAr38pnC927M7zVIG-ebVTaXjdUx74Fta0VcTqipIsXr1OXR0fRGTpsXGjKunuXONwkE41c43t3VdMf3UHLnqoN1jk_1jIJvSy1m65X1mFIjYe-xMHfD_7mQOtZQ/s2599/e123f93d71336a2244744e99f9b014a0.jpg" class="selected"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBfWv6N4WqxS7hdDUuTJ7bw1kyGjU0jplbv5uTh2dZire-X7LzYAWxeRMToybH2L9IjAr38pnC927M7zVIG-ebVTaXjdUx74Fta0VcTqipIsXr1OXR0fRGTpsXGjKunuXONwkE41c43t3VdMf3UHLnqoN1jk_1jIJvSy1m65X1mFIjYe-xMHfD_7mQOtZQ/s2599/e123f93d71336a2244744e99f9b014a0.jpg" alt="Avatar 1" loading="lazy"></button><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh35K5w0ok4-aj7UoMXS1gfHvRpxwaD3k7Ho_vNg4xHYTiBoDESs7EWJPrdaJjhzhPbYInErxouI6DKWlj8P3xdnVrNhyphenhyphenABdOpHMeKtrV9y-aLJWvu5rM1uZBQdLJ7IjhNQ-j0e8b7vfDftY-emTAjcLbjgTvFvAOMLajaLNjcqAzH3z0priHiJJNdyGdjG/s736/%E1%BA%A2NH%20N%E1%BB%80N.jpg" ><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh35K5w0ok4-aj7UoMXS1gfHvRpxwaD3k7Ho_vNg4xHYTiBoDESs7EWJPrdaJjhzhPbYInErxouI6DKWlj8P3xdnVrNhyphenhyphenABdOpHMeKtrV9y-aLJWvu5rM1uZBQdLJ7IjhNQ-j0e8b7vfDftY-emTAjcLbjgTvFvAOMLajaLNjcqAzH3z0priHiJJNdyGdjG/s736/%E1%BA%A2NH%20N%E1%BB%80N.jpg" alt="Avatar 2" loading="lazy"></button><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoGoXQbkiQnUcwONKdEjy5D7FBt7j8liLlb3BF3BBajVagCBmpvXQBxxzgHpG0akjDM56HcIauB-r_jjkRpZmJfA1NJG6zImM7oTrEXQeiZPYPPIdHO-wEeSldSXSZJneu0-zDOgkmnpGcaArX62_oi6O0uebY32awx67ngdThpOsNtU0IJcJiPEZ3bhEU/s1024/ChatGPT%20Image%2011_43_16%2021%20thg%204,%202026.png" ><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoGoXQbkiQnUcwONKdEjy5D7FBt7j8liLlb3BF3BBajVagCBmpvXQBxxzgHpG0akjDM56HcIauB-r_jjkRpZmJfA1NJG6zImM7oTrEXQeiZPYPPIdHO-wEeSldSXSZJneu0-zDOgkmnpGcaArX62_oi6O0uebY32awx67ngdThpOsNtU0IJcJiPEZ3bhEU/s1024/ChatGPT%20Image%2011_43_16%2021%20thg%204,%202026.png" alt="Avatar 3" loading="lazy"></button><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghKeZyTO6JJ82GuSZvg-33dvQQbk-EkVpzYQH5VgyAhpKDqXwtqbKgvppVlCM36hFo6pZ-AzalOLBrfRcp2Q6QGXZC8SFJYI0RdwWNr_rcYbvuh7QT0dtyUzELvu0EIkHtbfkdWdY2nzN6SgfjMQtRvrqXEY_hlMjvfbGc0O1GwvVf3cmUv9k2rEBR4g0e/s1308/4729.jpg" ><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghKeZyTO6JJ82GuSZvg-33dvQQbk-EkVpzYQH5VgyAhpKDqXwtqbKgvppVlCM36hFo6pZ-AzalOLBrfRcp2Q6QGXZC8SFJYI0RdwWNr_rcYbvuh7QT0dtyUzELvu0EIkHtbfkdWdY2nzN6SgfjMQtRvrqXEY_hlMjvfbGc0O1GwvVf3cmUv9k2rEBR4g0e/s1308/4729.jpg" alt="Avatar 4" loading="lazy"></button><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk8qcsZAE79P3BXyqiFkEK7caEqt488iqiSWpIelSbXJeWdcQZGujOjODH7Qh6r9L91zlv50DRsnTSi8rjSjqirdSoWfsskqMBKKPeW9L8-scYzBJ9o79jTi9STq4__b6R9t002-YgH8vaoEOldUD2_0Mwk8w0lsDebJtIOLXxQCtthsaZMyWCfbiFtq3P/s1073/633419021_1499558588260613_4957283429066899851_n.jpg" ><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk8qcsZAE79P3BXyqiFkEK7caEqt488iqiSWpIelSbXJeWdcQZGujOjODH7Qh6r9L91zlv50DRsnTSi8rjSjqirdSoWfsskqMBKKPeW9L8-scYzBJ9o79jTi9STq4__b6R9t002-YgH8vaoEOldUD2_0Mwk8w0lsDebJtIOLXxQCtthsaZMyWCfbiFtq3P/s1073/633419021_1499558588260613_4957283429066899851_n.jpg" alt="Avatar 5" loading="lazy"></button></div><label>Hoặc chọn ảnh từ máy (tối đa 120 KB)</label><input id="meowRegisterAvatarFile" type="file" accept="image/png,image/jpeg,image/webp"><button type="button" class="meowLoginBtn" id="meowRegisterSubmit">👑 Tạo tài khoản</button><div id="meowRegisterMsg" class="meowMsg"></div></div><p id="meowGuestHint">♡ Bạn có thể xem những chương FREE mà không cần đăng nhập ♡</p><div
+      <div class="meowPrincessHelp">Chưa có tài khoản? Chọn <b>Đăng ký</b> để tạo ID mới nha ♡</div></div><div id="meowRegisterForm"><input id="meowRegisterName" class="meowInput" maxlength="45" placeholder="🌷 Tên hiển thị của bạn"><input id="meowRegisterID" class="meowInput" maxlength="60" autocomplete="off" placeholder="🔐 ID tự chọn (VD: Meow@123)"><small class="meowIdHint">ID từ 8 ký tự, gồm chữ HOA, chữ thường, số và ký tự đặc biệt.</small><label>Chọn avatar </label><div class="meowAvatarChoices" id="meowAvatarChoices"><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBfWv6N4WqxS7hdDUuTJ7bw1kyGjU0jplbv5uTh2dZire-X7LzYAWxeRMToybH2L9IjAr38pnC927M7zVIG-ebVTaXjdUx74Fta0VcTqipIsXr1OXR0fRGTpsXGjKunuXONwkE41c43t3VdMf3UHLnqoN1jk_1jIJvSy1m65X1mFIjYe-xMHfD_7mQOtZQ/s2599/e123f93d71336a2244744e99f9b014a0.jpg" class="selected"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBfWv6N4WqxS7hdDUuTJ7bw1kyGjU0jplbv5uTh2dZire-X7LzYAWxeRMToybH2L9IjAr38pnC927M7zVIG-ebVTaXjdUx74Fta0VcTqipIsXr1OXR0fRGTpsXGjKunuXONwkE41c43t3VdMf3UHLnqoN1jk_1jIJvSy1m65X1mFIjYe-xMHfD_7mQOtZQ/s2599/e123f93d71336a2244744e99f9b014a0.jpg" alt="Avatar 1" loading="lazy"></button><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh35K5w0ok4-aj7UoMXS1gfHvRpxwaD3k7Ho_vNg4xHYTiBoDESs7EWJPrdaJjhzhPbYInErxouI6DKWlj8P3xdnVrNhyphenhyphenABdOpHMeKtrV9y-aLJWvu5rM1uZBQdLJ7IjhNQ-j0e8b7vfDftY-emTAjcLbjgTvFvAOMLajaLNjcqAzH3z0priHiJJNdyGdjG/s736/%E1%BA%A2NH%20N%E1%BB%80N.jpg" ><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh35K5w0ok4-aj7UoMXS1gfHvRpxwaD3k7Ho_vNg4xHYTiBoDESs7EWJPrdaJjhzhPbYInErxouI6DKWlj8P3xdnVrNhyphenhyphenABdOpHMeKtrV9y-aLJWvu5rM1uZBQdLJ7IjhNQ-j0e8b7vfDftY-emTAjcLbjgTvFvAOMLajaLNjcqAzH3z0priHiJJNdyGdjG/s736/%E1%BA%A2NH%20N%E1%BB%80N.jpg" alt="Avatar 2" loading="lazy"></button><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoGoXQbkiQnUcwONKdEjy5D7FBt7j8liLlb3BF3BBajVagCBmpvXQBxxzgHpG0akjDM56HcIauB-r_jjkRpZmJfA1NJG6zImM7oTrEXQeiZPYPPIdHO-wEeSldSXSZJneu0-zDOgkmnpGcaArX62_oi6O0uebY32awx67ngdThpOsNtU0IJcJiPEZ3bhEU/s1024/ChatGPT%20Image%2011_43_16%2021%20thg%204,%202026.png" ><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoGoXQbkiQnUcwONKdEjy5D7FBt7j8liLlb3BF3BBajVagCBmpvXQBxxzgHpG0akjDM56HcIauB-r_jjkRpZmJfA1NJG6zImM7oTrEXQeiZPYPPIdHO-wEeSldSXSZJneu0-zDOgkmnpGcaArX62_oi6O0uebY32awx67ngdThpOsNtU0IJcJiPEZ3bhEU/s1024/ChatGPT%20Image%2011_43_16%2021%20thg%204,%202026.png" alt="Avatar 3" loading="lazy"></button><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghKeZyTO6JJ82GuSZvg-33dvQQbk-EkVpzYQH5VgyAhpKDqXwtqbKgvppVlCM36hFo6pZ-AzalOLBrfRcp2Q6QGXZC8SFJYI0RdwWNr_rcYbvuh7QT0dtyUzELvu0EIkHtbfkdWdY2nzN6SgfjMQtRvrqXEY_hlMjvfbGc0O1GwvVf3cmUv9k2rEBR4g0e/s1308/4729.jpg" ><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghKeZyTO6JJ82GuSZvg-33dvQQbk-EkVpzYQH5VgyAhpKDqXwtqbKgvppVlCM36hFo6pZ-AzalOLBrfRcp2Q6QGXZC8SFJYI0RdwWNr_rcYbvuh7QT0dtyUzELvu0EIkHtbfkdWdY2nzN6SgfjMQtRvrqXEY_hlMjvfbGc0O1GwvVf3cmUv9k2rEBR4g0e/s1308/4729.jpg" alt="Avatar 4" loading="lazy"></button><button type="button" data-avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk8qcsZAE79P3BXyqiFkEK7caEqt488iqiSWpIelSbXJeWdcQZGujOjODH7Qh6r9L91zlv50DRsnTSi8rjSjqirdSoWfsskqMBKKPeW9L8-scYzBJ9o79jTi9STq4__b6R9t002-YgH8vaoEOldUD2_0Mwk8w0lsDebJtIOLXxQCtthsaZMyWCfbiFtq3P/s1073/633419021_1499558588260613_4957283429066899851_n.jpg" ><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk8qcsZAE79P3BXyqiFkEK7caEqt488iqiSWpIelSbXJeWdcQZGujOjODH7Qh6r9L91zlv50DRsnTSi8rjSjqirdSoWfsskqMBKKPeW9L8-scYzBJ9o79jTi9STq4__b6R9t002-YgH8vaoEOldUD2_0Mwk8w0lsDebJtIOLXxQCtthsaZMyWCfbiFtq3P/s1073/633419021_1499558588260613_4957283429066899851_n.jpg" alt="Avatar 5" loading="lazy"></button></div><label>Hoặc chọn ảnh từ máy (tối đa 120 KB)</label><input id="meowRegisterAvatarFile" type="file" accept="image/png,image/jpeg,image/webp"><button type="button" class="meowLoginBtn" id="meowRegisterSubmit">👑 Tạo tài khoản</button><div id="meowRegisterMsg" class="meowMsg"></div></div><p id="meowGuestHint">♡ Bạn có thể xem những chương FREE mà không cần đăng nhập ♡</p><div
         id="readerLoginMsg"
         class="meowMsg"
       ></div>
@@ -3837,11 +3742,8 @@ html.meow-entry-profile.meow-entry-ready #storyPage{display:block}
 
     </div>
 
-    <!-- MEOW ANNOUNCEMENT TICKER: nội dung được đồng bộ realtime từ trang quản lý thông báo riêng -->
-    <div class="meowAnnouncementTicker" id="meowAnnouncementTicker" role="region" aria-label="Thông báo Mini Meow" hidden>
-      <span class="meowAnnouncementLabel">📣 THÔNG BÁO</span>
-      <div class="meowAnnouncementTrack"><div class="meowAnnouncementContent" id="meowAnnouncementContent"></div></div>
-    </div>
+
+
 
 <div id="meowSideShade" class="meowSideShade" hidden></div>
 <aside id="meowSideMenu" class="meowSideMenu" aria-label="Menu Mini Meow" aria-hidden="true">
@@ -4167,13 +4069,11 @@ html.meow-entry-profile.meow-entry-ready #storyPage{display:block}
             class="meowDetailCover"
           >
 
-            <div class="meowDetailCoverSpinFrame" id="meowDetailCoverSpinFrame">
-              <img
-                id="detailCover"
-                src=""
-                alt=""
-              >
-            </div>
+            <img
+              id="detailCover"
+              src=""
+              alt=""
+            >
             <button type="button" class="meowFollowBtn" id="meowDetailFollowBtn" aria-pressed="false">♡ Theo dõi</button>
 
           </div>
@@ -4239,29 +4139,6 @@ html.meow-entry-profile.meow-entry-ready #storyPage{display:block}
   </button>
 
 </div>
-
-        <section id="meowStoryReactions" class="meowStoryReactions" aria-label="Cảm xúc của độc giả">
-          <div class="meowReactionTitle">✦ BẠN CẢM THẤY THẾ NÀO? ✧</div>
-          <div class="meowReactionChoices" id="meowReactionChoices" role="group" aria-label="Chọn cảm xúc">
-            <button type="button" data-reaction="❤️" aria-label="Thả tim">❤️</button>
-            <button type="button" data-reaction="🔥" aria-label="Yêu thích">🔥</button>
-            <button type="button" data-reaction="😭" aria-label="Khóc">😭</button>
-            <button type="button" data-reaction="😂" aria-label="Cười">😂</button>
-            <button type="button" data-reaction="😻" aria-label="Mê quá">😻</button>
-            <button type="button" data-reaction="👏" aria-label="Vỗ tay">👏</button>
-            <button type="button" data-reaction="⭐" aria-label="Tuyệt vời">⭐</button>
-            <button type="button" data-reaction="🤯" aria-label="Bất ngờ">🤯</button>
-            <button type="button" data-reaction="🥰" aria-label="Ấm áp">🥰</button>
-            <button type="button" data-reaction="🥺" aria-label="Xúc động">🥺</button>
-            <button type="button" data-reaction="🤔" aria-label="Suy ngẫm">🤔</button>
-            <button type="button" data-reaction="💀" aria-label="Cạn lời">💀</button>
-            <button type="button" data-reaction="😍" aria-label="Thích mê">😍</button>
-            <button type="button" data-reaction="😱" aria-label="Sốc">😱</button>
-          </div>
-          <div class="meowReactionSummary" id="meowReactionSummary">Chưa có cảm xúc nào</div>
-          <div class="meowReactionPeople" id="meowReactionPeople" aria-live="polite"></div>
-          <div class="meowReactionLogin" id="meowReactionLogin">🔒 Đăng nhập để bày tỏ cảm xúc</div>
-        </section>
 
         <div
           id="detailSummary"
@@ -5486,17 +5363,12 @@ async function loginCustomer(){
   if (meowCheckLoginLock()) return;
 
   const id = document.getElementById("readerCustomerID").value.trim();
-  const identity = String(document.getElementById("readerCustomerIdentity")?.value || "").trim();
-  if (!identity) {
-    msg.innerText = "⚠️ Vui lòng nhập tên hoặc Gmail đã đăng ký.";
-    return;
-  }
   if (!id) {
     msg.innerText = "⚠️ Vui lòng nhập ID khách.";
     return;
   }
 
-  msg.innerText = "⏳ Đang kiểm tra tên/Gmail và ID...";
+  msg.innerText = "⏳ Đang kiểm tra ID...";
   const loginBtn = document.getElementById("readerLoginBtn");
   if (loginBtn) loginBtn.disabled = true;
 
@@ -5507,22 +5379,10 @@ async function loginCustomer(){
       msg.innerText = result.message;
       return;
     }
-    const data = snap.val() || {};
-    const normalizeName = value => String(value || "").trim().normalize("NFKC").toLocaleLowerCase("vi").replace(/\s+/g," ");
-    const normalizeGmail = value => { const v=String(value||"").trim().toLowerCase(); if(!v.endsWith("@gmail.com")) return v; return v.split("@")[0].split("+")[0].replace(/\./g,"")+"@gmail.com"; };
-    const suppliedEmail = normalizeGmail(identity);
-    const storedEmail = normalizeGmail(data.email || data.gmail || "");
-    const suppliedName = normalizeName(identity);
-    const storedNames = [data.name,data.displayName,data.username,data.nickname,data.customerName,data.tenKhach].map(normalizeName).filter(Boolean);
-    const identityMatches = suppliedEmail.includes("@") ? (!!storedEmail && suppliedEmail === storedEmail) : storedNames.includes(suppliedName);
-    if (!identityMatches) {
-      const result = meowRecordWrongLogin();
-      msg.innerText = result.message;
-      return;
-    }
 
-    // ID và tên/Gmail cùng khớp thì xóa bộ đếm sai.
+    // ID hợp lệ thì xóa bộ đếm sai.
     meowWriteLoginGuard({ attempts: 0, lockedUntil: 0 });
+    const data = snap.val();
     currentCustomer = { id, ...data };
     meowStartCustomerLiveSync(id);
     if(data.profileAvatar){try{localStorage.setItem(MEOW_PROFILE_AVATAR_KEY+id,String(data.profileAvatar))}catch(e){}}
@@ -6286,19 +6146,9 @@ document.addEventListener("visibilitychange", () => {
 });
 meowStartRecentChapterRefresh();
 
-document.addEventListener("click", async e=>{
-  const btn=e.target.closest("#meowRecentChaptersReload");
-  if(!btn || btn.dataset.meowBusy==="1") return;
-  e.preventDefault();
-  btn.dataset.meowBusy="1"; btn.disabled=true; btn.setAttribute("aria-busy","true");
-  const oldLabel=btn.textContent; btn.textContent="Đang tải…";
-  try{
-    // Force bypass the freshness window; if a request is already running, wait for it and retry once.
-    await meowRenderRecentChapters(true);
-    if(meowRecentChapterLoading){await meowRecentChapterLoading; await meowRenderRecentChapters(true);}
-  }catch(err){console.warn("Meow reload recent chapters:",err);}
-  finally{btn.disabled=false;btn.removeAttribute("aria-busy");delete btn.dataset.meowBusy;btn.textContent=oldLabel||"↻ Tải lại";}
-});
+document.addEventListener("click",e=>{const btn=e.target.closest("#meowRecentChaptersReload");if(!btn)return;btn.disabled=true;btn.textContent="Đang tải…";Promise.resolve(meowRenderRecentChapters(true)).finally(()=>{btn.disabled=false;btn.textContent="↻ Tải lại"})});
+
+document.addEventListener("click",e=>{const btn=e.target.closest("#meowRecentChaptersReload");if(!btn)return;btn.disabled=true;btn.textContent="Đang tải…";Promise.resolve(meowRenderRecentChapters(true)).finally(()=>{btn.disabled=false;btn.textContent="↻ Tải lại"})});
 
 function meowPaintRecentChapters(root,rows){
   if(!rows.length){root.innerHTML='<div class="meowRecentChaptersEmpty">🐾 Chưa có chương mới cập nhật để hiển thị nè.</div>';return;}
@@ -6872,143 +6722,7 @@ async function openStory(storyId){
    STORY INFO
 ========================================================= */
 
-
-/* MEOW — reactions for each story detail page */
-let meowStoryReactionUnsubscribe = null;
-let meowStoryReactionBoundId = "";
-const MEOW_STORY_REACTIONS = ["❤️","🔥","😭","😂","😻","👏","⭐","🤯","🥰","🥺","🤔","💀","😍","😱"];
-
-function meowReactionUserId(){
-  return String(currentCustomer?.id || currentCustomer?.uid || currentCustomer?.customerId || "").trim();
-}
-function meowReactionAvatar(person){
-  return String(person?.profileAvatar || person?.avatar || person?.photoURL || person?.photoUrl || person?.image || "").trim();
-}
-function meowReactionDisplayName(person, id){
-  return String(person?.displayName || person?.name || person?.username || person?.nickname || person?.userName || id || "Độc giả").trim();
-}
-function meowRenderStoryReactionData(data){
-  const panel = document.getElementById("meowStoryReactions");
-  const people = document.getElementById("meowReactionPeople");
-  const summary = document.getElementById("meowReactionSummary");
-  const login = document.getElementById("meowReactionLogin");
-  const choices = document.getElementById("meowReactionChoices");
-  if(!panel || !people || !summary || !login || !choices) return;
-
-  const rows = Object.entries(data || {}).filter(([,v]) => v && typeof v === "object");
-  const mine = meowReactionUserId();
-  const myReaction = mine ? String(data?.[encodeURIComponent(mine)]?.emoji || "") : "";
-  choices.querySelectorAll("button[data-reaction]").forEach(btn => {
-    const selected = btn.dataset.reaction === myReaction;
-    btn.classList.toggle("is-selected", selected);
-    btn.setAttribute("aria-pressed", selected ? "true" : "false");
-  });
-
-  const totals = {};
-  rows.forEach(([,v]) => {
-    const emoji = String(v.emoji || "");
-    if(emoji) totals[emoji] = (totals[emoji] || 0) + 1;
-  });
-  const total = rows.length;
-  summary.textContent = total ? `${total} lượt cảm xúc` : "Chưa có cảm xúc nào";
-  if(total){
-    const chips = Object.entries(totals).map(([emoji,count]) => `${emoji} ${count}`).join("　");
-    summary.title = chips;
-  }else summary.removeAttribute("title");
-
-  people.replaceChildren();
-  rows.forEach(([encodedId, person]) => {
-    const item = document.createElement("span");
-    item.className = "meowReactionPerson";
-    const id = (() => { try{return decodeURIComponent(encodedId)}catch(e){return encodedId} })();
-    const name = meowReactionDisplayName(person, id);
-    item.title = `${name} ${person.emoji || ""}`.trim();
-    const avatar = meowReactionAvatar(person);
-    if(avatar){
-      const img = document.createElement("img");
-      img.src = avatar;
-      img.alt = name;
-      img.loading = "lazy";
-      img.onerror = () => { img.remove(); item.textContent = "🐱"; };
-      item.append(img);
-    }else{
-      item.textContent = (name.trim().charAt(0) || "🐱").toUpperCase();
-      item.style.display = "grid";
-      item.style.placeItems = "center";
-      item.style.color = "#b16d96";
-      item.style.fontSize = "12px";
-      item.style.fontWeight = "800";
-    }
-    const emoji = document.createElement("span");
-    emoji.className = "meowReactionEmoji";
-    emoji.textContent = person.emoji || "💗";
-    item.append(emoji);
-    people.append(item);
-  });
-
-  login.style.display = mine ? "none" : "block";
-  choices.querySelectorAll("button[data-reaction]").forEach(btn => {
-    btn.disabled = !mine;
-    btn.title = mine ? `Thả ${btn.dataset.reaction}` : "Đăng nhập để bày tỏ cảm xúc";
-  });
-}
-function meowStartStoryReactionListener(storyId){
-  const sid = String(storyId || "").trim();
-  if(!sid) return;
-  if(meowStoryReactionBoundId === sid && meowStoryReactionUnsubscribe) return;
-  if(typeof meowStoryReactionUnsubscribe === "function") meowStoryReactionUnsubscribe();
-  meowStoryReactionBoundId = sid;
-  const reactionsRef = ref(db, `meowStoryReactions/${encodeURIComponent(sid)}`);
-  meowStoryReactionUnsubscribe = onValue(reactionsRef, snap => {
-    meowRenderStoryReactionData(snap.exists() ? (snap.val() || {}) : {});
-  }, error => {
-    const summary = document.getElementById("meowReactionSummary");
-    if(summary) summary.textContent = "Chưa tải được cảm xúc. Vui lòng thử lại.";
-    console.warn("Meow story reactions:", error);
-  });
-}
-function meowBindStoryReactionChoices(){
-  const choices = document.getElementById("meowReactionChoices");
-  if(!choices || choices.dataset.bound === "1") return;
-  choices.dataset.bound = "1";
-  choices.addEventListener("click", async event => {
-    const button = event.target.closest("button[data-reaction]");
-    if(!button) return;
-    const uid = meowReactionUserId();
-    const storyId = String(currentStoryId || "").trim();
-    if(!uid){
-      const login = document.getElementById("meowReactionLogin");
-      if(login) login.textContent = "🔒 Đăng nhập để bày tỏ cảm xúc";
-      return;
-    }
-    const emoji = button.dataset.reaction;
-    const encodedUid = encodeURIComponent(uid);
-    const reactionRef = ref(db, `meowStoryReactions/${encodeURIComponent(storyId)}/${encodedUid}`);
-    const current = button.classList.contains("is-selected");
-    const person = currentCustomer || {};
-    const record = {
-      uid,
-      emoji,
-      name: meowReactionDisplayName(person, uid),
-      profileAvatar: meowReactionAvatar(person),
-      updatedAt: Date.now()
-    };
-    button.disabled = true;
-    try{
-      await set(reactionRef, current ? null : record);
-    }catch(error){
-      console.warn("Không lưu được cảm xúc:", error);
-      const summary = document.getElementById("meowReactionSummary");
-      if(summary) summary.textContent = "Không lưu được cảm xúc. Thử lại nha.";
-    }finally{
-      button.disabled = !meowReactionUserId();
-    }
-  });
-}
-
 function renderStoryInfo(){
-  meowBindStoryReactionChoices();
-  meowStartStoryReactionListener(currentStoryId);
 
   const info =
     currentStory.info || {};
@@ -9087,58 +8801,47 @@ let meowChosenAvatar='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXs
 document.getElementById('meowAvatarChoices')?.addEventListener('click',e=>{const btn=e.target.closest('button[data-avatar]');if(!btn)return;meowChosenAvatar=btn.dataset.avatar;document.querySelectorAll('#meowAvatarChoices button').forEach(x=>x.classList.toggle('selected',x===btn))});
 document.getElementById('meowRegisterSubmit')?.addEventListener('click',async()=>{
  const btn=document.getElementById('meowRegisterSubmit'),msg=document.getElementById('meowRegisterMsg');
- const name=document.getElementById('meowRegisterName').value.trim();
- let email=String(document.getElementById('meowRegisterEmail')?.value||'').trim().toLowerCase();
- const id=document.getElementById('meowRegisterID').value.trim();
- if(name.length<2){msg.textContent='🌸 Nhập tên từ 2 ký tự nha.';return}
- if(!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@gmail\.com$/i.test(email)){msg.textContent='📧 Vui lòng nhập địa chỉ Gmail hợp lệ (@gmail.com) nha.';return}
- // Gmail ignores dots and +tags in the mailbox name; collapse aliases so one inbox cannot create multiple accounts.
- const gmailLocal=email.split('@')[0].split('+')[0].replace(/\./g,'');email=gmailLocal+'@gmail.com';
+ const name=document.getElementById('meowRegisterName').value.trim();const id=document.getElementById('meowRegisterID').value.trim();if(name.length<2){msg.textContent='🌸 Nhập tên từ 2 ký tự nha.';return}
  if(id.length<8 || !/[A-Z]/.test(id) || !/[a-z]/.test(id) || !/[0-9]/.test(id) || !/[^A-Za-z0-9]/.test(id) || /[.#$\/\[\]\s]/.test(id)){msg.textContent='🔐 ID tối thiểu 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt (ví dụ @ hoặc !); không dùng dấu cách, . # $ / [ ].';return;}
- btn.disabled=true;msg.textContent='⏳ Đang kiểm tra Gmail, tên và ID...';
- let emailReserved=false,nameReserved=false;
- const emailKey=Array.from(new TextEncoder().encode(email),b=>b.toString(16).padStart(2,'0')).join('');
- let nameKey='';
+ btn.disabled=true;msg.textContent='⏳ Đang kiểm tra tên và ID...';
  try{
   let avatar='';const file=document.getElementById('meowRegisterAvatarFile').files[0];
   if(file){if(file.size>120*1024)throw Error('Ảnh quá 120 KB, hãy chọn ảnh nhỏ hơn.');avatar=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result));r.onerror=reject;r.readAsDataURL(file)})}
+  // Reservation tên chuẩn hóa để hai người không thể đăng ký cùng tên đồng thời.
+  // Firebase Rules cần bảo vệ nhánh customerNameIndex và customers khỏi ghi đè.
+  const normalizedName=name.normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' ');
+  const nameKey=Array.from(new TextEncoder().encode(normalizedName),b=>b.toString(16).padStart(2,'0')).join('');
+  // Check legacy customer records as well as the newer name index.
+  // This avoids accepting an existing name registered before the index existed.
   const existingCustomers=await get(ref(db,'customers'));
   if(existingCustomers.exists()){
-    let emailTaken=false,nameTaken=false;
-    const normalizedName=name.normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' ');
+    let nameTaken=false;
     existingCustomers.forEach(child=>{
-      const record=child.val();if(!record||typeof record!=='object')return;
-      const rawOldEmail=String(record.email||record.gmail||'').trim().toLowerCase();
-      const oldEmail=rawOldEmail.endsWith('@gmail.com')?rawOldEmail.split('@')[0].split('+')[0].replace(/\./g,'')+'@gmail.com':rawOldEmail;
-      const oldName=String(record.displayName||record.name||record.customerName||record.tenKhach||'').trim().normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' ');
-      if(oldEmail===email)emailTaken=true;
+      const record=child.val();
+      if(!record || typeof record!=='object')return;
+      const oldName=String(record.displayName||record.name||record.customerName||record.tenKhach||'')
+        .trim().normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' ');
       if(oldName===normalizedName)nameTaken=true;
     });
-    if(emailTaken)throw Error('Gmail này đã được dùng để đăng ký tài khoản khác rồi nha!');
     if(nameTaken)throw Error('Tên khách đã tồn tại trong hệ thống. Vui lòng chọn tên khác nha!');
   }
-  const emailRef=ref(db,'customerEmailIndex/'+emailKey);
-  const emailClaim=await runTransaction(emailRef,old=>old===null?{id,email,createdAt:Date.now()}:undefined,{applyLocally:false});
-  if(!emailClaim.committed)throw Error('Gmail này đã được sử dụng để đăng ký rồi nha.');
-  emailReserved=true;
-  const normalizedName=name.normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' ');
-  nameKey=Array.from(new TextEncoder().encode(normalizedName),b=>b.toString(16).padStart(2,'0')).join('');
   const nameRef=ref(db,'customerNameIndex/'+nameKey);
   const reserved=await runTransaction(nameRef,old=>old===null?{id,displayName:name,createdAt:Date.now()}:undefined,{applyLocally:false});
   if(!reserved.committed)throw Error('Tên khách đã tồn tại, bà chọn tên khác nha.');
-  nameReserved=true;
-  const result=await runTransaction(ref(db,'customers/'+id),old=>old===null?{name,displayName:name,email,profileAvatar:avatar||meowChosenAvatar,avatarEmoji:'🐱',createdAt:Date.now(),registeredFrom:'MiniMeow'}:undefined,{applyLocally:false});
-  if(!result.committed)throw Error('ID đã có người sử dụng, hãy chọn ID khác.');
-  document.getElementById('readerCustomerIdentity').value=name;
+  let created=false;
+  try {
+    const result=await runTransaction(ref(db,'customers/'+id),old=>old===null?{name,displayName:name,profileAvatar:avatar||meowChosenAvatar,avatarEmoji:'🐱',createdAt:Date.now(),registeredFrom:'MiniMeow'}:undefined,{applyLocally:false});
+    created=result.committed;
+    if(!created)throw Error('ID đã có người sử dụng, hãy chọn ID khác.');
+  } catch(err) {
+    try { await runTransaction(nameRef,old=>old?.id===id?null:undefined,{applyLocally:false}); }catch(_e){}
+    throw err;
+  }
+  if(!created)throw Error('Chưa tạo được ID, thử lại nha.');
   document.getElementById('readerCustomerID').value=id;
-  msg.textContent='🎉 Đăng ký thành công! ID của bạn: '+id+' — Hãy lưu ID này để đăng nhập nha.';
+  msg.textContent='🎉 ID của bạn: '+id+' — Hãy lưu ID này để đăng nhập!';
   await loginCustomer();
- }catch(e){
-  console.error(e);
-  if(nameReserved){try{await runTransaction(ref(db,'customerNameIndex/'+nameKey),old=>old?.id===id?null:undefined,{applyLocally:false})}catch(_){}}
-  if(emailReserved){try{await runTransaction(ref(db,'customerEmailIndex/'+emailKey),old=>old?.id===id?null:undefined,{applyLocally:false})}catch(_){}}
-  msg.textContent='❌ '+(e?.message||'Không thể tạo tài khoản. Kiểm tra quyền ghi Firebase.');
- }finally{btn.disabled=false}
+ }catch(e){console.error(e);msg.textContent='❌ '+(e?.message||'Không thể tạo tài khoản. Kiểm tra quyền ghi Firebase.')}finally{btn.disabled=false}
 });
 
 meowHideAuth();
@@ -9435,128 +9138,6 @@ function meowProfileCopy(value, button){
  const fallback=()=>{const t=document.createElement("textarea");t.value=value;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy");done()}catch(e){}t.remove()};
  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(value).then(done).catch(fallback);else fallback();
 }
-function meowIdentityKey(value){
- return Array.from(new TextEncoder().encode(String(value||'')),b=>b.toString(16).padStart(2,'0')).join('');
-}
-async function meowEditProfileIdentity(){
- const customer=currentCustomer;
- const oldId=String(customer?.id||'').trim();
- if(!oldId)return alert('Bà đăng nhập tài khoản trước nha 💗');
- const oldName=String(customer.name||customer.displayName||'').trim();
- const overlay=document.createElement('div');overlay.className='meowIdentityOverlay';
- overlay.innerHTML=`<section class="meowIdentityPanel" role="dialog" aria-modal="true" aria-labelledby="meowIdentityTitle">
-  <button type="button" class="meowIdentityClose" aria-label="Đóng">×</button>
-  <div class="meowIdentityIcon">🐱💗</div><h3 id="meowIdentityTitle">Đổi thông tin cá nhân</h3>
-  <p>Đổi tên hoặc ID nha. ID cũ sẽ được gỡ khỏi danh sách và không đăng nhập được nữa.</p>
-  <label>Tên hiển thị<input id="meowIdentityName" maxlength="45" value="${escapeHTML(oldName)}"></label>
-  <label>ID mới<input id="meowIdentityId" maxlength="60" value="${escapeHTML(oldId)}" autocomplete="off"></label>
-  <small>ID mới dùng 4–60 ký tự: chữ, số, dấu gạch dưới hoặc gạch ngang.</small>
-  <div class="meowIdentityMsg" id="meowIdentityMsg" role="status"></div>
-  <button type="button" class="meowIdentitySave" id="meowIdentitySave">Lưu thay đổi ♡</button>
- </section>`;
- document.body.append(overlay);
- const close=()=>overlay.remove();
- overlay.querySelector('.meowIdentityClose').onclick=close;
- overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
- const save=overlay.querySelector('#meowIdentitySave'),msg=overlay.querySelector('#meowIdentityMsg');
- save.onclick=async()=>{
-  const newName=overlay.querySelector('#meowIdentityName').value.trim();
-  const newId=overlay.querySelector('#meowIdentityId').value.trim();
-  if(newName.length<2){msg.textContent='Nhập tên từ 2 ký tự nha.';return}
-  if(newId!==oldId&&!/^[A-Za-z0-9_-]{4,60}$/.test(newId)){msg.textContent='ID mới cần 4–60 ký tự, chỉ gồm chữ, số, _ hoặc - nha.';return}
-  if(newId===oldId&&newName===oldName){close();return}
-  save.disabled=true;msg.textContent='Đang kiểm tra và cập nhật…';
-  let reservedName=false;const oldNameKey=meowIdentityKey(oldName.normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' '));
-  const newNameKey=meowIdentityKey(newName.normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' '));
-  try{
-   const [oldCustomerSnap,newCustomerSnap,customersSnap]=await Promise.all([
-    get(ref(db,'customers/'+oldId)),get(ref(db,'customers/'+newId)),get(ref(db,'customers'))
-   ]);
-   if(!oldCustomerSnap.exists())throw Error('Không tìm thấy dữ liệu tài khoản hiện tại.');
-   if(newId!==oldId&&newCustomerSnap.exists())throw Error('ID mới đã có người sử dụng rồi nha.');
-   const normalizedNew=newName.normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' ');
-   let duplicateName=false;
-   customersSnap.forEach(child=>{
-    if(String(child.key)===oldId)return;
-    const v=child.val()||{};
-    const n=String(v.displayName||v.name||v.customerName||v.tenKhach||'').trim().normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g,' ');
-    if(n===normalizedNew)duplicateName=true;
-   });
-   if(duplicateName)throw Error('Tên này đang được tài khoản khác sử dụng.');
-   const newNameRef=ref(db,'customerNameIndex/'+newNameKey);
-   if(newNameKey!==oldNameKey){
-    const claim=await runTransaction(newNameRef,old=>old===null?{id:newId,displayName:newName,updatedAt:Date.now()}:undefined,{applyLocally:false});
-    if(!claim.committed)throw Error('Tên này đã được sử dụng rồi nha.');
-    reservedName=true;
-   }
-   const oldRecord=oldCustomerSnap.val()||{};
-   const nextRecord={...oldRecord,name:newName,displayName:newName};
-   const updates={};
-   const putMoved=async(pathOld,pathNew)=>{
-    const snap=await get(ref(db,pathOld));
-    if(snap.exists())updates[pathNew]=snap.val();
-    updates[pathOld]=null;
-   };
-   if(newId!==oldId){
-    updates['customers/'+newId]=nextRecord;
-    updates['customers/'+oldId]=null;
-    await Promise.all([
-     putMoved('meowWallet/'+oldId,'meowWallet/'+newId),
-     putMoved('meowPurchases/'+oldId,'meowPurchases/'+newId),
-     putMoved('meowFollows/'+encodeURIComponent(oldId),'meowFollows/'+encodeURIComponent(newId)),
-     putMoved('meowReadingHistory/'+encodeURIComponent(oldId),'meowReadingHistory/'+encodeURIComponent(newId)),
-     putMoved('meowDailyCheckin/'+encodeURIComponent(oldId),'meowDailyCheckin/'+encodeURIComponent(newId)),
-     putMoved('meowVipPointGrants/'+oldId,'meowVipPointGrants/'+newId)
-    ]);
-   }else{
-    updates['customers/'+oldId]=nextRecord;
-   }
-   if(oldNameKey!==newNameKey)updates['customerNameIndex/'+oldNameKey]=null;
-   updates['customerNameIndex/'+newNameKey]={id:newId,displayName:newName,updatedAt:Date.now()};
-   const accountEmail=String(oldRecord.email||oldRecord.gmail||'').trim().toLowerCase();
-   if(accountEmail)updates['customerEmailIndex/'+meowIdentityKey(accountEmail)]={id:newId,email:accountEmail,updatedAt:Date.now()};
-   if(newId!==oldId){
-    const txSnap=await get(ref(db,'meowWalletTransactions'));
-    if(txSnap.exists())txSnap.forEach(row=>{
-     const transaction=row.val();
-     if(transaction&&String(transaction.customerId||'')===oldId){
-      updates['meowWalletTransactions/'+row.key]={...transaction,customerId:newId,name:newName};
-     }
-    });
-    const voucherSnap=await get(ref(db,'meowVoucherHistory'));
-    if(voucherSnap.exists())voucherSnap.forEach(row=>{
-     const transaction=row.val();
-     if(transaction&&String(transaction.customerId||'')===oldId){
-      updates['meowVoucherHistory/'+row.key]={...transaction,customerId:newId,name:newName};
-     }
-    });
-   }
-   await update(ref(db),updates);
-   if(typeof meowCustomerLiveUnsubscribe==='function'){try{meowCustomerLiveUnsubscribe()}catch(_){}meowCustomerLiveUnsubscribe=null}
-   if(typeof meowAvatarUnsubscribe==='function'){try{meowAvatarUnsubscribe()}catch(_){}meowAvatarUnsubscribe=null}
-   currentCustomer={...nextRecord,id:newId};
-   try{
-    localStorage.setItem('MEOW_READER_ID',newId);localStorage.setItem('MEOW_ID',newId);localStorage.setItem('meowCustomerId',newId);
-    if(newId!==oldId){localStorage.removeItem('MEOW_READER_ID_'+oldId);localStorage.removeItem('MEOW_ID_'+oldId)}
-   }catch(_){}
-   meowStartCustomerLiveSync(newId);meowStartAvatarSync();
-   await meowLoadFollowedStories(newId);await meowLoadReadingHistory(newId);
-   document.getElementById('readerCustomerID').value=newId;
-   const welcome=document.getElementById('readerWelcome');
-   if(welcome)welcome.textContent='🐱 Xin chào '+newName+' - ID: '+newId;
-   const displayName=document.getElementById('meowCustomerDisplayName');if(displayName)displayName.textContent=newName;
-   const displayId=document.getElementById('meowCustomerDisplayId');if(displayId)displayId.textContent=newId;
-   meowProfileRender();meowApplyProfileAvatar();
-   msg.textContent='Đã cập nhật thành công!';
-   setTimeout(close,500);
-  }catch(err){
-   if(reservedName){try{await runTransaction(ref(db,'customerNameIndex/'+newNameKey),v=>v?.id===newId?null:undefined,{applyLocally:false})}catch(_){}}
-   console.error('Meow profile identity update:',err);
-   msg.textContent='Chưa cập nhật được: '+(err?.message||'lỗi Firebase hoặc quyền truy cập.');
-   save.disabled=false;
-  }
- };
-}
 function meowProfileRender(){
  document.getElementById("meowProfileOverlay")?.classList.remove("meow-notify-view");
  const root=document.getElementById("meowProfileContent"); if(!root||!currentCustomer)return;
@@ -9579,7 +9160,7 @@ function meowProfileRender(){
  const recentHTML=recent.length?recent.map(({storyId,chapterId,story},index)=>{const info=story.info||{},ch=story.chapters?.[chapterId]||{};return `<div class="meowProfileLimitItem${index>=4?" is-extra":""}"${index>=4?' hidden':''}><button type="button" class="meowShelfRecentItem" data-continue-story="${escapeHTML(storyId)}" data-continue-chapter="${escapeHTML(chapterId)}">${info.cover?`<img class="meowShelfRecentCover" src="${escapeHTML(info.cover)}" alt="" loading="lazy">`:`<span class="meowShelfRecentCover">🐱</span>`}<span class="meowShelfRecentText"><strong>${escapeHTML(info.name||storyId)}</strong><span>📖 Chương ${escapeHTML(chapterId)}${ch.title?" · "+escapeHTML(ch.title):""}</span><span>Chạm để đọc tiếp →</span></span></button></div>`}).join("")+profileMoreButton(recent.length):`<div class="meowProfileEmpty">📖 Chưa có chương đang đọc.</div>`;
  root.innerHTML=`<div class="meowProfileHero">
   <div class="meowProfileAvatarWrap"><img id="meowProfileAvatarLarge" alt="Ảnh đại diện" src="${avatar}" style="${avatar?'':'display:none'}"><label for="meowProfileAvatarUpload">✦ Đổi ảnh</label><input id="meowProfileAvatarUpload" type="file" accept="image/*"></div>
-  <div><div class="meowProfileNameRow"><div class="meowProfileName">${escapeHTML(name)}</div><button type="button" class="meowNotifyBell" id="meowNotifyBell" aria-label="Thông báo" title="Thông báo">🔔<i id="meowNotifyBadge" hidden></i></button></div><div class="meowProfileId"><span>ID: <b id="meowProfileIdText">${escapeHTML(id)}</b></span><button type="button" class="meowProfileCopy" id="meowProfileCopyId" aria-label="Copy ID">⧉</button></div><div class="meowProfileJoinedDate" aria-label="Ngày tham gia">🌷 Ngày tham gia: <b>${escapeHTML(profileCreatedDate)}</b></div><a class="meowProfileWalletLink" href="#meowIntegratedWallet">👛 Ví của tôi</a><button type="button" class="meowProfileEditIdentity" id="meowProfileEditIdentity">✎ Đổi tên &amp; ID</button></div>
+  <div><div class="meowProfileNameRow"><div class="meowProfileName">${escapeHTML(name)}</div><button type="button" class="meowNotifyBell" id="meowNotifyBell" aria-label="Thông báo" title="Thông báo">🔔<i id="meowNotifyBadge" hidden></i></button></div><div class="meowProfileId"><span>ID: <b id="meowProfileIdText">${escapeHTML(id)}</b></span><button type="button" class="meowProfileCopy" id="meowProfileCopyId" aria-label="Copy ID">⧉</button></div><div class="meowProfileJoinedDate" aria-label="Ngày tham gia">🌷 Ngày tham gia: <b>${escapeHTML(profileCreatedDate)}</b></div><a class="meowProfileWalletLink" href="#meowIntegratedWallet">👛 Ví của tôi</a></div>
   <div></div>
  </div>
  <div class="meowProfileStats">
@@ -9651,7 +9232,6 @@ if(!root.dataset.meowFollowClickBound){
  root.querySelectorAll("[data-profile-more]").forEach(btn=>btn.addEventListener("click",()=>{const section=btn.closest(".meowProfileSection");if(!section)return;const expanded=btn.getAttribute("aria-expanded")==="true";section.querySelectorAll(".meowProfileLimitItem.is-extra").forEach(item=>item.hidden=expanded);btn.setAttribute("aria-expanded",String(!expanded));btn.innerHTML=expanded?'⌄':'⌃';btn.setAttribute("aria-label",expanded?"Hiện thêm":"Thu gọn");btn.title=expanded?"Hiện thêm":"Thu gọn"}));
  meowCalendarInit();
  root.querySelector("#meowProfileCopyId")?.addEventListener("click",e=>meowProfileCopy(id,e.currentTarget));
- root.querySelector("#meowProfileEditIdentity")?.addEventListener("click",meowEditProfileIdentity);
  root.querySelector("#meowProfileAvatarUpload")?.addEventListener("change",async e=>{
   const file=e.target.files?.[0]; if(!file)return;
   if(!file.type.startsWith("image/"))return alert("Bà chọn file ảnh nha 💗");
@@ -14271,8 +13851,8 @@ html body #loginPage .meowLoginBox.meow-fold-active{width:min(96vw,850px)!import
   const heading=(txt)=>{const el=document.createElement('div');el.className='meow-fold-title';el.textContent=txt;return el};
   left.append(heading('♡ THÔNG TIN ĐĂNG KÝ'));
   right.append(heading('✦ CHỌN NHÂN VẬT ✦'));
-  const name=document.getElementById('meowRegisterName'),email=document.getElementById('meowRegisterEmail'),id=document.getElementById('meowRegisterID');
-  if(name)left.append(name);if(email)left.append(email);if(id)left.append(id);
+  const name=document.getElementById('meowRegisterName'),id=document.getElementById('meowRegisterID');
+  if(name)left.append(name);if(id)left.append(id);
   const hint=form.querySelector('.meowIdHint');if(hint)left.append(hint);
   const submit=document.getElementById('meowRegisterSubmit'),msg=document.getElementById('meowRegisterMsg');
   if(submit)left.append(submit);if(msg)left.append(msg);
@@ -15663,120 +15243,6 @@ body.meowSiteDark .meowCommunityReplyPreview{background:#403148;border-left-colo
  let tries=0;const timer=setInterval(()=>{install();if(++tries>=20)clearInterval(timer);},400);
 })();
 </script>
-
-
-<script id="meow-menu-close-after-choice">
-(function(){
-  if(window.__meowMenuCloseAfterChoiceInstalled)return;
-  window.__meowMenuCloseAfterChoiceInstalled=true;
-  document.addEventListener('click',function(e){
-    const menu=document.getElementById('meowSideMenu');
-    if(!menu||!menu.classList.contains('is-open'))return;
-    const item=e.target.closest('#meowSideMenu button, #meowSideMenu a, #meowSideMenu [role="button"]');
-    if(!item)return;
-    /* Nút mở/đóng nhóm con thì giữ menu; các lựa chọn khác đóng menu */
-    if(item.matches('[data-ms-toggle],.meowSideExpand,[aria-expanded="false"]') &&
-       (item.hasAttribute('data-ms-toggle')||item.classList.contains('meowSideExpand')))return;
-    setTimeout(function(){
-      menu.classList.remove('is-open');
-      menu.setAttribute('aria-hidden','true');
-      const shade=document.getElementById('meowSideShade');
-      if(shade)shade.hidden=true;
-      const opener=document.getElementById('meowSideOpen');
-      if(opener)opener.setAttribute('aria-expanded','false');
-      document.body.style.overflow='';
-    },0);
-  },true);
-})();
-</script>
-
-<style id="meow-profile-cover-360-final-fix">
-/* Final override: bệ tĩnh, ảnh + viền quay liên tục đủ 360 độ */
-#storyPage .meowDetailCover{
-  animation:none!important;
-  transform:none!important;
-  border:0!important;
-  box-shadow:none!important;
-  perspective:1000px!important;
-  overflow:visible!important;
-}
-#storyPage .meowDetailCover #detailCover{
-  display:block!important;
-  position:relative!important;
-  width:100%!important;
-  height:100%!important;
-  box-sizing:border-box!important;
-  border:3px solid rgba(255,255,255,.94)!important;
-  border-radius:inherit!important;
-  box-shadow:0 12px 30px rgba(117,65,128,.22),0 0 0 6px rgba(255,255,255,.20)!important;
-  transform-origin:50% 50%!important;
-  animation:meowProfileCoverSpinFinal 6s linear infinite!important;
-  backface-visibility:visible!important;
-  will-change:transform;
-}
-#storyPage .meowDetailCover::before,#storyPage .meowDetailCover::after{
-  animation:none!important;transform:none!important;
-}
-@keyframes meowProfileCoverSpinFinal{
-  from{transform:rotateY(0deg)!important}
-  to{transform:rotateY(360deg)!important}
-}
-/* Override device-level reduced-motion so the requested cover animation remains active */
-@media(prefers-reduced-motion:reduce){
-  #storyPage .meowDetailCover #detailCover{animation:meowProfileCoverSpinFinal 6s linear infinite!important;animation-duration:6s!important;animation-iteration-count:infinite!important}
-}
-</style>
-
-<script type="module" id="meow-announcement-live-sync">
-import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
-const config={apiKey:"AIzaSyCMUFJMj74GHONpCj3thoTIc2TfZyc91b8",authDomain:"olncm-fa88c.firebaseapp.com",databaseURL:"https://olncm-fa88c-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"olncm-fa88c",storageBucket:"olncm-fa88c.firebasestorage.app",messagingSenderId:"1047257801200",appId:"1:1047257801200:web:d051244e609b2285ddbd35"};
-const app=getApps().length?getApp():initializeApp(config); const db=getDatabase(app);
-const host=document.getElementById("meowAnnouncementContent"), ticker=document.getElementById("meowAnnouncementTicker");
-function safeRichHtml(input){
- const template=document.createElement("template"); template.innerHTML=String(input||"");
- template.content.querySelectorAll("script,style,iframe,object,embed,form,svg,math").forEach(n=>n.remove());
- template.content.querySelectorAll("*").forEach(el=>{
-  [...el.attributes].forEach(a=>{const n=a.name.toLowerCase(),v=a.value.trim().toLowerCase(); if(n.startsWith("on")||n==="style"||((n==="href"||n==="src")&&(v.startsWith("javascript:")||v.startsWith("data:"))))el.removeAttribute(a.name);});
-  if(el.tagName==="A"){el.setAttribute("target","_blank");el.setAttribute("rel","noopener noreferrer");}
- }); return template.innerHTML;
-}
-onValue(ref(db,"meowAnnouncements"),snap=>{
- const raw=snap.val()||{}; const rows=Object.entries(raw).map(([id,v])=>({...v,id})).filter(v=>v&&v.active!==false&&String(v.html||v.text||"").trim()).sort((a,b)=>(Number(a.order)||0)-(Number(b.order)||0)||(Number(a.createdAt)||0)-(Number(b.createdAt)||0));
- if(!host||!ticker)return; host.replaceChildren();
- if(!rows.length){ticker.hidden=true;return;}
- const fragments=[]; rows.forEach(row=>{const span=document.createElement("span");span.innerHTML=safeRichHtml(row.html||row.text);fragments.push(span);});
- // Duplicate for continuous ticker movement.
- fragments.forEach(n=>host.append(n)); fragments.forEach(n=>{const clone=n.cloneNode(true);clone.setAttribute("aria-hidden","true");host.append(clone);}); ticker.hidden=false;
-},err=>{console.error("Không thể đồng bộ thông báo Meow",err);});
-</script>
-
-
-<style id="meow-gmail-profile-identity-patch">
-#loginPage #meowRegisterEmail{width:100%;margin:7px 0}
-/* Nút đổi thông tin nhỏ gọn, đồng bộ với nút Ví của tôi */
-.meowProfileEditIdentity{display:inline-flex;align-items:center;justify-content:center;gap:5px;margin:8px 0 0;padding:7px 10px;border:1px solid #ffc0dc;border-radius:10px;background:linear-gradient(135deg,#ff91bf,#e9a3f4);color:#fff;text-decoration:none;font:900 10px/1.2 'Be Vietnam Pro',sans-serif;cursor:pointer;box-shadow:0 3px 9px #e84e9220;transition:transform .18s,filter .18s}
-.meowProfileEditIdentity:hover{transform:translateY(-1px);filter:saturate(1.08)}
-.meowIdentityOverlay{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px;background:#24172fae;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-/* Khung pixel cute: viền bậc thang, góc vuông pixel thay cho bo tròn */
-.meowIdentityPanel{isolation:isolate;position:relative;width:min(430px,100%);padding:28px 24px; border:0;border-radius:0;background:transparent;box-shadow:none;color:#f9e5f2;clip-path:polygon(12px 0,calc(100% - 12px) 0,calc(100% - 12px) 4px,calc(100% - 4px) 4px,calc(100% - 4px) 12px,100% 12px,100% calc(100% - 12px),calc(100% - 4px) calc(100% - 12px),calc(100% - 4px) calc(100% - 4px),calc(100% - 12px) calc(100% - 4px),calc(100% - 12px) 100%,12px 100%,12px calc(100% - 4px),4px calc(100% - 4px),4px calc(100% - 12px),0 calc(100% - 12px),0 12px,4px 12px,4px 4px,12px 4px)}
-.meowIdentityPanel::before,.meowIdentityPanel::after{content:"";position:absolute;pointer-events:none;z-index:-1;clip-path:inherit}
-.meowIdentityPanel::before{inset:0;background:#f58bc3;filter:drop-shadow(0 10px 0 #16101e55)}
-.meowIdentityPanel::after{inset:4px;background:linear-gradient(145deg,#38283f,#30243b 68%,#403047)}
-.meowIdentityPanel>*{position:relative;z-index:1}
-.meowIdentityPanel h3{margin:5px 0 9px;text-align:center;color:#ff9bc9;font:900 20px 'Be Vietnam Pro',sans-serif;text-shadow:2px 2px 0 #8d4d83}
-.meowIdentityPanel p{font-size:12px;line-height:1.65;text-align:center;color:#e2b6d3}
-.meowIdentityIcon{text-align:center;font-size:34px;filter:drop-shadow(2px 2px 0 #a85d9b)}
-.meowIdentityClose{position:absolute;right:13px;top:12px;width:30px;height:30px;border:2px solid #fff0fa;border-radius:0;background:#f47db6;color:#fff;font-size:21px;line-height:1;box-shadow:3px 3px 0 #9b5689}
-.meowIdentityPanel label{display:flex;flex-direction:column;gap:7px;margin:13px 0;color:#ffb2d5;font-size:12px;font-weight:900}
-.meowIdentityPanel input{width:100%;padding:12px;border:2px solid #e98abd;border-radius:0;background:#fff8fd;color:#624356;font:14px 'Be Vietnam Pro',sans-serif;outline:none;box-shadow:3px 3px 0 #a65d91}
-.meowIdentityPanel input:focus{border-color:#ffb4da;box-shadow:3px 3px 0 #a65d91,0 0 0 3px #ffb4da45}
-.meowIdentityPanel small{display:block;color:#d6a8c9;font-size:10px;line-height:1.5}
-.meowIdentityMsg{min-height:22px;margin:10px 0;color:#ffacd2;font-size:12px;line-height:1.5}
-.meowIdentitySave{width:100%;padding:12px;border:2px solid #ffd4e9;border-radius:0;background:linear-gradient(120deg,#ff8db8,#c59aff);color:white;font-weight:900;box-shadow:3px 3px 0 #9c5c91;cursor:pointer}
-.meowIdentitySave:disabled{opacity:.55;cursor:wait}
-@media(max-width:520px){.meowIdentityPanel{padding:26px 19px}.meowProfileEditIdentity{font-size:10px;padding:7px 9px}}
-</style>
 
 </body>
 
@@ -17328,286 +16794,3 @@ body.meowSiteDark .meowStoryCommentsCard{background:linear-gradient(145deg,#3025
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',repair,{once:true});else repair();
 })();
 </script>
-<style id="meow-cover-true-360-structural-fix">
-/* Bệ/khung ngoài đứng yên; chỉ lớp bìa có viền quay trọn 360 độ. */
-#storyPage .meowDetailCover{
-  position:relative!important;
-  isolation:isolate!important;
-  overflow:visible!important;
-  border:0!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  transform:none!important;
-  animation:none!important;
-  perspective:1100px!important;
-}
-#storyPage .meowDetailCoverSpinFrame{
-  position:absolute!important;
-  inset:0!important;
-  z-index:2!important;
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
-  overflow:hidden!important;
-  box-sizing:border-box!important;
-  border:3px solid rgba(255,255,255,.96)!important;
-  border-radius:inherit!important;
-  background:#ffe5f1!important;
-  box-shadow:0 12px 30px rgba(117,65,128,.22),0 0 0 6px rgba(255,255,255,.22)!important;
-  transform-origin:50% 50%!important;
-  transform-style:preserve-3d!important;
-  -webkit-transform-style:preserve-3d!important;
-  animation:meowCoverFrameFullTurn 6s linear infinite!important;
-  -webkit-animation:meowCoverFrameFullTurn 6s linear infinite!important;
-  will-change:transform;
-}
-#storyPage .meowDetailCoverSpinFrame #detailCover{
-  display:block!important;
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  max-width:none!important;
-  margin:0!important;
-  box-sizing:border-box!important;
-  border:0!important;
-  border-radius:inherit!important;
-  object-fit:cover!important;
-  transform:none!important;
-  animation:none!important;
-}
-/* Nút theo dõi nằm ngoài lớp quay nên không bị xoay theo. */
-#storyPage .meowDetailCover .meowFollowBtn{
-  z-index:5!important;
-}
-/* Hai pseudo-element là bệ và bóng: giữ nguyên vị trí, không áp animation. */
-#storyPage .meowDetailCover::before,
-#storyPage .meowDetailCover::after{
-  animation:none!important;
-  transform:none!important;
-}
-@keyframes meowCoverFrameFullTurn{
-  from{transform:rotateY(0deg)}
-  to{transform:rotateY(360deg)}
-}
-@-webkit-keyframes meowCoverFrameFullTurn{
-  from{-webkit-transform:rotateY(0deg);transform:rotateY(0deg)}
-  to{-webkit-transform:rotateY(360deg);transform:rotateY(360deg)}
-}
-@media(prefers-reduced-motion:reduce){
-  #storyPage .meowDetailCoverSpinFrame{
-    animation:meowCoverFrameFullTurn 6s linear infinite!important;
-    -webkit-animation:meowCoverFrameFullTurn 6s linear infinite!important;
-  }
-}
-
-/* MEOW — reaction panel below profile / above synopsis */
-.meowStoryReactions{
-  margin:0 0 18px;
-  padding:17px 15px 14px;
-  border:1px solid #e8ddff;
-  border-radius:22px;
-  background:linear-gradient(110deg,#fff 0%,#fffafd 68%,#fff4fb 100%);
-  box-shadow:0 7px 24px rgba(173,143,220,.08);
-  text-align:center;
-}
-.meowReactionTitle{
-  margin:0 0 13px;
-  color:#8993ff;
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:.8px;
-}
-.meowReactionChoices{
-  display:flex;
-  align-items:stretch;
-  gap:7px;
-  overflow-x:auto;
-  padding:0 0 12px;
-  border-bottom:1px solid #e9e1ff;
-  scrollbar-width:thin;
-}
-.meowReactionChoices button{
-  position:relative;
-  flex:0 0 53px;
-  min-height:50px;
-  border:1px solid #e8e5eb;
-  border-radius:13px;
-  background:linear-gradient(145deg,#fff,#fffdfd);
-  color:#927fae;
-  font-size:22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:transform .16s,border-color .16s,background .16s;
-}
-.meowReactionChoices button:hover{transform:translateY(-2px);border-color:#d8caff;background:#faf7ff}
-.meowReactionChoices button.is-selected{
-  border-color:#ffb8d1;
-  background:#fff0f6;
-  box-shadow:0 0 0 2px #ffe0ed;
-}
-.meowReactionSummary{
-  margin:10px 0 7px;
-  color:#a59abf;
-  font-size:11px;
-  font-weight:700;
-}
-.meowReactionPeople{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:nowrap;
-  gap:7px;
-  max-width:100%;
-  overflow-x:auto;
-  padding:3px 2px 9px;
-  scrollbar-width:thin;
-}
-.meowReactionPerson{
-  flex:0 0 auto;
-  width:34px;
-  height:34px;
-  position:relative;
-  border-radius:50%;
-  border:2px solid #fff;
-  background:linear-gradient(135deg,#ffe1ee,#e8ddff);
-  box-shadow:0 2px 7px #c7acd933;
-  overflow:visible;
-}
-.meowReactionPerson img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  border-radius:50%;
-}
-.meowReactionPerson .meowReactionEmoji{
-  position:absolute;
-  right:-5px;
-  bottom:-4px;
-  width:17px;
-  height:17px;
-  display:grid;
-  place-items:center;
-  border:1px solid #fff;
-  border-radius:50%;
-  background:#fff3f8;
-  font-size:10px;
-  line-height:1;
-}
-.meowReactionLogin{
-  margin-top:2px;
-  padding:10px 12px;
-  border:1px dashed #cdd8ff;
-  border-radius:13px;
-  background:#f4f7ff;
-  color:#8298ef;
-  font-size:12px;
-  font-weight:800;
-}
-@media(max-width:600px){
-  .meowStoryReactions{padding:14px 10px 12px;border-radius:18px}
-  .meowReactionChoices{gap:6px}
-  .meowReactionChoices button{flex-basis:46px;min-height:46px;font-size:20px}
-  .meowReactionPerson{width:31px;height:31px}
-}
-
-
-/* MEOW REACTIONS — extra kawaii polish + explicit light/dark theme support */
-.meowStoryReactions{
-  position:relative;isolation:isolate;overflow:hidden;
-  border:1px solid #ffd4e8;
-  border-radius:25px;
-  background:radial-gradient(ellipse at 8% 8%,#fff0f8 0,transparent 32%),radial-gradient(ellipse at 92% 12%,#f4edff 0,transparent 34%),linear-gradient(145deg,#fff 0%,#fff9fc 58%,#fff4fa 100%);
-  box-shadow:0 10px 28px rgba(225,135,180,.13),inset 0 1px 0 #fff;
-}
-.meowStoryReactions:before,.meowStoryReactions:after{position:absolute;z-index:-1;pointer-events:none;color:#f7c5df;opacity:.65;font-size:19px;content:"✧"}
-.meowStoryReactions:before{left:13px;top:12px}
-.meowStoryReactions:after{right:14px;bottom:9px;content:"♡"}
-.meowReactionTitle{display:flex;align-items:center;justify-content:center;gap:8px;color:#c76eaa;font-size:13px;letter-spacing:.6px;text-shadow:0 1px #fff}
-.meowReactionTitle:before{content:"✦";color:#ff9fc9;font-size:12px}
-.meowReactionTitle:after{content:"✧";color:#c9a5ff;font-size:14px}
-.meowReactionChoices{padding:2px 1px 13px;border-bottom:1px dashed #f4cce2;scrollbar-color:#f3c5df transparent}
-.meowReactionChoices button{flex-basis:54px;min-height:51px;border:1px solid #f3e2ed;border-radius:16px;background:linear-gradient(150deg,#fff 20%,#fff8fc);box-shadow:0 3px 9px rgba(198,141,177,.07);font-size:23px}
-.meowReactionChoices button:hover{transform:translateY(-3px) rotate(-2deg);border-color:#f6b8d7;background:#fff0f7;box-shadow:0 6px 13px #e8a4c52a}
-.meowReactionChoices button.is-selected{border-color:#ff9fc7;background:linear-gradient(145deg,#ffe5f1,#fff0f8);box-shadow:0 0 0 2px #ffe1ed,0 5px 12px #eaa0c333}
-.meowReactionSummary{margin:12px 0 6px;color:#b47da0;font-size:12px}
-.meowReactionPeople{padding-top:4px;scrollbar-color:#efc4dd transparent}
-.meowReactionPerson{width:36px;height:36px;border:2px solid #fff;background:linear-gradient(135deg,#ffe4f0,#eee3ff);box-shadow:0 3px 9px #d7a5c52b}
-.meowReactionPerson .meowReactionEmoji{background:#fff0f7;color:#b95f91;box-shadow:0 1px 4px #dba1c522}
-.meowReactionLogin{border:1px dashed #d8c8ff;border-radius:15px;background:linear-gradient(100deg,#f7f4ff,#fff4fa);color:#9385d7}
-
-/* The site theme switch also switches this panel; light mode remains bright and pastel. */
-body.meowSiteDark .meowStoryReactions{border-color:#51415d;background:radial-gradient(ellipse at 8% 8%,#493346 0,transparent 35%),radial-gradient(ellipse at 92% 12%,#38314a 0,transparent 35%),linear-gradient(145deg,#292430,#302635 65%,#342635);box-shadow:0 10px 28px #100d172e,inset 0 1px 0 #ffffff08}
-body.meowSiteDark .meowStoryReactions:before,body.meowSiteDark .meowStoryReactions:after{color:#8f6e9d}
-body.meowSiteDark .meowReactionTitle{color:#e3a5cb;text-shadow:none}
-body.meowSiteDark .meowReactionChoices{border-bottom-color:#554052;scrollbar-color:#72516c transparent}
-body.meowSiteDark .meowReactionChoices button{border-color:#514252;background:linear-gradient(145deg,#342c3a,#2d2733);box-shadow:0 3px 9px #100b1626}
-body.meowSiteDark .meowReactionChoices button:hover{border-color:#a16e98;background:#463344}
-body.meowSiteDark .meowReactionChoices button.is-selected{border-color:#d681b0;background:linear-gradient(145deg,#57364c,#47354e);box-shadow:0 0 0 2px #704760}
-body.meowSiteDark .meowReactionSummary{color:#c7a1c1}
-body.meowSiteDark .meowReactionPerson{border-color:#3a303e;background:linear-gradient(135deg,#4c3549,#3b354f);box-shadow:0 3px 9px #100b1626}
-body.meowSiteDark .meowReactionPerson .meowReactionEmoji{border-color:#3a303e;background:#493344;color:#ffd5eb}
-body.meowSiteDark .meowReactionLogin{border-color:#65517d;background:linear-gradient(100deg,#342d45,#3d2d40);color:#c3b3f4}
-@media(max-width:600px){.meowStoryReactions{border-radius:21px}.meowReactionChoices button{flex-basis:47px;min-height:47px;border-radius:14px}.meowReactionPerson{width:32px;height:32px}}
-
-
-/* MEOW FINAL UX PATCH — glass synopsis, pink scrollbars, header ticker and safe scrolling */
-.meowAnnouncementTicker{position:relative;z-index:999;display:flex;align-items:center;gap:10px;width:100%;min-height:32px;padding:5px 10px;overflow:hidden;background:linear-gradient(90deg,#fff0f5,#ffe0e9 48%,#fff0f5);border-bottom:1px solid #f4b0c5;color:#a9345e;box-shadow:0 3px 10px #e56b8c18;font-size:11px;line-height:1.5}
-.meowAnnouncementLabel{flex:0 0 auto;padding:3px 8px;border-radius:7px;background:#e84e78;color:#fff;font-size:9px;font-weight:900;letter-spacing:.5px;box-shadow:0 2px 5px #b52d5a25}
-.meowAnnouncementTrack{min-width:0;flex:1;overflow:hidden;white-space:nowrap}
-.meowAnnouncementContent{display:flex;align-items:center;gap:30px;width:max-content;animation:meowAnnouncementMarquee 34s linear infinite}
-.meowAnnouncementTicker:hover .meowAnnouncementContent{animation-play-state:paused}
-.meowAnnouncementContent strong{font-weight:900;color:#c42f61}
-.meowAnnouncementContent a{color:#a72861;font-weight:900;text-decoration:underline;text-underline-offset:2px}
-.meowAnnouncementContent s{color:#c46b87;text-decoration-thickness:1.5px}
-@keyframes meowAnnouncementMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-#detailSummary.meowSummary,.meowStoryDetail #detailSummary{position:relative;isolation:isolate;overflow:hidden;padding:clamp(17px,2.5vw,25px)!important;border:1px solid rgba(255,255,255,.78)!important;border-radius:24px!important;background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(255,239,248,.58) 55%,rgba(242,235,255,.62))!important;box-shadow:0 15px 34px rgba(203,124,169,.13),inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(220,174,211,.22)!important;backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);color:#6f5266!important;line-height:1.95!important}
-#detailSummary.meowSummary:before{content:"✧ ୨୧ ✧";display:block;margin:0 0 10px;color:#c28bce;font-size:13px;letter-spacing:3px;text-align:center}
-body.meowSiteDark #detailSummary.meowSummary{border-color:#645069!important;background:linear-gradient(135deg,rgba(55,43,61,.88),rgba(66,43,59,.76),rgba(49,43,66,.82))!important;color:#f5dce9!important;box-shadow:0 15px 34px #100b172e,inset 0 1px 0 #ffffff0c!important}
-/* Sweet pink scrollbars throughout the page and nested scroll areas. */
-html{scrollbar-color:#eea5c9 #fff0f7;scrollbar-width:thin;scroll-behavior:smooth}
-*{scrollbar-width:thin;scrollbar-color:#eea5c9 #fff0f7}
-*::-webkit-scrollbar{width:9px;height:9px}
-*::-webkit-scrollbar-track{background:linear-gradient(180deg,#fff5fa,#f8efff);border-radius:999px}
-*::-webkit-scrollbar-thumb{border:2px solid #fff5fa;border-radius:999px;background:linear-gradient(180deg,#f6b4d5,#d6b2f0)}
-*::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#ec8fbd,#c49ae8)}
-body.meowSiteDark,body.meowSiteDark *{scrollbar-color:#8b6489 #302638}
-body.meowSiteDark *::-webkit-scrollbar-track{background:#302638}
-body.meowSiteDark *::-webkit-scrollbar-thumb{border-color:#302638;background:linear-gradient(180deg,#b879a5,#8b79bd)}
-/* Keep document scrolling available; only genuine modal layers may lock the background. */
-html,body{min-height:100%;height:auto;overflow-x:clip!important;overscroll-behavior-y:auto}
-body{overflow-y:auto!important}
-#readerMain{min-height:100vh;overflow:visible!important}
-#homePage,#storyPage{overscroll-behavior:contain}
-@media(prefers-reduced-motion:reduce){.meowAnnouncementContent{animation:none!important}.meowAnnouncementTrack{overflow-x:auto}.meowAnnouncementContent{transform:none!important}html{scroll-behavior:auto}}
-@media(max-width:600px){.meowAnnouncementTicker{min-height:30px;padding:4px 7px;gap:6px;font-size:10px}.meowAnnouncementLabel{font-size:8px;padding:3px 6px}.meowAnnouncementContent{gap:22px;animation-duration:27s}#detailSummary.meowSummary{border-radius:19px!important}}
-
-</style>
-
-<style id="meow-auth-pixel-stair-frame-v3">
-/* Login/register outer frame: stepped 8-bit pixel silhouette, not a normal rounded card */
-html body #loginPage .meowLoginBox,
-html body.meowSiteDark #loginPage .meowLoginBox{
-  border:5px solid transparent!important;
-  border-image:repeating-linear-gradient(135deg,#b95e99 0 7px,#ffd0e9 7px 14px,#8e4b83 14px 21px) 5!important;
-  border-radius:0!important;
-  outline:0!important;
-  outline-offset:0!important;
-  clip-path:polygon(
-    0 14px, 7px 14px, 7px 7px, 14px 7px, 14px 0,
-    calc(100% - 14px) 0, calc(100% - 14px) 7px, calc(100% - 7px) 7px, calc(100% - 7px) 14px, 100% 14px,
-    100% calc(100% - 14px), calc(100% - 7px) calc(100% - 14px), calc(100% - 7px) calc(100% - 7px), calc(100% - 14px) calc(100% - 7px), calc(100% - 14px) 100%,
-    14px 100%, 14px calc(100% - 7px), 7px calc(100% - 7px), 7px calc(100% - 14px), 0 calc(100% - 14px)
-  )!important;
-  box-shadow:0 0 0 4px #f4a9d2,8px 8px 0 #8e4b83,12px 12px 0 #593456!important;
-  background:repeating-linear-gradient(0deg,#fff4fb 0 18px,#ffedf8 18px 36px)!important;
-}
-@media(max-width:520px){
- html body #loginPage .meowLoginBox,
- html body.meowSiteDark #loginPage .meowLoginBox{
-  clip-path:polygon(0 10px,5px 10px,5px 5px,10px 5px,10px 0,calc(100% - 10px) 0,calc(100% - 10px) 5px,calc(100% - 5px) 5px,calc(100% - 5px) 10px,100% 10px,100% calc(100% - 10px),calc(100% - 5px) calc(100% - 10px),calc(100% - 5px) calc(100% - 5px),calc(100% - 10px) calc(100% - 5px),calc(100% - 10px) 100%,10px 100%,10px calc(100% - 5px),5px calc(100% - 5px),5px calc(100% - 10px),0 calc(100% - 10px))!important;
- }
-}
-</style>
