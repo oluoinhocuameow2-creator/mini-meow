@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIÊU CÁC — Thư Viện Truyện Gothic & Huyền Bí</title>
+<title>Miêu Các</title>
+<link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCH4TFuIGExMbKQ4YRsE6aemsQboicF-TQk2i29g1BVD9vEoXceKoELGXQAn2jbwr1gpcfkXpUYdth1PoER-n-k8cwi1rTlszwEmT5DjvjjbCPOJ2SNlH4MjVqFamBKMRX_wXeHY7PdjzfKUpA1kIOSETfsokjAr_jEsL6LMS0V4BVE1L9KPNI_agy112l/s215/t%E1%BA%A3i%20xu%E1%BB%91ng%20(5).png">
+<link rel="apple-touch-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCH4TFuIGExMbKQ4YRsE6aemsQboicF-TQk2i29g1BVD9vEoXceKoELGXQAn2jbwr1gpcfkXpUYdth1PoER-n-k8cwi1rTlszwEmT5DjvjjbCPOJ2SNlH4MjVqFamBKMRX_wXeHY7PdjzfKUpA1kIOSETfsokjAr_jEsL6LMS0V4BVE1L9KPNI_agy112l/s215/t%E1%BA%A3i%20xu%E1%BB%91ng%20(5).png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
@@ -45,16 +48,16 @@ tailwind.config = {
 }
 
 [data-theme="light"] {
-  --bg-main: #fff3fa;
-  --bg-card: rgba(255, 248, 253, 0.94);
-  --bg-card-solid: #fff8fd;
-  --bg-elevated: rgba(235, 249, 255, 0.96);
-  --text-main: #43334b;
-  --text-muted: #796d87;
-  --border-glow: rgba(219, 112, 177, 0.26);
-  --pink-glow: #e879b2;
-  --blue-glow: #67bde8;
-  --indigo-glow: #9b91df;
+  --bg-main: #f3edf2;
+  --bg-card: rgba(246, 240, 246, 0.96);
+  --bg-card-solid: #f6f0f6;
+  --bg-elevated: rgba(237, 239, 245, 0.97);
+  --text-main: #463d4a;
+  --text-muted: #817786;
+  --border-glow: rgba(177, 139, 166, 0.22);
+  --pink-glow: #c98eaf;
+  --blue-glow: #91b4c9;
+  --indigo-glow: #a6a0c8;
 }
 
 * {
@@ -88,10 +91,10 @@ body {
 
 [data-theme="light"] .mesh-bg {
   background:
-    radial-gradient(circle at 10% 15%, rgba(255, 183, 220, 0.48) 0%, transparent 48%),
-    radial-gradient(circle at 88% 12%, rgba(151, 221, 250, 0.46) 0%, transparent 50%),
-    radial-gradient(circle at 75% 82%, rgba(187, 191, 255, 0.30) 0%, transparent 52%),
-    radial-gradient(circle at 20% 85%, rgba(255, 211, 232, 0.42) 0%, transparent 48%);
+    radial-gradient(circle at 10% 15%, rgba(222, 194, 211, 0.25) 0%, transparent 48%),
+    radial-gradient(circle at 88% 12%, rgba(190, 211, 221, 0.22) 0%, transparent 50%),
+    radial-gradient(circle at 75% 82%, rgba(198, 196, 220, 0.18) 0%, transparent 52%),
+    radial-gradient(circle at 20% 85%, rgba(226, 207, 219, 0.20) 0%, transparent 48%);
 }
 
 /* Viền & Thẻ kính Gothic Hồng Loang Xanh */
@@ -504,6 +507,79 @@ html[data-theme="light"] .reader-title-flourish{color:#ae77b8}
 .admin-profile-preview{width:64px;height:64px;border-radius:16px;object-fit:cover;border:1px solid #d6a7eb}
 @media(max-width:520px){.reader-title-luxury{gap:10px!important}.reader-back-compact{flex:0 0 auto}.admin-identity-strip{gap:8px}.admin-edit-profile-btn{padding:7px 9px}}
 
+
+/* V42 · Tarot arcana cards + fairy princess light mode + meteor shower */
+.gothic-card,.story-grid .gothic-card,.filter-story-card,.featured-item,.ranking-card,.recent-tarot-card{
+  position:relative;border:1px solid rgba(210,174,255,.48)!important;
+  border-radius:18px!important;overflow:hidden;
+  background:linear-gradient(145deg,rgba(35,23,54,.97),rgba(17,14,29,.98))!important;
+  box-shadow:inset 0 0 0 1px rgba(255,226,177,.10),inset 0 0 24px rgba(170,112,226,.10),0 9px 24px rgba(0,0,0,.20);
+}
+.gothic-card:before,.story-grid .gothic-card:before,.filter-story-card:before,.featured-item:before,.ranking-card:before{
+ content:"✦";position:absolute;z-index:3;top:7px;left:9px;color:#f4d99a;font-size:13px;text-shadow:0 0 9px #d9a6ff;pointer-events:none
+}
+.gothic-card:after,.story-grid .gothic-card:after,.filter-story-card:after,.featured-item:after,.ranking-card:after{
+ content:"✧";position:absolute;z-index:3;right:9px;bottom:7px;color:#e7c4ff;font-size:15px;text-shadow:0 0 9px #b98cff;pointer-events:none
+}
+.story-grid .gothic-card img,.filter-story-card img{border-bottom:1px solid rgba(230,196,255,.35)}
+.story-card-price,.filter-chip-row button,.filter-chip-row .filter-chip{border-radius:999px!important;border-color:rgba(222,190,255,.38)!important}
+#recentChaptersList>*,#activityFeed>*,#calendarContainer,.calendar-card,#recentChaptersList .gothic-card,#activityFeed .gothic-card{
+ border:1px solid rgba(203,169,239,.35);border-radius:13px;padding:10px;margin:6px 0;
+ background:linear-gradient(135deg,rgba(74,48,94,.38),rgba(26,20,39,.88));box-shadow:inset 0 0 16px rgba(194,150,255,.07)
+}
+.recent-tarot-heading{font-family:'Cinzel Decorative','Cormorant Garamond',serif!important;letter-spacing:.16em!important}
+[data-theme="light"]{
+ --bg-main:#fff9f1;--bg-card:rgba(255,253,248,.94);--bg-card-solid:#fffdf8;--bg-elevated:rgba(255,247,235,.97);
+ --text-main:#5a4963;--text-muted:#8c7c91;--border-glow:rgba(222,177,211,.42);
+}
+[data-theme="light"] body{background:linear-gradient(145deg,#fffaf0 0%,#fff1f7 42%,#eff9f5 100%)!important;color:#5a4963}
+[data-theme="light"] .mesh-bg{opacity:.42;filter:blur(32px);background:radial-gradient(circle at 12% 15%,rgba(255,220,235,.65),transparent 44%),radial-gradient(circle at 85% 20%,rgba(221,236,255,.62),transparent 46%),radial-gradient(circle at 55% 90%,rgba(232,247,220,.58),transparent 48%)}
+[data-theme="light"] .gothic-card,[data-theme="light"] .story-grid .gothic-card,[data-theme="light"] .filter-story-card,[data-theme="light"] .featured-item,[data-theme="light"] .ranking-card,[data-theme="light"] .recent-tarot-card{
+ background:linear-gradient(145deg,rgba(255,255,252,.97),rgba(255,242,249,.95))!important;border:1px solid rgba(213,178,203,.55)!important;
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 8px 22px rgba(190,156,180,.13)!important;color:#66516c
+}
+[data-theme="light"] .gothic-card:before,[data-theme="light"] .story-grid .gothic-card:before{color:#c99b59;text-shadow:none}
+[data-theme="light"] .gothic-card:after,[data-theme="light"] .story-grid .gothic-card:after{color:#bd91c7;text-shadow:none}
+[data-theme="light"] .pink-blue-text{background:linear-gradient(90deg,#bd7fa7,#9c8bc5,#83b7aa);-webkit-background-clip:text;background-clip:text;color:transparent}
+[data-theme="light"] #recentChaptersList>*,[data-theme="light"] #activityFeed>*,[data-theme="light"] #calendarContainer,[data-theme="light"] .calendar-card{background:linear-gradient(135deg,#fffdf8,#fff2f7);border-color:#ead5e5;box-shadow:0 5px 15px rgba(184,150,176,.10)}
+#mieuGuideView{position:relative;overflow:hidden}
+.mieu-meteor-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.mieu-meteor{position:absolute;top:-12%;width:2px;height:105px;background:linear-gradient(transparent,rgba(255,239,190,.95),rgba(191,158,255,.2));filter:drop-shadow(0 0 5px #ffe7ac);transform:rotate(38deg);animation:mieuMeteorFall linear infinite}
+.mieu-meteor:after{content:"";position:absolute;top:0;left:-3px;width:8px;height:8px;border-radius:50%;background:#fff4ce;box-shadow:0 0 12px 4px #d9b5ff}
+@keyframes mieuMeteorFall{0%{transform:translate3d(0,-15vh,0) rotate(38deg);opacity:0}8%{opacity:1}85%{opacity:.9}100%{transform:translate3d(-42vw,115vh,0) rotate(38deg);opacity:0}}
+.mieu-guide-card,.mieu-heavenly-sky,.mieu-guide-music{position:relative;z-index:1}
+#mieuSiteMusicToggle{position:fixed;left:14px;bottom:18px;z-index:9999;border:1px solid rgba(222,190,255,.5);border-radius:999px;padding:9px 13px;background:linear-gradient(135deg,#9b67bd,#668edb);color:white;box-shadow:0 5px 18px #8e65bd55;font-size:12px}
+
+
+/* V43: menu nổi trên mọi khung, không bị cắt bởi header/sticky */
+header.sticky{overflow:visible!important;isolation:auto!important}
+#mainMenuDropdown{position:fixed!important;z-index:2147483000!important;max-height:min(72vh,520px)!important;overflow-y:auto!important;overscroll-behavior:contain!important;box-shadow:0 18px 48px rgba(28,15,35,.38)!important;visibility:visible;pointer-events:auto}
+#mainMenuDropdown button{min-height:42px;white-space:normal}
+[data-theme="light"] .mesh-bg{filter:blur(30px);opacity:.52}
+[data-theme="light"] .gothic-card{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+@media(max-width:640px){#mainMenuDropdown{width:min(250px,calc(100vw - 16px))!important;max-height:68vh!important}}
+
+/* V45: menu tap target + lightweight reader paint */
+#mainMenuBtn{position:relative;z-index:2147483001;touch-action:manipulation;cursor:pointer;pointer-events:auto}
+#mainMenuDropdown:not(.hidden){display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+#readerCanvasBlocks{contain:layout style;content-visibility:auto}
+#readerCanvasBlocks canvas,#readerCanvasBlocks img{content-visibility:auto;contain:layout paint style}
+
+/* V48 · Reader performance: reduce paint/layout overhead on long chapters */
+#readerCanvasBlocks{contain:layout style;content-visibility:auto;overflow-anchor:none}
+#readerCanvasBlocks canvas{display:block;max-width:100%;height:auto;contain:paint}
+#readerCanvasWrapper[aria-busy="true"]{cursor:progress}
+.story-related-track{content-visibility:auto;contain-intrinsic-size:1px 240px}
+@media(max-width:700px){#readerCanvasBlocks canvas{image-rendering:auto}#readerCanvasWrapper{overscroll-behavior:contain}}
+
+
+/* V49: nhẹ hiệu ứng trên máy yếu/điện thoại để cuộn và mở trang ít khựng */
+@media (max-width: 760px), (prefers-reduced-motion: reduce) {
+  .story-home-card, .gothic-card, .story-related-card, .ranking-row { transition-duration: .12s!important; }
+  .story-home-card img, .story-gothic-cover-image { transform:none!important; }
+  .story-home-card:hover img { transform:none!important; }
+  .mesh-bg, .mieu-meteor-layer, .mieu-butterflies, .mieu-birds { will-change:auto!important; }
+}
 </style>
 
 <style id="mieu-mobile-chapter-first">
@@ -708,14 +784,20 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
 .mieu-gate-right{--gate-glow:rgba(72,150,205,.38);margin-top:0}
 .mieu-gate-center{--gate-glow:rgba(233,181,111,.42);margin-top:42px;min-height:252px;border-color:#e7c995aa;background:linear-gradient(180deg,#44334b,#17101f 78%,#0d0a16);box-shadow:0 15px 40px #0009,0 0 30px #d7a96b30}
 .mieu-gate-center .mieu-gate-symbol{height:116px;border-color:#e7c995aa;color:#ffe9b9}
-.mieu-butterflies{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.mieu-butterflies{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .mieu-butterfly{position:absolute;color:#d9b2ff;opacity:.65;text-shadow:0 0 12px #b77cff;animation:mieuButterflyDrift 9s ease-in-out infinite}
 .mieu-butterfly:nth-child(1){left:8%;top:20%;font-size:19px}
 .mieu-butterfly:nth-child(2){left:48%;top:4%;font-size:15px;animation-delay:-3s}
 .mieu-butterfly:nth-child(3){right:9%;top:35%;font-size:22px;animation-delay:-5s}
 .mieu-butterfly:nth-child(4){left:30%;bottom:4%;font-size:13px;animation-delay:-1.5s}
 @keyframes mieuButterflyDrift{0%,100%{transform:translate(0,0) rotate(-12deg)}50%{transform:translate(14px,-18px) rotate(15deg)}}
-#mieuGuideView{position:relative;overflow:hidden;border:1px solid #b99ad766;border-radius:24px;padding:clamp(16px,4vw,30px);background:radial-gradient(ellipse at 50% 0%,#38264f 0%,#171020 55%,#0b0913 100%);color:#f5eaff;box-shadow:0 18px 55px #0008}
+#mieuGuideView{position:relative;isolation:isolate;overflow:hidden;border:1px solid #b99ad766;border-radius:24px;padding:clamp(16px,4vw,30px);background:radial-gradient(ellipse at 50% 0%,#38264f 0%,#171020 55%,#0b0913 100%);color:#f5eaff;box-shadow:0 18px 55px #0008}
+#mieuGuideView>*:not(.mieu-butterflies){position:relative;z-index:2}
+#mieuGuideView .mieu-heavenly-sky{z-index:1}
+#mieuGuideView .mieu-butterfly{filter:drop-shadow(0 0 8px #c89bff);opacity:.82}
+#mieuGuideView .mieu-light-bird{z-index:1}
+.mieu-guide-music{display:inline-flex;align-items:center;gap:7px;margin:0 0 12px;padding:8px 12px;border:1px solid #d8b7f080;border-radius:999px;background:linear-gradient(120deg,#39264fdd,#171020ee);color:#f7e8ff;font-size:11px;font-weight:800;box-shadow:0 5px 18px #0005}
+.mieu-guide-music:focus-visible{outline:2px solid #f4d9a5;outline-offset:3px}
 .mieu-guide-card{position:relative;border:1px solid #c9a7e044;border-radius:18px;padding:17px;background:linear-gradient(145deg,#ffffff0d,#ffffff04);margin-top:14px}
 .mieu-guide-card h3{font:700 21px 'Cormorant Garamond',serif;color:#f2d6ff;margin-bottom:8px}
 .mieu-guide-card p,.mieu-guide-card li{font-size:13px;line-height:1.85;color:#d8c9e7}
@@ -781,6 +863,72 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
 @media(prefers-reduced-motion:reduce){.mieu-light-bird{animation:none;display:none}}
 </style>
 
+
+<style id="mieu-v28-profile-performance">
+  #profileTabContent { min-width:0; contain:layout style; }
+  #profileTabContent > .grid > div { min-width:0; contain:layout paint; }
+  #profileTabContent img { content-visibility:auto; }
+  #view-profile, #view-wallet { overflow-anchor:none; }
+  button, a, [role="button"] { -webkit-tap-highlight-color:transparent; }
+  @media (max-width:700px) {
+    #profileTabContent > .grid { gap:10px!important; }
+    #profileTabContent > .grid > div { padding:12px!important; }
+    #view-profile .gothic-card { contain:layout style; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    #profileTabContent *, #view-profile *, #view-wallet * { scroll-behavior:auto!important; }
+  }
+</style>
+
+
+<style id="mieu-v29-reader-smoothness">
+#readerCanvasBlocks{contain:layout style;content-visibility:auto;overflow-anchor:none}
+#readerCanvasBlocks canvas{display:block;max-width:100%;height:auto;content-visibility:auto}
+#readerCanvasBlocks img{display:block;max-width:100%;height:auto;content-visibility:auto}
+#view-reader{overflow-anchor:none; -webkit-overflow-scrolling:touch}
+#readerCanvasWrapper{transform:translateZ(0);backface-visibility:hidden}
+@media(prefers-reduced-motion:reduce){#readerCanvasBlocks *{scroll-behavior:auto!important;transition-duration:0s!important;animation-duration:0s!important}}
+</style>
+<script id="meow-dynamic-document-title">
+(function(){
+  const labels={home:'Trang Chủ',story:'Chi Tiết Truyện',reader:'Đang Đọc Truyện',profile:'Trang Cá Nhân',wallet:'Ví Meow',filters:'Thể Loại',guide:'Cẩm Nang',studio:'Meow Story Studio',admin:'Quản Trị', 'public-profile':'Hồ Sơ Độc Giả'};
+  let last='';
+  function refresh(){
+    const views=[...document.querySelectorAll('[id^="view-"]')];
+    const active=views.find(v=>!v.classList.contains('hidden') && v.offsetParent!==null);
+    if(!active)return;
+    const key=active.id.replace('view-','');
+    let name=labels[key]||'Ổ Lười Nhỏ Của Meow';
+    if(key==='story'||key==='reader'){
+      const candidates=key==='story'?['#storyDetailTitle','#storyTitle','#view-story h1','#view-story h2']:['#readerStoryTitle','#readerTitle','#view-reader h1','#view-reader h2'];
+      for(const sel of candidates){const el=document.querySelector(sel);const t=(el?.textContent||'').trim();if(t){name=t;break;}}
+    }
+    const next=name+' — Ổ Lười Nhỏ Của Meow';
+    if(next!==last){document.title=next;last=next;}
+  }
+  const start=()=>{refresh();const mo=new MutationObserver(refresh);mo.observe(document.body,{subtree:true,attributes:true,attributeFilter:['class','style']});};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
+
+<style id="mieu-v46-gothic-floating-controls">
+#messengerWidget{z-index:9988!important;filter:drop-shadow(0 8px 18px rgba(0,0,0,.34))}
+#messengerWidget>button{width:58px!important;height:58px!important;border:1px solid rgba(235,205,255,.72)!important;border-radius:50%!important;background:radial-gradient(circle at 32% 24%,#f1d9ff 0%,#a77acb 28%,#38234e 72%,#171021 100%)!important;color:#fff4dc!important;font-size:0!important;position:relative;box-shadow:inset 0 0 0 3px rgba(255,226,181,.12),0 0 0 2px rgba(175,132,213,.28),0 9px 25px rgba(0,0,0,.38)!important}
+#messengerWidget>button:before{content:'✧';font-family:serif;font-size:14px;position:absolute;top:5px;left:9px;color:#ffe8b8}
+#messengerWidget>button:after{content:'❦';font-family:serif;font-size:27px;line-height:1;color:#fff0d5;text-shadow:0 0 10px #d6aaff}
+#messengerPanel{border:1px solid rgba(218,184,244,.65)!important;box-shadow:0 18px 55px rgba(0,0,0,.5),inset 0 0 0 2px rgba(255,225,183,.08)!important;border-radius:18px!important}
+#pageScrollControls{z-index:9985!important;gap:9px!important}
+#pageScrollControls button{width:43px!important;height:43px!important;border:1px solid rgba(237,211,255,.72)!important;border-radius:50%!important;background:radial-gradient(circle at 30% 22%,#f0d8ff,#9c72c5 42%,#30203f 100%)!important;color:#fff1d0!important;font-size:0!important;box-shadow:inset 0 0 0 2px rgba(255,231,190,.13),0 7px 20px rgba(0,0,0,.38)!important;position:relative}
+#pageScrollControls button:first-child:after{content:'⌃';font:26px/1 Georgia,serif;text-shadow:0 0 8px #f3d5ff}
+#pageScrollControls button:last-child:after{content:'⌄';font:26px/1 Georgia,serif;text-shadow:0 0 8px #f3d5ff}
+#pageScrollControls button:before{content:'✦';position:absolute;top:3px;right:7px;font:10px Georgia,serif;color:#ffe6b2}
+[data-theme="light"] #messengerWidget>button,[data-theme="light"] #pageScrollControls button{background:radial-gradient(circle at 30% 20%,#fff9eb,#c9b0d7 45%,#84799f 100%)!important;color:#fff!important}
+@media(max-width:640px){#messengerWidget{right:12px!important;bottom:14px!important}#messengerWidget>button{width:52px!important;height:52px!important}#messengerPanel{width:min(92vw,360px)!important;height:min(68vh,470px)!important}#pageScrollControls{right:10px!important;bottom:84px!important}}
+</style>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://olncm-fa88c-default-rtdb.asia-southeast1.firebasedatabase.app" crossorigin>
+<link rel="dns-prefetch" href="https://firebasestorage.googleapis.com">
+<link rel="dns-prefetch" href="https://placehold.co">
 </head>
 <body>
 
@@ -830,8 +978,8 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
         <h1 class="font-gothic text-lg sm:text-xl font-black tracking-wider pink-blue-text leading-none">MIÊU CÁC</h1>
       </div>
       <div class="relative">
-        <button id="mainMenuBtn" onclick="document.getElementById('mainMenuDropdown').classList.toggle('hidden')" title="Menu" aria-label="Mở menu" class="logo-menu-trigger">☰</button>
-        <div id="mainMenuDropdown" class="hidden absolute left-0 top-full mt-2 w-56 gothic-card p-2 z-[9990] shadow-2xl">
+        <button id="mainMenuBtn" onclick="toggleMainMenu()" title="Menu" aria-label="Mở menu" class="logo-menu-trigger">☰</button>
+        <div id="mainMenuDropdown" class="hidden fixed w-56 gothic-card p-2 shadow-2xl" style="z-index:10050;max-height:min(72vh,520px);overflow-y:auto;overscroll-behavior:contain">
           <button onclick="app.navigate('home');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="block w-full text-left p-3 rounded-lg hover:bg-pink-500/15">🏰 Trang chủ</button>
           <button onclick="app.navigate('wallet');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="block w-full text-left p-3 rounded-lg hover:bg-pink-500/15">💎 Nạp & Đổi điểm</button>
           <button onclick="app.navigate('profile');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="block w-full text-left p-3 rounded-lg hover:bg-pink-500/15">📜 Tủ sách & Cá nhân</button>
@@ -1005,12 +1153,16 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
           </div>
         </div>
 
-        <!-- Khung Truyện Đã Lưu -->
+        <!-- Khung Truyện Đã Lưu + Bình luận gần đây -->
         <div class="gothic-card p-5">
           <h4 class="font-bold text-sm pink-blue-text mb-3 flex items-center gap-2">🔖 Truyện Đã Lưu</h4>
           <div id="sidebarBookmarks" class="space-y-2.5 text-xs">
             <p class="opacity-60">Đăng nhập để lưu truyện yêu thích.</p>
           </div>
+          <section id="sidebarRecentComments" class="gothic-recent-comments mt-5">
+            <div class="gothic-saved-heading"><span>☾</span><div><b>BÌNH LUẬN GẦN ĐÂY</b><small>Tiếng vọng mới nhất từ đại sảnh truyện</small></div><span>☽</span></div>
+            <div class="gothic-recent-comments-list"><p class="text-xs opacity-60">Đang triệu hồi những lời nhắn gần đây...</p></div>
+          </section>
         </div>
       </aside>
     </div>
@@ -1143,6 +1295,7 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
 
       <div class="gothic-card p-3 flex flex-wrap gap-2 sticky top-16 z-20">
         <button onclick="app.openWalletSection('deposit')" data-wallet-page="deposit" class="px-4 py-2 rounded-xl text-xs font-bold pink-blue-gradient text-white">💳 Nạp tiền</button>
+        <button onclick="app.openWalletSection('voucher')" data-wallet-page="voucher" class="px-4 py-2 rounded-xl text-xs font-bold border border-violet-400/40 text-violet-200">🎟️ Nạp Voucher</button>
         <button onclick="app.openWalletSection('checkin')" data-wallet-page="checkin" class="px-4 py-2 rounded-xl text-xs font-bold border border-pink-400/30">🎁 Điểm danh</button>
         <button onclick="app.openWalletSection('exchange')" data-wallet-page="exchange" class="px-4 py-2 rounded-xl text-xs font-bold border border-amber-400/30">⭐ Đổi điểm</button>
         <button onclick="app.openWalletSection('statement')" data-wallet-page="statement" class="px-4 py-2 rounded-xl text-xs font-bold border border-sky-400/30">🧾 Sao kê</button>
@@ -1200,6 +1353,14 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
 
         <!-- Cột 2: Cơ chế Điểm Tích Lũy & Đổi Điểm Sang Tiền Ví -->
         <div id="walletSecondaryColumn" class="space-y-6">
+          <div id="walletSectionVoucher" class="wallet-page-section gothic-card p-6 space-y-3 border border-pink-400/30">
+            <h3 class="text-xl font-serif font-bold pink-blue-text">🎟️ Nạp tiền bằng Voucher</h3>
+            <p class="text-xs opacity-75">Nhập mã voucher do Admin cấp. Mỗi ID chỉ dùng được một lần cho mỗi mã; tiền sẽ cộng trực tiếp vào Ví Meow và đồng bộ với Index 24.</p>
+            <input id="meowVoucherCodeInput" type="text" maxlength="80" autocomplete="off" placeholder="MEOW-XXXX-XXXX" class="w-full px-4 py-3 rounded-xl bg-black/25 border border-pink-400/30 text-sm font-bold uppercase outline-none">
+            <button id="meowVoucherRedeemBtn" type="button" onclick="app.redeemWalletVoucher()" class="w-full py-3 rounded-xl font-bold text-sm text-white pink-blue-gradient shadow-lg">🎁 Đổi Voucher ngay</button>
+            <p id="meowVoucherRedeemMessage" class="text-xs min-h-5 opacity-80" aria-live="polite"></p>
+          </div>
+
           <div id="walletSectionCheckin" class="wallet-page-section gothic-card p-6 space-y-3 border border-pink-400/30">
             <h3 class="text-xl font-serif font-bold pink-blue-text">📅 Điểm Danh Mỗi Ngày</h3>
             <p class="text-xs opacity-75">Mỗi ngày nhận <strong id="checkinRewardLabel" class="text-amber-400">10đ</strong> vào Ví. Đây là tiền VNĐ, không phải điểm tích lũy. Tính theo ngày Việt Nam, mỗi tài khoản chỉ nhận một lần/ngày.</p>
@@ -1275,7 +1436,7 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
 
           <p id="myProfileBio" class="mt-4 text-sm opacity-90 italic border-l-2 border-pink-400 pl-3">
             Chưa có lời giới thiệu bản thân.
-          </p>
+          </p><p id="myProfilePoints" class="mt-3 text-xs font-bold text-amber-300">✦ Điểm tích lũy: 0</p>
 
           <!-- Form chỉnh sửa giới thiệu, avatar, ảnh bìa -->
           <div id="editProfileBox" class="hidden mt-5 pt-5 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
@@ -1557,8 +1718,10 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
   <section id="view-guide" class="hidden space-y-5">
     <button onclick="app.navigate('home')" class="text-xs px-3 py-2 rounded-lg border border-purple-300/30">← Trở về đại sảnh</button>
     <div id="mieuGuideView">
-      <div class="mieu-butterflies mieu-heavenly-sky" aria-hidden="true"><span class="mieu-butterfly">🦋</span><span class="mieu-butterfly">✧🦋</span><span class="mieu-butterfly">🦋</span><span class="mieu-butterfly">✦</span><span class="mieu-light-bird">🕊️</span><span class="mieu-light-bird">✧🕊️</span><span class="mieu-light-bird">🕊️</span></div>
+      <video id="mieuGuideMusic" preload="none" loop playsinline aria-hidden="true" style="display:none" src="https://files.catbox.moe/ripwx3.mp4"></video>
+      <div class="mieu-meteor-layer" aria-hidden="true"><i class="mieu-meteor" style="left:8%;animation-duration:7s;animation-delay:-2s"></i><i class="mieu-meteor" style="left:22%;animation-duration:9s;animation-delay:-6s"></i><i class="mieu-meteor" style="left:39%;animation-duration:8s;animation-delay:-4s"></i><i class="mieu-meteor" style="left:57%;animation-duration:10s;animation-delay:-8s"></i><i class="mieu-meteor" style="left:73%;animation-duration:7s;animation-delay:-1s"></i><i class="mieu-meteor" style="left:88%;animation-duration:9s;animation-delay:-5s"></i></div><div class="mieu-butterflies mieu-heavenly-sky" aria-hidden="true"><span class="mieu-butterfly">🦋</span><span class="mieu-butterfly">✧🦋</span><span class="mieu-butterfly">🦋</span><span class="mieu-butterfly">✦</span><span class="mieu-light-bird">🕊️</span><span class="mieu-light-bird">✧🕊️</span><span class="mieu-light-bird">🕊️</span></div>
       <header class="text-center relative">
+        <button type="button" id="mieuGuideMusicToggle" class="mieu-guide-music" onclick="app.toggleGuideMusic()">♫ Phát nhạc cổng</button>
         <div class="text-4xl mb-2">✧ 🦋 ✧</div>
         <div class="ranking-eyebrow">THE GATE OF HEAVENLY DAWN</div>
         <h1 class="text-3xl sm:text-4xl font-serif font-bold mt-2" style="color:#f6dfb5">Cổng Thiên Khải</h1>
@@ -1588,14 +1751,39 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
         <button class="mieu-guide-action" onclick="app.navigate('wallet')">Đi đến Ví Miêu Các ↗</button>
       </article>
       <article class="mieu-guide-card">
-        <h3>Ⅲ. Điểm tích lũy & đổi điểm</h3>
+        <h3>Ⅲ. Mở khóa chương lẻ & mua Full bộ</h3>
+        <p>Miêu Các có hai cách mở nội dung VIP. Bạn có thể chọn mua từng chương mình muốn đọc hoặc mua Full để mở khóa toàn bộ truyện.</p>
+        <div class="mt-3 rounded-xl border border-pink-300/25 bg-pink-400/5 p-3">
+          <h4 class="font-bold text-pink-300">📖 Mua chương lẻ</h4>
+          <ol class="list-decimal pl-5 mt-2 space-y-1">
+            <li>Mở trang truyện và chọn chương đang có biểu tượng VIP/khóa.</li>
+            <li>Xem tên chương, giá và số dư Ví Meow trong bảng xác nhận.</li>
+            <li>Nhấn <strong>Mua chương</strong> để thanh toán. Hệ thống trừ đúng giá chương từ Ví.</li>
+            <li>Chương đã mua được lưu vào tài khoản; bạn có thể đọc lại chương đó mà không cần mua lại.</li>
+          </ol>
+        </div>
+        <div class="mt-3 rounded-xl border border-amber-300/30 bg-amber-300/5 p-3">
+          <h4 class="font-bold text-amber-300">📚 Mua Full bộ</h4>
+          <ol class="list-decimal pl-5 mt-2 space-y-1">
+            <li>Trong trang truyện, chọn nút <strong>Mua Full bộ</strong> và kiểm tra giá hiển thị.</li>
+            <li>Xác nhận thanh toán bằng Ví Meow. Nếu số dư chưa đủ, hãy nạp thêm trong mục Ví.</li>
+            <li>Sau khi mua thành công, tài khoản được mở khóa <strong>toàn bộ chương của truyện</strong>, bao gồm các chương VIP có trả phí; không cần mua từng chương riêng lẻ.</li>
+            <li>Quyền Full còn mở khóa phần tên tác giả đang được ẩn cho người chưa mua. Giao dịch được lưu vào tài khoản để bạn tiếp tục sử dụng khi đăng nhập lại.</li>
+          </ol>
+        </div>
+        <p class="mt-3">💡 <strong>Nên chọn cách nào?</strong> Mua chương lẻ nếu bạn chỉ muốn đọc một vài chương. Mua Full phù hợp khi muốn đọc trọn truyện và mở khóa tên tác giả. Giá cần thanh toán luôn được hiển thị trước khi xác nhận.</p>
+        <p class="mt-2">Lưu ý: chương miễn phí vẫn có thể đọc theo trạng thái của truyện; chương VIP chưa xuất bản cần chờ tác giả đăng. Quyền mua được gắn với tài khoản đã đăng nhập.</p>
+        <button class="mieu-guide-action" onclick="app.navigate('home')">Khám phá kho truyện ✦</button>
+      </article>
+      <article class="mieu-guide-card">
+        <h3>Ⅳ. Điểm tích lũy & đổi điểm</h3>
         <p>Điểm tích lũy được tính theo khoản nạp đủ điều kiện: <strong>100.000đ = 1 điểm</strong>. Các khoản cộng ví khác không tự động phát sinh điểm; điểm VIP và điểm danh do quản trị viên cài riêng.</p>
         <p class="mt-2">Bạn có thể đổi điểm tích lũy sang tiền ví theo tỷ lệ <strong>1 điểm = 10.000đ</strong>. Số lẻ cũng có thể đổi. Vào Ví → Đổi điểm để xem số dư và thực hiện.</p>
         <p class="mt-2">Điểm danh mỗi ngày là khoản tiền VNĐ cộng vào ví, <strong>không phải điểm tích lũy</strong>; mỗi tài khoản nhận tối đa một lần mỗi ngày theo lịch Việt Nam.</p>
         <button class="mieu-guide-action" onclick="app.navigate('wallet');setTimeout(()=>app.openWalletSection('exchange'),80)">Xem điểm & đổi điểm ✧</button>
       </article>
       <article class="mieu-guide-card mieu-title-guide">
-        <h3>Ⅳ. Danh hiệu Mèo & viền ảnh đại diện</h3>
+        <h3>Ⅴ. Danh hiệu Mèo & viền ảnh đại diện</h3>
         <p>Mỗi khi tích lũy đủ điểm, tài khoản sẽ mở khóa danh hiệu Mèo tương ứng. Danh hiệu được hiển thị cùng khung trang trí quanh ảnh đại diện. Đây là bảng tham khảo theo các mốc điểm hiện được thiết lập trên Miêu Các:</p>
         <div class="mieu-title-showcase">
           <div class="mieu-title-sample"><span class="meow-avatar-frame reader"><span class="mieu-avatar-demo">M</span></span><b>Độc giả Miêu Các</b><small>Chưa đạt 1 điểm</small></div>
@@ -1935,6 +2123,25 @@ function tryOpenInitialDeepLink() {
   return true;
 }
 
+let homeSecondaryRenderToken = 0;
+function scheduleHomeSecondaryRender() {
+  const token = ++homeSecondaryRenderToken;
+  const run = () => {
+    if (token !== homeSecondaryRenderToken) return;
+    const active = document.querySelector('main section:not(.hidden)')?.id || 'view-home';
+    if (active !== 'view-home') return;
+    app.renderHomeRanking();
+    app.renderRecentStories();
+    app.renderSidebarUserPanels();
+    // This scans every chapter in the catalogue; defer it further so first paint stays responsive.
+    setTimeout(() => {
+      if (token === homeSecondaryRenderToken && (document.querySelector('main section:not(.hidden)')?.id || 'view-home') === 'view-home') app.renderRecentChapters();
+    }, 900);
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 1400 });
+  else setTimeout(run, 500);
+}
+
 async function restoreStoriesCache() {
   try {
     const dbCache = await openStoryCacheDb(); if (!dbCache) return;
@@ -1943,12 +2150,17 @@ async function restoreStoriesCache() {
       state.stories = cached.data;
       state.storyCacheReady = true;
       tryOpenInitialDeepLink();
-      app.renderHomeStories(); app.renderFeaturedStories(); app.renderHomeRanking(); app.renderRecentChapters(); app.renderRecentStories(); updateGlobalStats();
+      app.renderHomeStories(); app.renderFeaturedStories();
+      scheduleHomeSecondaryRender();
+      updateGlobalStats();
       document.documentElement.classList.add('has-warm-story-cache');
     }
   } catch (e) { /* cache is optional; Firebase remains the source of truth */ }
 }
 let pendingStoryCacheData = null, storyCacheWriteTimer = null, lastStoryCacheWrite = 0;
+// Chống đọc Firebase lặp khi người dùng mở/đóng cùng một truyện liên tục.
+const storyRefreshAt = new Map();
+const storyRefreshInFlight = new Map();
 function saveStoriesCache(data) {
   pendingStoryCacheData = data;
   if (storyCacheWriteTimer) return;
@@ -1974,6 +2186,32 @@ function setSiteLogo(url) {
   });
 }
 
+
+function positionMainMenu(){
+  const menu=document.getElementById('mainMenuDropdown');
+  const btn=document.getElementById('mainMenuBtn');
+  if(!menu||!btn||menu.classList.contains('hidden'))return;
+  const r=btn.getBoundingClientRect();
+  const width=Math.min(250,window.innerWidth-16);
+  menu.style.width=width+'px';
+  const left=Math.max(8,Math.min(r.left,window.innerWidth-width-8));
+  const menuHeight=Math.min(menu.scrollHeight||360,Math.floor(window.innerHeight*.68));
+  let top=r.bottom+8;
+  if(top+menuHeight>window.innerHeight-8) top=Math.max(8,r.top-menuHeight-8);
+  menu.style.left=left+'px'; menu.style.top=top+'px';
+}
+function toggleMainMenu(){
+  const menu=document.getElementById('mainMenuDropdown');
+  if(!menu)return;
+  if(!menu.classList.contains('hidden')){menu.classList.add('hidden');return;}
+  menu.classList.remove('hidden');
+  positionMainMenu();
+}
+// Expose explicitly: the header uses an inline onclick outside module scope.
+window.toggleMainMenu = toggleMainMenu;
+window.addEventListener('resize',positionMainMenu,{passive:true});
+window.addEventListener('scroll',()=>{const m=document.getElementById('mainMenuDropdown');if(m&&!m.classList.contains('hidden'))positionMainMenu();},{passive:true});
+document.addEventListener('pointerdown',e=>{const m=document.getElementById('mainMenuDropdown'),b=document.getElementById('mainMenuBtn');if(m&&!m.classList.contains('hidden')&&!m.contains(e.target)&&!b?.contains(e.target))m.classList.add('hidden');},{passive:true});
 
 // Helper định dạng tiền & số
 const formatMoney = (n) => (Number(n) || 0).toLocaleString('vi-VN') + 'đ';
@@ -2091,9 +2329,19 @@ function meowTitleHtml(uid) { const t=getMeowTitle(getCustomerPoints(uid)); retu
 function getCustomerPoints(cid) {
   if (!cid) return 0;
   const cust = state.customers[cid] || {};
-  // Chỉ lấy điểm đã được cộng bởi nghiệp vụ được phép; không tự suy ra từ tổng tiền vào ví.
-  const stored = Number(cust.points) || 0;
-  return Math.max(0, Number(stored.toFixed(4)));
+  const txs = state.walletTransactions || {};
+  const grants = state.vipPointGrants?.[cid] || {};
+  let eligibleTotal = 0;
+  Object.values(txs).forEach(t => {
+    if (!t || String(t.customerId || '') !== String(cid) || t.type !== 'deposit' || t.voided || t.reversing) return;
+    if (t.source === 'topup_request' || t.source === 'admin_proxy' || t.source === 'admin_assisted_topup' || t.proxyDeposit === true) {
+      eligibleTotal += Math.max(0, Number(t.baseAmount ?? t.amount) || 0);
+    }
+  });
+  const vipTotal = Object.values(grants).reduce((sum,g) => sum + (g && g.active === true && Number(g.amount) > 0 ? Number(g.amount) : 0), 0);
+  const lifetimeFromHistory = Math.floor((eligibleTotal + vipTotal) / 100000);
+  // Không làm mất điểm cũ đã lưu trực tiếp trên hồ sơ khách.
+  return Math.max(0, Number(Math.max(lifetimeFromHistory, Number(cust.points) || 0).toFixed(4)));
 }
 
 // ==================== ĐỒNG BỘ FIREBASE REALTIME ====================
@@ -2131,17 +2379,15 @@ function initFirebaseSync() {
     if (firstStoriesSnapshot) updateGlobalStats(); else scheduleGlobalStatsUpdate();
     const activeView = document.querySelector('main section:not(.hidden)')?.id || 'view-home';
     if (activeView === 'view-home') {
-      app.renderHomeStories(); app.renderHomeRanking();
+      app.renderHomeStories();
       app.renderFeaturedStories();
-      app.renderRecentChapters();
-      app.renderRecentStories();
-      app.renderSidebarUserPanels();
+      scheduleHomeSecondaryRender();
     }
     if (activeView === 'view-story' && state.currentStoryId && state.stories[state.currentStoryId] && !window.__mieuReaderTransitioning) {
       app.renderStoryDetail(state.currentStoryId, false);
     }
     if (activeView === 'view-studio') app.refreshStudioStoryDropdown();
-    if (activeView === 'view-profile' && state.currentUser?.role === 'customer') app.renderProfileView();
+    if (activeView === 'view-profile' && state.currentUser?.role === 'customer' && ['saved', 'published'].includes(state.profileTab)) app.switchProfileTab(state.profileTab);
     if (activeView === 'view-admin' && state.currentUser?.role === 'admin' && app.currentAdminTab === 'featured') app.renderAdminCurrentTab();
     if (!window.__mieuRestoreAttempted) {
       window.__mieuRestoreAttempted = true;
@@ -2200,7 +2446,16 @@ function initFirebaseSync() {
     if (state.currentUser?.role === 'customer') app.renderDailyCheckinStatus();
   });
   // Thưởng riêng cho từng ngày trong tuần (T2-CN).
+  onValue(ref(db, 'miniMeowAdminConfig/checkinRewards'), (snap) => {
+    const raw=snap.val();
+    if(raw && typeof raw==='object') {
+      state.sharedCheckinRewardsLoaded=true;
+      state.checkinPointsByDay=Array.from({length:7},(_,i)=>Math.max(0,Number(raw[i+1] ?? raw[String(i+1)] ?? state.checkinPointsByDay?.[i] ?? state.checkinPoints) || 0));
+      if(state.currentUser?.role==='customer') app.renderDailyCheckinStatus();
+    }
+  });
   onValue(ref(db, 'settings/checkinPointsByDay'), (snap) => {
+    if(state.sharedCheckinRewardsLoaded)return;
     const raw = snap.val();
     state.checkinPointsByDayConfigured = snap.exists();
     state.checkinPointsByDay = Array.from({length:7}, (_,i) => {
@@ -2216,11 +2471,13 @@ function initFirebaseSync() {
   // 5. Đồng bộ Khách hàng (customers)
   onValue(ref(db, 'customers'), (snap) => {
     state.customers = snap.val() || {};
-    updateGlobalStats();
+    scheduleGlobalStatsUpdate();
     app.updateHeaderAndRoleUI();
     if (state.currentUser?.role === 'customer') {
-      app.renderWalletView();
-      app.renderProfileView();
+      const walletVisible = !document.getElementById('view-wallet')?.classList.contains('hidden');
+      const profileVisible = !document.getElementById('view-profile')?.classList.contains('hidden');
+      if (walletVisible) app.renderWalletView();
+      if (profileVisible) app.renderProfileView();
     }
     if (state.currentUser?.role === 'admin') {
       app.renderAdminCurrentTab();
@@ -2231,7 +2488,8 @@ function initFirebaseSync() {
   onValue(ref(db, 'meowWallet'), (snap) => {
     state.wallets = snap.val() || {};
     if (state.currentUser?.role === 'customer') {
-      app.renderWalletView();
+      if (!document.getElementById('view-wallet')?.classList.contains('hidden')) app.renderWalletView();
+      if (!document.getElementById('view-profile')?.classList.contains('hidden')) app.renderProfileView();
       app.updateHeaderAndRoleUI();
     }
   });
@@ -2239,12 +2497,13 @@ function initFirebaseSync() {
   // 7. Đồng bộ Yêu cầu nạp tiền (meowTopupRequests)
   onValue(ref(db, 'meowWalletTransactions'), (snap) => {
     state.walletTransactions = snap.val() || {};
-    if (state.currentUser?.role === 'customer') app.renderWalletStatement();
+    if (state.currentUser?.role === 'customer' && !document.getElementById('view-wallet')?.classList.contains('hidden') && app.currentWalletPage === 'statement') app.renderWalletStatement();
+    if (state.currentUser?.role === 'customer' && !document.getElementById('view-profile')?.classList.contains('hidden')) app.renderProfileView();
   });
 
   onValue(ref(db, 'meowTopupRequests'), (snap) => {
     state.topupRequests = snap.val() || {};
-    if (state.currentUser?.role === 'customer') {
+    if (state.currentUser?.role === 'customer' && !document.getElementById('view-wallet')?.classList.contains('hidden')) {
       app.renderMyTopupRequests();
     }
     if (state.currentUser?.role === 'admin') {
@@ -2258,13 +2517,19 @@ function initFirebaseSync() {
     app.renderActivityFeed();
   });
 
+  // Điểm VIP/admin dùng cùng nhánh grant với Index 24.
+  onValue(ref(db, 'meowVipPointGrants'), snap => {
+    state.vipPointGrants = snap.val() || {};
+    if (state.currentUser?.role === 'customer' && !document.getElementById('view-profile')?.classList.contains('hidden')) app.renderProfileView();
+  });
+
   // 9. Đồng bộ Lịch sử mua truyện (meowPurchases)
   onValue(ref(db, 'meowPurchases'), (snap) => {
     state.purchases = snap.val() || {};
-    if (state.currentStoryId) {
+    if (state.currentStoryId && !document.getElementById('view-story')?.classList.contains('hidden')) {
       app.renderStoryDetail(state.currentStoryId, false);
     }
-    if (state.currentUser?.role === 'customer') {
+    if (state.currentUser?.role === 'customer' && !document.getElementById('view-profile')?.classList.contains('hidden')) {
       app.renderProfileView();
     }
   });
@@ -2390,7 +2655,9 @@ function countStoryViews(story) {
 }
 function storyLatestUpdate(story) {
   const info = story?.info || {};
-  let latest = Number(info.updatedAt || info.lastUpdatedAt || info.createdAt || story?.updatedAt || 0);
+  const saved = Number(info.updatedAt || info.lastUpdatedAt || story?.updatedAt || 0);
+  if (saved > 0) return saved;
+  let latest = Number(info.createdAt || 0);
   for (const ch of Object.values(story?.chapters || {})) latest = Math.max(latest, Number(ch?.publishedAt || ch?.updatedAt || ch?.createdAt || 0));
   return latest;
 }
@@ -2403,12 +2670,16 @@ function normalizeSearchText(value) {
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
 }
 function countStoryWords(story) {
-  return Object.values(story?.chapters || {}).reduce((sum, ch) => {
-    if (Number(ch?.wordCount) > 0) return sum + Number(ch.wordCount);
-    const raw = String(ch?.content || ch?.text || '').replace(/<[^>]*>/g, ' ').replace(/&nbsp;|&#160;/g, ' ');
-    const words = raw.trim().match(/[\p{L}\p{N}]+(?:[’'_-][\p{L}\p{N}]+)*/gu) || [];
-    return sum + words.length;
-  }, 0);
+  // Fast path: use wordCount saved by the editor. Legacy chapters without it
+  // use a cheap length estimate instead of regex-tokenizing huge HTML strings.
+  let total = 0;
+  for (const ch of Object.values(story?.chapters || {})) {
+    const saved = Number(ch?.wordCount);
+    if (saved > 0) { total += saved; continue; }
+    const raw = String(ch?.content || ch?.text || '');
+    if (raw) total += Math.max(0, Math.round(raw.replace(/<[^>]*>/g, ' ').length / 6));
+  }
+  return total;
 }
 function chapterPublishDate(ch) {
   const stamp = Number(ch?.publishedAt || ch?.createdAt || ch?.updatedAt || 0);
@@ -2429,6 +2700,23 @@ window.addEventListener('popstate', (event) => {
     app.navigate(view, { fromPop: true });
   }
 });
+
+function meowCommentSafeKey(value){
+  return encodeURIComponent(String(value ?? '')).replace(/[.#$\/\[\]]/g,'_');
+}
+function meowSharedCommentPath(type,storyId,chapterId){
+  const sid=meowCommentSafeKey(storyId);
+  return type==='story' ? `meowStoryComments/${sid}` : `readerCommunity/${sid}/${meowCommentSafeKey(chapterId)}/threads/chapter`;
+}
+function meowLegacyCommentPath(type,storyId,chapterId){
+  return type==='story' ? `meowComments/stories/${storyId}` : `meowComments/chapters/${storyId}_${chapterId}`;
+}
+function meowCommentActionBase(type,storyId,chapterId,commentId){
+  return String(commentId||'').startsWith('legacy_') ? meowLegacyCommentPath(type,storyId,chapterId) : meowSharedCommentPath(type,storyId,chapterId);
+}
+function meowCommentRealId(commentId){
+  return String(commentId||'').startsWith('legacy_') ? String(commentId).slice(7) : String(commentId||'');
+}
 
 const app = {
   init() {
@@ -2569,9 +2857,33 @@ const app = {
     renderNotifications();
   },
 
+  toggleGuideMusic() {
+    const media = document.getElementById('mieuGuideMusic');
+    const button = document.getElementById('mieuGuideMusicToggle');
+    if (!media) return;
+    if (!media.paused) { media.pause(); if (button) button.textContent = '♫ Phát nhạc cổng'; return; }
+    media.volume = 0.38;
+    const attempt = media.play();
+    if (attempt && typeof attempt.catch === 'function') attempt.then(() => { if (button) button.textContent = '♫ Tắt nhạc cổng'; }).catch(() => { if (button) button.textContent = '♫ Chưa phát được · chạm lại'; });
+  },
+
   // Điều hướng SPA
   navigate(viewName, options = {}) {
     this.stopTTS();
+    if (window.mieuSetGuideMusicMode) window.mieuSetGuideMusicMode(viewName === 'guide');
+    const guideMusic = document.getElementById('mieuGuideMusic');
+    if (guideMusic) {
+      if (viewName === 'guide') {
+        guideMusic.volume = 0;
+        guideMusic.pause();
+        const playAttempt = guideMusic.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') playAttempt.then(() => { const b=document.getElementById('mieuGuideMusicToggle'); if(b)b.textContent='♫ Tắt nhạc cổng'; }).catch(() => { const b=document.getElementById('mieuGuideMusicToggle'); if(b)b.textContent='♫ Chạm để phát nhạc'; });
+      } else {
+        guideMusic.pause();
+        try { guideMusic.currentTime = 0; } catch (_) {}
+        const b=document.getElementById('mieuGuideMusicToggle'); if(b)b.textContent='♫ Phát nhạc cổng';
+      }
+    }
     const loader=document.getElementById('pageLoadingOverlay');
     if(loader){
       loader.classList.add('hidden');
@@ -2589,7 +2901,8 @@ const app = {
       if (el) el.classList.toggle('hidden', v !== viewName);
     });
     document.body.classList.toggle('mieu-reader-only', viewName === 'reader');
-    window.scrollTo({ top: 0, behavior: viewName === 'reader' ? 'auto' : 'smooth' });
+    const quickNav = viewName === 'reader' || window.matchMedia('(hover: none), (max-width: 700px)').matches;
+    window.scrollTo({ top: 0, behavior: quickNav ? 'auto' : 'smooth' });
 
     if (viewName === 'home') {
       this.renderHomeTags(); this.renderHomeStories(); this.renderFeaturedStories(); this.renderHomeRanking();
@@ -2911,7 +3224,7 @@ const app = {
             <div class="text-[10px] text-pink-400 font-mono mt-0.5">${isAdmin ? 'Toàn quyền' : formatMoney(wallet.balance)}</div>
           </div>
         </button>
-        <button onclick="app.logout()" title="Đăng xuất" class="p-2 rounded-xl border border-white/15 hover:bg-rose-500/20 text-xs">🚪</button>
+        <button onclick="app.logout()" title="Đăng xuất" aria-label="Đăng xuất" class="p-2 rounded-xl border border-pink-300/30 hover:bg-rose-500/20 text-base">🐈‍⬛</button>
       </div>
     `;
 
@@ -3201,7 +3514,7 @@ const app = {
     const entries = Object.entries(state.stories || {}).map(([id, story]) => {
       const info = story?.info || {};
       const tags = Array.isArray(info.tags) ? info.tags : String(info.tags || info.genre || '').split(/[,;|]/).map(x => x.trim()).filter(Boolean);
-      return { id, story, info, tags, views: countStoryViews(story), updated: storyLatestUpdate(story), chapters: Object.keys(story?.chapters || {}).length, words: countStoryWords(story) };
+      return { id, story, info, tags, views: sort === 'views' ? countStoryViews(story) : 0, updated: sort === 'updated' ? storyLatestUpdate(story) : 0, chapters: sort === 'chapters' ? Object.keys(story?.chapters || {}).length : 0, words: sort === 'words' ? countStoryWords(story) : 0 };
     }).filter(x => (!search || normalizeSearchText(`${x.info.name || x.id} ${x.id} ${x.tags.join(' ')}`).includes(search))
       && (!genre || x.tags.includes(genre))
       && (!status || (x.info.status || 'Đang ra') === status));
@@ -3311,6 +3624,7 @@ const app = {
   },
 
   renderSidebarUserPanels() {
+    this.renderHomeRecentComments();
     const readBox = document.getElementById('sidebarReadingHistory');
     const bmBox = document.getElementById('sidebarBookmarks');
     const u = state.currentUser;
@@ -3356,6 +3670,50 @@ const app = {
     }).join('');
   },
 
+  async renderHomeRecentComments() {
+    const host = document.querySelector('#sidebarRecentComments .gothic-recent-comments-list');
+    if (!host) return;
+    try {
+      const [storySnap, communitySnap] = await Promise.all([
+        get(ref(db, 'meowStoryComments')),
+        get(ref(db, 'readerCommunity'))
+      ]);
+      const rows = [];
+      const storyComments = storySnap.val() || {};
+      Object.entries(storyComments).forEach(([sid, comments]) => Object.entries(comments || {}).forEach(([key, c]) => {
+        if (!c || typeof c !== 'object' || c.deleted) return;
+        rows.push({ sid, cid: '', key, customerId: c.customerId || c.uid || c.userId || '', name: c.name || c.userName || 'Độc giả', avatar: c.avatar || '', text: c.text || '', at: Number(c.createdAt || c.at || 0), kind: 'Truyện' });
+        Object.entries(c.replies || {}).forEach(([rk, r]) => {
+          if (r && typeof r === 'object' && !r.deleted) rows.push({ sid, cid: '', key: rk, name: r.name || r.userName || 'Độc giả', avatar: r.avatar || '', text: r.text || '', at: Number(r.createdAt || r.at || 0), kind: 'Trả lời' });
+        });
+      }));
+      const community = communitySnap.val() || {};
+      Object.entries(community).forEach(([safeSid, chapters]) => Object.entries(chapters || {}).forEach(([safeCid, threads]) =>
+        Object.entries(threads?.threads || {}).forEach(([thread, comments]) => Object.entries(comments || {}).forEach(([key, c]) => {
+          if (!c || typeof c !== 'object' || c.deleted) return;
+          let sid = safeSid, cid = safeCid;
+          try { sid = decodeURIComponent(safeSid); cid = decodeURIComponent(safeCid); } catch (_) {}
+          rows.push({ sid, cid, key, customerId: c.customerId || c.uid || c.userId || '', name: c.name || c.userName || 'Độc giả', avatar: c.avatar || '', text: c.text || '', at: Number(c.at || c.createdAt || 0), kind: thread === 'chapter' ? 'Chương' : 'Đoạn' });
+        }))));
+      rows.sort((a, b) => b.at - a.at);
+      const latest = rows.slice(0, 6);
+      const current = document.querySelector('#sidebarRecentComments .gothic-recent-comments-list');
+      if (!current) return;
+      current.innerHTML = latest.length ? latest.map(r => {
+        const avatar = r.avatar || state.customers?.[r.customerId]?.profileAvatar || '';
+        return `<button type="button" class="gothic-comment-entry" data-home-comment-story="${esc(r.sid)}" data-home-comment-chapter="${esc(r.cid)}"><span class="gothic-comment-avatar">${avatar ? `<img loading="lazy" src="${esc(avatar)}" alt="">` : '☾'}</span><span class="gothic-comment-copy"><b>${esc(r.name)} <i>· ${esc(r.kind)}</i></b><span>${esc(r.text).slice(0, 150)}</span><small>${esc(state.stories?.[r.sid]?.info?.name || r.sid)}${r.cid ? ' · Chương ' + esc(r.cid) : ''} · ${r.at ? new Date(r.at).toLocaleString('vi-VN') : 'Vừa gửi'}</small></span><span class="gothic-comment-arrow">↗</span></button>`;
+      }).join('') : `<p class="text-xs opacity-60 py-3">Chưa có bình luận nào gần đây.</p>`;
+      current.querySelectorAll('[data-home-comment-story]').forEach(btn => btn.addEventListener('click', () => {
+        const sid = btn.dataset.homeCommentStory, cid = btn.dataset.homeCommentChapter;
+        if (cid && state.stories?.[sid]?.chapters?.[cid]) app.openChapterReader(sid, cid);
+        else app.openStoryDetail(sid);
+      }));
+    } catch (err) {
+      host.innerHTML = `<p class="text-xs opacity-60 py-3">Chưa tải được bình luận gần đây. Kiểm tra quyền đọc Firebase.</p>`;
+      console.warn('Home recent comments:', err);
+    }
+  },
+
   // ==================== CHI TIẾT TRUYỆN (ĐĨA QUAY 360 + KHUNG FULL VÀNG + KHÓA TÁC GIẢ) ====================
   hasPurchasedFullBook(storyId) {
     const u = state.currentUser;
@@ -3365,7 +3723,9 @@ const app = {
     if (story?.info?.publisherId === u.id) return true;
 
     const myPurchases = Object.values(state.purchases[u.id] || {});
-    if (myPurchases.some(p => p.storyId === storyId && p.isFullBook)) return true;
+    const ownedBook = state.customers?.[u.id]?.books?.[storyId];
+    if (ownedBook === true || ownedBook?.full === true || ownedBook?.access === 'full' || ownedBook?.vip === true && ownedBook?.purchased === true) return true;
+    if (myPurchases.some(p => String(p.storyId) === String(storyId) && (p.isFullBook || p.full === true || p.type === 'full' || p.purchaseType === 'full'))) return true;
 
     // Kiểm tra nếu đã mua tất cả các chương có giá của truyện
     const chaps = Object.entries(story?.chapters || {});
@@ -3382,12 +3742,16 @@ const app = {
     if (u.role === 'admin') return true;
     if (this.hasPurchasedFullBook(storyId)) return true;
     const myPurchases = Object.values(state.purchases[u.id] || {});
-    return myPurchases.some(p => p.storyId === storyId && String(p.chapterId) === String(chapterId));
+    const chapterGrant = state.customers?.[u.id]?.chapterVip?.[storyId]?.[chapterId];
+    if (chapterGrant === true || chapterGrant?.purchased === true || chapterGrant?.unlocked === true || chapterGrant?.vip === true) return true;
+    return myPurchases.some(p => String(p.storyId) === String(storyId) && String(p.chapterId ?? p.chapter ?? '') === String(chapterId) && (p.type === 'chapter' || p.type === 'single' || p.purchaseType === 'chapter' || !p.type));
   },
 
   async openStoryDetail(storyId, incView = true, options = {}) {
     // Hiển thị cache ngay nếu có; không chờ tải toàn bộ thư viện.
     state.currentStoryId = storyId;
+    const openToken = (window.__mieuStoryOpenToken || 0) + 1;
+    window.__mieuStoryOpenToken = openToken;
     const cachedStory = state.stories?.[storyId];
     const container = document.getElementById('storyDetailContainer');
     if (cachedStory) {
@@ -3397,26 +3761,45 @@ const app = {
     }
     this.navigate('story', { fromPop: !!options.fromPop });
 
-    // Đọc trực tiếp đúng truyện từ Firebase để dữ liệu mới nhất luôn thắng cache.
-    try {
-      const freshSnap = await get(ref(db, `stories/${storyId}`));
-      if (freshSnap.exists()) {
-        const freshStory = freshSnap.val();
-        state.stories = { ...(state.stories || {}), [storyId]: freshStory };
-        saveStoriesCache(state.stories);
-        if (state.currentStoryId === storyId &&
-            document.getElementById('view-story') &&
-            !document.getElementById('view-story').classList.contains('hidden')) {
-          this.renderStoryDetail(storyId);
-        }
-      } else if (!cachedStory) {
-        if (container) container.innerHTML = `<div class="gothic-card p-6 text-center text-sm">Không tìm thấy truyện này hoặc truyện đã được gỡ.</div>`;
-        return;
-      }
-    } catch (err) {
-      // Nếu mất mạng, vẫn giữ nội dung cache để người đọc không gặp trang trắng.
-      if (!cachedStory && container) container.innerHTML = `<div class="gothic-card p-6 text-center text-sm">Chưa tải được truyện. Vui lòng kiểm tra kết nối rồi thử lại.</div>`;
+    // Tải hồ sơ quản trị ở nền để tên/ảnh admin trong thẻ người đăng và Donate luôn đồng bộ.
+    if (!this.adminProfileCache && (!cachedStory?.info?.publisherId || cachedStory?.info?.publisherId === 'admin_meow')) {
+      get(ref(db, 'siteSettings/adminProfile')).then(snap => {
+        if (!snap.exists()) return;
+        this.adminProfileCache = snap.val() || {};
+        if (state.currentStoryId === storyId && document.getElementById('view-story') && !document.getElementById('view-story').classList.contains('hidden')) this.renderStoryDetail(storyId);
+      }).catch(err => console.warn('Admin profile background load:', err));
     }
+
+    // Có cache: hiển thị ngay. Làm mới nền có giới hạn tần suất, không stringify
+    // toàn bộ truyện (rất nặng với truyện nhiều chương) và không dựng lại giao diện khi đang đọc.
+    const refreshStory = async () => {
+      const now = Date.now();
+      const last = storyRefreshAt.get(storyId) || 0;
+      if (now - last < 30000) return;
+      if (storyRefreshInFlight.has(storyId)) return storyRefreshInFlight.get(storyId);
+      const task = (async () => {
+        try {
+          const freshSnap = await get(ref(db, `stories/${storyId}`));
+          if (window.__mieuStoryOpenToken !== openToken || state.currentStoryId !== storyId) return;
+          if (freshSnap.exists()) {
+            const freshStory = freshSnap.val();
+            // Firebase là nguồn chính; cập nhật state nhưng tránh render nặng lần hai.
+            state.stories = { ...(state.stories || {}), [storyId]: freshStory };
+            storyRefreshAt.set(storyId, Date.now());
+            saveStoriesCache(state.stories);
+          } else if (!cachedStory && container) {
+            container.innerHTML = `<div class="gothic-card p-6 text-center text-sm">Không tìm thấy truyện này hoặc truyện đã được gỡ.</div>`;
+          }
+        } catch (err) {
+          if (!cachedStory && container) container.innerHTML = `<div class="gothic-card p-6 text-center text-sm">Chưa tải được truyện. Vui lòng kiểm tra kết nối rồi thử lại.</div>`;
+        } finally { storyRefreshInFlight.delete(storyId); }
+      })();
+      storyRefreshInFlight.set(storyId, task);
+      return task;
+    };
+    if (!cachedStory) { await refreshStory(); if (!state.stories?.[storyId]) return; }
+    // Cached story opens immediately; the global Firebase stories listener refreshes it in the background.
+
 
     if (incView) {
       runTransaction(ref(db, `stories/${storyId}/info/views`), (v) => (Number(v) || 0) + 1);
@@ -3433,7 +3816,9 @@ const app = {
     const totalWords = countStoryWords(story);
     const isFullUnlocked = this.hasPurchasedFullBook(storyId);
     const publisherId = info.publisherId || 'admin_meow';
-    const publisher = state.customers[publisherId] || { name: 'Quản trị viên Meow', avatar: 'https://placehold.co/100x100/ec4899/ffffff?text=M' };
+    const publisher = publisherId === 'admin_meow'
+      ? { name: this.adminProfileCache?.name || 'Quản trị viên Miêu Các', avatar: this.adminProfileCache?.avatar || '', bio: this.adminProfileCache?.bio || '', title: this.adminProfileCache?.title || 'Quản trị viên tối cao' }
+      : (state.customers[publisherId] || { name: 'Meow Studio', avatar: '' });
 
     const u = state.currentUser;
     const isSaved = u?.role === 'customer' && state.customers[u.id]?.bookmarks?.[storyId];
@@ -3459,10 +3844,10 @@ const app = {
         const oi = other.info || {};
         const tags = normalizeStoryTags(oi.tags?.length ? oi.tags : (oi.genre || oi.category || ''));
         const matched = tags.filter(t => currentTagKeys.has(t.toLocaleLowerCase('vi')));
-        return { id: sid, info: oi, tags, matched, count: Object.keys(other.chapters || {}).length };
+        return { id: sid, info: oi, tags, matched, count: Number(other.info?.chapterCount) || Object.keys(other.chapters || {}).length };
       })
       .filter(x => x.matched.length)
-      .sort((a,b) => b.matched.length - a.matched.length || storyLatestUpdate(state.stories[b.id]) - storyLatestUpdate(state.stories[a.id]))
+      .sort((a,b) => b.matched.length - a.matched.length)
       .slice(0, 12);
     const relatedStoriesHtml = relatedStories.length ? `
       <section class="story-related-section mt-7" aria-label="Truyện liên quan">
@@ -3617,16 +4002,18 @@ const app = {
     }
     const bmRef = ref(db, `customers/${u.id}/bookmarks/${storyId}`);
     const snap = await get(bmRef);
+    const followRef = ref(db, `meowFollows/${encodeURIComponent(u.id)}/${storyId}`);
     if (snap.exists()) {
-      await remove(bmRef);
+      await Promise.all([remove(bmRef), remove(followRef)]);
       state.customers[u.id] = { ...(state.customers[u.id] || {}), bookmarks: { ...(state.customers[u.id]?.bookmarks || {}) } };
       delete state.customers[u.id].bookmarks[storyId];
       showToast('Đã bỏ lưu truyện khỏi tủ.', 'info');
     } else {
-      await set(bmRef, Date.now());
-      state.customers[u.id] = { ...(state.customers[u.id] || {}), bookmarks: { ...(state.customers[u.id]?.bookmarks || {}), [storyId]: Date.now() } };
+      const savedAt = Date.now();
+      await Promise.all([set(bmRef, savedAt), set(followRef, { followed:true, storyId:String(storyId), followedAt:savedAt })]);
+      state.customers[u.id] = { ...(state.customers[u.id] || {}), bookmarks: { ...(state.customers[u.id]?.bookmarks || {}), [storyId]: savedAt } };
       await logActivity('save', `đã lưu truyện ${state.stories[storyId]?.info?.name || storyId}`, storyId);
-      showToast('Đã lưu truyện vào tủ sách cá nhân! 🔖', 'success');
+      showToast('Đã lưu truyện vào tủ sách và đồng bộ Index 24! 🔖', 'success');
     }
     this.renderStoryDetail(storyId);
     this.renderSidebarUserPanels();
@@ -3678,22 +4065,25 @@ const app = {
     }
 
     try {
-      await runTransaction(ref(db, `meowWallet/${u.id}`), (w) => {
+      const walletDebit = await runTransaction(ref(db, `meowWallet/${u.id}`), (w) => {
         w = w || { balance: 0, totalIn: 0, totalOut: 0 };
         if ((Number(w.balance) || 0) < price) return;
         w.balance = Number(w.balance) - price;
         w.totalOut = (Number(w.totalOut) || 0) + price;
         return w;
       });
+      if (!walletDebit.committed) throw new Error('Số dư không đủ hoặc ví vừa thay đổi. Vui lòng tải lại số dư.');
 
+      const purchasedAt = Date.now();
       await push(ref(db, `meowPurchases/${u.id}`), {
-        storyId,
-        storyTitle: story.info?.name || storyId,
-        chapterId: 'FULL',
-        chapterTitle: 'Trọn bộ Full + Mở khóa tác giả',
-        price,
-        isFullBook: true,
-        createdAt: Date.now()
+        customerId: String(u.id), storyId: String(storyId),
+        storyTitle: story.info?.name || storyId, title: story.info?.name || storyId,
+        chapterId: '', chapterTitle: 'Trọn bộ Full + Mở khóa tác giả',
+        type: 'full', purchaseType: 'full', full: true, isFullBook: true,
+        price, amount: price, createdAt: purchasedAt
+      });
+      await set(ref(db, `customers/${u.id}/books/${storyId}`), {
+        vip: true, full: true, access: 'full', purchased: true, purchasedAt
       });
 
       await push(ref(db, 'meowWalletTransactions'), {
@@ -3798,14 +4188,15 @@ const app = {
           confirmText: 'Mở bằng điểm'
         });
         if (usePts) {
+          const openedAt = Date.now();
           await push(ref(db, `meowPurchases/${u.id}`), {
-            storyId,
-            storyTitle: story.info?.name || storyId,
-            chapterId,
-            chapterTitle: ch.title || `Chương ${chapterId}`,
-            price: 0,
-            openedByPoints: pointsReq,
-            createdAt: Date.now()
+            customerId: String(u.id), storyId: String(storyId), storyTitle: story.info?.name || storyId,
+            chapterId: String(chapterId), chapterTitle: ch.title || `Chương ${chapterId}`,
+            type: 'chapter', purchaseType: 'chapter', full: false,
+            price: 0, amount: 0, openedByPoints: pointsReq, createdAt: openedAt
+          });
+          await set(ref(db, `customers/${u.id}/chapterVip/${storyId}/${chapterId}`), {
+            vip: true, unlocked: true, purchased: true, openedByPoints: pointsReq, purchasedAt: openedAt
           });
           showToast('✨ Đã mở khóa chương bằng điểm tích lũy! Bạn có thể bấm lại chương để đọc.', 'success');
           this.renderStoryDetail(storyId);
@@ -3822,27 +4213,34 @@ const app = {
           return;
         }
 
-        await runTransaction(ref(db, `meowWallet/${u.id}`), (w) => {
+        const walletDebit = await runTransaction(ref(db, `meowWallet/${u.id}`), (w) => {
           w = w || { balance: 0, totalIn: 0, totalOut: 0 };
           if ((Number(w.balance) || 0) < price) return;
           w.balance = Number(w.balance) - price;
           w.totalOut = (Number(w.totalOut) || 0) + price;
           return w;
         });
+        if (!walletDebit.committed) {
+          showToast('Số dư không đủ hoặc ví vừa thay đổi. Vui lòng kiểm tra lại số dư.', 'error');
+          return;
+        }
 
+        const purchasedAt = Date.now();
         await push(ref(db, `meowPurchases/${u.id}`), {
-          storyId,
-          storyTitle: story.info?.name || storyId,
-          chapterId,
-          chapterTitle: ch.title || `Chương ${chapterId}`,
-          price,
-          createdAt: Date.now()
+          customerId: String(u.id), storyId: String(storyId), storyTitle: story.info?.name || storyId,
+          chapterId: String(chapterId), chapterTitle: ch.title || `Chương ${chapterId}`,
+          type: 'chapter', purchaseType: 'chapter', full: false,
+          price, amount: price, createdAt: purchasedAt
+        });
+        await set(ref(db, `customers/${u.id}/chapterVip/${storyId}/${chapterId}`), {
+          vip: true, unlocked: true, purchased: true, purchasedAt
         });
 
         await push(ref(db, 'meowWalletTransactions'), {
           customerId: u.id,
           name: state.customers[u.id]?.name || u.name,
           type: 'purchase',
+          source: 'reader_purchase',
           amount: price,
           note: `Mua chương ${chapterId} - ${story.info?.name || storyId}`,
           createdAt: Date.now()
@@ -3882,9 +4280,13 @@ const app = {
     try {
       let hist = JSON.parse(localStorage.getItem('mieuCac_readingHistory') || '[]');
       hist = hist.filter(x => x.storyId !== storyId);
-      hist.unshift({ storyId, storyName: story.info?.name || storyId, chapterId, at: Date.now() });
+      const readAt = Date.now();
+      hist.unshift({ storyId, storyName: story.info?.name || storyId, chapterId, at: readAt });
       localStorage.setItem('mieuCac_readingHistory', JSON.stringify(hist.slice(0, 15)));
-      this.renderSidebarUserPanels();
+      // Đồng bộ cloud theo đúng schema Index 24 để tiếp tục đọc trên thiết bị khác.
+      const readerId = state.currentUser?.role === 'customer' ? String(state.currentUser.id) : '';
+      if (readerId) set(ref(db, `meowReadingHistory/${encodeURIComponent(readerId)}/${encodeURIComponent(String(storyId))}`), { storyId:String(storyId), chapterId:String(chapterId), readAt }).catch(err => console.warn('Không thể đồng bộ chương đang đọc:', err));
+      // Cập nhật lịch sử gọn nhẹ; không dựng lại toàn bộ sidebar mỗi lần đổi chương.
     } catch (e) {}
 
     const readerToken = (window.__mieuReaderToken || 0) + 1;
@@ -3897,7 +4299,12 @@ const app = {
       if (window.__mieuReaderToken !== readerToken || state.currentStoryId !== storyId || String(state.currentChapterId) !== String(chapterId)) return;
       window.__mieuReaderTransitioning = false;
       this.renderChapterToCanvas();
-      this.renderComments('chapter', storyId, chapterId, 'chapterCommentsBox');
+      const paintComments = () => {
+        if (window.__mieuReaderToken !== readerToken || state.currentStoryId !== storyId || String(state.currentChapterId) !== String(chapterId)) return;
+        this.renderComments('chapter', storyId, chapterId, 'chapterCommentsBox');
+      };
+      if ('requestIdleCallback' in window) requestIdleCallback(paintComments, {timeout:700});
+      else setTimeout(paintComments, 180);
       window.scrollTo({ top: 0, behavior: 'auto' });
     }, 90);
   },
@@ -3947,139 +4354,145 @@ const app = {
 
   // Render nội dung HTML của chương thành các khối Canvas chống copy & chống Reader Mode
   renderChapterToCanvas() {
-    const story = state.stories[state.currentStoryId];
-    const ch = story?.chapters?.[state.currentChapterId];
+    const storyId = state.currentStoryId;
+    const chapterId = state.currentChapterId;
+    const story = state.stories[storyId];
+    const ch = story?.chapters?.[chapterId];
     if (!ch) return;
 
+    // Mỗi lần mở chương/cập nhật cài đặt có token riêng: tác vụ cũ tự dừng,
+    // tránh hai lần render chồng lên nhau khi người đọc bấm liên tục.
+    const renderToken = (window.__mieuCanvasRenderToken || 0) + 1;
+    window.__mieuCanvasRenderToken = renderToken;
     const wrapper = document.getElementById('readerCanvasWrapper');
-    const wmUser=state.currentUser||{}; const wmCustomer=state.customers?.[wmUser.id]||{}; const wmName=wmCustomer.name||wmUser.name||'Độc giả'; const wmId=wmUser.id||'Khách';
-    wrapper.dataset.meowWatermark=`MIÊU CÁC - Ổ LƯỜI NHỎ CỦA MEOW · ${wmName} · ${wmId}`;
     const container = document.getElementById('readerCanvasBlocks');
-    container.innerHTML = '';
+    if (!wrapper || !container) return;
+
+    const wmUser = state.currentUser || {};
+    const wmCustomer = state.customers?.[wmUser.id] || {};
+    const wmName = wmCustomer.name || wmUser.name || 'Độc giả';
+    const wmId = wmUser.id || 'Khách';
+    wrapper.dataset.meowWatermark = `MIÊU CÁC - Ổ LƯỜI NHỎ CỦA MEOW · ${wmName} · ${wmId}`;
 
     const themeMap = {
-      gothic: { bg: '#110d1f', text: '#f3e8ff', sub: 'rgba(244,114,182,0.12)' },
-      pinkblue: { bg: '#1a102b', text: '#fce7f3', sub: 'rgba(56,189,248,0.12)' },
-      sepia: { bg: '#f6eedc', text: '#3b2f2f', sub: 'rgba(180,83,9,0.08)' },
-      light: { bg: '#ffffff', text: '#1e1b2e', sub: 'rgba(0,0,0,0.04)' },
-      midnight: { bg: '#091526', text: '#e0f2fe', sub: 'rgba(56,189,248,0.12)' }
+      gothic: { bg: '#110d1f', text: '#f3e8ff' },
+      pinkblue: { bg: '#1a102b', text: '#fce7f3' },
+      sepia: { bg: '#f6eedc', text: '#3b2f2f' },
+      light: { bg: '#ffffff', text: '#1e1b2e' },
+      midnight: { bg: '#091526', text: '#e0f2fe' }
     };
-    const palette = themeMap[state.readerSettings.theme] || themeMap.gothic;
-    // Khi giao diện tổng thể ở chế độ sáng, luôn dùng chữ đậm để nội dung không bị nhạt trên nền sáng.
+    const palette = { ...(themeMap[state.readerSettings.theme] || themeMap.gothic) };
     if (document.documentElement.getAttribute('data-theme') === 'light') {
-      palette.bg = '#fff7fb';
-      palette.text = '#493348';
+      palette.bg = '#fff7fb'; palette.text = '#493348';
     }
     wrapper.style.background = palette.bg;
+    container.replaceChildren();
+    wrapper.setAttribute('aria-busy', 'true');
 
-    // Parse HTML nội dung chương thành các đoạn văn bản & hình ảnh
+    // Phân tích nội dung một lần, sau đó vẽ lần lượt theo từng frame để
+    // trình duyệt vẫn phản hồi cuộn/chạm trên điện thoại chương dài.
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = ch.content || ch.text || 'Nội dung chương đang cập nhật...';
-
     const blocks = [];
-    const walkNodes = (node) => {
-      if (node.nodeName === 'IMG') {
-        blocks.push({ type: 'img', src: node.src });
+    const addText = raw => {
+      String(raw || '').replace(/\u00a0/g, ' ').replace(/\r\n?/g, '\n')
+        .split(/\n{2,}/).map(x => x.replace(/[\t ]+/g, ' ').trim()).filter(Boolean)
+        .forEach(text => blocks.push({ type: 'text', text }));
+    };
+    const walkNodes = node => {
+      if (node.nodeName === 'IMG') { blocks.push({ type: 'img', src: node.getAttribute('src') || node.src }); return; }
+      if (node.nodeType === Node.TEXT_NODE) { addText(node.textContent); return; }
+      if (['P','DIV','BR','H1','H2','H3','LI'].includes(node.nodeName)) {
+        if (node.querySelector?.('img')) node.childNodes.forEach(walkNodes);
+        else addText(node.textContent);
         return;
       }
-      if (node.nodeType === Node.TEXT_NODE) {
-        const raw = node.textContent.replace(/\u00a0/g, ' ').replace(/\r\n?/g, '\n');
-        raw.split(/\n{2,}/).map(x=>x.replace(/[\t ]+/g,' ').trim()).filter(Boolean).forEach(txt=>blocks.push({ type: 'text', text: txt }));
-        return;
-      }
-      if (['P', 'DIV', 'BR', 'H1', 'H2', 'H3', 'LI'].includes(node.nodeName)) {
-        const innerImgs = node.querySelectorAll ? node.querySelectorAll('img') : [];
-        if (innerImgs.length) {
-          node.childNodes.forEach(walkNodes);
-        } else {
-          const raw = node.textContent.replace(/\u00a0/g, ' ').replace(/\r\n?/g, '\n');
-          raw.split(/\n{2,}/).map(x=>x.replace(/[\t ]+/g,' ').trim()).filter(Boolean).forEach(txt=>blocks.push({ type: 'text', text: txt }));
-        }
-        return;
-      }
-      node.childNodes.forEach(walkNodes);
+      node.childNodes?.forEach(walkNodes);
     };
     tempDiv.childNodes.forEach(walkNodes);
+    if (!blocks.length) blocks.push({ type: 'text', text: tempDiv.textContent.trim() || 'Chương trống.' });
 
-    if (!blocks.length) {
-      blocks.push({ type: 'text', text: tempDiv.textContent.trim() || 'Chương trống.' });
-    }
-
-    const maxWidth = Math.min(820, wrapper.clientWidth - 40);
+    const maxWidth = Math.max(180, Math.min(820, (wrapper.clientWidth || window.innerWidth) - 40));
     const fontSize = state.readerSettings.fontSize;
-    const lineHeight = Math.round(fontSize * (Number(state.readerSettings.lineHeight)||1.75));
+    const lineHeight = Math.round(fontSize * (Number(state.readerSettings.lineHeight) || 1.75));
     const fontSpec = `${fontSize}px ${state.readerSettings.font}`;
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 700 ? 1 : 1.25);
+    const measureCanvas = document.createElement('canvas');
+    const mCtx = measureCanvas.getContext('2d', { alpha: true });
+    if (!mCtx) return;
+    mCtx.font = fontSpec;
 
-    // Chia nội dung thành nhiều canvas nhỏ để tránh canvas quá cao gây ngốn RAM/đơ máy.
-    let currentParagraphs = [];
-    const flushTextCanvas = () => {
-      if (!currentParagraphs.length) return;
-      const measureCanvas = document.createElement('canvas');
-      const mCtx = measureCanvas.getContext('2d', { alpha: true });
-      if (!mCtx) { currentParagraphs = []; return; }
-      mCtx.font = fontSpec;
-      const maxTextWidth = Math.max(180, maxWidth - 20);
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-      // Mỗi canvas tối đa khoảng 8 đoạn; đoạn văn dài vẫn được tự ngắt dòng.
-      for (let p = 0; p < currentParagraphs.length; p += 8) {
-        const paragraphBatch = currentParagraphs.slice(p, p + 8);
-        const lines = [];
-        paragraphBatch.forEach(para => {
-          const words = String(para).split(/\s+/);
-          let line = '    ';
-          words.forEach(word => {
-            const testLine = line + word + ' ';
-            if (mCtx.measureText(testLine).width > maxTextWidth && line.trim() !== '') {
-              lines.push(line);
-              line = word + ' ';
-            } else line = testLine;
-          });
-          if (line.trim()) lines.push(line);
-          lines.push('');
-        });
-
-        const canvasHeight = Math.max(60, lines.length * lineHeight + 24);
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.max(1, Math.round(maxWidth * dpr));
-        canvas.height = Math.max(1, Math.round(canvasHeight * dpr));
-        canvas.style.width = maxWidth + 'px';
-        canvas.style.height = canvasHeight + 'px';
-        canvas.className = 'max-w-full block pointer-events-none';
-        canvas.decoding = 'async';
-        const ctx = canvas.getContext('2d', { alpha: true });
-        if (!ctx) continue;
-        ctx.scale(dpr, dpr);
-        ctx.font = fontSpec;
-        ctx.fillStyle = palette.text;
-        ctx.textBaseline = 'top';
-        lines.forEach((line, i) => ctx.fillText(line, 10, 12 + i * lineHeight));
-        ctx.save();
-        ctx.globalAlpha = 0.06;
-        ctx.font = 'bold 14px sans-serif';
-        ctx.translate(maxWidth/2, canvasHeight/2); ctx.rotate(-Math.PI/7); ctx.textAlign='center'; ctx.font='bold 13px sans-serif'; ctx.fillText('MIÊU CÁC - Ổ LƯỜI NHỎ CỦA MEOW',0,-8); ctx.font='11px sans-serif'; ctx.fillText(`${wmName} · ${wmId}`,0,12);
-        ctx.restore();
-        container.appendChild(canvas);
-      }
-      currentParagraphs = [];
-    }; 
-
-    blocks.forEach(b => {
-      if (b.type === 'text') currentParagraphs.push(b.text);
-      else if (b.type === 'img') {
-        flushTextCanvas();
-        const img = document.createElement('img');
-        img.src = b.src;
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.fetchPriority = 'low';
-        img.className = 'max-w-full rounded-2xl shadow-lg my-3 pointer-events-none';
-        img.alt = 'Ảnh minh họa chương truyện';
-        container.appendChild(img);
-      }
+    const jobs = [];
+    let paragraphBuffer = [];
+    const flushParagraphs = () => {
+      // Gộp vài đoạn văn vào một canvas để giảm hàng trăm node/canvas ở chương dài.
+      while (paragraphBuffer.length) jobs.push({ type: 'text', paragraphs: paragraphBuffer.splice(0, 4) });
+    };
+    blocks.forEach(block => {
+      if (block.type === 'text') paragraphBuffer.push(block.text);
+      else { flushParagraphs(); jobs.push(block); }
     });
-    flushTextCanvas();
+    flushParagraphs();
+
+    let jobIndex = 0;
+    const renderNextBatch = () => {
+      if (window.__mieuCanvasRenderToken !== renderToken || state.currentStoryId !== storyId || String(state.currentChapterId) !== String(chapterId)) return;
+      const frameStart = performance.now();
+      let done = 0;
+      const batchFragment = document.createDocumentFragment();
+      while (jobIndex < jobs.length && done < 3 && performance.now() - frameStart < 6) {
+        const job = jobs[jobIndex++];
+        if (job.type === 'img') {
+          if (job.src) {
+            const img = document.createElement('img');
+            img.loading = 'lazy'; img.decoding = 'async'; img.fetchPriority = 'low'; img.src = job.src;
+            img.className = 'max-w-full rounded-2xl shadow-lg my-3 pointer-events-none';
+            img.alt = 'Ảnh minh họa chương truyện';
+            batchFragment.appendChild(img);
+          }
+        } else {
+          const lines = [];
+          job.paragraphs.forEach(para => {
+            const words = String(para).split(/\s+/);
+            let line = '    ', lineWidth = mCtx.measureText(line).width;
+            const availableWidth = maxWidth - 20;
+            for (let wi = 0; wi < words.length; wi++) {
+              const word = words[wi];
+              const wordWidth = mCtx.measureText(word + ' ').width;
+              if (line.trim() && lineWidth + wordWidth > availableWidth) {
+                lines.push(line); line = word + ' '; lineWidth = wordWidth;
+              } else { line += word + ' '; lineWidth += wordWidth; }
+            }
+            if (line.trim()) lines.push(line);
+            lines.push('');
+          });
+          const canvasHeight = Math.max(60, lines.length * lineHeight + 24);
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(maxWidth * dpr));
+          canvas.height = Math.max(1, Math.round(canvasHeight * dpr));
+          canvas.style.width = `${maxWidth}px`; canvas.style.height = `${canvasHeight}px`;
+          canvas.className = 'max-w-full block pointer-events-none';
+          const ctx = canvas.getContext('2d', { alpha: true });
+          if (ctx) {
+            ctx.scale(dpr, dpr); ctx.font = fontSpec; ctx.fillStyle = palette.text; ctx.textBaseline = 'top';
+            lines.forEach((line, i) => ctx.fillText(line, 10, 12 + i * lineHeight));
+            ctx.save(); ctx.globalAlpha = 0.06; ctx.translate(maxWidth / 2, canvasHeight / 2); ctx.rotate(-Math.PI / 7);
+            ctx.textAlign = 'center'; ctx.font = 'bold 13px sans-serif'; ctx.fillText('MIÊU CÁC - Ổ LƯỜI NHỎ CỦA MEOW', 0, -8);
+            ctx.font = '11px sans-serif'; ctx.fillText(`${wmName} · ${wmId}`, 0, 12); ctx.restore();
+            batchFragment.appendChild(canvas);
+          }
+        }
+        done++;
+      }
+      if (batchFragment.childNodes.length) container.appendChild(batchFragment);
+      if (jobIndex < jobs.length) {
+        if ('requestAnimationFrame' in window) requestAnimationFrame(renderNextBatch);
+        else setTimeout(renderNextBatch, 16);
+      } else {
+        wrapper.removeAttribute('aria-busy');
+      }
+    };
+    if (jobs.length) (window.requestAnimationFrame || (fn => setTimeout(fn,16)))(renderNextBatch);
   },
 
   // Audio Đọc Truyện (Text-to-Speech tiếng Việt)
@@ -4130,7 +4543,7 @@ const app = {
   scrollWalletSection(id) { const el=document.getElementById(id); if(el)el.scrollIntoView({behavior:'smooth',block:'start'}); },
 
   openWalletSection(key, shouldScroll = true) {
-    const map={deposit:'walletSectionDeposit',checkin:'walletSectionCheckin',exchange:'walletSectionExchange',statement:'walletSectionStatement'};
+    const map={deposit:'walletSectionDeposit',voucher:'walletSectionVoucher',checkin:'walletSectionCheckin',exchange:'walletSectionExchange',statement:'walletSectionStatement'};
     const target=map[key]||map.deposit;
     document.querySelectorAll('#walletLoggedContent .wallet-page-section').forEach(el=>el.classList.add('hidden'));
     const main=document.getElementById(target); if(main)main.classList.remove('hidden');
@@ -4267,6 +4680,80 @@ const app = {
     }
   },
 
+  async redeemWalletVoucher() {
+    const u=state.currentUser;
+    const input=document.getElementById('meowVoucherCodeInput');
+    const message=document.getElementById('meowVoucherRedeemMessage');
+    const button=document.getElementById('meowVoucherRedeemBtn');
+    const tell=txt=>{if(message)message.textContent=txt};
+    if(!u||u.role!=='customer'){this.openAuthModal();return}
+    const id=String(u.id),code=String(input?.value||'').trim().toUpperCase();
+    if(!code||/[.#$\/\[\]]/.test(code)){tell('Vui lòng nhập chính xác mã voucher từ Admin.');return}
+    if(button)button.disabled=true;
+    let claimed=false,amount=0,batchId='',step='đọc mã',now=Date.now();
+    const voucherRef=ref(db,'meowVouchers/'+code);
+    const rollback=async()=>{
+      await runTransaction(voucherRef,current=>{
+        if(!current)return current;
+        if(current.usedBy&&typeof current.usedBy==='object'&&current.usedBy[id]){
+          delete current.usedBy[id];current.usedCount=Math.max(0,(Number(current.usedCount)||1)-1);return current;
+        }
+        if(current.usedBy===id){current.usedBy='';current.usedAt=null;current.usedCount=0;return current}
+        return current;
+      });
+    };
+    try{
+      tell('⏳ Đang kiểm tra mã voucher...');
+      const snap=await get(voucherRef);
+      if(!snap.exists())throw new Error('Mã voucher không tồn tại.');
+      const original=snap.val()||{};amount=Number(original.amount);batchId=original.batchId||'';
+      if(!Number.isSafeInteger(amount)||amount<=0)throw new Error('Giá trị voucher không hợp lệ.');
+      if(original.usedBy&&(typeof original.usedBy==='object'?!!original.usedBy[id]:String(original.usedBy)===id))throw new Error('ID này đã sử dụng mã voucher rồi.');
+      step='giữ lượt voucher';
+      const claim=await runTransaction(voucherRef,current=>{
+        if(!current)return;
+        if(!Number.isFinite(Number(current.slots))){
+          if(current.usedBy)return;
+          current.usedBy=id;current.usedAt=now;current.usedCount=1;return current;
+        }
+        const slots=Math.max(1,Number(current.slots)||1);
+        current.usedBy=current.usedBy&&typeof current.usedBy==='object'?current.usedBy:{};
+        if(current.usedBy[id])return;
+        const used=Number(current.usedCount)||Object.keys(current.usedBy).length;
+        if(used>=slots)return;
+        current.usedBy[id]={usedAt:now};current.usedCount=used+1;current.usedAt=now;return current;
+      });
+      if(!claim.committed)throw new Error('Voucher đã hết lượt hoặc ID đã sử dụng mã này.');
+      claimed=true;
+      step='cộng tiền vào Ví Meow';
+      const walletResult=await runTransaction(ref(db,`meowWallet/${id}`),w=>{
+        w=w||{balance:0,totalIn:0,totalOut:0};
+        w.balance=(Number(w.balance)||0)+amount;
+        w.totalIn=(Number(w.totalIn)||0)+amount;
+        return w;
+      });
+      if(!walletResult.committed)throw new Error('Không cập nhật được số dư ví.');
+      claimed=false;
+      const balanceAfter=Number(walletResult.snapshot.val()?.balance)||0;
+      const hist={customerId:id,name:state.customers[id]?.name||u.name||id,code,amount,batchId,createdAt:now,type:'voucher'};
+      step='lưu lịch sử voucher';
+      try{
+        await push(ref(db,'meowVoucherHistory'),hist);
+        await push(ref(db,'meowWalletTransactions'),{...hist,type:'deposit',source:'voucher',balanceAfter,points:0,note:'Nạp tiền bằng voucher '+code});
+        if(batchId)await runTransaction(ref(db,'meowVoucherBatches/'+batchId),b=>b?{...b,usedCount:(Number(b.usedCount)||0)+1}:b);
+      }catch(logError){
+        tell(`⚠️ Tiền ${formatMoney(amount)} đã cộng vào ví nhưng lưu lịch sử gặp lỗi. Đừng nhập lại mã; hãy báo Admin kiểm tra.`);
+        console.error('Voucher history write failed:',logError);return;
+      }
+      if(input)input.value='';
+      tell(`🎉 Đổi voucher thành công! +${formatMoney(amount)} vào Ví Meow. Số dư: ${formatMoney(balanceAfter)}.`);
+      this.renderWalletView();
+    }catch(error){
+      if(claimed){try{await rollback()}catch(rollbackError){console.error('Voucher claim rollback failed:',rollbackError)}}
+      tell(`❌ ${step}: ${error?.message||'Không thể đổi voucher.'}`);
+    }finally{if(button)button.disabled=false}
+  },
+
   renderWalletStatement() {
     const u=state.currentUser, box=document.getElementById('walletStatementList'); if(!u||!box)return;
     const from=document.getElementById('statementFrom')?.value||'', to=document.getElementById('statementTo')?.value||'';
@@ -4320,96 +4807,84 @@ const app = {
     const btn = document.getElementById('dailyCheckinBtn');
     const weekGrid = document.getElementById('checkinWeekGrid');
     if (!status || !btn || !u || u.role !== 'customer') return;
-    const label = document.getElementById('checkinRewardLabel');
-    if (label) label.textContent = 'Tiền thưởng theo từng ngày (VNĐ)';
-
     try {
-      const snap = await get(ref(db, `customers/${u.id}/dailyCheckins`));
-      const records = snap.val() || {};
-      const parts = new Intl.DateTimeFormat('en-CA', {
-        timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: '2-digit', day: '2-digit'
-      }).formatToParts(new Date());
-      const part = Object.fromEntries(parts.map(x => [x.type, x.value]));
+      const snap = await get(ref(db, `meowDailyCheckin/${encodeURIComponent(u.id)}`));
+      const cloud = snap.val() || {};
+      const parts = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Ho_Chi_Minh',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+      const part = Object.fromEntries(parts.map(x => [x.type,x.value]));
       const todayKey = `${part.year}-${part.month}-${part.day}`;
-      const [yy, mm, dd] = todayKey.split('-').map(Number);
-      const todayUtc = new Date(Date.UTC(yy, mm - 1, dd));
-      const weekday = todayUtc.getUTCDay(); // 0=CN
-      const mondayIndex = (weekday + 6) % 7;
-      const mondayUtc = new Date(todayUtc.getTime() - mondayIndex * 86400000);
-      const names = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
-      let completed = 0;
-      let cells = '';
-
-      for (let i = 0; i < 7; i++) {
-        const d = new Date(mondayUtc.getTime() + i * 86400000);
+      const [yy,mm,dd] = todayKey.split('-').map(Number);
+      const todayUtc = new Date(Date.UTC(yy,mm-1,dd));
+      const mondayIndex = (todayUtc.getUTCDay()+6)%7;
+      const mondayUtc = new Date(todayUtc.getTime()-mondayIndex*86400000);
+      const weekKey = `${mondayUtc.getUTCFullYear()}-${String(mondayUtc.getUTCMonth()+1).padStart(2,'0')}-${String(mondayUtc.getUTCDate()).padStart(2,'0')}`;
+      const record = cloud.week === weekKey ? cloud : {week:weekKey,lastDate:'',days:{}};
+      const records = {};
+      Object.values(record.days || {}).forEach(date => { if (typeof date === 'string') records[date] = true; });
+      const names = ['T2','T3','T4','T5','T6','T7','CN'];
+      let completed = 0, cells = '';
+      for (let i=0;i<7;i++) {
+        const d = new Date(mondayUtc.getTime()+i*86400000);
         const key = `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
-        const dayNumber = i + 1;
-        const isToday = key === todayKey;
-        const done = !!records[key];
-        const dayReward = Number(state.checkinPointsByDay?.[i] ?? state.checkinPoints) || 0;
-        if (done) completed++;
-        const missed = key < todayKey && !done;
-        const future = key > todayKey;
-        const cls = done
-          ? 'bg-emerald-500/20 border-emerald-400/60 text-emerald-300'
-          : missed
-            ? 'bg-slate-900/80 border-slate-700 text-slate-500 opacity-65'
-            : isToday
-              ? 'bg-pink-500/20 border-pink-400 text-pink-200 ring-1 ring-pink-400/40'
-              : 'bg-white/5 border-white/10 opacity-55';
-        cells += `<div class="min-w-0 rounded-xl border ${cls} px-1 py-2 text-center" title="${names[i]} · ${key}${done ? ' · Đã điểm danh' : missed ? ' · Bỏ lỡ' : future ? ' · Chưa tới ngày' : ' · Hôm nay'}">
-          <div class="text-[9px] font-bold">${names[i]}</div>
-          <div class="text-lg font-black leading-tight">${dayNumber}</div>
-          <div class="text-[9px] mt-1">${done ? '✓' : missed ? '—' : isToday ? 'Hôm nay' : `${formatMoney(dayReward)}`}</div>
-        </div>`;
+        const done = !!records[key], isToday = key===todayKey, missed = key<todayKey&&!done, future=key>todayKey;
+        const reward = Number(state.checkinPointsByDay?.[i] ?? state.checkinPoints) || 0;
+        if(done) completed++;
+        const cls = done ? 'bg-emerald-500/20 border-emerald-400/60 text-emerald-300' : missed ? 'bg-slate-900/80 border-slate-700 text-slate-500 opacity-65' : isToday ? 'bg-pink-500/20 border-pink-400 text-pink-200 ring-1 ring-pink-400/40' : 'bg-white/5 border-white/10 opacity-55';
+        cells += `<div class="min-w-0 rounded-xl border ${cls} px-1 py-2 text-center" title="${names[i]} · ${key}${done?' · Đã điểm danh':missed?' · Bỏ lỡ':future?' · Chưa tới ngày':' · Hôm nay'}"><div class="text-[9px] font-bold">${names[i]}</div><div class="text-lg font-black leading-tight">${i+1}</div><div class="text-[9px] mt-1">${done?'✓':missed?'—':isToday?'Hôm nay':formatMoney(reward)}</div></div>`;
       }
-      if (weekGrid) weekGrid.innerHTML = cells;
-      const doneToday = !!records[todayKey];
+      if(weekGrid) weekGrid.innerHTML = cells;
+      const doneToday = cloud.week === weekKey && cloud.lastDate === todayKey;
+      const rewardToday = Number(state.checkinPointsByDay?.[mondayIndex] ?? state.checkinPoints) || 0;
       state.todayCheckin = doneToday;
-      status.textContent = doneToday
-        ? `✅ Đã điểm danh hôm nay · Tuần này ${completed}/7 ngày.`
-        : `🎀 Hôm nay chưa điểm danh · Tuần này ${completed}/7 ngày đã hoàn thành.`;
-      btn.disabled = doneToday || Number(state.checkinPointsByDay?.[mondayIndex] ?? state.checkinPoints) <= 0;
-      btn.textContent = doneToday ? '✅ Đã điểm danh hôm nay' : `🎁 Điểm danh nhận ${formatMoney(Number(state.checkinPointsByDay?.[mondayIndex] ?? state.checkinPoints) || 0)}`;
-      btn.classList.toggle('opacity-50', btn.disabled);
-    } catch (e) {
-      status.textContent = 'Không kiểm tra được trạng thái điểm danh. Vui lòng thử lại.';
-    }
+      status.textContent = doneToday ? `✅ Đã điểm danh hôm nay · Tuần này ${completed}/7 ngày.` : `🎀 Hôm nay chưa điểm danh · Tuần này ${completed}/7 ngày đã hoàn thành.`;
+      const label=document.getElementById('checkinRewardLabel'); if(label) label.textContent=`${formatMoney(rewardToday)} vào Ví`;
+      btn.disabled = doneToday || rewardToday<=0;
+      btn.textContent = doneToday ? '✅ Đã điểm danh hôm nay' : `🎁 Điểm danh nhận ${formatMoney(rewardToday)}`;
+      btn.classList.toggle('opacity-50',btn.disabled);
+    } catch (e) { status.textContent = 'Không kiểm tra được trạng thái điểm danh. Vui lòng thử lại.'; }
   },
   async claimDailyCheckin() {
-    const u = state.currentUser; if (!u || u.role !== 'customer') { this.openAuthModal(); return; }
-    const dateKey = vietnamDateKey();
-    const [cy,cm,cd] = dateKey.split('-').map(Number);
-    const weekdayIndex = (new Date(Date.UTC(cy,cm-1,cd)).getUTCDay() + 6) % 7;
-    const rewardVnd = Math.max(0, Math.round(Number(state.checkinPointsByDay?.[weekdayIndex] ?? state.checkinPoints) || 0));
-    if (!rewardVnd) { showToast('Hôm nay hiện chưa có thưởng điểm danh.', 'info'); return; }
-    try {
-      const result = await runTransaction(ref(db, `customers/${u.id}`), current => {
-        current = current || {};
-        current.dailyCheckins = current.dailyCheckins || {};
-        if (current.dailyCheckins[dateKey]) return;
-        current.dailyCheckins[dateKey] = { at: Date.now(), amountVnd: rewardVnd };
-        return current;
+    const u=state.currentUser;
+    if(!u||u.role!=='customer'){this.openAuthModal();return}
+    const dateKey=vietnamDateKey();
+    const [yy,mm,dd]=dateKey.split('-').map(Number);
+    const todayUtc=new Date(Date.UTC(yy,mm-1,dd));
+    const slot=(todayUtc.getUTCDay()+6)%7+1;
+    const mondayUtc=new Date(todayUtc.getTime()-(slot-1)*86400000);
+    const week=`${mondayUtc.getUTCFullYear()}-${String(mondayUtc.getUTCMonth()+1).padStart(2,'0')}-${String(mondayUtc.getUTCDate()).padStart(2,'0')}`;
+    const rewardVnd=Math.max(0,Math.round(Number(state.checkinPointsByDay?.[slot-1]??state.checkinPoints)||0));
+    if(!rewardVnd){showToast('Hôm nay hiện chưa có thưởng điểm danh.','info');return}
+    const checkinRef=ref(db,`meowDailyCheckin/${encodeURIComponent(u.id)}`);
+    let previous=null,claimed=false;
+    try{
+      const claim=await runTransaction(checkinRef,current=>{
+        const old=current&&typeof current==='object'?current:{week,lastDate:'',days:{}};
+        previous=old;
+        if(old.lastDate===dateKey)return;
+        const next=old.week===week?{...old,days:{...(old.days||{})}}:{week,lastDate:'',days:{}};
+        next.week=week;next.lastDate=dateKey;next.days[slot]=dateKey;
+        return next;
       });
-      if (!result.committed) {
-        showToast('Bạn đã điểm danh hôm nay rồi nhé!', 'info');
-        await this.renderDailyCheckinStatus();
-        return;
-      }
-      let balanceAfter = 0;
-      await runTransaction(ref(db, `meowWallet/${u.id}`), w => {
-        w = w || { balance: 0, totalIn: 0, totalOut: 0 };
-        w.balance = (Number(w.balance) || 0) + rewardVnd;
-        w.totalIn = (Number(w.totalIn) || 0) + rewardVnd;
-        balanceAfter = w.balance;
+      if(!claim.committed){showToast('Bạn đã điểm danh hôm nay rồi nhé!','info');await this.renderDailyCheckinStatus();return}
+      claimed=true;
+      const walletResult=await runTransaction(ref(db,`meowWallet/${u.id}`),w=>{
+        w=w||{balance:0,totalIn:0,totalOut:0};
+        w.balance=(Number(w.balance)||0)+rewardVnd;
+        w.totalIn=(Number(w.totalIn)||0)+rewardVnd;
         return w;
       });
-      await push(ref(db, 'meowWalletTransactions'), { customerId: u.id, name: state.customers[u.id]?.name || u.name || u.id, type: 'deposit', source: 'daily_checkin', amount: rewardVnd, points: 0, balanceAfter, note: `Điểm danh ngày ${dateKey} (+${formatMoney(rewardVnd)} vào Ví, không cộng điểm tích lũy)`, createdAt: Date.now() });
-      showToast(`🎉 Điểm danh thành công! Bạn nhận ${formatMoney(rewardVnd)} vào Ví. Không cộng điểm tích lũy.`, 'gold');
-      state.todayCheckin = true;
+      if(!walletResult.committed)throw new Error('Ví chưa cập nhật được.');
+      const balanceAfter=Number(walletResult.snapshot.val()?.balance)||0;
+      await push(ref(db,'meowWalletTransactions'),{customerId:String(u.id),name:state.customers[u.id]?.name||u.name||u.id,type:'deposit',source:'daily_checkin',amount:rewardVnd,points:0,balanceAfter,note:`Điểm danh ngày ${dateKey} (+${formatMoney(rewardVnd)} vào Ví, không cộng điểm tích lũy)`,createdAt:Date.now()});
+      claimed=false;
+      showToast(`🎉 Điểm danh thành công! Bạn nhận ${formatMoney(rewardVnd)} vào Ví. Dữ liệu đã đồng bộ với Index 24.`,'gold');
+      state.todayCheckin=true;
       await this.renderDailyCheckinStatus();
       this.renderWalletView();
-    } catch (e) { showToast('Điểm danh chưa thành công: ' + e.message, 'error'); }
+    }catch(e){
+      if(claimed){try{await runTransaction(checkinRef,current=>current?.lastDate===dateKey?(previous||null):current)}catch(rollbackError){console.error('Không hoàn tác được lượt điểm danh',rollbackError)}}
+      showToast('Điểm danh chưa thành công: '+e.message,'error');
+    }
   },
   async saveCheckinPoints() {
     if (state.currentUser?.role !== 'admin') return;
@@ -4417,7 +4892,10 @@ const app = {
     if (values.some(v => !Number.isFinite(v) || v < 0 || v > 100000)) { showToast('Mỗi ngày phải từ 0 đến 100.000đ.', 'error'); return; }
     try {
       const clean = values.map(v => Number(v.toFixed(4)));
-      await set(ref(db, 'settings/checkinPointsByDay'), clean);
+      await Promise.all([
+        set(ref(db, 'settings/checkinPointsByDay'), clean),
+        set(ref(db, 'miniMeowAdminConfig/checkinRewards'), Object.fromEntries(clean.map((value,i)=>[i+1,value])))
+      ]);
       state.checkinPointsByDay = clean;
       showToast('Đã lưu tiền thưởng riêng cho cả 7 ngày!', 'success');
     } catch (e) { showToast('Không lưu được cài đặt: ' + e.message, 'error'); }
@@ -4428,7 +4906,9 @@ const app = {
     if (val === null) return;
     const bonus = Number(val); if (!Number.isFinite(bonus) || bonus < 0 || bonus > 1000000) { showToast('Số điểm thưởng không hợp lệ.', 'error'); return; }
     try {
-      await runTransaction(ref(db, `customers/${cid}`), current => { current = current || {}; current.isVip = true; current.vipGrantedAt = Date.now(); current.vipGrantedBy = state.currentUser.id; current.points = Number(((Number(current.points) || 0) + bonus).toFixed(4)); return current; });
+      const grantedAt = Date.now();
+      await runTransaction(ref(db, `customers/${cid}`), current => { current = current || {}; current.isVip = true; current.vipGrantedAt = grantedAt; current.vipGrantedBy = state.currentUser.id; current.points = Number(((Number(current.points) || 0) + bonus).toFixed(4)); return current; });
+      if (bonus > 0) await set(ref(db, `meowVipPointGrants/${cid}/manual_${grantedAt}`), { active:true, amount:bonus*100000, type:'manual_admin', createdAt:grantedAt, grantedBy:state.currentUser.id });
       showToast(`Đã cấp VIP cho ${cid}${bonus ? ` và cộng ${bonus} điểm` : ''}.`, 'success');
     } catch (e) { showToast('Không cấp được VIP: ' + e.message, 'error'); }
   },
@@ -4465,6 +4945,7 @@ const app = {
 
     try {
       await update(ref(db, `customers/${u.id}`), { points: remainPts });
+      await runTransaction(ref(db, `meowWallet/${u.id}/pointsRedeemedV2`), current => (Number(current)||0) + ptsToUse);
       let balanceAfter = 0;
       await runTransaction(ref(db, `meowWallet/${u.id}`), (w) => {
         w = w || { balance: 0, totalIn: 0, totalOut: 0 };
@@ -4508,11 +4989,12 @@ const app = {
     const titleNode = document.getElementById('myProfileTitleBadge'); if (titleNode) titleNode.outerHTML = meowTitleHtml(u.id).replace('<span ', '<span id="myProfileTitleBadge" ');
     const myTotalReads=Object.values(state.stories||{}).filter(st=>st?.info?.publisherId===u.id).reduce((sum,st)=>sum+countStoryViews(st),0);
     document.getElementById('myProfileBio').textContent = cust.bio || 'Chưa có lời giới thiệu bản thân.';
+    const profilePointsNode=document.getElementById('myProfilePoints'); if(profilePointsNode) profilePointsNode.textContent='✦ Điểm tích lũy: '+formatNum(getCustomerPoints(u.id))+' điểm · Đồng bộ Index 24';
     let readStat=document.getElementById('myProfileTotalReads');
     if(!readStat){readStat=document.createElement('div');readStat.id='myProfileTotalReads';readStat.className='text-xs text-sky-300 mt-2';document.getElementById('myProfileBio').after(readStat);}
     readStat.textContent='👁️ '+formatNum(Object.values(state.stories||{}).filter(st=>st?.info?.publisherId===u.id).reduce((sum,st)=>sum+countStoryViews(st),0))+' lượt đọc chương';
 
-    const ava = cust.avatar || `https://placehold.co/150x150/1e1b2e/f472b6?text=${encodeURIComponent((cust.name || 'M').charAt(0))}`;
+    const ava = cust.profileAvatar || cust.avatar || `https://placehold.co/150x150/1e1b2e/f472b6?text=${encodeURIComponent((cust.name || 'M').charAt(0))}`;
     document.getElementById('myProfileAvatarImg').src = ava;
     const profileAva = document.getElementById('myProfileAvatarImg'); profileAva.className = 'meow-avatar-photo w-24 h-24 rounded-full object-cover border-4 border-[#130f21] shadow-xl bg-[#130f21]';
     let frame = profileAva.parentElement; if (!frame.classList.contains('meow-avatar-frame')) { const wrap=document.createElement('span'); wrap.className='meow-avatar-frame w-24 h-24'; profileAva.replaceWith(wrap); wrap.appendChild(profileAva); frame=wrap; }
@@ -4527,13 +5009,14 @@ const app = {
     }
 
     document.getElementById('editProfileNameInput').value = cust.name || u.name;
-    document.getElementById('editProfileAvatarInput').value = cust.avatar || '';
+    document.getElementById('editProfileAvatarInput').value = cust.profileAvatar || cust.avatar || '';
     document.getElementById('editProfileCoverInput').value = cust.cover || '';
     document.getElementById('editProfileBioInput').value = cust.bio || '';
     document.getElementById('editHideProfile').checked = !!cust.hideProfile;
     document.getElementById('editHideAvatar').checked = !!cust.hideAvatar;
 
-    this.switchProfileTab(state.profileTab || 'purchased');
+    const savedProfileTab = ['purchased', 'books', 'saved', 'published'].includes(state.profileTab) ? state.profileTab : 'purchased';
+    this.switchProfileTab(savedProfileTab);
   },
 
   toggleEditProfileBox() {
@@ -4562,12 +5045,18 @@ const app = {
     const hideProfile = document.getElementById('editHideProfile').checked;
     const hideAvatar = document.getElementById('editHideAvatar').checked;
 
-    await update(ref(db, `customers/${u.id}`), { name, avatar: avatar || state.customers[u.id]?.avatar || '', cover: cover || state.customers[u.id]?.cover || '', bio, hideProfile, hideAvatar });
+    const finalAvatar = avatar || state.customers[u.id]?.profileAvatar || state.customers[u.id]?.avatar || '';
+    await update(ref(db, `customers/${u.id}`), { name, avatar: finalAvatar, profileAvatar: finalAvatar, cover: cover || state.customers[u.id]?.cover || '', bio, hideProfile, hideAvatar });
     this.toggleEditProfileBox();
     showToast('💾 Đã cập nhật hồ sơ cá nhân!', 'success');
   },
 
   switchProfileTab(tab) {
+    // Ví là một trang riêng. Không lưu 'wallet' vào profileTab để khi quay lại
+    // trang cá nhân, hàm renderProfileView không tự điều hướng ngược sang Ví.
+    if (tab === 'wallet') { this.navigate('wallet'); return; }
+    const allowedTabs = ['purchased', 'books', 'saved', 'published'];
+    if (!allowedTabs.includes(tab)) tab = 'purchased';
     state.profileTab = tab;
     ['purchased', 'books', 'saved', 'published', 'wallet'].forEach(t => {
       const btn = document.getElementById('pTab-' + t);
@@ -4579,8 +5068,6 @@ const app = {
     const box = document.getElementById('profileTabContent');
     const u = state.currentUser;
     if (!u) return;
-    if (tab === 'wallet') { this.navigate('wallet'); return; }
-
     if (tab === 'purchased') {
       const list = Object.values(state.purchases[u.id] || {}).filter(p => !p.isFullBook).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
       if (!list.length) {
@@ -4602,24 +5089,11 @@ const app = {
       if (!list.length) { box.innerHTML = `<p class="text-sm opacity-60">Bạn chưa mua full bộ truyện nào.</p>`; return; }
       box.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">` + list.map(p => `<div onclick="app.openStoryDetail('${esc(p.storyId)}')" class="p-4 rounded-xl bg-white/5 border border-pink-400/25 hover:border-pink-400/60 cursor-pointer"><div class="font-bold text-pink-300">📚 ${esc(p.storyTitle||p.storyId)}</div><div class="text-xs opacity-75 mt-1">${esc(p.chapterTitle||'Trọn bộ')}</div><div class="flex justify-between text-[11px] opacity-65 mt-2"><span>${formatMoney(p.price||0)}</span><span>${p.createdAt?new Date(p.createdAt).toLocaleDateString('vi-VN'):''}</span></div></div>`).join('') + `</div>`;
     } else if (tab === 'saved') {
-      const bms = Object.keys(state.customers[u.id]?.bookmarks || {});
-      if (!bms.length) {
-        box.innerHTML = `<p class="text-sm opacity-60">Tủ sách lưu trữ đang trống.</p>`;
-        return;
-      }
-      box.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">` + bms.map(sid => {
-        const s = state.stories[sid];
-        if (!s) return '';
-        return `
-          <div onclick="app.openStoryDetail('${esc(sid)}')" class="p-3 rounded-xl bg-white/5 border border-white/10 hover:border-sky-400 cursor-pointer flex items-center gap-3">
-            <img loading="lazy" decoding="async" src="${esc(s.info?.cover || 'https://placehold.co/80x110/1a1333/f472b6?text=M')}" class="w-12 h-16 rounded-lg object-cover">
-            <div class="min-w-0">
-              <div class="font-bold text-sm truncate">${esc(s.info?.name || sid)}</div>
-              <div class="text-[11px] opacity-70 mt-1">${Object.keys(s.chapters || {}).length} chương</div>
-            </div>
-          </div>
-        `;
-      }).join('') + `</div>`;
+      const localSaved = Object.keys(state.customers[u.id]?.bookmarks || {});
+      const savedAt = {};
+      localSaved.forEach(sid => savedAt[sid] = Number(state.customers[u.id]?.bookmarks?.[sid]) || 0);
+      box.innerHTML = `<div class="gothic-saved-heading"><span>✦</span><div><b>THƯ VIỆN ĐÃ LƯU</b><small>Những câu chuyện được cất giữ qua các cánh cổng</small></div><span>✦</span></div><div id="gothicSavedBooks" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">${localSaved.map(sid => { const s=state.stories[sid]; if(!s)return ''; return `<div onclick="app.openStoryDetail('${esc(sid)}')" class="gothic-saved-book"><img loading="lazy" decoding="async" src="${esc(s.info?.cover || 'https://placehold.co/80x110/1a1333/f472b6?text=M')}" alt=""><div><b>${esc(s.info?.name || sid)}</b><small>${Object.keys(s.chapters || {}).length} chương · ${esc(s.info?.author || 'Tác giả ẩn danh')}</small><em>✧ Mở sách</em></div></div>`; }).join('') || `<p class="text-xs opacity-60 col-span-full py-3">Tủ sách lưu trữ đang trống.</p>`}</div><section id="gothicReadingNow" class="gothic-reading-now"></section>`;
+      this.renderSharedProfileShelf(u.id);
     } else if (tab === 'published') {
       const myStories = Object.entries(state.stories).filter(([, s]) => s?.info?.publisherId === u.id);
       if (!myStories.length) {
@@ -4638,11 +5112,71 @@ const app = {
     }
   },
 
+  renderSharedProfileShelf(customerId) {
+    try { (window.__mieuSharedShelfUnsubs || []).forEach(fn=>{try{fn()}catch(_){}}); } catch(_) {}
+    window.__mieuSharedShelfUnsubs = [];
+    const render = (follows, history) => {
+      if (String(state.currentUser?.id||'') !== String(customerId) || state.profileTab !== 'saved') return;
+      const ids = new Set([...Object.keys(state.customers?.[customerId]?.bookmarks || {}), ...Object.keys(follows || {})]);
+      const savedHost = document.getElementById('gothicSavedBooks');
+      if (savedHost) savedHost.innerHTML = [...ids].map(sid => {
+        const story=state.stories?.[sid]; if(!story)return '';
+        return `<div onclick="app.openStoryDetail('${esc(sid)}')" class="gothic-saved-book"><img loading="lazy" decoding="async" src="${esc(story.info?.cover||'https://placehold.co/80x110/1a1333/f472b6?text=M')}" alt=""><div><b>${esc(story.info?.name||sid)}</b><small>${Object.keys(story.chapters||{}).length} chương · ${esc(story.info?.author||'Tác giả ẩn danh')}</small><em>✧ Mở sách</em></div></div>`;
+      }).join('') || `<p class="text-xs opacity-60 col-span-full py-3">Tủ sách lưu trữ đang trống.</p>`;
+      const readingHost=document.getElementById('gothicReadingNow');
+      if(readingHost){
+        const reads=Object.entries(history||{}).filter(([sid,item])=>item&&item.chapterId&&state.stories?.[sid]?.chapters?.[item.chapterId]).sort((a,b)=>Number(b[1].readAt||0)-Number(a[1].readAt||0)).slice(0,6);
+        readingHost.innerHTML=`<div class="gothic-saved-heading"><span>⌛</span><div><b>CHƯƠNG ĐANG ĐỌC</b><small>Tiếp tục hành trình từ nơi đã dừng lại</small></div><span>⌛</span></div>${reads.length?`<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${reads.map(([sid,item])=>{const st=state.stories[sid];return `<button type="button" class="gothic-reading-entry" onclick="app.openChapterReader('${esc(sid)}','${esc(item.chapterId)}')"><img loading="lazy" src="${esc(st.info?.cover||'https://placehold.co/70x90/1a1333/f472b6?text=M')}" alt=""><span><b>${esc(st.info?.name||sid)}</b><small>Chương ${esc(item.chapterId)}${item.readAt?' · '+new Date(item.readAt).toLocaleDateString('vi-VN'):''}</small><em>Đọc tiếp ↗</em></span></button>`}).join('')}</div>`:`<p class="text-xs opacity-60 py-2">Chưa có lịch sử đọc được đồng bộ.</p>`}`;
+      }
+    };
+    const followsPath=`meowFollows/${encodeURIComponent(customerId)}`;
+    const historyPath=`meowReadingHistory/${encodeURIComponent(customerId)}`;
+    let follows={}, history={};
+    const paint=()=>render(follows,history);
+    window.__mieuSharedShelfUnsubs.push(onValue(ref(db,followsPath),snap=>{follows=snap.val()||{};paint()},err=>console.warn('Không thể nghe tủ sách Index:',err)));
+    window.__mieuSharedShelfUnsubs.push(onValue(ref(db,historyPath),snap=>{history=snap.val()||{};paint()},err=>console.warn('Không thể nghe lịch sử đọc Index:',err)));
+  },
+
+  async renderRecentProfileComments(customerId) {
+    const host = document.querySelector('#gothicRecentComments .gothic-recent-comments-list');
+    if (!host) return;
+    try {
+      const [storySnap, communitySnap] = await Promise.all([get(ref(db,'meowStoryComments')), get(ref(db,'readerCommunity'))]);
+      const rows = [];
+      const stories = storySnap.val() || {};
+      Object.entries(stories).forEach(([sid, comments]) => Object.entries(comments || {}).forEach(([key,c]) => {
+        if (!c || typeof c !== 'object' || c.deleted) return;
+        rows.push({sid, cid:'', key, name:c.name||'Độc giả', avatar:c.avatar||'', text:c.text||'', at:Number(c.createdAt||c.at||0), kind:'Truyện'});
+        Object.entries(c.replies||{}).forEach(([rk,r])=>{ if(r&&typeof r==='object'&&!r.deleted) rows.push({sid,cid:'',key:rk,name:r.name||'Độc giả',avatar:r.avatar||'',text:r.text||'',at:Number(r.createdAt||r.at||0),kind:'Trả lời'}); });
+      }));
+      const community = communitySnap.val() || {};
+      Object.entries(community).forEach(([safeSid, chapters]) => Object.entries(chapters||{}).forEach(([safeCid, threads]) => Object.entries(threads?.threads||{}).forEach(([thread, comments]) => Object.entries(comments||{}).forEach(([key,c])=>{
+        if(!c||typeof c!=='object'||c.deleted)return;
+        let sid=safeSid,cid=safeCid; try{sid=decodeURIComponent(safeSid);cid=decodeURIComponent(safeCid)}catch(_){}
+        rows.push({sid,cid,key,name:c.name||'Độc giả',avatar:c.avatar||'',text:c.text||'',at:Number(c.at||c.createdAt||0),kind:thread==='chapter'?'Chương':'Đoạn'});
+      }))));
+      rows.sort((a,b)=>b.at-a.at);
+      const latest = rows.slice(0,8);
+      const current = document.querySelector('#gothicRecentComments .gothic-recent-comments-list');
+      if (!current || String(state.currentUser?.id||'')!==String(customerId)) return;
+      current.innerHTML = latest.length ? latest.map(r=>`<button type="button" class="gothic-comment-entry" data-gothic-comment-story="${esc(r.sid)}" data-gothic-comment-chapter="${esc(r.cid)}"><span class="gothic-comment-avatar">${r.avatar?`<img loading="lazy" src="${esc(r.avatar)}" alt="">`:'☾'}</span><span class="gothic-comment-copy"><b>${esc(r.name)} <i>· ${esc(r.kind)}</i></b><span>${esc(r.text).slice(0,180)}</span><small>${esc(state.stories[r.sid]?.info?.name||r.sid)}${r.cid?' · Chương '+esc(r.cid):''} · ${r.at?new Date(r.at).toLocaleString('vi-VN'):'Vừa gửi'}</small></span><span class="gothic-comment-arrow">↗</span></button>`).join('') : `<p class="text-xs opacity-60 py-3">Chưa có lời bình nào trong thư viện.</p>`;
+      current.querySelectorAll('[data-gothic-comment-story]').forEach(btn=>btn.addEventListener('click',()=>{const sid=btn.dataset.gothicCommentStory,cid=btn.dataset.gothicCommentChapter;if(cid&&state.stories[sid]?.chapters?.[cid])app.openChapterReader(sid,cid);else app.openStoryDetail(sid)}));
+    } catch (err) { host.innerHTML = `<p class="text-xs opacity-60 py-3">Chưa tải được bình luận gần đây. Kiểm tra quyền đọc Firebase của meowStoryComments và readerCommunity.</p>`; console.warn('Recent profile comments:',err); }
+  },
+
   // Trang cá nhân công khai là một trang riêng, không phải popup; không lộ ID/Gmail.
-  openPublicProfile(targetId) {
-    const user = targetId === 'admin_meow'
-      ? { name: 'Quản trị viên Miêu Các', avatar: 'https://placehold.co/150x150/fbbf24/130f21?text=Meow', bio: 'Chủ nhân Miêu Các.' }
-      : (state.customers[targetId] || {});
+  async openPublicProfile(targetId) {
+    let user;
+    if (targetId === 'admin_meow') {
+      try {
+        const adminSnap = await get(ref(db, 'siteSettings/adminProfile'));
+        if (adminSnap.exists()) this.adminProfileCache = adminSnap.val() || {};
+      } catch (e) { console.warn('Không tải được hồ sơ admin:', e); }
+      const ap = this.adminProfileCache || {};
+      user = { ...ap, name: ap.name || 'Quản trị viên Miêu Các', avatar: ap.avatar || '', bio: ap.bio || 'Chủ nhân Miêu Các.', title: ap.title || 'Quản trị viên tối cao', canPublish: true };
+    } else {
+      user = state.customers[targetId] || {};
+    }
     if (user.hideProfile && state.currentUser?.id !== targetId && state.currentUser?.role !== 'admin') {
       showToast('Thành viên này đã ẩn trang cá nhân.', 'info'); return;
     }
@@ -4651,12 +5185,12 @@ const app = {
     const published = Object.entries(state.stories).filter(([, st]) =>
       targetId === 'admin_meow' ? (!st?.info?.publisherId || st.info.publisherId === targetId) : st?.info?.publisherId === targetId
     );
-    const ava = user.hideAvatar ? 'https://placehold.co/150x150/55445f/ffffff?text=🐾' : (user.avatar || `https://placehold.co/150x150/ec4899/ffffff?text=${encodeURIComponent((user.name || 'M').charAt(0))}`);
+    const ava = user.hideAvatar ? 'https://placehold.co/150x150/55445f/ffffff?text=🐾' : (user.avatar || `https://placehold.co/150x150/39224d/f5d8ff?text=${encodeURIComponent((user.name || 'M').charAt(0))}`);
     document.getElementById('publicProfilePageBody').innerHTML = `
       <div class="gothic-card overflow-hidden">
         <div class="h-40 sm:h-52 bg-gradient-to-r from-pink-600/30 via-purple-700/30 to-sky-600/30">${user.cover ? `<img loading="lazy" decoding="async" src="${esc(user.cover)}" class="w-full h-full object-cover">` : ''}</div>
         <div class="p-5 sm:p-7">
-          <div class="flex items-end gap-4 -mt-14 relative">${memberAvatarHtml(targetId,ava,'w-24 h-24')}<div class="pb-2"><h2 class="text-2xl font-bold pink-blue-text">${esc(user.name || 'Thành viên Miêu Các')}</h2><p class="text-xs opacity-70">${user.canPublish ? '✍️ Tác giả' : '🐾 Thành viên Miêu Các'}</p>${meowTitleHtml(targetId)}</div></div>
+          <div class="flex items-end gap-4 -mt-14 relative">${memberAvatarHtml(targetId,ava,'w-24 h-24')}<div class="pb-2"><h2 class="text-2xl font-bold pink-blue-text">${esc(user.name || 'Thành viên Miêu Các')}</h2><p class="text-xs opacity-70">${user.canPublish ? '✍️ Tác giả' : '🐾 Thành viên Miêu Các'}</p>${targetId === 'admin_meow' ? `<span class="inline-flex mt-1 px-2 py-1 rounded-full text-[10px] font-bold text-pink-200 bg-pink-500/15 border border-pink-300/30">${esc(user.title || 'Quản trị viên tối cao')}</span>` : meowTitleHtml(targetId)}</div></div>
           <p class="mt-2 text-xs text-sky-300">👁️ ${formatNum(published.reduce((sum,[,st])=>sum+countStoryViews(st),0))} lượt đọc tất cả chương</p>
           <p class="mt-4 text-sm italic border-l-2 border-pink-400 pl-3">${esc(user.bio || 'Thành viên của Miêu Các.')}</p>
           <div class="mt-5 flex flex-wrap gap-2">${targetId === state.currentUser?.id && state.currentUser?.role === 'customer' ? `<button onclick="app.navigate('profile');app.toggleEditProfileBox()" class="px-4 py-2 rounded-xl pink-blue-gradient text-white text-xs font-bold">✏️ Chỉnh sửa hồ sơ & giới thiệu</button><button onclick="app.navigate('wallet')" class="px-4 py-2 rounded-xl border border-pink-400/40 text-xs font-bold">💎 Ví</button>` : ''}${targetId !== state.currentUser?.id && state.currentUser?.role === 'customer' ? `<button onclick="app.openMessengerFor('${esc(targetId)}','${esc(user.name || 'Thành viên')}')" class="px-4 py-2 rounded-xl pink-blue-gradient text-white text-xs font-bold">💬 Nhắn tin</button>` : ''}</div>
@@ -4709,6 +5243,16 @@ const app = {
         return w;
       });
       await push(ref(db, 'meowWalletTransactions'), { customerId: targetId, name: targetName, type: 'deposit', source: 'donation_received', amount, balanceAfter: recipientBalanceAfter, note: `Nhận Donate từ ${state.customers[u.id]?.name || u.name || u.id}${note ? ': ' + note : ''}`, createdAt: Date.now() });
+    }
+
+    if (targetId === 'admin_meow') {
+      await push(ref(db, 'siteSettings/adminDonations'), {
+        fromId: u.id,
+        fromName: state.customers[u.id]?.name || u.name || 'Thành viên',
+        amount,
+        note,
+        createdAt: Date.now()
+      });
     }
 
     await push(ref(db, 'meowDonations'), {
@@ -5096,7 +5640,8 @@ const app = {
       const session = { ...state.currentUser, name: profile.name + ' (Admin)' };
       this.setSession(session);
       document.getElementById('adminProfileModal')?.classList.add('hidden');
-      this.refreshAdminIdentity();
+      await this.refreshAdminIdentity();
+      if (state.publicProfileId === 'admin_meow') this.openPublicProfile('admin_meow');
       showToast('Đã lưu hồ sơ quản trị Miêu Các!', 'success');
     } catch(e) { showToast('Không lưu được hồ sơ: '+e.message, 'error'); }
   },
@@ -5434,14 +5979,30 @@ const app = {
     document.getElementById('chapterIndexList').innerHTML=arr.map(([id,ch])=>{const vip=ch.vip===true||ch.vip===1||ch.vip==='true';const price=Number(ch.price)||0,points=Number(ch.points)||0;const paid=price>0||points>0;const badges=paid?`${(vip||price>0)?'<span class="chapter-status-badge chapter-vip">👑 VIP</span>':''}${price>0?`<span class="chapter-status-badge chapter-price">${formatMoney(price)}</span>`:''}${points>0?`<span class="chapter-status-badge chapter-points">⭐ ${points} điểm</span>`:''}`:'<span class="chapter-status-badge chapter-free">Miễn phí</span>';return `<button onclick="app.closeChapterIndex();app.handleChapterClick('${esc(sid)}','${esc(id)}')" class="chapter-index-item w-full text-left p-3 rounded-xl bg-white/5 border border-white/10 hover:border-pink-400/50"><div class="chapter-index-title">Chương ${esc(id)}: ${esc(ch.title||'')}</div><div class="chapter-index-badges">${badges}</div><span class="chapter-index-meta">${formatNum(ch.wordCount||0)} chữ · 👁 ${formatNum(ch.views||0)}</span></button>`}).join('')||'<p class="opacity-60 text-xs">Không có chương phù hợp.</p>';
   },
 
-  async renderComments(type, storyId, chapterId, targetId) {
+  async renderComments(type, storyId, chapterId, targetId, liveSharedData = undefined) {
     const box=document.getElementById(targetId); if(!box)return;
-    const path=type==='story'?`meowComments/stories/${storyId}`:`meowComments/chapters/${storyId}_${chapterId}`;
-    const snap=await get(ref(db,path)); const data=snap.val()||{};
+    const sharedPath=meowSharedCommentPath(type,storyId,chapterId);
+    const legacyPath=meowLegacyCommentPath(type,storyId,chapterId);
+    let sharedData=liveSharedData, legacyData={};
+    try{
+      const legacySnap=await get(ref(db,legacyPath));legacyData=legacySnap.val()||{};
+      if(liveSharedData===undefined){const sharedSnap=await get(ref(db,sharedPath));sharedData=sharedSnap.val()||{};}
+    }catch(error){console.warn('Không tải được bình luận dùng chung:',error);sharedData=sharedData||{};}
+    const normalizeComment=c=>({...c,userId:c?.userId||c?.customerId||c?.uid||'',userName:c?.userName||c?.name||'Độc giả',at:c?.at||c?.createdAt||Date.now(),replies:Object.fromEntries(Object.entries(c?.replies||{}).map(([rid,r])=>[rid,{...r,userId:r?.userId||r?.customerId||r?.uid||'',userName:r?.userName||r?.name||'Độc giả'}]))});
+    const data={};
+    Object.entries(legacyData).forEach(([id,c])=>data['legacy_'+id]=normalizeComment(c));
+    Object.entries(sharedData||{}).forEach(([id,c])=>data[id]=normalizeComment(c));
     const u=state.currentUser;
     box.innerHTML=`<h3 class="font-bold pink-blue-text mb-3">${type==='story'?'💬 Bình luận truyện':'💬 Bình luận chương'} (${Object.keys(data).length})</h3>
       ${u?.role==='customer'?`<div class="space-y-2 mb-4"><textarea id="${targetId}Input" rows="3" placeholder="Chia sẻ cảm nghĩ..." class="w-full p-3 rounded-xl bg-black/20 border border-pink-400/30 text-xs"></textarea><div class="flex flex-wrap gap-2 items-center"><input id="${targetId}Image" type="file" accept="image/*" class="text-[10px] max-w-[180px]"><input id="${targetId}Link" placeholder="Dán link (nếu có)" class="flex-1 min-w-[130px] p-2 rounded-lg bg-black/20 border border-pink-400/30 text-xs"><button onclick="app.submitComment('${type}','${esc(storyId)}','${esc(chapterId||'')}','${targetId}')" class="px-4 py-2 rounded-lg pink-blue-gradient text-white text-xs font-bold">Gửi bình luận</button></div></div>`:'<p class="text-xs opacity-60 mb-3">Đăng nhập để bình luận.</p>'}
-      <div class="space-y-3">${Object.entries(data).sort((a,b)=>(b[1].at||0)-(a[1].at||0)).map(([id,c])=>`<div class="p-3 rounded-xl bg-white/5 border border-white/10"><div class="flex items-center gap-2">${memberAvatarHtml(c.userId, state.customers[c.userId]?.hideAvatar?'https://placehold.co/40x40/55445f/ffffff?text=%E2%80%A2':(c.avatar||'https://placehold.co/40x40'),'w-8 h-8')}<div class="min-w-0"><button onclick="app.openPublicProfile('${esc(c.userId)}')" class="font-bold text-xs">${esc(c.userName||'Độc giả')}</button> ${meowTitleHtml(c.userId)}</div><span class="ml-auto opacity-40 text-[10px]">${new Date(c.at||Date.now()).toLocaleString('vi-VN')}</span></div><p class="text-xs mt-2 whitespace-pre-wrap">${esc(c.text||'')}</p>${c.image?`<img loading="lazy" decoding="async" src="${esc(c.image)}" onclick="app.zoomImage(this.src)" class="mt-2 max-h-48 rounded-lg cursor-zoom-in">`:''}${c.link?`<a href="${esc(c.link)}" target="_blank" rel="noopener" class="block mt-2 text-sky-400 underline break-all text-xs">${esc(c.link)}</a>`:''}<div class="flex flex-wrap gap-3 mt-3 text-[11px]"><button onclick="app.likeComment('${type}','${esc(storyId)}','${esc(chapterId||'')}','${esc(id)}')" class="text-pink-400">💗 ${Object.keys(c.likes||{}).length} Thích</button>${u?.role==='customer'?`<button onclick="app.replyComment('${type}','${esc(storyId)}','${esc(chapterId||'')}','${esc(id)}','${targetId}')" class="text-sky-400">↩ Trả lời</button>`:''}${(u?.role==='admin'||u?.id===c.userId)?`<button onclick="app.deleteComment('${type}','${esc(storyId)}','${esc(chapterId||'')}','${esc(id)}','${targetId}')" class="text-rose-400">🗑 Xóa bình luận</button>`:''}</div><div class="ml-4 mt-2 space-y-2">${Object.entries(c.replies||{}).map(([rid,r])=>`<div class="p-2 rounded-lg bg-black/10 text-[11px] flex items-start gap-2"><div class="min-w-0 flex-1"><b>${esc(r.userName||'Độc giả')}</b> ${meowTitleHtml(r.userId)} ${esc(r.text||'')}</div>${(u?.role==='admin'||u?.id===r.userId)?`<button onclick="app.deleteCommentReply('${type}','${esc(storyId)}','${esc(chapterId||'')}','${esc(id)}','${esc(rid)}','${targetId}')" class="text-rose-400 shrink-0">Xóa</button>`:''}</div>`).join('')}</div></div>`).join('')||'<p class="text-xs opacity-50">Chưa có bình luận. Hãy là người đầu tiên!</p>'}</div>`;
+      <div class="space-y-3">${Object.entries(data).sort((a,b)=>(b[1].at||0)-(a[1].at||0)).map(([id,c])=>`<div class="p-3 rounded-xl bg-white/5 border border-white/10"><div class="flex items-center gap-2">${memberAvatarHtml(c.userId, state.customers[c.userId]?.hideAvatar?'https://placehold.co/40x40/55445f/ffffff?text=%E2%80%A2':(c.avatar||'https://placehold.co/40x40'),'w-8 h-8')}<div class="min-w-0"><button onclick="app.openPublicProfile('${esc(c.userId)}')" class="font-bold text-xs">${esc(c.userName||'Độc giả')}</button> ${meowTitleHtml(c.userId)}</div><span class="ml-auto opacity-40 text-[10px]">${new Date(c.at||Date.now()).toLocaleString('vi-VN')}</span></div>${c.replyTo&&data[c.replyTo]?`<div class="mt-2 text-[10px] opacity-65">↳ Trả lời ${esc(data[c.replyTo].userName||'Độc giả')}: ${esc(String(data[c.replyTo].text||'').slice(0,100))}</div>`:''}<p class="text-xs mt-2 whitespace-pre-wrap">${esc(c.text||'')}</p>${c.image?`<img loading="lazy" decoding="async" src="${esc(c.image)}" onclick="app.zoomImage(this.src)" class="mt-2 max-h-48 rounded-lg cursor-zoom-in">`:''}${c.link?`<a href="${esc(c.link)}" target="_blank" rel="noopener" class="block mt-2 text-sky-400 underline break-all text-xs">${esc(c.link)}</a>`:''}<div class="flex flex-wrap gap-3 mt-3 text-[11px]"><button onclick="app.likeComment('${type}','${esc(storyId)}','${esc(chapterId||'')}','${esc(id)}')" class="text-pink-400">💗 ${Object.keys(c.likes||{}).length} Thích</button>${u?.role==='customer'?`<button onclick="app.replyComment('${type}','${esc(storyId)}','${esc(chapterId||'')}','${esc(id)}','${targetId}')" class="text-sky-400">↩ Trả lời</button>`:''}${(u?.role==='admin'||u?.id===c.userId)?`<button onclick="app.deleteComment('${type}','${esc(storyId)}','${esc(chapterId||'')}','${esc(id)}','${targetId}')" class="text-rose-400">🗑 Xóa bình luận</button>`:''}</div><div class="ml-4 mt-2 space-y-2">${Object.entries(c.replies||{}).map(([rid,r])=>`<div class="p-2 rounded-lg bg-black/10 text-[11px] flex items-start gap-2"><div class="min-w-0 flex-1"><b>${esc(r.userName||'Độc giả')}</b> ${meowTitleHtml(r.userId)} ${esc(r.text||'')}</div>${(u?.role==='admin'||u?.id===r.userId)?`<button onclick="app.deleteCommentReply('${type}','${esc(storyId)}','${esc(chapterId||'')}','${esc(id)}','${esc(rid)}','${targetId}')" class="text-rose-400 shrink-0">Xóa</button>`:''}</div>`).join('')}</div></div>`).join('')||'<p class="text-xs opacity-50">Chưa có bình luận. Hãy là người đầu tiên!</p>'}</div>`;
+    if(liveSharedData===undefined){
+      window.__mieuCommentSubs=window.__mieuCommentSubs||{};
+      const oldStop=window.__mieuCommentSubs[targetId];if(oldStop){try{oldStop()}catch(e){}}
+      window.__mieuCommentSubs[targetId]=onValue(ref(db,sharedPath),snap=>{
+        if(box.isConnected && !document.getElementById(targetId)?.closest('.hidden')) app.renderComments(type,storyId,chapterId,targetId,snap.val()||{});
+      },error=>console.warn('Không thể nghe bình luận realtime:',error));
+    }
   },
   async submitComment(type,sid,cid,targetId) {
     const u=state.currentUser;if(!u||u.role!=='customer'){this.openAuthModal();return;}
@@ -5449,18 +6010,21 @@ const app = {
     if(!text&&!link&&!file){showToast('Nhập nội dung, link hoặc chọn ảnh trước nhé.','error');return;}
     if(link && !/^https?:\/\//i.test(link)){showToast('Link phải bắt đầu bằng http:// hoặc https://','error');return;}
     let image='';if(file){if(file.size>1500000){showToast('Ảnh bình luận tối đa 1.5MB nhé.','error');return;}image=await new Promise(resolve=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.readAsDataURL(file);});}
-    const path=type==='story'?`meowComments/stories/${sid}`:`meowComments/chapters/${sid}_${cid}`;
-    await push(ref(db,path),{userId:u.id,userName:state.customers[u.id]?.name||u.name,avatar:state.customers[u.id]?.avatar||'',text,link,image,at:Date.now(),likes:{},replies:{}});
+    const path=meowSharedCommentPath(type,sid,cid);
+    const displayName=state.customers[u.id]?.name||u.name||u.id, avatar=state.customers[u.id]?.avatar||'';
+    const createdAt=Date.now();
+    await push(ref(db,path),{userId:String(u.id),customerId:String(u.id),uid:String(u.id),userName:displayName,name:displayName,avatar,text,link,image,at:createdAt,createdAt,likes:{},replies:{}});
     await logActivity('comment',`đã bình luận: “${text.slice(0,90)||'đã gửi ảnh/link'}” · ${type==='story'?'truyện':'chương'} ${state.stories[sid]?.info?.name||sid}`,sid);
     this.renderComments(type,sid,cid,targetId);
   },
   async deleteCommentReply(type,sid,cid,commentId,replyId,targetId) {
     const u=state.currentUser; if(!u) return;
-    const base=type==='story'?`meowComments/stories/${sid}`:`meowComments/chapters/${sid}_${cid}`;
-    const node=ref(db,`${base}/${commentId}/replies/${replyId}`);
+    const base=meowCommentActionBase(type,sid,cid,commentId);
+    const realId=meowCommentRealId(commentId);
+    const node=ref(db,`${base}/${realId}/replies/${replyId}`);
     try {
       const snap=await get(node); if(!snap.exists()) return;
-      if(u.role!=='admin' && u.id!==snap.val()?.userId) { showToast('Bạn chỉ được xóa câu trả lời của mình.','error'); return; }
+      if(u.role!=='admin' && String(u.id)!==String(snap.val()?.userId||snap.val()?.customerId||snap.val()?.uid)) { showToast('Bạn chỉ được xóa câu trả lời của mình.','error'); return; }
       const ok=await openDialog({title:'🗑 Xóa câu trả lời',message:'Bạn muốn xóa câu trả lời này?',confirmText:'Xóa'});
       if(!ok) return;
       await remove(node); this.renderComments(type,sid,cid,targetId);
@@ -5468,12 +6032,13 @@ const app = {
   },
   async deleteComment(type,sid,cid,commentId,targetId) {
     const u=state.currentUser; if(!u) { this.openAuthModal(); return; }
-    const base=type==='story'?`meowComments/stories/${sid}`:`meowComments/chapters/${sid}_${cid}`;
-    const node=ref(db,`${base}/${commentId}`);
+    const base=meowCommentActionBase(type,sid,cid,commentId);
+    const realId=meowCommentRealId(commentId);
+    const node=ref(db,`${base}/${realId}`);
     try {
       const snap=await get(node); if(!snap.exists()) return;
-      const owner=snap.val()?.userId;
-      if(u.role!=='admin' && u.id!==owner) { showToast('Bạn chỉ được xóa bình luận của mình.', 'error'); return; }
+      const owner=snap.val()?.userId||snap.val()?.customerId||snap.val()?.uid;
+      if(u.role!=='admin' && String(u.id)!==String(owner)) { showToast('Bạn chỉ được xóa bình luận của mình.', 'error'); return; }
       const ok=await openDialog({title:'🗑 Xóa bình luận',message:'Bạn chắc chắn muốn xóa bình luận này chứ?',confirmText:'Xóa bình luận'});
       if(!ok) return;
       await remove(node);
@@ -5484,7 +6049,8 @@ const app = {
 
   async likeComment(type,sid,cid,commentId) {
     const u=state.currentUser;if(!u||u.role!=='customer'){this.openAuthModal();return;}
-    const path=type==='story'?`meowComments/stories/${sid}/${commentId}/likes/${u.id}`:`meowComments/chapters/${sid}_${cid}/${commentId}/likes/${u.id}`;
+    const base=meowCommentActionBase(type,sid,cid,commentId),realId=meowCommentRealId(commentId);
+    const path=`${base}/${realId}/likes/${encodeURIComponent(u.id)}`;
     const snap=await get(ref(db,path));if(snap.exists())await remove(ref(db,path));else{await set(ref(db,path),true);await logActivity('like','đã thích một bình luận',sid);}
     this.renderComments(type,sid,cid,type==='story'?'storyCommentsBox':'chapterCommentsBox');
   },
@@ -5492,8 +6058,12 @@ const app = {
     const u=state.currentUser;if(!u||u.role!=='customer')return;
     const reply=await openDialog({title:'↩ Trả lời bình luận',message:'Nhập nội dung trả lời:',showInput:true,placeholder:'Viết câu trả lời...',confirmText:'Gửi'});
     if(!reply||!reply.trim())return;
-    const path=type==='story'?`meowComments/stories/${sid}/${commentId}/replies`:`meowComments/chapters/${sid}_${cid}/${commentId}/replies`;
-    await push(ref(db,path),{userId:u.id,userName:state.customers[u.id]?.name||u.name,text:reply.trim(),at:Date.now()});
+    const base=meowCommentActionBase(type,sid,cid,commentId),realId=meowCommentRealId(commentId);
+    const path=type==='chapter'&&!String(commentId).startsWith('legacy_')?base:`${base}/${realId}/replies`;
+    const displayName=state.customers[u.id]?.name||u.name||u.id,createdAt=Date.now();
+    await push(ref(db,path),type==='chapter'&&!String(commentId).startsWith('legacy_')
+      ? {userId:String(u.id),customerId:String(u.id),uid:String(u.id),userName:displayName,name:displayName,text:reply.trim(),replyTo:realId,at:createdAt,createdAt,avatar:state.customers[u.id]?.avatar||''}
+      : {userId:String(u.id),customerId:String(u.id),userName:displayName,name:displayName,text:reply.trim(),at:createdAt,createdAt});
     this.renderComments(type,sid,cid,targetId);
   },
 
@@ -5667,7 +6237,7 @@ const app = {
     const addedPoints = creditPoints ? Number((amount / 100000).toFixed(4)) : 0;
     await runTransaction(ref(db, `meowWallet/${cid}`), (w) => { w = w || { balance: 0, totalIn: 0, totalOut: 0 }; w.balance = (Number(w.balance) || 0) + amount; w.totalIn = (Number(w.totalIn) || 0) + amount; return w; });
     if (addedPoints > 0) await runTransaction(ref(db, `customers/${cid}/points`), current => Number(((Number(current) || 0) + addedPoints).toFixed(4)));
-    await push(ref(db, 'meowWalletTransactions'), { customerId: cid, name: state.customers[cid]?.name || cid, type: 'deposit', source: 'admin_assisted_topup', amount, points: addedPoints, note: `Admin nạp hộ${addedPoints ? ` (+${addedPoints} điểm)` : ' (không tích điểm)'}`, createdAt: Date.now() });
+    await push(ref(db, 'meowWalletTransactions'), { customerId: cid, name: state.customers[cid]?.name || cid, type: 'deposit', source: 'admin_proxy', proxyDeposit:true, amount, points: addedPoints, note: `Admin nạp hộ${addedPoints ? ` (+${addedPoints} điểm)` : ' (không tích điểm)'}`, createdAt: Date.now() });
     showToast(`💖 Đã nạp ${formatMoney(amount)} cho ${cid}${addedPoints ? ` và cộng ${addedPoints} điểm` : ' (không cộng điểm)'}.`, 'success');
   },
 
@@ -5834,6 +6404,40 @@ html[data-theme="light"] #readerTopBar #readerChapterTitle{color:#57345f!importa
 @media(max-width:520px){#readerTopBar .reader-title-luxury{gap:10px}}
 </style>
 
+
+<style id="mieu-v39-gothic-shelf-comments">
+.gothic-saved-heading{display:flex;align-items:center;justify-content:center;gap:12px;margin:4px 0 14px;color:#e7c7ff;text-align:center;letter-spacing:.16em}.gothic-saved-heading>span{color:#bd91ef;text-shadow:0 0 12px #b879ff;font-size:20px}.gothic-saved-heading b{display:block;font:700 13px 'Cormorant Garamond',serif}.gothic-saved-heading small{display:block;margin-top:3px;color:#a997ba;font:10px 'Be Vietnam Pro',sans-serif;letter-spacing:.04em}.gothic-saved-book{display:flex;align-items:center;gap:12px;min-width:0;padding:10px;border:1px solid #a985c65c;border-radius:13px;background:linear-gradient(145deg,#21172e,#100c19);box-shadow:inset 0 0 18px #bd8cff0c,0 8px 20px #0003;cursor:pointer;text-align:left}.gothic-saved-book img{width:54px;height:76px;flex:none;object-fit:cover;border-radius:7px;border:1px solid #c8a7e477}.gothic-saved-book>div{min-width:0}.gothic-saved-book b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#f1ddff;font:700 14px 'Cormorant Garamond',serif}.gothic-saved-book small{display:block;margin-top:5px;color:#b7a4c8;font-size:10px}.gothic-saved-book em{display:block;margin-top:7px;color:#d5a9ff;font-size:10px;font-style:normal}.gothic-recent-comments{margin-top:25px;padding-top:17px;border-top:1px solid #a985c64a}.gothic-recent-comments-list{display:grid;gap:8px}.gothic-comment-entry{display:flex;align-items:flex-start;gap:10px;width:100%;padding:10px;text-align:left;border:1px solid #9471b54d;border-radius:12px;background:linear-gradient(120deg,#1e1729,#120e1b);color:#eee1fa;cursor:pointer}.gothic-comment-entry:active{transform:scale(.99)}.gothic-comment-avatar{width:34px;height:34px;flex:none;overflow:hidden;display:grid;place-items:center;border-radius:50%;border:1px solid #c6a0e8;background:#2c203a;color:#e3c2ff}.gothic-comment-avatar img{width:100%;height:100%;object-fit:cover}.gothic-comment-copy{display:block;min-width:0;flex:1}.gothic-comment-copy b{display:block;color:#e5c7ff;font-size:11px}.gothic-comment-copy b i{color:#a88cbe;font-style:normal;font-weight:500}.gothic-comment-copy>span{display:block;margin-top:4px;color:#e0d5e9;font-size:11px;overflow-wrap:anywhere}.gothic-comment-copy small{display:block;margin-top:5px;color:#a994b8;font-size:9px}.gothic-comment-arrow{color:#c99cf2;font-size:16px}
+@media(max-width:520px){.gothic-saved-book{padding:8px;gap:9px}.gothic-saved-book img{width:48px;height:68px}.gothic-comment-entry{padding:8px;gap:8px}}
+</style>
+
+
+<style id="mieu-v39-reading-progress">
+.gothic-reading-now{margin-top:22px;padding-top:17px;border-top:1px solid #a985c64a}.gothic-reading-entry{display:flex;align-items:center;gap:10px;padding:9px;text-align:left;border:1px solid #9e7ac34f;border-radius:12px;background:linear-gradient(140deg,#21172e,#110d19);color:#eee1fa}.gothic-reading-entry img{width:42px;height:58px;object-fit:cover;border-radius:6px;border:1px solid #c49be277}.gothic-reading-entry span{display:block;min-width:0}.gothic-reading-entry b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:700 13px 'Cormorant Garamond',serif}.gothic-reading-entry small{display:block;margin-top:4px;color:#b5a0c8;font-size:10px}.gothic-reading-entry em{display:block;margin-top:4px;color:#d5a9ff;font-size:10px;font-style:normal}
+</style>
+
+
+<!-- V42: nhạc nền toàn trang (trình duyệt có thể yêu cầu chạm để bật tiếng) -->
+<video id="mieuSiteMusic" src="https://files.catbox.moe/ctxnez.mp4" preload="none" loop playsinline style="display:none" aria-hidden="true"></video>
+<button id="mieuSiteMusicToggle" type="button" onclick="window.mieuToggleSiteMusic && window.mieuToggleSiteMusic()">♫ Bật nhạc</button>
+<script>
+(function(){
+ const media=document.getElementById('mieuSiteMusic'),btn=document.getElementById('mieuSiteMusicToggle');if(!media)return;media.volume=.24;
+ let userEnabled=false, pausedForGuide=false, interacted=false;
+ function label(){if(btn)btn.textContent=media.paused?'♫ Bật nhạc':'♫ Tắt nhạc';}
+ function play(){if(!userEnabled)return;media.muted=false;const p=media.play();if(p&&p.then)p.then(label).catch(label);}
+ window.mieuToggleSiteMusic=function(){interacted=true;if(media.paused){userEnabled=true;pausedForGuide=false;play()}else{userEnabled=false;media.pause();label()}};
+ function tryStart(){interacted=true;if(!userEnabled){userEnabled=true;play()}}
+ // Thử tự phát; nếu trình duyệt chặn thì lần chạm đầu tiên sẽ bật nhạc.
+ const p=media.play();if(p&&p.then)p.then(()=>{userEnabled=true;label()}).catch(()=>label());
+ ['pointerdown','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,tryStart,{once:true,passive:true}));
+ window.mieuSetGuideMusicMode=function(inGuide){
+   if(inGuide){pausedForGuide=!media.paused || userEnabled; if(!media.paused)media.pause();label();}
+   else if(pausedForGuide && userEnabled){pausedForGuide=false;play();}
+   else {pausedForGuide=false;label();}
+ };
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){if(!media.paused)media.pause();label()}else if(!document.querySelector('#view-guide:not(.hidden)')&&userEnabled){play()}});
+})();
+</script>
 </body>
 </html>
 
