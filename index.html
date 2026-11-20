@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIÊU CÁC </title>
+<title>MIÊU CÁC — Thư Viện Truyện Gothic & Huyền Bí</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
@@ -362,7 +362,7 @@ body {
   #storyChapterGrid{grid-template-columns:minmax(0,1fr)}
   #checkinWeekGrid>div{padding-left:2px;padding-right:2px}
 }
-@media(max-width:640px){header .max-w-7xl{gap:6px}header .flex.items-center.gap-3.cursor-pointer{gap:6px}header .flex.items-center.gap-3.cursor-pointer img{width:34px;height:34px}#mainMenuBtn{font-size:11px;padding:8px}#themeToggleBtn,#globalSearchToggle,#notifBellBtn{padding:8px}}
+@media(max-width:640px){#headerUserArea button{padding:7px 9px!important;font-size:10px!important}header .max-w-7xl{gap:6px}header .flex.items-center.gap-3.cursor-pointer{gap:6px}header .flex.items-center.gap-3.cursor-pointer img{width:34px;height:34px}#mainMenuBtn{font-size:11px;padding:8px}#themeToggleBtn,#globalSearchToggle,#notifBellBtn{padding:8px}}
 
 [data-theme="light"] body { background: linear-gradient(135deg,#fff4fa 0%,#f6f8ff 52%,#effaff 100%); }
 [data-theme="light"] .gothic-card { background: rgba(255,250,254,.88); border-color: rgba(217,132,188,.28); }
@@ -473,6 +473,37 @@ img { max-width: 100%; }
   button,select,input,textarea{touch-action:manipulation}
 }
 
+
+
+/* Miêu Các V27 · card & chapter title polish */
+.story-card-price.free{letter-spacing:.01em}
+.reader-title-luxury{gap:14px!important;align-items:center}
+.reader-title-copy{min-width:0;flex:1;padding:5px 0 7px}
+.reader-title-kicker{display:flex;align-items:center;gap:9px;min-width:0;color:#d9b4ef}
+#readerTopBar #readerStoryName{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(13px,3.2vw,17px)!important;font-weight:800!important;letter-spacing:.13em!important;text-transform:uppercase!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:min(70vw,620px)}
+.reader-title-flourish{font-size:13px;color:#d8a8ef;text-shadow:0 0 12px #c27bea;flex:0 0 auto}
+#readerTopBar #readerChapterTitle{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(20px,4.6vw,29px)!important;line-height:1.16!important;font-weight:800!important;letter-spacing:-.015em!important;color:#fff0ff!important;margin:5px 0 0!important;text-wrap:balance}
+.reader-title-rule{height:1px;margin-top:9px;background:linear-gradient(90deg,transparent,#c18cdd88,#e8c5ef,transparent);position:relative}
+.reader-title-rule i{position:absolute;width:5px;height:5px;border-radius:50%;background:#f1d3ff;left:50%;top:-2px;box-shadow:0 0 9px #d99aff}
+html[data-theme="light"] #readerTopBar #readerStoryName{color:#986b98!important}
+html[data-theme="light"] #readerTopBar #readerChapterTitle{color:#57345f!important}
+html[data-theme="light"] .reader-title-flourish{color:#ae77b8}
+.admin-identity-strip{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 16px;padding:10px 12px;border:1px solid rgba(211,163,241,.25);border-radius:17px;background:linear-gradient(110deg,rgba(143,91,181,.13),rgba(255,255,255,.025))}
+.admin-identity-avatar{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#39224d,#171020);border:1px solid #c99be5;font-size:22px;flex:0 0 auto}
+.admin-identity-avatar img{width:100%;height:100%;object-fit:cover}
+.admin-identity-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.admin-identity-copy b{font:800 15px 'Cormorant Garamond',serif;color:#e8c8f7}
+.admin-identity-copy span{font-size:10px;opacity:.72}
+.admin-edit-profile-btn{padding:8px 12px;border:1px solid #c08bdc66;border-radius:12px;background:#a45ac51c;color:#e8c8f7;font-size:11px;font-weight:800}
+.admin-profile-modal{position:fixed;inset:0;z-index:10090;display:flex;align-items:center;justify-content:center;padding:14px;background:#080510d9;backdrop-filter:blur(8px)}
+.admin-profile-modal.hidden{display:none}
+.admin-profile-panel{width:min(100%,560px);max-height:92dvh;overflow:auto;border:1px solid #c99be566;border-radius:22px;padding:18px;background:linear-gradient(145deg,#21152e,#100d19);color:#f6eaff;box-shadow:0 25px 80px #000b}
+.admin-profile-field{display:block;font-size:11px;font-weight:800;margin-top:11px}
+.admin-profile-field input,.admin-profile-field textarea,.admin-profile-field select{display:block;width:100%;margin-top:5px;padding:10px 11px;border:1px solid #c99be544;border-radius:11px;background:#090711;color:inherit;font-size:12px;outline:none}
+.admin-profile-field textarea{min-height:75px;resize:vertical}
+.admin-profile-preview{width:64px;height:64px;border-radius:16px;object-fit:cover;border:1px solid #d6a7eb}
+@media(max-width:520px){.reader-title-luxury{gap:10px!important}.reader-back-compact{flex:0 0 auto}.admin-identity-strip{gap:8px}.admin-edit-profile-btn{padding:7px 9px}}
+
 </style>
 
 <style id="mieu-mobile-chapter-first">
@@ -526,8 +557,250 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
 [data-theme="light"] .text-white,[data-theme="light"] .text-slate-100,[data-theme="light"] .text-slate-200{color:#43334b!important}[data-theme="light"] .opacity-90,[data-theme="light"] .opacity-85,[data-theme="light"] .opacity-75,[data-theme="light"] .opacity-70,[data-theme="light"] .opacity-60,[data-theme="light"] .opacity-50{opacity:1!important;color:#716078!important}[data-theme="light"] .bg-black\/20,[data-theme="light"] .bg-black\/25,[data-theme="light"] .bg-black\/30{background:rgba(255,255,255,.72)!important}[data-theme="light"] input,[data-theme="light"] textarea,[data-theme="light"] select{color:#43334b!important;background:#fffaff!important}[data-theme="light"] .border-white\/10,[data-theme="light"] .border-white\/15,[data-theme="light"] .border-white\/20{border-color:rgba(151,83,130,.25)!important}
 </style>
 
+
+<style id="mieu-age-gate-style">
+  #mieuAgeGate{position:fixed;inset:0;z-index:200000;display:flex;align-items:center;justify-content:center;padding:18px;background:radial-gradient(ellipse at 50% 45%,rgba(42,24,58,.72),rgba(5,3,13,.94));backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);opacity:1;visibility:visible;transition:opacity .55s ease,visibility .55s ease}
+  #mieuAgeGate.age-gate-leaving{opacity:0;visibility:hidden;pointer-events:none}
+  #mieuAgeGate .age-gate-panel{position:relative;width:min(100%,560px);padding:clamp(25px,5vw,42px) clamp(20px,5vw,42px) 30px;text-align:center;isolation:isolate;overflow:visible;border:1px solid rgba(222,197,255,.48);border-radius:30px;color:#f7efff;background:linear-gradient(145deg,rgba(28,18,43,.97),rgba(12,10,25,.97) 62%,rgba(36,17,45,.97));box-shadow:0 28px 100px rgba(0,0,0,.58),0 0 55px rgba(157,105,255,.16),inset 0 1px rgba(255,255,255,.16);animation:agePanelIn .65s cubic-bezier(.2,.8,.2,1) both}
+  #mieuAgeGate .age-gate-panel:before{content:"";position:absolute;inset:8px;border:1px solid rgba(226,198,255,.17);border-radius:23px;pointer-events:none}
+  #mieuAgeGate .age-gate-panel:after{content:"✦";position:absolute;top:-17px;left:50%;transform:translateX(-50%);padding:3px 15px;color:#f5d99b;background:#21172e;font-size:22px;text-shadow:0 0 15px #d9b5ff}
+  #mieuAgeGate .age-gate-kicker{font-family:'Cinzel Decorative',serif;font-size:10px;letter-spacing:.24em;color:#d8c2f4;margin:5px 0 13px}
+  #mieuAgeGate .age-gate-title{font-family:'Cormorant Garamond',serif;font-size:clamp(23px,5vw,32px);line-height:1.2;font-weight:700;letter-spacing:.035em;color:#fff2d7;text-shadow:0 0 22px rgba(208,172,255,.28);margin:0 auto 17px;max-width:440px}
+  #mieuAgeGate .age-gate-copy{font-size:clamp(12px,2.6vw,14px);line-height:1.9;color:#e4d9ef;margin:0 auto 20px;max-width:430px}
+  #mieuAgeGate .age-gate-copy strong{display:block;color:#f4d9a5;font-size:clamp(13px,2.8vw,15px);letter-spacing:.035em;margin-bottom:7px}
+  #mieuAgeGate .age-gate-note{font-size:11px;line-height:1.7;color:#b9a9c9;margin:0 auto 23px}
+  #mieuAgeGate .age-gate-actions{display:grid;grid-template-columns:1fr 1fr;gap:11px;max-width:390px;margin:0 auto}
+  #mieuAgeGate .age-gate-actions button{min-height:48px;border-radius:15px;font-weight:800;font-size:13px;letter-spacing:.04em;cursor:pointer;transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+  #mieuAgeGate .age-gate-actions button:hover{transform:translateY(-2px);filter:brightness(1.1)}
+  #mieuAgeGate .age-gate-enter{border:1px solid #e8cda1;color:#271a2e;background:linear-gradient(120deg,#fff0c9,#d9b9f4 55%,#f6d9e9);box-shadow:0 7px 22px rgba(215,181,246,.22)}
+  #mieuAgeGate .age-gate-exit{border:1px solid rgba(220,202,241,.35);color:#e8dff1;background:rgba(255,255,255,.06)}
+  #mieuAgeGate .age-gate-foot{font-size:9px;color:#9f91ad;letter-spacing:.08em;margin-top:19px}
+  @keyframes agePanelIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+  html[data-theme="light"] #mieuAgeGate{background:radial-gradient(ellipse at 50% 42%,rgba(255,242,251,.72),rgba(221,228,255,.78)),rgba(255,248,253,.72)}
+  html[data-theme="light"] #mieuAgeGate .age-gate-panel{color:#57405e;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(255,244,251,.98) 55%,rgba(239,246,255,.98));border-color:#e7c1df;box-shadow:0 25px 80px rgba(153,105,157,.22),0 0 45px rgba(236,190,222,.25),inset 0 1px #fff}
+  html[data-theme="light"] #mieuAgeGate .age-gate-panel:before{border-color:rgba(202,154,194,.35)}
+  html[data-theme="light"] #mieuAgeGate .age-gate-panel:after{color:#bf8d42;background:#fff8fd;text-shadow:0 0 12px #f4d7a6}
+  html[data-theme="light"] #mieuAgeGate .age-gate-kicker{color:#9871a3}
+  html[data-theme="light"] #mieuAgeGate .age-gate-title{color:#815078;text-shadow:0 2px 12px rgba(232,177,214,.35)}
+  html[data-theme="light"] #mieuAgeGate .age-gate-copy{color:#66516f}
+  html[data-theme="light"] #mieuAgeGate .age-gate-copy strong{color:#a65b83}
+  html[data-theme="light"] #mieuAgeGate .age-gate-note{color:#806f88}
+  html[data-theme="light"] #mieuAgeGate .age-gate-foot{color:#9a849b}
+  html[data-theme="light"] #mieuAgeGate .age-gate-exit{color:#785f7c;background:rgba(255,255,255,.72);border-color:#e6c9df}
+  @media(max-width:420px){#mieuAgeGate{padding:12px}#mieuAgeGate .age-gate-panel{padding:24px 17px 23px;border-radius:24px}}
+  @media(prefers-reduced-motion:reduce){#mieuAgeGate *,#mieuAgeGate *:before,#mieuAgeGate *:after{animation:none!important;transition:none!important}}
+</style>
+
+<style id="mieu-related-stories-style">
+.story-related-track{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:4px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(190,120,255,.55) transparent}
+.story-related-track::-webkit-scrollbar{height:4px}.story-related-track::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#c45bdc,#668cff);border-radius:99px}
+.story-related-card{flex:0 0 132px;max-width:132px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:6px;scroll-snap-align:start;background:rgba(100,65,145,.10);border:1px solid rgba(190,135,235,.24);border-radius:15px;padding:8px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.story-related-card:active{transform:scale(.97)}.story-related-card:hover{border-color:rgba(207,145,255,.65);box-shadow:0 0 18px rgba(164,105,255,.16)}
+.story-related-card img{width:100%;height:172px;object-fit:cover;border-radius:10px;background:rgba(120,90,150,.15)}
+.story-related-card-title{font-size:12px;font-weight:800;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:32px}
+.story-related-card-tags{font-size:10px;line-height:1.35;color:#d58bdc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.story-related-card-count{font-size:10px;opacity:.62}
+html[data-theme="light"] .story-related-card{background:rgba(255,225,242,.62);border-color:rgba(204,128,177,.35);color:#633c62}
+html[data-theme="light"] .story-related-card-tags{color:#a84f91}
+@media(min-width:700px){.story-related-card{flex-basis:154px;max-width:154px}.story-related-card img{height:200px}}
+
+ /* Cross-device fallback: avoid expensive effects on touch/older hardware */
+ @media (hover:none), (max-width:700px) {
+   .featured-hero, .gothic-card { -webkit-backdrop-filter:none!important; backdrop-filter:none!important; }
+   .featured-hero * { animation-duration: .01ms!important; }
+   .featured-hero { touch-action:pan-y; }
+ }
+ @media (prefers-reduced-motion:reduce) {
+   html:focus-within { scroll-behavior:auto!important; }
+   *,*::before,*::after { animation:none!important; transition:none!important; }
+ }
+ img { height:auto; }
+</style>
+
+<style id="mieu-home-ranking-tarot-v1">
+/* Home story cards: save heart and compact pricing */
+.story-home-card{min-width:0;contain:layout paint}
+.story-home-cover{height:clamp(172px,22vw,250px)}
+.story-heart-btn{position:absolute;right:10px;top:10px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(12,8,22,.78);border:1px solid rgba(255,255,255,.38);color:#fff;font-size:22px;line-height:1;box-shadow:0 4px 14px #0005;backdrop-filter:blur(5px);z-index:3;transition:transform .16s ease,background .16s ease,color .16s ease}
+.story-heart-btn:active{transform:scale(.88)}
+.story-heart-btn.is-saved{background:linear-gradient(135deg,#fb5caa,#d92d80);border-color:#ffc1e0;color:#fff;box-shadow:0 0 16px #f472b655}
+.story-card-bottom{margin-top:auto}
+.story-card-price{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:7px;padding:6px 9px;border-radius:9px;background:rgba(244,114,182,.09);border:1px solid rgba(244,114,182,.18);font-size:10px;color:var(--text-muted);line-height:1.3}
+.story-card-price b{font-size:11px;color:#f6a7d1;white-space:nowrap}
+.story-card-price.free{color:#72d6b0;background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.18)}
+[data-theme="light"] .story-card-price{color:#79536e;background:#fff0f7;border-color:#f0c9df}
+[data-theme="light"] .story-card-price b{color:#bb367d}
+[data-theme="light"] .story-card-price.free{color:#187b5c;background:#edfff7;border-color:#bcebd6}
+@media(max-width:640px){.story-home-cover{height:clamp(155px,48vw,220px)}.story-heart-btn{width:34px;height:34px;right:7px;top:7px}.story-card-price{padding:5px 7px;font-size:9px}.story-card-price b{font-size:10px}}
+
+/* Leaderboard */
+.ranking-eyebrow{font:700 9px 'JetBrains Mono',monospace;letter-spacing:.2em;color:#d9a8f4}
+.ranking-more-btn{flex:0 0 auto;padding:9px 13px;border-radius:12px;border:1px solid rgba(205,145,245,.35);background:rgba(154,103,210,.12);font-size:11px;font-weight:800;color:#d9b6f5}
+.ranking-list{display:grid;gap:7px}
+.ranking-row{width:100%;min-width:0;display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:14px;text-align:left;border:1px solid rgba(190,140,230,.16);background:rgba(255,255,255,.025);transition:background .16s,border-color .16s}
+.ranking-row:active{transform:scale(.995)}
+.ranking-row:hover{background:rgba(190,130,240,.09);border-color:rgba(190,140,230,.38)}
+.ranking-position{width:30px;flex:0 0 30px;text-align:center;font:700 15px 'Cormorant Garamond',serif;color:#c8b3df}
+.ranking-position.rank-1{font-size:20px;color:#f6cb75;text-shadow:0 0 12px #f6cb7544}
+.ranking-position.rank-2{color:#cbd5e1}.ranking-position.rank-3{color:#d99b72}
+.ranking-cover{width:42px;height:56px;object-fit:cover;border-radius:7px;flex:0 0 42px;border:1px solid rgba(225,190,255,.3)}
+.ranking-name{display:block;font:700 13px 'Cormorant Garamond',serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ranking-sub{display:block;font-size:9px;opacity:.65;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ranking-metric{flex:0 0 auto;font-size:9px;color:#d8b3f1;white-space:nowrap}
+.ranking-chevron{font-size:20px;opacity:.5}
+.ranking-control{width:100%;min-width:0;padding:10px 11px;border-radius:11px;border:1px solid rgba(196,145,226,.28);background:rgba(15,10,26,.45);color:var(--text-main);font-size:11px;outline:none}
+[data-theme="light"] .ranking-eyebrow{color:#a05d9b}
+[data-theme="light"] .ranking-more-btn{color:#874b8a;background:#fff0fa;border-color:#e8bfdf}
+[data-theme="light"] .ranking-row{background:rgba(255,255,255,.8);border-color:#ecd8eb}
+[data-theme="light"] .ranking-row:hover{background:#fff0fa;border-color:#d9a9d1}
+[data-theme="light"] .ranking-name{color:#4c3552}
+[data-theme="light"] .ranking-sub{color:#79647e;opacity:1}
+[data-theme="light"] .ranking-metric{color:#92528e}
+[data-theme="light"] .ranking-control{background:#fff;color:#49334e;border-color:#e5c6df}
+
+/* Tarot invitation and gothic card reveal */
+.tarot-entry{position:relative;overflow:hidden;border-color:rgba(178,130,225,.42)!important;background:radial-gradient(circle at 85% 15%,rgba(157,105,220,.25),transparent 42%),linear-gradient(135deg,rgba(25,17,42,.97),rgba(13,12,28,.97))!important;box-shadow:0 10px 28px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.08);transition:transform .2s,border-color .2s}
+.tarot-entry:active{transform:scale(.99)}
+.tarot-entry:hover{border-color:rgba(218,174,255,.75)!important}
+.tarot-sigil{position:absolute;right:18px;top:8px;font:56px 'Cormorant Garamond',serif;color:#d8b5fa;opacity:.3;text-shadow:0 0 22px #b77aff}
+.tarot-title{color:#ead7ff;text-shadow:0 0 15px #b67aff55}
+.tarot-cta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:9px;border-top:1px solid rgba(220,190,255,.18);font-size:10px;color:#d8b5fa}
+.tarot-cta b{font-size:16px}
+[data-theme="light"] .tarot-entry{background:radial-gradient(circle at 85% 15%,rgba(218,180,255,.32),transparent 42%),linear-gradient(135deg,#fffaff,#f4edff)!important;border-color:#d9bde9!important;color:#523b60}
+[data-theme="light"] .tarot-title{color:#704a83}
+[data-theme="light"] .tarot-entry .text-purple-300{color:#9560a9}
+[data-theme="light"] .tarot-cta{color:#8a5c9e;border-color:#ead8f0}
+.story-tarot-overlay{position:fixed;inset:0;z-index:10080;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(7,4,15,.82);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.story-tarot-overlay.hidden{display:none}
+.story-tarot-card{position:relative;width:min(100%,390px);max-height:92dvh;overflow:auto;text-align:center;padding:23px 22px 21px;border:1px solid rgba(218,184,255,.5);border-radius:25px;color:#f4eaff;background:radial-gradient(ellipse at 50% 0%,rgba(120,71,160,.25),transparent 48%),linear-gradient(150deg,#1b1328,#0d0b17 70%,#21152c);box-shadow:0 25px 90px #000b,0 0 45px #9d62d344}
+.story-tarot-close{position:absolute;right:13px;top:10px;width:34px;height:34px;border-radius:50%;background:#ffffff12;border:1px solid #ffffff25;font-size:23px}
+.tarot-topline{font:700 9px 'JetBrains Mono',monospace;letter-spacing:.22em;color:#d9b6f5;margin:0 25px 15px}
+.tarot-card-frame{width:min(210px,68%);margin:auto;padding:10px;border:1px solid #d9b6f5;border-radius:13px;background:linear-gradient(145deg,#30213f,#100c1a);box-shadow:0 0 0 4px #d9b6f51a,0 10px 35px #0009}
+.tarot-card-symbol{font:22px 'Cormorant Garamond',serif;color:#e8d1a5;margin-bottom:7px}
+.tarot-story-cover{width:100%;height:205px;object-fit:cover;border-radius:6px;border:1px solid #d5b8e9}
+.tarot-card-caption{font:700 8px 'JetBrains Mono',monospace;letter-spacing:.18em;color:#e5c88f;margin-top:8px}
+.tarot-omen{font:italic 15px 'Cormorant Garamond',serif;color:#d7c2e9;margin:17px 0 7px}
+.tarot-story-name{font:700 25px 'Cormorant Garamond',serif;color:#f7e7ff;line-height:1.2}
+.tarot-story-meta{font-size:10px;color:#c8a9df;margin-top:7px}
+.tarot-open-btn,.tarot-again-btn{flex:1;min-height:43px;border-radius:12px;font-size:11px;font-weight:800}
+.tarot-open-btn{background:linear-gradient(120deg,#9b62c5,#d16cae);color:#fff}
+.tarot-again-btn{border:1px solid #cda7e4;color:#e5c9f7;background:#ffffff0a}
+[data-theme="light"] .story-tarot-card{background:linear-gradient(150deg,#fffaff,#f1e9fa 70%,#fff3f9);color:#4c3556;border-color:#d6b5e4}
+[data-theme="light"] .tarot-story-name{color:#694779}
+[data-theme="light"] .tarot-omen{color:#765987}
+[data-theme="light"] .tarot-story-meta{color:#8c65a0}
+[data-theme="light"] .tarot-again-btn{color:#7d5794;border-color:#cba8dc;background:#fff}
+@media(prefers-reduced-motion:reduce){.story-heart-btn,.ranking-row,.tarot-entry{transition:none}}
+
+/* MIÊU CÁ · Ba cánh cổng huyền giới */
+.mieu-gates-wrap{position:relative;padding:18px 8px 28px;margin:4px 0 14px;isolation:isolate}
+.mieu-gates-heading{text-align:center;margin-bottom:18px}
+.mieu-gates-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,2.5vw,24px);align-items:start;max-width:980px;margin:auto}
+.mieu-gate{position:relative;min-width:0;min-height:238px;padding:15px 9px 13px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;overflow:hidden;border:1px solid rgba(214,183,255,.55);border-radius:48% 48% 18px 18px / 30% 30% 18px 18px;background:linear-gradient(180deg,rgba(48,34,72,.96),rgba(12,10,24,.98));box-shadow:0 12px 34px #0008,inset 0 0 22px #c59bff20,0 0 22px #ad75ed20;color:#f8edff;cursor:pointer;transition:transform .22s,border-color .22s,box-shadow .22s}
+.mieu-gate:before{content:"";position:absolute;inset:8px 8px 9px;border:1px solid rgba(238,215,255,.3);border-radius:48% 48% 13px 13px / 30% 30% 13px 13px;pointer-events:none}
+.mieu-gate:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 32%,var(--gate-glow,rgba(182,130,255,.3)),transparent 58%);pointer-events:none}
+.mieu-gate>*{position:relative;z-index:1}
+.mieu-gate:hover{transform:translateY(-5px);border-color:#f3d5ff;box-shadow:0 18px 40px #0009,0 0 28px var(--gate-glow)}
+.mieu-gate-symbol{width:78px;height:104px;margin:0 auto 12px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.42);border-radius:48% 48% 8px 8px;background:linear-gradient(180deg,#ffffff12,#080612b8);box-shadow:inset 0 0 24px var(--gate-glow),0 0 22px var(--gate-glow);font:46px 'Cormorant Garamond',serif;color:#f5e6ff;text-shadow:0 0 18px var(--gate-glow)}
+.mieu-gate-name{font:700 clamp(12px,1.8vw,18px) 'Cormorant Garamond',serif;letter-spacing:.04em;color:#fff1d8;line-height:1.2}
+.mieu-gate-desc{font-size:clamp(9px,1.15vw,11px);line-height:1.5;color:#d6c5e6;margin-top:6px}
+.mieu-gate-cta{margin-top:10px;padding:7px 10px;border:1px solid #e9caff66;border-radius:999px;background:#ffffff0c;font-size:10px;font-weight:800;color:#f0d5ff}
+.mieu-gate-left{--gate-glow:rgba(114,86,190,.42);margin-top:0}
+.mieu-gate-right{--gate-glow:rgba(72,150,205,.38);margin-top:0}
+.mieu-gate-center{--gate-glow:rgba(233,181,111,.42);margin-top:42px;min-height:252px;border-color:#e7c995aa;background:linear-gradient(180deg,#44334b,#17101f 78%,#0d0a16);box-shadow:0 15px 40px #0009,0 0 30px #d7a96b30}
+.mieu-gate-center .mieu-gate-symbol{height:116px;border-color:#e7c995aa;color:#ffe9b9}
+.mieu-butterflies{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.mieu-butterfly{position:absolute;color:#d9b2ff;opacity:.65;text-shadow:0 0 12px #b77cff;animation:mieuButterflyDrift 9s ease-in-out infinite}
+.mieu-butterfly:nth-child(1){left:8%;top:20%;font-size:19px}
+.mieu-butterfly:nth-child(2){left:48%;top:4%;font-size:15px;animation-delay:-3s}
+.mieu-butterfly:nth-child(3){right:9%;top:35%;font-size:22px;animation-delay:-5s}
+.mieu-butterfly:nth-child(4){left:30%;bottom:4%;font-size:13px;animation-delay:-1.5s}
+@keyframes mieuButterflyDrift{0%,100%{transform:translate(0,0) rotate(-12deg)}50%{transform:translate(14px,-18px) rotate(15deg)}}
+#mieuGuideView{position:relative;overflow:hidden;border:1px solid #b99ad766;border-radius:24px;padding:clamp(16px,4vw,30px);background:radial-gradient(ellipse at 50% 0%,#38264f 0%,#171020 55%,#0b0913 100%);color:#f5eaff;box-shadow:0 18px 55px #0008}
+.mieu-guide-card{position:relative;border:1px solid #c9a7e044;border-radius:18px;padding:17px;background:linear-gradient(145deg,#ffffff0d,#ffffff04);margin-top:14px}
+.mieu-guide-card h3{font:700 21px 'Cormorant Garamond',serif;color:#f2d6ff;margin-bottom:8px}
+.mieu-guide-card p,.mieu-guide-card li{font-size:13px;line-height:1.85;color:#d8c9e7}
+.mieu-guide-card strong{color:#ffe0ad}
+.mieu-guide-action{display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;border-radius:12px;background:linear-gradient(110deg,#a66bd1,#d17ab5);color:#fff;font-size:12px;font-weight:800;margin-top:10px}
+@media(max-width:600px){.mieu-gates-wrap{padding:12px 0 18px}.mieu-gates-grid{gap:6px}.mieu-gate{min-height:190px;padding:10px 5px;border-radius:46% 46% 14px 14px / 27% 27% 14px 14px}.mieu-gate-center{margin-top:28px;min-height:204px}.mieu-gate-symbol{width:58px;height:76px;font-size:34px;margin-bottom:9px}.mieu-gate-center .mieu-gate-symbol{height:88px}.mieu-gate-cta{font-size:9px;padding:6px 7px}.mieu-gate-desc{font-size:9px}.mieu-gate-name{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.mieu-butterfly{animation:none}.mieu-gate{transition:none}}
+
+</style>
+
+
+
+<style id="mieu-v27-home-gates-tarot">
+/* Cổng gothic đặt trên cùng */
+.mieu-gates-wrap{padding:12px 8px 22px;margin:0 0 8px}
+.mieu-gates-heading{margin-bottom:14px}
+.mieu-gates-heading h2{letter-spacing:.04em;text-shadow:0 0 18px #b98cff88}
+.mieu-gate{min-height:258px;border:1px solid #c5a2e9;border-radius:49% 49% 12px 12px / 27% 27% 12px 12px;background:
+ radial-gradient(ellipse at 50% 20%,#9c75c755,transparent 52%),
+ linear-gradient(180deg,#211536 0%,#100c1d 62%,#080711 100%);
+ box-shadow:0 0 0 3px #120b1c,0 0 0 4px #76548e,0 18px 38px #000a,inset 0 0 28px #d9b5ff22;
+}
+.mieu-gate:before{inset:7px;border:1px solid #f0d9ff70;border-radius:inherit;box-shadow:inset 0 0 0 4px #ffffff08}
+.mieu-gate:after{background:radial-gradient(ellipse at 50% 34%,var(--gate-glow,#c79aff66),transparent 64%)}
+.mieu-gate-symbol{width:90px;height:122px;border:2px solid #e4c8ff99;border-radius:48% 48% 4px 4px;background:linear-gradient(180deg,#d8b6ff20,#090612e8);box-shadow:inset 0 0 26px var(--gate-glow),0 0 18px var(--gate-glow);outline:1px solid #ffffff30;outline-offset:4px}
+.mieu-gate-left{--gate-glow:#9d6cff88}
+.mieu-gate-center{--gate-glow:#ffe6a888;margin-top:42px;border-color:#f3dca7; background:radial-gradient(ellipse at 50% 20%,#fff0bd55,transparent 55%),linear-gradient(180deg,#44321f,#171020 62%,#080711)}
+.mieu-gate-right{--gate-glow:#8edbff88}
+.mieu-gate-name{text-shadow:0 0 12px #d8b7ff99}
+.mieu-gate-cta{margin-top:9px}
+.featured-arrow{z-index:30!important;pointer-events:auto!important;cursor:pointer!important;display:grid;place-items:center;touch-action:manipulation}
+.featured-arrow:active{transform:scale(.92);background:#7b4aaacc}
+#featuredStoriesGrid .featured-arrow{position:absolute!important}
+#rankingFilterPanel{display:grid;gap:9px}
+#rankingFilterPanel .grid{margin:0}
+.recent-tarot-section{padding:8px 0 12px;min-width:0}
+.recent-tarot-heading{display:flex;align-items:center;gap:11px;margin:0 0 14px;color:#f0c5ff;font:700 15px 'Cormorant Garamond',serif;letter-spacing:.13em}
+.recent-tarot-line{width:4px;height:29px;border-radius:8px;background:linear-gradient(#fff1b9,#d38cff,#7ddcff);box-shadow:0 0 8px #d7a0ff,0 0 18px #b36bff;flex:none}
+.recent-tarot-heading small{font:700 9px 'JetBrains Mono',monospace;color:#a995bb;letter-spacing:.15em}
+.recent-tarot-rail{display:flex;gap:13px;overflow-x:auto;padding:3px 2px 14px;scroll-snap-type:x mandatory;scrollbar-width:thin;overscroll-behavior-x:contain}
+.recent-tarot-card{position:relative;flex:0 0 142px;min-width:142px;overflow:hidden;text-align:left;border:1px solid #c7a2e66b;border-radius:15px;padding:8px;background:linear-gradient(155deg,#251638,#0e0a19);box-shadow:0 8px 22px #0006;scroll-snap-align:start}
+.recent-tarot-card:before{content:"";position:absolute;inset:4px;border:1px solid #e7ceff38;border-radius:11px;pointer-events:none;z-index:2}
+.recent-tarot-card-glow{position:absolute;width:100px;height:100px;right:-45px;top:-45px;border-radius:50%;background:#b77cff55;filter:blur(22px)}
+.recent-tarot-card img{position:relative;width:100%;height:174px;object-fit:cover;border-radius:8px;border:1px solid #d9b9ef66}
+.recent-tarot-index{display:block;position:relative;font:700 8px 'JetBrains Mono',monospace;letter-spacing:.12em;color:#e4c78e;margin:3px 0 7px}
+.recent-tarot-info{display:block;position:relative;padding:8px 2px 3px;color:#f7eaff}
+.recent-tarot-info b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px;font:700 13px 'Cormorant Garamond',serif}
+.recent-tarot-info small{display:block;margin-top:5px;color:#c2a9d2;font-size:9px}
+.mieu-heavenly-sky{pointer-events:none}
+.mieu-light-bird{position:absolute;font-size:24px;opacity:0;filter:drop-shadow(0 0 9px #fff4b8);animation:mieuBirdFlight 13s linear infinite}
+.mieu-light-bird:nth-of-type(5){top:18%;left:-8%;animation-delay:1s}
+.mieu-light-bird:nth-of-type(6){top:48%;left:-12%;animation-delay:6s;font-size:18px}
+.mieu-light-bird:nth-of-type(7){top:70%;left:-10%;animation-delay:9s}
+@keyframes mieuBirdFlight{0%{transform:translate(-5vw,10px) scale(.7);opacity:0}12%{opacity:.9}75%{opacity:.8}100%{transform:translate(115vw,-38px) scale(1.15);opacity:0}}
+.mieu-title-guide{margin-top:16px}
+.mieu-title-showcase{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
+.mieu-title-sample{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:13px 7px;border:1px solid #cba6e44a;border-radius:14px;background:#ffffff08}
+.mieu-title-sample .meow-avatar-frame{width:64px;height:64px;display:grid;place-items:center;position:relative}
+.mieu-avatar-demo{width:100%;height:100%;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#f6c4e7,#9b79c9);color:#28152e;font:700 24px 'Cormorant Garamond',serif}
+.mieu-title-sample b{font-size:12px;color:#f4d8ff}
+.mieu-title-sample small{font-size:10px;color:#bca9cc}
+@media(max-width:640px){.mieu-gates-grid{gap:7px}.mieu-gate{min-height:208px;padding:12px 5px 10px}.mieu-gate-center{margin-top:28px}.mieu-gate-symbol{width:62px;height:90px;font-size:36px}.mieu-gate-name{font-size:12px}.mieu-gate-desc,.mieu-gate-cta{font-size:9px}.recent-tarot-card{flex-basis:126px;min-width:126px}.recent-tarot-card img{height:158px}}
+@media(prefers-reduced-motion:reduce){.mieu-light-bird{animation:none;display:none}}
+</style>
+
 </head>
 <body>
+
+<div id="mieuAgeGate" role="dialog" aria-modal="true" aria-labelledby="mieuAgeTitle" aria-describedby="mieuAgeDescription">
+  <div class="age-gate-panel">
+    <div class="age-gate-kicker">MIÊU CÁ · THE VEIL OF STORIES</div>
+    <h2 class="age-gate-title" id="mieuAgeTitle">CÁNH CỔNG MIÊU CÁC</h2>
+    <div class="age-gate-copy" id="mieuAgeDescription">
+      <strong>ĐÂY LÀ KHU VỰC DÀNH CHO NGƯỜI TỪ 18 TUỔI TRỞ LÊN</strong>
+      Nội dung sẽ mang những yếu tố KHÔNG PHÙ HỢP DƯỚI 18 TUỔI.
+    </div>
+    <p class="age-gate-note">Vui lòng xác nhận bạn đã đủ 18 tuổi và đồng ý tiếp tục trước khi bước vào.</p>
+    <div class="age-gate-actions">
+      <button type="button" class="age-gate-enter" id="mieuAgeEnter">✦ Vào</button>
+      <button type="button" class="age-gate-exit" id="mieuAgeExit">Rời khỏi</button>
+    </div>
+    <div class="age-gate-foot">✧ A GATE BETWEEN WORLDS ✧</div>
+  </div>
+</div>
+
 <div id="pageLoadingOverlay" class="hidden" role="status" aria-live="polite"><div class="page-loader-card"><div class="page-loader-ring" aria-label="Đang tải"></div><div id="pageLoadingLabel" class="page-loader-label">Đang tải trang truyện...</div><div class="page-loader-hint">Meow đang chuẩn bị nội dung, đợi một chút nhé 💗</div></div></div>
 <div class="mesh-bg"></div>
 
@@ -553,7 +826,7 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
     <!-- Logo + menu icon nằm sát nhau -->
     <div class="flex items-center gap-2 sm:gap-3">
       <div class="flex items-center gap-2 cursor-pointer" onclick="app.navigate('home')">
-        <div id="siteLogoHeaderWrap" class="w-10 h-10 rounded-2xl pink-blue-gradient p-[2px] shadow-lg shadow-pink-500/20"><div class="w-full h-full rounded-[14px] bg-[#120d20] flex items-center justify-center text-2xl">🐈‍⬛</div></div>
+        <div id="siteLogoHeaderWrap" class="w-10 h-10 rounded-2xl pink-blue-gradient p-[2px] shadow-lg shadow-pink-500/20"><div class="w-full h-full rounded-[14px] bg-[#120d20] flex items-center justify-center text-2xl">🐾</div></div>
         <h1 class="font-gothic text-lg sm:text-xl font-black tracking-wider pink-blue-text leading-none">MIÊU CÁC</h1>
       </div>
       <div class="relative">
@@ -581,9 +854,10 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
       </div>
       <!-- Khu vực User / Đăng nhập -->
       <div id="headerUserArea">
-        <button onclick="app.openAuthModal()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white pink-blue-gradient shadow-lg shadow-pink-500/25 hover:opacity-95 transition">
-          🔐 Đăng nhập
-        </button>
+        <div class="flex items-center gap-1.5">
+          <button onclick="app.showAuthScreen('login');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold text-white pink-blue-gradient">🔐 Đăng nhập</button>
+          <button onclick="app.showAuthScreen('register');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold border border-pink-400/40">✨ Đăng ký</button>
+        </div>
       </div>
     </div>
   </div>
@@ -600,42 +874,75 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
 
   <!-- ==================== VIEW 1: TRANG CHỦ ==================== -->
   <section id="view-home" class="space-y-8">
+    <!-- BA CÁNH CỔNG HUYỀN GIỚI -->
+    <section class="mieu-gates-wrap" aria-label="Ba cánh cổng Miêu Các">
+      <div class="mieu-butterflies" aria-hidden="true"><span class="mieu-butterfly">🦋</span><span class="mieu-butterfly">✧🦋</span><span class="mieu-butterfly">🦋</span><span class="mieu-butterfly">✦</span></div>
+      <div class="mieu-gates-heading"><span class="ranking-eyebrow">✦ THE THREE REALMS ✦</span><h2 class="text-2xl sm:text-3xl font-serif font-bold pink-blue-text mt-1">Ba Cánh Cổng Huyền Giới</h2><p class="text-xs opacity-70 mt-1">Chọn một cánh cổng để bước vào thế giới của riêng bạn</p></div>
+      <div class="mieu-gates-grid">
+        <button type="button" class="mieu-gate mieu-gate-left" onclick="app.navigate('filters')"><span class="mieu-gate-symbol">☾</span><span class="mieu-gate-name">Cổng Vĩnh Dạ</span><span class="mieu-gate-desc">Vùng đất bóng tối bất tận.</span><span class="mieu-gate-cta">Mở bộ lọc truyện ↗</span></button>
+        <button type="button" class="mieu-gate mieu-gate-center" onclick="app.navigate('guide')"><span class="mieu-gate-symbol">✧</span><span class="mieu-gate-name">Cổng Thiên Khải</span><span class="mieu-gate-desc">Khởi nguồn của ánh sáng.</span><span class="mieu-gate-cta">Vào hướng dẫn ✦</span></button>
+        <button type="button" class="mieu-gate mieu-gate-right" onclick="app.navigate('profile')"><span class="mieu-gate-symbol">◈</span><span class="mieu-gate-name">Cổng Hư Vô</span><span class="mieu-gate-desc">Nơi mọi thứ bắt đầu và kết thúc.</span><span class="mieu-gate-cta">Vào trang cá nhân ↗</span></button>
+      </div>
+    </section>
+
+
     <!-- Banner Chào Mừng + 5 Truyện Nổi Bật (Sách Xoay 3D) -->
     <div class="relative overflow-hidden">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
         <div>
-          <span class="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-pink-500/20 text-pink-300 border border-pink-400/30 mb-2">✨ Tuyển Chọn Hoàng Gia</span>
+          <span class="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-pink-500/20 text-pink-300 border border-pink-400/30 mb-2">✦ TUYỂN CHỌN HOÀNG GIA</span>
           <h2 class="text-2xl sm:text-3xl font-serif font-bold pink-blue-text">Ngũ Đại Tuyệt Tác Miêu Các</h2>
         </div>
         <p class="text-xs opacity-75">5 tác phẩm nổi bật được quản trị viên chọn cố định</p>
       </div>
 
       <div id="featuredStoriesGrid" class="featured-rail flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4">
-        <div class="min-w-full text-center py-8 opacity-70 text-sm">🐈‍⬛ Đang mở kho truyện Miêu Các...</div>
+        <div class="min-w-full text-center py-8 opacity-70 text-sm">🐾 Đang mở kho truyện Miêu Các...</div>
       </div>
     </div>
+
+
+    <!-- BẢNG XẾP HẠNG TÁC PHẨM -->
+    <section id="homeRankingSection" class="gothic-card p-4 sm:p-5">
+      <div class="flex items-center justify-between gap-3 mb-4">
+        <div>
+          <span class="ranking-eyebrow">✦ THE HALL OF STORIES ✦</span>
+          <h3 class="text-xl sm:text-2xl font-serif font-bold pink-blue-text">🏆 Bảng Xếp Hạng Tác Phẩm</h3>
+          <p class="text-[11px] opacity-70 mt-1">Những câu chuyện được độc giả khám phá nhiều nhất</p>
+        </div>
+        
+      </div>
+      <div id="rankingFilterPanel" class="mt-3 mb-4 pb-4 border-b border-pink-400/20">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
+          <input id="rankingSearch" oninput="app.renderHomeRanking()" placeholder="🔎 Tìm tác phẩm..." class="ranking-control">
+          <select id="rankingSort" onchange="app.renderHomeRanking()" class="ranking-control">
+            <option value="views">Lượt đọc nhiều nhất</option>
+            <option value="updated">Mới cập nhật</option>
+            <option value="chapters">Nhiều chương nhất</option>
+            <option value="words">Nhiều chữ nhất</option>
+          </select>
+          <select id="rankingGenre" onchange="app.renderHomeRanking()" class="ranking-control">
+            <option value="">Tất cả thể loại</option>
+          </select>
+        </div>
+        <div class="flex justify-end">
+          <select id="rankingStatus" onchange="app.renderHomeRanking()" class="ranking-control sm:max-w-[220px]">
+            <option value="">Mọi trạng thái</option>
+            <option value="Đang ra">Đang ra</option>
+            <option value="Hoàn thành">Hoàn thành</option>
+            <option value="Drop">Drop</option>
+          </select>
+        </div>
+      </div>
+      <div id="homeRankingList" class="ranking-list" aria-live="polite">
+        <div class="text-center py-5 text-xs opacity-60">Đang xếp hạng tác phẩm...</div>
+      </div>
+    </section>
 
     <!-- Layout 2 cột: Danh sách truyện bên trái + Lịch VN & Đang đọc / Lưu truyện bên phải -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
       <!-- Cột trái (8 phần): Tìm kiếm, Lọc thể loại & Danh sách truyện -->
       <div class="lg:col-span-8 space-y-6">
-        <div class="gothic-card p-5">
-          <div class="flex flex-col sm:flex-row gap-3 mb-4">
-            <div class="relative flex-1">
-              <input id="homeSearchInput" type="text" oninput="app.renderHomeStories()" placeholder="🔎 Tìm tên truyện, mã truyện..." class="w-full pl-4 pr-4 py-2.5 rounded-xl bg-black/20 border border-pink-400/30 text-sm outline-none focus:border-sky-400">
-            </div>
-            <select id="homeStatusFilter" onchange="app.renderHomeStories()" class="px-4 py-2.5 rounded-xl bg-black/20 border border-pink-400/30 text-sm outline-none">
-              <option value="">Tất cả trạng thái</option>
-              <option value="Đang ra">🟢 Đang ra</option>
-              <option value="Hoàn thành">✅ Hoàn thành</option>
-              <option value="Drop">🔴 Drop</option>
-            </select>
-          </div>
-
-          <!-- Danh sách Tags dùng chung từ settings/tags -->
-          <div id="homeTagsBar" class="flex flex-wrap gap-1.5 filter-chip-row"></div>
-        </div>
-
         <!-- Lưới tất cả truyện -->
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -650,7 +957,10 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
           <h3 class="text-lg font-serif font-bold pink-blue-text mb-4">⚡ Chương Mới Cập Nhật</h3>
           <div id="recentChaptersList" class="divide-y divide-white/10 text-sm"></div>
         </div>
-        <div class="gothic-card p-5"><h3 class="text-lg font-serif font-bold pink-blue-text mb-3">🆕 Truyện mới cập nhật (7 ngày)</h3><div id="recentStoriesList" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div></div>
+        <section class="recent-tarot-section">
+          <h3 class="recent-tarot-heading"><span class="recent-tarot-line"></span><span>TRUYỆN MỚI CẬP NHẬT</span><small>7 NGÀY</small></h3>
+          <div id="recentStoriesList" class="recent-tarot-rail" aria-label="Truyện mới cập nhật trong 7 ngày"></div>
+        </section>
         <div class="gothic-card p-5"><h3 class="text-lg font-serif font-bold pink-blue-text mb-3">🌙 Hoạt động gần đây</h3><div id="activityFeed" class="space-y-2 text-xs"></div></div>
         <button onclick="app.navigate('filters')" class="px-4 py-2 rounded-xl text-xs font-bold border border-pink-400/30">🔎 Mở trang bộ lọc riêng</button>
       </div>
@@ -678,6 +988,15 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
           <div id="vnCalendarDays" class="grid grid-cols-7 gap-1 text-center text-xs"></div>
         </div>
 
+        <!-- BÓI TAROT: GỢI Ý MỘT TÁC PHẨM NGẪU NHIÊN -->
+        <button type="button" onclick="app.drawStoryTarot()" class="tarot-entry gothic-card w-full p-4 text-left">
+          <span class="tarot-sigil" aria-hidden="true">✦</span>
+          <span class="block text-[10px] tracking-[.24em] uppercase text-purple-300">The Arcane Reading</span>
+          <span class="block font-serif text-xl font-bold mt-1 tarot-title">🔮 Bốc Bài Tarot</span>
+          <span class="block text-[11px] opacity-75 mt-1">Một lá bài · Một câu chuyện đang chờ được mở ra</span>
+          <span class="tarot-cta">Chạm để khám phá <b>↗</b></span>
+        </button>
+
         <!-- Khung Truyện & Chương Đang Đọc -->
         <div class="gothic-card p-5">
           <h4 class="font-bold text-sm pink-blue-text mb-3 flex items-center gap-2">📖 Chương Đang Đọc Dở</h4>
@@ -698,28 +1017,23 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
   </section>
 
   <!-- ==================== VIEW 2: CHI TIẾT TRUYỆN (PROFILE TRUYỆN) ==================== -->
-  <section id="view-story" class="hidden space-y-6">
-    <button onclick="app.navigate('home')" class="px-4 py-2 rounded-xl text-xs font-bold border border-pink-400/30 hover:bg-pink-500/15 transition">
-      ← Quay lại Trang chủ
-    </button>
-
+  <section id="view-story" class="hidden space-y-5">
+    <nav class="story-home-crumb" aria-label="Điều hướng truyện">
+      <button type="button" onclick="app.navigate('home')">⌂ <span>Quay lại Trang chủ</span> <b>›</b></button>
+    </nav>
     <div id="storyDetailContainer" class="space-y-6"></div>
   </section>
 
   <!-- ==================== VIEW 3: TRÌNH ĐỌC CHƯƠNG (CANVAS + AUDIO) ==================== -->
   <section id="view-reader" class="hidden space-y-5">
     <!-- Thanh công cụ đọc truyện -->
-    <div id="readerTopBar" class="gothic-card p-4 sticky top-16 z-40">
-      <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
-        <div class="flex gap-2"><button id="readerBackBtn" aria-label="Trở về trang truyện" title="Trở về trang truyện" class="reader-back-compact px-3 py-2 rounded-xl text-sm font-black border border-pink-400/30">‹</button></div>
-        <div class="text-center flex-1 min-w-[200px]">
-          <div id="readerStoryName" class="text-xs opacity-75 font-semibold">Tên truyện</div>
-          <h2 id="readerChapterTitle" class="text-base sm:text-lg font-bold pink-blue-text">Tên chương</h2>
-        </div>
-        <div class="flex items-center gap-2">
-          <button type="button" onclick="app.openReaderSettings()" class="px-3 py-2 rounded-xl text-xs font-bold border border-pink-400/30">⚙ Cài đặt</button>
-          <button id="prevChapterBtn" onclick="app.navigateChapter(-1)" class="px-3 py-2 rounded-xl text-xs font-bold border border-white/15 hover:bg-white/10">◀ Trước</button>
-          <button id="nextChapterBtn" onclick="app.navigateChapter(1)" class="px-3 py-2 rounded-xl text-xs font-bold pink-blue-gradient text-white">Sau ▶</button>
+    <div id="readerTopBar" class="reader-title-capsule sticky top-2 z-40">
+      <div class="reader-title-capsule-inner reader-title-luxury">
+        <button id="readerBackBtn" aria-label="Trở về trang truyện" title="Trở về trang truyện" class="reader-back-compact">‹</button>
+        <div class="reader-title-copy">
+          <div class="reader-title-kicker"><span class="reader-title-flourish">✦</span><span id="readerStoryName" class="text-xs font-semibold">Tên truyện</span><span class="reader-title-flourish">✦</span></div>
+          <h2 id="readerChapterTitle" class="text-base sm:text-lg font-bold">Tên chương</h2>
+          <div class="reader-title-rule"><i></i></div>
         </div>
       </div>
 
@@ -771,7 +1085,14 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
       </div>
     </div>
 
-    <!-- Khung Nội Dung Canvas Bảo Vệ Bản Quyền -->
+    <!-- Thanh điều khiển nổi cạnh dưới màn hình khi đọc -->
+    <div id="readerFloatingNav" class="reader-floating-nav" aria-label="Điều hướng đọc truyện">
+      <button type="button" onclick="app.openReaderSettings()" class="reader-float-settings">⚙ Cài đặt</button>
+      <button type="button" onclick="app.navigateChapter(-1)">◀ Trước</button>
+      <button type="button" onclick="app.navigateChapter(1)" class="reader-float-next">Sau ▶</button>
+    </div>
+
+    <!-- Nội dung truyện hiển thị thoáng, không đóng khung -->
     <div id="readerCanvasWrapper" class="gothic-card p-4 sm:p-8 reader-protected relative overflow-hidden">
       <div class="text-center text-[11px] opacity-60 mb-4">
         🛡️ Nội dung được bảo vệ bằng công nghệ Canvas chống sao chép & chế độ đọc tự động
@@ -926,7 +1247,7 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
   <!-- ==================== VIEW 5: TRANG CÁ NHÂN CỦA TÔI ==================== -->
   <section id="view-profile" class="hidden space-y-6">
     <div id="profileGuestNotice" class="gothic-card p-8 text-center">
-      <div class="text-4xl mb-3">🐈‍⬛</div>
+      <div class="text-4xl mb-3">🐾</div>
       <h2 class="text-xl font-bold pink-blue-text mb-2">Đăng nhập để quản lý Trang cá nhân & Tủ truyện</h2>
       <button onclick="app.openAuthModal()" class="mt-2 px-6 py-2.5 rounded-xl font-bold text-white pink-blue-gradient">🔐 Đăng nhập</button>
     </div>
@@ -1025,8 +1346,15 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
         </div>
       </div>
 
+      <div class="flex flex-wrap gap-2 mb-5" role="tablist" aria-label="Khu vực sáng tác">
+        <button type="button" onclick="app.studioSwitchTab('info')" id="studioTab-info" class="px-4 py-2 rounded-xl text-xs font-bold pink-blue-gradient text-white">📝 Đăng thông tin truyện</button>
+        <button type="button" onclick="app.studioSwitchTab('chapter')" id="studioTab-chapter" class="px-4 py-2 rounded-xl text-xs font-bold border border-pink-400/30">📄 Soạn chương</button>
+        <button type="button" onclick="app.studioSwitchTab('pricing')" id="studioTab-pricing" class="px-4 py-2 rounded-xl text-xs font-bold border border-pink-400/30">💰 Giá</button>
+      </div>
+
       <!-- Form Thông tin truyện -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-5 rounded-2xl bg-black/20 border border-white/10 mb-6 text-xs">
+      <div id="studioPanel-info" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-xl bg-black/10 mb-5 text-xs">
         <div>
           <label class="block font-bold mb-1">Mã ID truyện (tự tạo từ tên, không dấu) *</label>
           <input id="stStoryCode" type="text" placeholder="vd: thienquan" class="w-full px-3.5 py-2.5 rounded-xl bg-black/30 border border-pink-400/30 outline-none">
@@ -1069,9 +1397,10 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
           <button onclick="app.studioSaveStory()" class="px-6 py-2.5 rounded-xl font-bold text-white pink-blue-gradient shadow-lg">💾 Lưu Thông Tin Truyện</button>
         </div>
       </div>
+      </div>
 
-      <!-- Khung Soạn Chương Giống Google Tài Liệu -->
-      <div class="p-5 rounded-2xl bg-black/20 border border-sky-400/30 space-y-4">
+      <!-- Soạn chương: bố cục nhẹ, giảm khung bọc -->
+      <div id="studioPanel-chapter" class="hidden space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <h3 class="text-lg font-bold text-sky-400">📄 Khung Soạn Chương (Google Docs Style)</h3>
           <div class="flex gap-2">
@@ -1094,7 +1423,7 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
         </div>
 
         <!-- Cài đặt VIP, Giá, Điểm mở, Mật khẩu -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 p-4 rounded-xl bg-pink-500/10 border border-pink-400/25 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 py-3 border-y border-pink-400/15 text-xs">
           <div class="flex flex-col justify-center">
             <label class="flex items-center gap-2 font-bold cursor-pointer">
               <input id="stChapterVip" type="checkbox" class="w-4 h-4 accent-pink-500">
@@ -1117,7 +1446,7 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
         </div>
 
         <!-- Thanh công cụ Google Docs -->
-        <div class="rounded-2xl overflow-hidden border border-pink-400/35">
+        <div class="overflow-hidden border-y border-pink-400/25">
           <div class="docs-toolbar flex flex-wrap items-center gap-1.5 p-2.5 bg-[#1b152e] border-b border-white/10">
             <button type="button" onclick="app.execDocCmd('undo')" title="Hoàn tác">↶</button>
             <button type="button" onclick="app.execDocCmd('redo')" title="Làm lại">↷</button>
@@ -1150,6 +1479,32 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
           </button>
         </div>
       </div>
+      </div>
+
+      <div id="studioPanel-pricing" class="hidden space-y-4">
+        <div class="flex flex-col sm:flex-row gap-3 sm:items-end">
+          <label class="flex-1 text-xs font-bold">Chọn truyện để cài giá
+            <select id="studioPricingStorySelect" onchange="app.renderStudioPricing()" class="block w-full mt-1 px-3 py-2.5 rounded-xl bg-black/25 border border-pink-400/30 text-sm">
+              <option value="">-- Chọn truyện --</option>
+            </select>
+          </label>
+          <p class="text-[11px] opacity-65">Giá từng chương được lưu riêng, không ảnh hưởng chương khác.</p>
+        </div>
+        <div id="studioPricingTools" class="hidden space-y-3">
+          <div class="p-3 rounded-xl bg-pink-500/8 border border-pink-400/20 space-y-2">
+            <div class="font-bold text-sm pink-blue-text">Đồng giá cho các chương đã tích chọn</div>
+            <div class="flex flex-wrap items-center gap-2">
+              <input id="studioBulkPrice" type="number" min="0" value="0" placeholder="Nhập giá VNĐ" class="w-40 px-3 py-2 rounded-lg bg-black/25 border border-pink-400/30 text-sm">
+              <button type="button" onclick="app.applyStudioBulkPrice()" class="px-4 py-2 rounded-lg pink-blue-gradient text-white text-xs font-bold">Áp dụng cho chương đã chọn</button>
+              <button type="button" onclick="app.toggleAllPricingChapters(true)" class="px-3 py-2 rounded-lg border border-pink-400/25 text-xs">Chọn tất cả</button>
+              <button type="button" onclick="app.toggleAllPricingChapters(false)" class="px-3 py-2 rounded-lg border border-pink-400/25 text-xs">Bỏ chọn</button>
+            </div>
+            <p class="text-[10px] opacity-65">Chỉ những chương được tích mới nhận giá đồng loạt. Chương không tích vẫn giữ giá riêng.</p>
+          </div>
+          <div id="studioPricingChapterList" class="divide-y divide-pink-400/15"></div>
+        </div>
+        <p id="studioPricingEmpty" class="text-xs opacity-60">Chọn một truyện ở trên để xem danh sách chương và cài giá.</p>
+      </div>
     </div>
   </section>
 
@@ -1161,9 +1516,15 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
           <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">👑 KHU VỰC QUẢN TRỊ TỐI CAO</span>
           <h2 class="text-2xl font-serif font-bold pink-blue-text mt-2">Bảng Điều Khiển Admin Miêu Các</h2>
         </div>
+        <div class="admin-identity-strip">
+          <div class="admin-identity-avatar" id="adminIdentityAvatar">👑</div>
+          <div class="admin-identity-copy"><b id="adminIdentityName">Meow</b><span id="adminIdentityTitle">Quản trị viên tối cao</span></div>
+          <button type="button" class="admin-edit-profile-btn" onclick="app.openAdminProfileEditor()">✎ Sửa thông tin</button>
+        </div>
         <div class="flex flex-wrap gap-2 text-xs">
           <button onclick="app.switchAdminTab('topups')" id="aTab-topups" class="px-4 py-2 rounded-xl font-bold pink-blue-gradient text-white">📥 Duyệt nạp tiền</button>
           <button onclick="app.switchAdminTab('customers')" id="aTab-customers" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">👥 Quản lý khách & Cấp quyền</button>
+          <button onclick="app.switchAdminTab('vipaccess')" id="aTab-vipaccess" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">👑 Cấp VIP truyện</button>
           <button onclick="app.switchAdminTab('featured')" id="aTab-featured" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">⭐ 5 Truyện nổi bật & Kho truyện</button>
           <button onclick="app.switchAdminTab('appearance')" id="aTab-appearance" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">🎨 Logo & Giao diện</button>
           <button onclick="app.switchAdminTab('checkin')" id="aTab-checkin" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">📅 Điểm danh</button>
@@ -1188,6 +1549,66 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
         <select id="filterSort" onchange="app.renderFilterPage()" class="p-3 rounded-xl bg-black/20 border border-pink-400/30 text-sm"><option value="new">Mới cập nhật</option><option value="views">Lượt xem cao</option><option value="az">Tên A → Z</option><option value="za">Tên Z → A</option></select>
       </div>
       <div id="filterResults" class="story-grid grid grid-cols-3 gap-4"></div>
+    </div>
+  </section>
+
+
+  <!-- VIEW: CỔNG THIÊN KHẢI - HƯỚNG DẪN -->
+  <section id="view-guide" class="hidden space-y-5">
+    <button onclick="app.navigate('home')" class="text-xs px-3 py-2 rounded-lg border border-purple-300/30">← Trở về đại sảnh</button>
+    <div id="mieuGuideView">
+      <div class="mieu-butterflies mieu-heavenly-sky" aria-hidden="true"><span class="mieu-butterfly">🦋</span><span class="mieu-butterfly">✧🦋</span><span class="mieu-butterfly">🦋</span><span class="mieu-butterfly">✦</span><span class="mieu-light-bird">🕊️</span><span class="mieu-light-bird">✧🕊️</span><span class="mieu-light-bird">🕊️</span></div>
+      <header class="text-center relative">
+        <div class="text-4xl mb-2">✧ 🦋 ✧</div>
+        <div class="ranking-eyebrow">THE GATE OF HEAVENLY DAWN</div>
+        <h1 class="text-3xl sm:text-4xl font-serif font-bold mt-2" style="color:#f6dfb5">Cổng Thiên Khải</h1>
+        <p class="text-sm mt-2" style="color:#d9c4eb">Khởi nguồn của ánh sáng · Cẩm nang dành cho lữ khách mới</p>
+      </header>
+      <article class="mieu-guide-card">
+        <h3>Ⅰ. Khởi tạo tài khoản</h3>
+        <p>Đăng ký tài khoản để lưu hồ sơ, theo dõi truyện, quản lý tủ sách, sử dụng ví và đồng bộ hoạt động của bạn trên Miêu Các.</p>
+        <ol class="list-decimal pl-5 mt-2 space-y-1">
+          <li>Chọn <strong>Đăng nhập</strong> trên thanh đầu trang.</li>
+          <li>Chọn mục <strong>Đăng ký</strong>, nhập email và mật khẩu theo biểu mẫu.</li>
+          <li>Hoàn tất đăng ký rồi đăng nhập để mở trang cá nhân.</li>
+        </ol>
+        <button class="mieu-guide-action" onclick="app.openAuthModal();app.showAuthScreen('register')">Tạo tài khoản ✦</button>
+      </article>
+      <article class="mieu-guide-card">
+        <h3>Ⅱ. Nạp tiền vào ví</h3>
+        <p>Ví Miêu Các hỗ trợ nạp tiền bằng chuyển khoản ngân hàng. Bạn cần đăng nhập trước khi thực hiện.</p>
+        <ol class="list-decimal pl-5 mt-2 space-y-1">
+          <li>Mở mục <strong>Nạp & Đổi điểm</strong> hoặc nút bên dưới.</li>
+          <li>Chọn gói nạp hoặc nhập số tiền muốn nạp; hệ thống tạo mã QR chuyển khoản.</li>
+          <li>Quét QR và chuyển khoản đúng thông tin hiển thị.</li>
+          <li>Tải ảnh xác nhận giao dịch lên yêu cầu nạp tiền và chờ quản trị viên duyệt.</li>
+          <li>Sau khi được duyệt, kiểm tra số dư và sao kê trong Ví.</li>
+        </ol>
+        <p class="mt-2">Lưu ý: chỉ chuyển khoản theo thông tin đang hiển thị trong trang Ví. Không gửi mật khẩu hoặc mã xác thực cho bất kỳ ai.</p>
+        <button class="mieu-guide-action" onclick="app.navigate('wallet')">Đi đến Ví Miêu Các ↗</button>
+      </article>
+      <article class="mieu-guide-card">
+        <h3>Ⅲ. Điểm tích lũy & đổi điểm</h3>
+        <p>Điểm tích lũy được tính theo khoản nạp đủ điều kiện: <strong>100.000đ = 1 điểm</strong>. Các khoản cộng ví khác không tự động phát sinh điểm; điểm VIP và điểm danh do quản trị viên cài riêng.</p>
+        <p class="mt-2">Bạn có thể đổi điểm tích lũy sang tiền ví theo tỷ lệ <strong>1 điểm = 10.000đ</strong>. Số lẻ cũng có thể đổi. Vào Ví → Đổi điểm để xem số dư và thực hiện.</p>
+        <p class="mt-2">Điểm danh mỗi ngày là khoản tiền VNĐ cộng vào ví, <strong>không phải điểm tích lũy</strong>; mỗi tài khoản nhận tối đa một lần mỗi ngày theo lịch Việt Nam.</p>
+        <button class="mieu-guide-action" onclick="app.navigate('wallet');setTimeout(()=>app.openWalletSection('exchange'),80)">Xem điểm & đổi điểm ✧</button>
+      </article>
+      <article class="mieu-guide-card mieu-title-guide">
+        <h3>Ⅳ. Danh hiệu Mèo & viền ảnh đại diện</h3>
+        <p>Mỗi khi tích lũy đủ điểm, tài khoản sẽ mở khóa danh hiệu Mèo tương ứng. Danh hiệu được hiển thị cùng khung trang trí quanh ảnh đại diện. Đây là bảng tham khảo theo các mốc điểm hiện được thiết lập trên Miêu Các:</p>
+        <div class="mieu-title-showcase">
+          <div class="mieu-title-sample"><span class="meow-avatar-frame reader"><span class="mieu-avatar-demo">M</span></span><b>Độc giả Miêu Các</b><small>Chưa đạt 1 điểm</small></div>
+          <div class="mieu-title-sample"><span class="meow-avatar-frame kitten"><span class="mieu-avatar-demo">M</span></span><b>Mèo Con Tập Sự</b><small>Từ 1 điểm</small></div>
+          <div class="mieu-title-sample"><span class="meow-avatar-frame wise"><span class="mieu-avatar-demo">M</span><i class="meow-avatar-bow">🎀</i></span><b>Mèo Thông Thái</b><small>Từ 2 điểm</small></div>
+          <div class="mieu-title-sample"><span class="meow-avatar-frame tycoon"><span class="mieu-avatar-demo">M</span><i class="meow-avatar-bow">🎀</i></span><b>Mèo Tài Phiệt</b><small>Từ 5 điểm</small></div>
+          <div class="mieu-title-sample"><span class="meow-avatar-frame royal"><span class="mieu-avatar-demo">M</span><i class="meow-avatar-crown">👑</i></span><b>Mèo Hoàng Gia</b><small>Từ 10 điểm</small></div>
+          <div class="mieu-title-sample"><span class="meow-avatar-frame emperor"><span class="mieu-avatar-demo">M</span><i class="meow-avatar-crown">♚</i></span><b>Mèo Đại Đế</b><small>Từ 50 điểm</small></div>
+          <div class="mieu-title-sample"><span class="meow-avatar-frame angel"><span class="mieu-avatar-demo">M</span><i class="meow-avatar-wings">🪽</i></span><b>Mèo Thiên Sứ</b><small>Từ 100 điểm</small></div>
+        </div>
+        <p class="mt-3">Các viền và phụ kiện trên ảnh là hình minh họa để khách xem trước. Khi đăng nhập, khung thực tế sẽ tự hiển thị theo điểm tích lũy của tài khoản.</p>
+      </article>
+      <div class="text-center text-xs mt-5" style="color:#bda8d1">✦ MIÊU CÁC · Chúc bạn có hành trình khám phá thật vui ✦</div>
     </div>
   </section>
 
@@ -1228,63 +1649,67 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
 
 <!-- ==================== MODAL ĐĂNG NHẬP (KHÁCH HÀNG + GOOGLE + ADMIN) ==================== -->
 <div id="authModal" class="fixed inset-0 z-[9990] hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
-  <div class="gothic-card max-w-md w-full p-6 sm:p-7 border border-pink-400/40 relative">
+  <div class="gothic-card max-w-md w-full p-6 sm:p-7 border border-pink-400/40 relative max-h-[92vh] overflow-y-auto">
     <button onclick="app.closeAuthModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-pink-500/30 flex items-center justify-center text-sm">✕</button>
-
     <div class="text-center mb-5">
-      <div class="text-4xl mb-2">🐈‍⬛</div>
+      <div class="text-4xl mb-2">🐾</div>
       <h3 class="font-gothic text-xl font-bold pink-blue-text">Cổng Vào Miêu Các</h3>
-      <p class="text-xs opacity-75 mt-1">Đồng bộ trực tiếp với Meow Wallet & Meow Studio</p>
+      <p class="text-xs opacity-75 mt-1">Tài khoản độc giả riêng biệt</p>
     </div>
 
-    <!-- Tabs chọn Khách hàng hoặc Admin -->
-    <div class="grid grid-cols-2 gap-2 p-1 rounded-xl bg-black/30 mb-5 text-xs font-bold">
-      <button id="authTabCustomer" onclick="app.switchAuthMode('customer')" class="py-2 rounded-lg pink-blue-gradient text-white">🐾 Độc giả / Tác giả</button>
-      <button id="authTabAdmin" onclick="app.switchAuthMode('admin')" class="py-2 rounded-lg opacity-75 hover:opacity-100">👑 Quản trị Admin</button>
+    <div id="authChoiceView" class="space-y-3">
+      <p class="text-center text-sm font-semibold mb-4">Bạn muốn làm gì hôm nay?</p>
+      <button onclick="app.showAuthScreen('login')" class="w-full py-3 rounded-xl font-bold text-sm text-white pink-blue-gradient">🔐 Đăng nhập</button>
+      <button onclick="app.showAuthScreen('register')" class="w-full py-3 rounded-xl font-bold text-sm border border-pink-400/40 hover:bg-pink-500/15">✨ Tạo tài khoản mới</button>
+      <button onclick="app.showAuthScreen('admin')" class="w-full py-2.5 rounded-xl text-xs border border-amber-400/30 text-amber-300">👑 Đăng nhập quản trị</button>
     </div>
 
-    <!-- Form Khách hàng -->
-    <div id="authCustomerForm" class="space-y-3 text-xs">
-      <div>
-        <label class="block font-bold mb-1">Tên hiển thị của bạn *</label>
-        <input id="loginCustName" type="text" placeholder="Ví dụ: Tiểu Miêu" class="w-full px-3.5 py-2.5 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
-      </div>
-      <div>
-        <label class="block font-bold mb-1">ID Khách hàng (Đồng bộ Meow Wallet) *</label>
-        <input id="loginCustId" type="text" placeholder="Ví dụ: meow123 hoặc số ID của bạn" class="w-full px-3.5 py-2.5 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
-      </div>
-      <div>
-        <label class="block font-bold mb-1">Email thật của bạn (không bắt buộc)</label>
-        <input id="loginCustEmail" type="email" placeholder="example@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
-      </div>
-      <button onclick="app.loginCustomerManual()" class="w-full py-3 rounded-xl font-bold text-sm text-white pink-blue-gradient shadow-lg">
-        💗 Đăng Nhập / Tạo Tài Khoản
-      </button>
-
-      <div class="relative py-2 text-center">
-        <span class="px-2 bg-[#130f21] text-[11px] opacity-60 relative z-10">HOẶC ĐĂNG NHẬP NHANH</span>
-        <div class="absolute inset-x-0 top-1/2 border-t border-white/10"></div>
-      </div>
-
-      <button onclick="app.loginWithGoogleReal()" class="w-full py-2.5 rounded-xl font-bold text-xs bg-white text-slate-900 hover:bg-slate-100 flex items-center justify-center gap-2 shadow">
-        <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.8C6.2 7.2 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.5H12v4.8h6.5c-.3 1.5-1.1 2.8-2.4 3.6l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.8c-.2-.8-.4-1.6-.4-2.5s.2-1.7.4-2.5L1.6 7C.6 9 0 11.2 0 13.5s.6 4.5 1.6 6.5l3.7-5.2z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.1-6.7-5l-3.7 2.8C3.5 21.4 7.4 24 12 24z"/></svg>
-        Đăng nhập bằng Google thật của bạn
-      </button>
+    <div id="authLoginView" class="hidden space-y-3 text-xs">
+      <button onclick="app.showAuthScreen('choice')" class="text-xs opacity-75 hover:text-pink-300">← Quay lại</button>
+      <h4 class="font-bold text-base pink-blue-text">🔐 Đăng nhập độc giả</h4>
+      <label class="block font-bold">Email</label>
+      <input id="loginEmail" type="email" autocomplete="username" placeholder="email@example.com" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <label class="block font-bold">Mật khẩu</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <button onclick="app.loginWithEmailPassword()" class="w-full py-3 rounded-xl font-bold text-sm text-white pink-blue-gradient">Đăng nhập</button>
+      <div class="text-center opacity-70 py-1">Chưa có tài khoản?</div>
+      <button onclick="app.showAuthScreen('register')" class="w-full py-2.5 rounded-xl border border-pink-400/35 font-bold">Tạo tài khoản riêng</button>
+      <details class="mt-3 rounded-xl border border-white/10 p-3">
+        <summary class="cursor-pointer font-semibold">Đăng nhập tài khoản khách cũ bằng ID</summary>
+        <div class="space-y-2 mt-3">
+          <input id="loginCustName" type="text" placeholder="Tên đã đăng ký" class="w-full px-3 py-2.5 rounded-xl bg-black/30 border border-pink-400/35">
+          <input id="loginCustId" type="text" placeholder="ID khách hàng" class="w-full px-3 py-2.5 rounded-xl bg-black/30 border border-pink-400/35">
+          <input id="loginCustEmail" type="email" placeholder="Gmail (nếu có)" class="w-full px-3 py-2.5 rounded-xl bg-black/30 border border-pink-400/35">
+          <button onclick="app.loginCustomerManual()" class="w-full py-2.5 rounded-xl border border-sky-400/30">Đăng nhập tài khoản cũ</button>
+        </div>
+      </details>
+      <button onclick="app.loginWithGoogleReal()" class="w-full py-2.5 rounded-xl font-bold bg-white text-slate-900">Đăng nhập bằng Google</button>
+      <button onclick="app.showAuthScreen('admin')" class="w-full py-2 text-amber-300">Đăng nhập Admin</button>
     </div>
 
-    <!-- Form Admin -->
+    <div id="authRegisterView" class="hidden space-y-3 text-xs">
+      <button onclick="app.showAuthScreen('choice')" class="text-xs opacity-75 hover:text-pink-300">← Quay lại</button>
+      <h4 class="font-bold text-base pink-blue-text">✨ Tạo tài khoản độc giả</h4>
+      <label class="block font-bold">Tên hiển thị *</label>
+      <input id="registerName" type="text" maxlength="40" autocomplete="name" placeholder="Tên bạn muốn hiển thị" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <label class="block font-bold">Email *</label>
+      <input id="registerEmail" type="email" autocomplete="email" placeholder="email@example.com" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <label class="block font-bold">Mật khẩu (ít nhất 6 ký tự) *</label>
+      <input id="registerPassword" type="password" autocomplete="new-password" placeholder="Tạo mật khẩu" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <label class="block font-bold">Nhập lại mật khẩu *</label>
+      <input id="registerPassword2" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <button onclick="app.registerCustomerAccount()" class="w-full py-3 rounded-xl font-bold text-sm text-white pink-blue-gradient">✨ Tạo tài khoản</button>
+      <button onclick="app.showAuthScreen('login')" class="w-full py-2.5 rounded-xl border border-pink-400/35">Đã có tài khoản? Đăng nhập</button>
+    </div>
+
     <div id="authAdminForm" class="hidden space-y-3 text-xs">
-      <div>
-        <label class="block font-bold mb-1">Tên đăng nhập Admin *</label>
-        <input id="loginAdminName" type="text" placeholder="Nhập tên Admin (Meow)" class="w-full px-3.5 py-2.5 rounded-xl bg-black/30 border border-amber-400/40 outline-none">
-      </div>
-      <div>
-        <label class="block font-bold mb-1">Mật khẩu Admin *</label>
-        <input id="loginAdminPass" type="password" placeholder="Nhập mật khẩu quản trị" class="w-full px-3.5 py-2.5 rounded-xl bg-black/30 border border-amber-400/40 outline-none">
-      </div>
-      <button onclick="app.loginAdmin()" class="w-full py-3 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-amber-300 to-amber-500 shadow-lg">
-        👑 Đăng Nhập Quản Trị
-      </button>
+      <button onclick="app.showAuthScreen('choice')" class="text-xs opacity-75">← Quay lại</button>
+      <h4 class="font-bold text-base text-amber-300">👑 Đăng nhập quản trị</h4>
+      <label class="block font-bold">Tên đăng nhập Admin *</label>
+      <input id="loginAdminName" type="text" placeholder="Tên Admin" class="w-full px-3.5 py-2.5 rounded-xl bg-black/30 border border-amber-400/40 outline-none">
+      <label class="block font-bold">Mật khẩu Admin *</label>
+      <input id="loginAdminPass" type="password" placeholder="Mật khẩu quản trị" class="w-full px-3.5 py-2.5 rounded-xl bg-black/30 border border-amber-400/40 outline-none">
+      <button onclick="app.loginAdmin()" class="w-full py-3 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-amber-300 to-amber-500">Đăng nhập quản trị</button>
     </div>
   </div>
 </div>
@@ -1329,16 +1754,22 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 border-t border-white/10 text-sm">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 pt-4 border-t border-white/10 text-sm">
       <!-- Giới thiệu web -->
       <div class="space-y-2.5">
         <div class="flex items-center gap-2">
-          <span id="siteLogoFooterWrap" class="inline-flex w-9 h-9 rounded-xl overflow-hidden items-center justify-center text-2xl bg-pink-500/10">🐈‍⬛</span>
+          <span id="siteLogoFooterWrap" class="inline-flex w-9 h-9 rounded-xl overflow-hidden items-center justify-center text-2xl bg-pink-500/10">🐾</span>
           <span class="font-gothic text-lg font-bold pink-blue-text">MIÊU CÁC</span>
         </div>
-        <p class="text-xs opacity-80 leading-relaxed">
-          Thư viện đọc truyện & sáng tác mang phong cách Gothic huyền bí hòa quyện sắc hồng loang xanh dương. Nơi lưu giữ những áng văn chương độc bản, bảo vệ bản quyền bằng công nghệ Canvas và đồng bộ ví điểm thông minh.
-        </p>
+        <p id="footerAboutText" class="text-xs opacity-80 leading-relaxed">Miêu Các là không gian đọc truyện và sáng tác dành cho những tâm hồn yêu văn chương. Cùng khám phá thế giới truyện đa sắc màu, lưu giữ cảm xúc qua từng chương truyện.</p>
+      </div>
+
+      <!-- Thông tin liên hệ -->
+      <div>
+        <h4 class="font-bold pink-blue-text mb-3">✉️ Thông Tin Liên Hệ</h4>
+        <div id="footerContactLinks" class="space-y-2 text-xs opacity-85">
+          <p class="opacity-60">Thông tin liên hệ sẽ được cập nhật.</p>
+        </div>
       </div>
 
       <!-- Điều hướng nhanh -->
@@ -1378,7 +1809,7 @@ html,body{margin:0;min-height:100%;background:#100e17;color:#f5eefc;font-family:
 <script type="module">
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import { getDatabase, ref, onValue, get, set, update, push, remove, runTransaction, onDisconnect } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMUFJMj74GHONpCj3thoTIc2TfZyc91b8",
@@ -1402,9 +1833,11 @@ const state = {
   storyCacheReady: false,
   homeStoryItems: [],
   homeStoryRendered: 0,
+  featuredSlideIndex: 0,
   storyChapterItems: [],
   storyChapterRendered: 0,
   siteLogoUrl: '',
+  footerInfo: { facebook: '', page: '', gmail: '', about: '' },
   tags: [],
   featuredIds: [],
   customers: {},
@@ -1510,7 +1943,7 @@ async function restoreStoriesCache() {
       state.stories = cached.data;
       state.storyCacheReady = true;
       tryOpenInitialDeepLink();
-      app.renderHomeStories(); app.renderFeaturedStories(); app.renderRecentChapters(); app.renderRecentStories(); updateGlobalStats();
+      app.renderHomeStories(); app.renderFeaturedStories(); app.renderHomeRanking(); app.renderRecentChapters(); app.renderRecentStories(); updateGlobalStats();
       document.documentElement.classList.add('has-warm-story-cache');
     }
   } catch (e) { /* cache is optional; Firebase remains the source of truth */ }
@@ -1536,8 +1969,8 @@ function saveStoriesCache(data) {
 function setSiteLogo(url) {
   const targets = ['siteLogoHeaderWrap','siteLogoFooterWrap','adminLogoPreview'];
   targets.forEach(id => { const el=document.getElementById(id); if (!el) return;
-    if (url) { el.innerHTML=`<img class="site-logo-image" loading="eager" decoding="async" src="${esc(url)}" alt="Logo Miêu Các" onerror="this.parentElement.textContent='🐈‍⬛'">`; }
-    else { el.textContent='🐈‍⬛'; }
+    if (url) { el.innerHTML=`<img class="site-logo-image" loading="eager" decoding="async" src="${esc(url)}" alt="Logo Miêu Các" onerror="this.parentElement.textContent='🐾'">`; }
+    else { el.textContent='🐾'; }
   });
 }
 
@@ -1698,7 +2131,7 @@ function initFirebaseSync() {
     if (firstStoriesSnapshot) updateGlobalStats(); else scheduleGlobalStatsUpdate();
     const activeView = document.querySelector('main section:not(.hidden)')?.id || 'view-home';
     if (activeView === 'view-home') {
-      app.renderHomeStories();
+      app.renderHomeStories(); app.renderHomeRanking();
       app.renderFeaturedStories();
       app.renderRecentChapters();
       app.renderRecentStories();
@@ -1717,7 +2150,7 @@ function initFirebaseSync() {
           const saved = JSON.parse(sessionStorage.getItem('mieuCac_lastPage') || '{}');
           if (saved.view === 'story' && saved.storyId && state.stories[saved.storyId]) { state.currentStoryId = saved.storyId; app.renderStoryDetail(saved.storyId); app.navigate('story', { fromPop: true }); }
           else if (saved.view === 'reader' && saved.storyId && saved.chapterId && state.stories[saved.storyId]?.chapters?.[saved.chapterId]) { app.openChapterReader(saved.storyId, saved.chapterId, { fromPop: true }); }
-          else if (['wallet','profile','filters','home'].includes(saved.view)) app.navigate(saved.view, { fromPop: true });
+          else if (['wallet','profile','filters','guide','home'].includes(saved.view)) app.navigate(saved.view, { fromPop: true });
         }
       } catch(e) {}
     }
@@ -1733,6 +2166,10 @@ function initFirebaseSync() {
   onValue(ref(db, 'settings/siteLogoUrl'), (snap) => {
     state.siteLogoUrl = String(snap.val() || '');
     setSiteLogo(state.siteLogoUrl);
+  });
+  onValue(ref(db, 'settings/footerInfo'), (snap) => {
+    state.footerInfo = { ...state.footerInfo, ...(snap.val() || {}) };
+    app.renderFooterInfo();
   });
 
   // 3. Đồng bộ Thể loại dùng chung (settings/tags)
@@ -2005,12 +2442,105 @@ const app = {
     this.renderActivityFeed();
   },
 
+  renderFooterInfo() {
+    const f = state.footerInfo || {};
+    const about = document.getElementById('footerAboutText');
+    if (about) about.textContent = f.about || 'Miêu Các là không gian đọc truyện và sáng tác dành cho những tâm hồn yêu văn chương. Cùng khám phá thế giới truyện đa sắc màu, lưu giữ cảm xúc qua từng chương truyện.';
+    const links = document.getElementById('footerContactLinks');
+    if (links) {
+      const facebook = String(f.facebook || '').trim();
+      const page = String(f.page || '').trim();
+      const gmail = String(f.gmail || '').trim();
+      const rows = [
+        facebook
+          ? `<a href="${esc(facebook)}" target="_blank" rel="noopener noreferrer" class="block hover:text-pink-400">ⓕ Facebook</a>`
+          : `<span class="block opacity-60">ⓕ Facebook</span>`,
+        page
+          ? `<a href="${esc(page)}" target="_blank" rel="noopener noreferrer" class="block hover:text-pink-400">✦ Page</a>`
+          : `<span class="block opacity-60">✦ Page</span>`,
+        gmail
+          ? `<a href="mailto:${esc(gmail)}" class="block hover:text-pink-400">✉ Gmail</a>`
+          : `<span class="block opacity-60">✉ Gmail</span>`
+      ];
+      links.innerHTML = rows.join('');
+    }
+  },
+
+  async saveFooterInfo() {
+    if (state.currentUser?.role !== 'admin') { showToast('Chỉ Admin mới được cập nhật chân trang.', 'error'); return; }
+    const payload = {
+      facebook: document.getElementById('adminFooterFacebook')?.value.trim() || '',
+      page: document.getElementById('adminFooterPage')?.value.trim() || '',
+      gmail: document.getElementById('adminFooterGmail')?.value.trim() || '',
+      about: document.getElementById('adminFooterAbout')?.value.trim() || ''
+    };
+    if (payload.gmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.gmail)) { showToast('Gmail chưa đúng định dạng.', 'error'); return; }
+    for (const k of ['facebook','page']) if (payload[k] && !/^https?:\/\//i.test(payload[k])) { showToast('Link Facebook/Page phải bắt đầu bằng http:// hoặc https://', 'error'); return; }
+    await set(ref(db, 'settings/footerInfo'), payload);
+    state.footerInfo = payload; this.renderFooterInfo(); showToast('Đã cập nhật thông tin chân trang!', 'success');
+  },
+
+  studioSwitchTab(tab) {
+    ['info','chapter','pricing'].forEach(k => {
+      document.getElementById(`studioPanel-${k}`)?.classList.toggle('hidden', k !== tab);
+      const b = document.getElementById(`studioTab-${k}`);
+      if (b) { b.classList.toggle('pink-blue-gradient', k === tab); b.classList.toggle('text-white', k === tab); b.classList.toggle('border', k !== tab); b.classList.toggle('border-pink-400/30', k !== tab); }
+    });
+    if (tab === 'pricing') this.refreshStudioPricingStoryDropdown();
+  },
+
+  refreshStudioPricingStoryDropdown() {
+    const sel = document.getElementById('studioPricingStorySelect'); if (!sel) return;
+    const u = state.currentUser; const isAdmin = u?.role === 'admin';
+    const entries = Object.entries(state.stories).filter(([, st]) => isAdmin || st?.info?.publisherId === u?.id);
+    const current = sel.value || state.studioStoryId || '';
+    sel.innerHTML = '<option value="">-- Chọn truyện --</option>' + entries.map(([id, st]) => `<option value="${esc(id)}">${esc(st.info?.name || id)}</option>`).join('');
+    if (entries.some(([id]) => id === current)) sel.value = current;
+    if (sel.value) this.renderStudioPricing();
+  },
+
+  renderStudioPricing() {
+    const storyId = document.getElementById('studioPricingStorySelect')?.value || '';
+    const tools = document.getElementById('studioPricingTools'), empty = document.getElementById('studioPricingEmpty'), list = document.getElementById('studioPricingChapterList');
+    if (!storyId || !state.stories[storyId]) { tools?.classList.add('hidden'); if (empty) empty.classList.remove('hidden'); if (list) list.innerHTML=''; return; }
+    tools?.classList.remove('hidden'); empty?.classList.add('hidden');
+    const chapters = Object.entries(state.stories[storyId].chapters || {}).sort((a,b)=>Number(a[0])-Number(b[0]));
+    if (!chapters.length) { list.innerHTML='<p class="py-4 text-xs opacity-60">Truyện chưa có chương nào.</p>'; return; }
+    list.innerHTML = chapters.map(([cid,ch]) => `<div class="flex flex-wrap items-center gap-3 py-3 text-xs" data-price-row="${esc(cid)}">
+      <label class="flex items-center gap-2 min-w-0 flex-1"><input type="checkbox" class="studio-price-check accent-pink-500" value="${esc(cid)}"><span class="truncate"><b>Chương ${esc(cid)}</b> · ${esc(ch.title || 'Chưa đặt tên')}</span></label>
+      <span class="text-[10px] opacity-60">${ch.vip ? 'VIP' : 'Thường'}</span>
+      <input id="studioPrice-${esc(cid)}" type="number" min="0" value="${Math.max(0,Number(ch.price)||0)}" class="w-28 px-2.5 py-2 rounded-lg bg-black/20 border border-pink-400/25 text-right" aria-label="Giá chương ${esc(cid)}">
+      <button type="button" onclick="app.saveStudioChapterPrice('${esc(storyId)}','${esc(cid)}')" class="px-3 py-2 rounded-lg border border-pink-400/30">Lưu giá</button>
+    </div>`).join('');
+  },
+
+  toggleAllPricingChapters(checked) { document.querySelectorAll('.studio-price-check').forEach(el => el.checked = !!checked); },
+
+  async saveStudioChapterPrice(storyId, cid, priceOverride) {
+    const chapter = state.stories[storyId]?.chapters?.[cid]; if (!chapter) return;
+    const raw = priceOverride ?? document.getElementById(`studioPrice-${cid}`)?.value ?? 0;
+    const price = Math.max(0, Number(raw) || 0);
+    const payload = { ...chapter, price, vip: price > 0 ? true : !!chapter.vip, updatedAt: Date.now() };
+    await update(ref(db, `stories/${storyId}/chapters/${cid}`), { price: payload.price, vip: payload.vip, updatedAt: payload.updatedAt });
+    state.stories[storyId].chapters[cid] = payload;
+  },
+
+  async applyStudioBulkPrice() {
+    const storyId = document.getElementById('studioPricingStorySelect')?.value || '';
+    const price = Math.max(0, Number(document.getElementById('studioBulkPrice')?.value) || 0);
+    const selected = [...document.querySelectorAll('.studio-price-check:checked')].map(el => el.value);
+    if (!storyId) { showToast('Hãy chọn truyện trước.', 'error'); return; }
+    if (!selected.length) { showToast('Hãy tích chọn ít nhất một chương để đồng giá.', 'error'); return; }
+    for (const cid of selected) await this.saveStudioChapterPrice(storyId, cid, price);
+    this.renderStudioPricing(); showToast(`Đã áp dụng ${formatMoney(price)} cho ${selected.length} chương được chọn.`, 'success');
+  },
+
   previewSiteLogo() {
     const url = document.getElementById('adminLogoUrl')?.value.trim() || '';
     const preview = document.getElementById('adminLogoPreview');
     if (!preview) return;
     if (url && /^https?:\/\//i.test(url)) preview.innerHTML = `<img class="site-logo-image" src="${esc(url)}" alt="Logo xem trước" onerror="this.parentElement.textContent='Không tải được ảnh'">`;
-    else preview.textContent = '🐈‍⬛';
+    else preview.textContent = '🐾';
   },
   async saveSiteLogo(reset = false) {
     if (state.currentUser?.role !== 'admin') { showToast('Chỉ Admin mới được thay ảnh logo.', 'error'); return; }
@@ -2054,14 +2584,15 @@ const app = {
       try { history.pushState(navState, '', `#${viewName}${navState.storyId ? `/${encodeURIComponent(navState.storyId)}` : ''}${viewName === 'reader' && navState.chapterId ? `/${encodeURIComponent(navState.chapterId)}` : ''}`); } catch(e) {}
     }
     try { sessionStorage.setItem('mieuCac_lastPage', JSON.stringify(navState)); } catch(e) {}
-    ['home', 'story', 'reader', 'wallet', 'profile', 'studio', 'admin', 'filters', 'public-profile'].forEach(v => {
+    ['home', 'story', 'reader', 'wallet', 'profile', 'studio', 'admin', 'filters', 'guide', 'public-profile'].forEach(v => {
       const el = document.getElementById('view-' + v);
       if (el) el.classList.toggle('hidden', v !== viewName);
     });
+    document.body.classList.toggle('mieu-reader-only', viewName === 'reader');
     window.scrollTo({ top: 0, behavior: viewName === 'reader' ? 'auto' : 'smooth' });
 
     if (viewName === 'home') {
-      this.renderHomeTags(); this.renderHomeStories(); this.renderFeaturedStories();
+      this.renderHomeTags(); this.renderHomeStories(); this.renderFeaturedStories(); this.renderHomeRanking();
       this.renderRecentChapters(); this.renderRecentStories(); this.renderSidebarUserPanels();
     }
     if (viewName === 'wallet') this.renderWalletView();
@@ -2074,22 +2605,91 @@ const app = {
   // ==================== ĐĂNG NHẬP & PHÂN QUYỀN ====================
   openAuthModal() {
     const m = document.getElementById('authModal');
+    this.showAuthScreen('choice');
     m.classList.remove('hidden');
     m.classList.add('flex');
+  },
+
+  showAuthScreen(screen) {
+    const ids = { choice: 'authChoiceView', login: 'authLoginView', register: 'authRegisterView', admin: 'authAdminForm' };
+    Object.values(ids).forEach(id => document.getElementById(id)?.classList.add('hidden'));
+    document.getElementById(ids[screen] || ids.choice)?.classList.remove('hidden');
+  },
+
+  async loginWithEmailPassword() {
+    const email = String(document.getElementById('loginEmail')?.value || '').trim().toLowerCase();
+    const password = String(document.getElementById('loginPassword')?.value || '');
+    if (!email || !password) { showToast('Nhập email và mật khẩu nha.', 'error'); return; }
+    const btn = document.querySelector('#authLoginView button[onclick*="loginWithEmailPassword"]');
+    const old = btn?.textContent;
+    try {
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang đăng nhập...'; }
+      const credential = await signInWithEmailAndPassword(auth, email, password);
+      const user = credential.user;
+      const id = user.uid;
+      const customerRef = ref(db, `customers/${id}`);
+      let snap = await get(customerRef);
+      let customer = snap.exists() ? (snap.val() || {}) : null;
+      if (!customer) {
+        customer = { name: user.displayName || email.split('@')[0], email, avatar: user.photoURL || '', cover: '', bio: '', points: 0, canPublish: false, createdAt: Date.now() };
+        await set(customerRef, customer);
+      }
+      state.customers = { ...(state.customers || {}), [id]: { ...customer, id } };
+      this.setSession({ role: 'customer', id, name: customer.displayName || customer.name || user.displayName || email.split('@')[0] });
+      this.closeAuthModal();
+      showToast('Đăng nhập thành công. Chào mừng bạn trở lại!', 'success');
+      Promise.allSettled([
+        get(ref(db, `meowWallet/${id}`)).then(x => { state.wallets[id] = x.exists() ? x.val() : {balance:0,totalIn:0,totalOut:0}; }),
+        get(ref(db, `meowPurchases/${id}`)).then(x => { state.purchases[id] = x.exists() ? x.val() : {}; })
+      ]).then(() => { if (state.currentUser?.id === id) { this.updateHeaderAndRoleUI(); this.renderSidebarUserPanels(); } });
+    } catch (err) {
+      const messages = { 'auth/invalid-credential':'Email hoặc mật khẩu không đúng.', 'auth/user-not-found':'Không tìm thấy tài khoản.', 'auth/wrong-password':'Mật khẩu không đúng.', 'auth/invalid-email':'Email không hợp lệ.' };
+      showToast(messages[err?.code] || ('Không đăng nhập được: ' + (err?.message || 'Lỗi xác thực.')), 'error');
+    } finally { if (btn) { btn.disabled = false; btn.textContent = old || 'Đăng nhập'; } }
+  },
+
+  async registerCustomerAccount() {
+    const name = String(document.getElementById('registerName')?.value || '').trim();
+    const email = String(document.getElementById('registerEmail')?.value || '').trim().toLowerCase();
+    const password = String(document.getElementById('registerPassword')?.value || '');
+    const password2 = String(document.getElementById('registerPassword2')?.value || '');
+    if (!name || !email || !password || !password2) { showToast('Vui lòng điền đầy đủ thông tin.', 'error'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Email chưa đúng định dạng.', 'error'); return; }
+    if (password.length < 6) { showToast('Mật khẩu cần ít nhất 6 ký tự.', 'error'); return; }
+    if (password !== password2) { showToast('Hai mật khẩu chưa trùng khớp.', 'error'); return; }
+    const btn = document.querySelector('#authRegisterView button[onclick*="registerCustomerAccount"]');
+    const old = btn?.textContent;
+    try {
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang kiểm tra Gmail...'; }
+      const canonicalEmail = value => { const v = String(value || '').trim().toLowerCase(); return v.endsWith('@gmail.com') ? v.split('@')[0].split('+')[0].replace(/\./g, '') + '@gmail.com' : v; };
+      const allCustomerSnap = await get(ref(db, 'customers'));
+      const allCustomers = allCustomerSnap.exists() ? (allCustomerSnap.val() || {}) : {};
+      const normalized = canonicalEmail(email);
+      const duplicate = Object.values(allCustomers).some(c => canonicalEmail(c?.email || c?.gmail || '') === normalized);
+      if (duplicate) { showToast('Gmail này đã có tài khoản Miêu Các. Hãy đăng nhập, không cần tạo tài khoản mới nhé!', 'error'); return; }
+      if (btn) btn.textContent = '⏳ Đang tạo tài khoản...';
+      const credential = await createUserWithEmailAndPassword(auth, email, password);
+      try { await updateProfile(credential.user, { displayName: name }); } catch(e) {}
+      const id = credential.user.uid;
+      const customer = { name, displayName: name, email, avatar: '', cover: '', bio: '', points: 0, canPublish: false, createdAt: Date.now(), accountType: 'reader' };
+      await set(ref(db, `customers/${id}`), customer);
+      await set(ref(db, `meowWallet/${id}`), { balance: 0, totalIn: 0, totalOut: 0 });
+      state.customers = { ...(state.customers || {}), [id]: { ...customer, id } };
+      state.wallets[id] = { balance: 0, totalIn: 0, totalOut: 0 };
+      state.purchases[id] = {};
+      this.setSession({ role: 'customer', id, name });
+      this.closeAuthModal();
+      showToast('Tạo tài khoản thành công! Chào mừng bạn đến Miêu Các 💗', 'success');
+    } catch (err) {
+      const messages = { 'auth/email-already-in-use':'Email này đã được đăng ký. Hãy đăng nhập nhé.', 'auth/weak-password':'Mật khẩu quá yếu.', 'auth/invalid-email':'Email không hợp lệ.' };
+      showToast(messages[err?.code] || ('Không tạo được tài khoản: ' + (err?.message || 'Lỗi Firebase.')), 'error');
+    } finally { if (btn) { btn.disabled = false; btn.textContent = old || '✨ Tạo tài khoản'; } }
   },
 
   closeAuthModal() {
     const m = document.getElementById('authModal');
     m.classList.add('hidden');
     m.classList.remove('flex');
-  },
-
-  switchAuthMode(mode) {
-    const isCust = mode === 'customer';
-    document.getElementById('authCustomerForm').classList.toggle('hidden', !isCust);
-    document.getElementById('authAdminForm').classList.toggle('hidden', isCust);
-    document.getElementById('authTabCustomer').className = isCust ? 'py-2 rounded-lg pink-blue-gradient text-white' : 'py-2 rounded-lg opacity-75';
-    document.getElementById('authTabAdmin').className = !isCust ? 'py-2 rounded-lg bg-amber-400 text-slate-950' : 'py-2 rounded-lg opacity-75';
   },
 
   async loginCustomerManual() {
@@ -2170,55 +2770,71 @@ const app = {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       if (!user) return;
-
-      const id = 'gg_' + user.uid.slice(0, 12);
-      const name = user.displayName || user.email?.split('@')[0] || 'Độc giả Google';
-      const email = user.email || '';
-      const avatar = user.photoURL || '';
-
-      const custRef = ref(db, `customers/${id}`);
-      const snap = await get(custRef);
-      if (!snap.exists()) {
-        await set(custRef, {
-          name,
+      const email = String(user.email || '').trim().toLowerCase();
+      if (!email) { showToast('Tài khoản Google không cung cấp Gmail.', 'error'); return; }
+      const canonicalEmail = value => {
+        const v = String(value || '').trim().toLowerCase();
+        if (!v.endsWith('@gmail.com')) return v;
+        return v.split('@')[0].split('+')[0].replace(/\./g, '') + '@gmail.com';
+      };
+      // Tìm hồ sơ đã tồn tại theo Gmail chuẩn hóa trước khi tạo hồ sơ mới.
+      const customerSnap = await get(ref(db, 'customers'));
+      const customers = customerSnap.exists() ? (customerSnap.val() || {}) : {};
+      const wanted = canonicalEmail(email);
+      const existing = Object.entries(customers).find(([_, c]) => canonicalEmail(c?.email || c?.gmail || '') === wanted);
+      let id, customer;
+      if (existing) {
+        [id, customer] = existing;
+        customer = customer || {};
+        await update(ref(db, `customers/${id}`), {
           email,
-          avatar,
-          cover: '',
-          bio: '',
-          points: 0,
-          canPublish: false,
-          createdAt: Date.now()
+          name: customer.name || customer.displayName || user.displayName || email.split('@')[0],
+          avatar: customer.avatar || user.photoURL || ''
         });
-        await set(ref(db, `meowWallet/${id}`), { balance: 0, totalIn: 0, totalOut: 0 });
+        customer = { ...customer, email, avatar: customer.avatar || user.photoURL || '' };
+        showToast('Gmail này đã có tài khoản. Đã đăng nhập vào tài khoản cũ của bạn!', 'success');
       } else {
-        await update(custRef, {
-          name: snap.val().name || name,
-          email,
-          avatar: snap.val().avatar || avatar
-        });
+        id = 'gg_' + user.uid.slice(0, 12);
+        customer = {
+          name: user.displayName || email.split('@')[0], displayName: user.displayName || email.split('@')[0],
+          email, avatar: user.photoURL || '', cover: '', bio: '', points: 0, canPublish: false,
+          createdAt: Date.now(), accountType: 'reader', authProvider: 'google'
+        };
+        await set(ref(db, `customers/${id}`), customer);
+        await set(ref(db, `meowWallet/${id}`), { balance: 0, totalIn: 0, totalOut: 0 });
+        showToast('Gmail chưa có tài khoản. Đã tạo tài khoản Miêu Các mới!', 'success');
       }
-
-      this.setSession({ role: 'customer', id, name });
+      state.customers = { ...(state.customers || {}), [id]: { ...customer, id } };
+      this.setSession({ role: 'customer', id, name: customer.displayName || customer.name || user.displayName || email.split('@')[0] });
       this.closeAuthModal();
-      showToast(`Đăng nhập Google thành công: ${name}`, 'success');
+      Promise.allSettled([
+        get(ref(db, `meowWallet/${id}`)).then(x => { state.wallets[id] = x.exists() ? (x.val() || {balance:0,totalIn:0,totalOut:0}) : {balance:0,totalIn:0,totalOut:0}; }),
+        get(ref(db, `meowPurchases/${id}`)).then(x => { state.purchases[id] = x.exists() ? (x.val() || {}) : {}; })
+      ]).then(() => { if (state.currentUser?.id === id) { this.updateHeaderAndRoleUI(); this.renderSidebarUserPanels(); } });
     } catch (err) {
-      showToast('Không thể đăng nhập Google: ' + err.message, 'error');
+      const message = err?.code === 'auth/account-exists-with-different-credential'
+        ? 'Gmail này đã được dùng cho tài khoản đăng nhập bằng mật khẩu. Hãy đăng nhập bằng mật khẩu trước; cần liên kết Google trong Firebase để dùng chung một tài khoản.'
+        : (err?.message || 'Lỗi xác thực Google.');
+      showToast('Không thể đăng nhập Google: ' + message, 'error');
     }
   },
 
-  loginAdmin() {
+  async loginAdmin() {
     const name = document.getElementById('loginAdminName').value.trim();
     const pass = document.getElementById('loginAdminPass').value;
-
-    if (name !== 'Meow' || (pass !== 'quynh241201' && pass !== 'Quynh241201')) {
+    let profile = {};
+    try { const snap = await get(ref(db, 'siteSettings/adminProfile')); if (snap.exists()) profile = snap.val() || {}; } catch(e) {}
+    const savedName = profile.loginName || 'Meow';
+    const savedPass = profile.loginPassword || 'quynh241201';
+    if (name.toLowerCase() !== savedName.toLowerCase() || pass !== savedPass) {
       showToast('Sai tên đăng nhập hoặc mật khẩu Admin!', 'error');
       return;
     }
-
-    this.setSession({ role: 'admin', id: 'admin_meow', name: 'Meow (Admin)' });
+    this.setSession({ role: 'admin', id: 'admin_meow', name: profile.name || 'Meow (Admin)' });
     this.closeAuthModal();
-    showToast('Xin chào Quản trị viên tối cao Meow! 👑', 'gold');
+    showToast('Xin chào Quản trị viên Miêu Các! 👑', 'gold');
     this.navigate('admin');
+    setTimeout(() => this.refreshAdminIdentity(), 60);
   },
 
   setSession(userObj) {
@@ -2261,7 +2877,7 @@ const app = {
     const footerLinks = document.getElementById('footerRoleLinks');
 
     if (!u) {
-      area.innerHTML = `<button onclick="app.openAuthModal()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white pink-blue-gradient shadow-lg">🔐 Đăng nhập</button>`;
+      area.innerHTML = `<div class="flex items-center gap-1.5"><button onclick="app.showAuthScreen('login');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold text-white pink-blue-gradient shadow-lg">🔐 Đăng nhập</button><button onclick="app.showAuthScreen('register');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold border border-pink-400/40">✨ Đăng ký</button></div>`;
       navStudio.classList.add('hidden');
       navAdmin.classList.add('hidden');
       mobStudio.classList.add('hidden');
@@ -2371,61 +2987,123 @@ const app = {
   },
 
   // ==================== TRANG CHỦ: 5 TRUYỆN NỔI BẬT + DANH SÁCH TRUYỆN ====================
-  renderFeaturedStories() {
-    const container = document.getElementById('featuredStoriesGrid');
-    const allIds = Object.keys(state.stories);
-    // Lấy tối đa 5 truyện Admin đã chọn cố định; nếu chưa đủ thì tự điền thêm từ truyện mới nhất
-    let ids = state.featuredIds.filter(id => state.stories[id]);
+  getFeaturedStoryIds() {
+    const allIds = Object.keys(state.stories || {});
+    let ids = (state.featuredIds || []).filter(id => state.stories[id]);
     if (ids.length < 5) {
-      const extra = allIds.filter(id => !ids.includes(id)).sort((a,b) => storyLatestUpdate(state.stories[b]) - storyLatestUpdate(state.stories[a])).slice(0, 5 - ids.length);
+      const extra = allIds.filter(id => !ids.includes(id))
+        .sort((a,b) => storyLatestUpdate(state.stories[b]) - storyLatestUpdate(state.stories[a]))
+        .slice(0, 5 - ids.length);
       ids = [...ids, ...extra];
     }
+    return ids.slice(0, 5);
+  },
 
+  initFeaturedCarousel() {
+    const el = document.getElementById('featuredStoriesGrid');
+    if (!el || el.dataset.carouselReady === '1') return;
+    el.dataset.carouselReady = '1';
+    const pause = () => {
+      if (window.__mieuFeaturedTimer) clearTimeout(window.__mieuFeaturedTimer);
+      window.__mieuFeaturedTimer = null;
+    };
+    const resume = () => {
+      pause();
+      if (document.hidden || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+      if ((this._featuredVisibleIds || []).length < 2) return;
+      window.__mieuFeaturedTimer = setTimeout(() => {
+        if (!document.hidden && document.getElementById('view-home')?.classList.contains('hidden') === false) {
+          this.nextFeaturedStory();
+        }
+        resume();
+      }, 6000);
+    };
+    el.addEventListener('pointerenter', pause, {passive:true});
+    el.addEventListener('pointerleave', resume, {passive:true});
+    el.addEventListener('focusin', pause);
+    el.addEventListener('focusout', resume);
+    let startX = 0, startY = 0;
+    el.addEventListener('touchstart', e => {
+      const t = e.touches && e.touches[0];
+      if (!t) return;
+      startX = t.clientX; startY = t.clientY; pause();
+    }, {passive:true});
+    el.addEventListener('touchend', e => {
+      const t = e.changedTouches && e.changedTouches[0];
+      if (t) {
+        const dx = t.clientX - startX, dy = t.clientY - startY;
+        if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+          dx < 0 ? this.nextFeaturedStory() : this.prevFeaturedStory();
+        }
+      }
+      resume();
+    }, {passive:true});
+    document.addEventListener('visibilitychange', () => document.hidden ? pause() : resume());
+    this._resumeFeaturedCarousel = resume;
+    resume();
+  },
+
+  renderFeaturedStories() {
+    const container = document.getElementById('featuredStoriesGrid');
+    if (!container) return;
+    const ids = this.getFeaturedStoryIds();
+    this._featuredVisibleIds = ids;
     if (!ids.length) {
-      container.innerHTML = `<div class="col-span-full text-center py-8 opacity-60 text-sm">Chưa có truyện nổi bật nào trong hệ thống.</div>`;
+      container.innerHTML = `<div class="w-full text-center py-8 opacity-60 text-sm">Chưa có truyện nổi bật nào trong hệ thống.</div>`;
       return;
     }
-
-    container.innerHTML = ids.slice(0, 5).map((id, idx) => {
-      const s = state.stories[id] || {};
-      const info = s.info || {};
-      const chapCount = Object.keys(s.chapters || {}).length;
-      const views = countStoryViews(s);
-      const rating = Number(info.rating || 5).toFixed(1);
-      const ratingCount = Number(info.ratingCount || 1);
-      const cover = info.cover || `https://placehold.co/300x420/1a1333/f472b6?text=${encodeURIComponent(info.name || 'Miêu Các')}`;
-
-      return `
-        <div class="featured-item snap-start shrink-0 w-[205px] sm:w-[225px] p-3 rounded-2xl bg-gradient-to-b from-pink-500/10 via-purple-500/10 to-sky-500/10 border border-pink-400/30 flex flex-col justify-between text-center hover:border-sky-400 transition group">
-          <div>
-            <div class="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-1">Top #${idx + 1} Nổi Bật</div>
-            <div class="book-3d-stage cursor-pointer" onclick="app.openStoryDetail('${esc(id)}')">
-              <div class="book-3d">
-                <div class="book-3d-spine"></div>
-                <div class="book-3d-cover">
-                  <img loading="lazy" decoding="async" src="${esc(cover)}" onerror="this.src='https://placehold.co/300x420/1a1333/f472b6?text=Miêu+Các'" alt="${esc(info.name)}" class="w-full h-full object-cover">
-                </div>
-                <div class="book-3d-pages"></div>
-              </div>
-            </div>
-            <h3 class="font-serif font-bold text-base mt-2 line-clamp-2 group-hover:text-pink-400 transition">${esc(info.name || id)}</h3>
-          </div>
-
-          <div class="mt-3 pt-3 border-t border-white/10 space-y-2">
-            <div class="flex items-center justify-center gap-3 text-[11px] opacity-85">
-              <span>📑 ${chapCount} chương</span>
-              <span>👁️ ${formatNum(views)}</span>
-            </div>
-            <div class="text-xs text-amber-400 font-semibold">
-              ⭐ ${rating} <span class="opacity-70 text-[10px]">(${ratingCount} đánh giá)</span>
-            </div>
-            <button onclick="app.openStoryDetail('${esc(id)}')" class="w-full py-2 rounded-xl text-xs font-bold text-white pink-blue-gradient shadow hover:opacity-95 transition">
-              📖 Đọc thêm
-            </button>
-          </div>
+    const idx = Math.max(0, Math.min(Number(state.featuredSlideIndex) || 0, ids.length - 1));
+    state.featuredSlideIndex = idx;
+    const id = ids[idx];
+    const story = state.stories[id] || {};
+    const info = story.info || {};
+    const chapCount = Object.keys(story.chapters || {}).length;
+    const views = countStoryViews(story);
+    const cover = info.cover || `https://placehold.co/420x620/120a2d/f5d5ff?text=${encodeURIComponent(info.name || 'Miêu Các')}`;
+    const tags = (Array.isArray(info.tags) ? info.tags : String(info.tags || info.genre || '').split(/[,;|]/)).map(x => String(x).trim()).filter(Boolean).slice(0,2);
+    const status = info.status || info.state || 'Đang cập nhật';
+    const dots = ids.map((_,i) => `<button aria-label="Truyện nổi bật ${i+1}" onclick="app.goFeaturedStory(${i})" class="h-1.5 rounded-full transition-all ${i===idx?'w-8 bg-purple-500':'w-4 bg-white/25 hover:bg-white/50'}"></button>`).join('');
+    container.className = 'featured-hero relative w-full overflow-hidden rounded-[28px]';
+    container.innerHTML = `
+      <div class="featured-hero-glow" aria-hidden="true"></div>
+      <div class="featured-hero-inner relative z-10 px-4 pt-7 pb-5 sm:px-8 sm:pt-9 text-center">
+        <div class="featured-cover-wrap relative mx-auto mb-5 cursor-pointer" onclick="app.openStoryDetail('${esc(id)}')">
+          <span class="featured-rank">#${idx+1}<small>HOT</small></span>
+          <img src="${esc(cover)}" alt="${esc(info.name || 'Bìa truyện')}" class="featured-hero-cover" loading="lazy" onerror="this.src='https://placehold.co/420x620/120a2d/f5d5ff?text=Mieu+Cas'">
         </div>
-      `;
-    }).join('');
+        <div class="featured-kicker"><span>✦</span> TUYỆT TÁC <span>✦</span></div>
+        <div class="flex items-center justify-center gap-2 flex-wrap my-4">${tags.map(t=>`<span class="featured-tag">${esc(t)}</span>`).join('')}<span class="featured-tag featured-tag-count">${chapCount} CHƯƠNG</span></div>
+        <h2 class="featured-title">${esc(info.name || id)}</h2>
+        <div class="featured-meta"><span>◉ ${formatNum(views)} lượt đọc</span><i>•</i><span>▤ ${chapCount} chương</span><i>•</i><span>${esc(status)}</span></div>
+        <div class="flex items-center justify-center gap-3 mt-6 flex-wrap">
+          <button onclick="app.openStoryDetail('${esc(id)}')" class="featured-read-btn">▣ Đọc Ngay</button>
+          <button onclick="app.openStoryDetail('${esc(id)}')" class="featured-detail-btn">ⓘ Chi tiết</button>
+        </div>
+        <div class="featured-dots" aria-label="Chọn truyện nổi bật">${dots}</div>
+      </div>
+      <button class="featured-arrow featured-arrow-left" onclick="app.prevFeaturedStory()" aria-label="Truyện trước">‹</button>
+      <button class="featured-arrow featured-arrow-right" onclick="app.nextFeaturedStory()" aria-label="Truyện tiếp theo">›</button>`;
+    this.initFeaturedCarousel();
+    if (this._resumeFeaturedCarousel) this._resumeFeaturedCarousel();
+  },
+
+  goFeaturedStory(index) {
+    const count = this.getFeaturedStoryIds().length;
+    if (!count) return;
+    state.featuredSlideIndex = Math.max(0, Math.min(Number(index)||0, count-1));
+    this.renderFeaturedStories();
+  },
+  nextFeaturedStory() {
+    const count = this.getFeaturedStoryIds().length;
+    if (!count) return;
+    state.featuredSlideIndex = (state.featuredSlideIndex + 1) % count;
+    this.renderFeaturedStories();
+  },
+  prevFeaturedStory() {
+    const count = this.getFeaturedStoryIds().length;
+    if (!count) return;
+    state.featuredSlideIndex = (state.featuredSlideIndex - 1 + count) % count;
+    this.renderFeaturedStories();
   },
 
   renderHomeTags() {
@@ -2471,15 +3149,16 @@ const app = {
     const chapCount = Object.keys(chapters).length, totalWords = countStoryWords(story);
     const cover = info.cover || `https://placehold.co/320x440/1a1333/38bdf8?text=${encodeURIComponent(info.name || 'Truyện')}`;
     const price = Number(info.price) || 0, tags = Array.isArray(info.tags) ? info.tags : [];
-    return `<div onclick="app.openStoryDetail('${esc(id)}')" class="gothic-card overflow-hidden cursor-pointer group hover:border-sky-400/60 transition flex flex-col">
-      <div class="relative h-56 overflow-hidden">
+    const saved = state.currentUser?.role === 'customer' && !!state.customers?.[state.currentUser.id]?.bookmarks?.[id];
+    return `<div onclick="app.openStoryDetail('${esc(id)}')" data-story-id="${esc(id)}" class="gothic-card overflow-hidden cursor-pointer group hover:border-sky-400/60 transition flex flex-col story-home-card">
+      <div class="relative h-56 overflow-hidden story-home-cover">
         <img loading="lazy" decoding="async" fetchpriority="low" src="${esc(cover)}" onerror="this.src='https://placehold.co/320x440/1a1333/38bdf8?text=Miêu+Các'" alt="${esc(info.name)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
         <div class="absolute inset-0 bg-gradient-to-t from-[#090710] via-transparent to-transparent"></div>
         <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-black/70 text-pink-300 border border-pink-400/30">${esc(info.status || 'Đang ra')}</span>
-        ${price > 0 ? `<span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/90 text-slate-950">Full: ${formatMoney(price)}</span>` : ''}
+        <button type="button" onclick="event.stopPropagation();app.toggleBookmark('${esc(id)}',this)" aria-label="${saved ? 'Bỏ lưu truyện' : 'Lưu truyện'}" aria-pressed="${saved ? 'true' : 'false'}" class="story-heart-btn ${saved ? 'is-saved' : ''}"> ${saved ? '♥' : '♡'} </button>
         <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] text-white/90"><span>📑 ${chapCount} chương</span><span>👁️ ${formatNum(countStoryViews(story))}</span><span>📝 ${formatNum(totalWords)} chữ</span></div>
       </div>
-      <div class="p-4 flex-1 flex flex-col justify-between"><div><h4 class="font-serif font-bold text-lg line-clamp-1 group-hover:text-pink-400 transition">${esc(info.name || id)}</h4><p class="text-xs opacity-70 line-clamp-2 mt-1">${esc(info.summary || 'Tác phẩm độc quyền tại Miêu Các.')}</p></div><div class="flex flex-wrap gap-1 mt-3 pt-2 border-t border-white/10">${tags.map(tag => `<span class="px-2 py-0.5 rounded-md text-[10px] bg-sky-500/15 text-sky-300">${esc(tag)}</span>`).join('')}</div></div>
+      <div class="p-3 sm:p-4 flex-1 flex flex-col justify-between"><div><h4 class="font-serif font-bold text-base sm:text-lg line-clamp-1 group-hover:text-pink-400 transition">${esc(info.name || id)}</h4><p class="text-xs opacity-70 line-clamp-2 mt-1">${esc(info.summary || 'Tác phẩm độc quyền tại Miêu Các.')}</p></div><div class="story-card-bottom"><div class="flex flex-wrap gap-1 mt-3 pt-2 border-t border-white/10">${tags.slice(0,5).map(tag => `<span class="px-2 py-0.5 rounded-md text-[10px] bg-sky-500/15 text-sky-300">${esc(tag)}</span>`).join('')}</div>${price > 0 ? `<div class="story-card-price">✦ Giá trọn bộ <b>${formatMoney(price)}</b></div>` : `<div class="story-card-price free">✦ Chưa có giá full</div>`}</div></div>
     </div>`;
   },
 
@@ -2499,6 +3178,88 @@ const app = {
       // cùng lúc trên điện thoại/máy yếu. Người đọc chủ động bấm để tải thêm 12 truyện.
       if (this.homeStoryObserver) { this.homeStoryObserver.disconnect(); this.homeStoryObserver = null; }
     } else if (this.homeStoryObserver) { this.homeStoryObserver.disconnect(); this.homeStoryObserver = null; }
+  },
+
+  toggleRankingFilters() {
+    const panel = document.getElementById('rankingFilterPanel');
+    const btn = document.getElementById('rankingMoreBtn');
+    if (!panel) return;
+    const opening = panel.classList.contains('hidden');
+    panel.classList.toggle('hidden', !opening);
+    if (btn) btn.textContent = opening ? 'Thu gọn⌃' : 'Xem thêm⌄';
+    if (opening) this.renderHomeRanking();
+  },
+
+  renderHomeRanking() {
+    const box = document.getElementById('homeRankingList');
+    if (!box) return;
+    const expanded = !document.getElementById('rankingFilterPanel')?.classList.contains('hidden');
+    const search = normalizeSearchText(document.getElementById('rankingSearch')?.value || '');
+    const sort = document.getElementById('rankingSort')?.value || 'views';
+    const genre = document.getElementById('rankingGenre')?.value || '';
+    const status = document.getElementById('rankingStatus')?.value || '';
+    const entries = Object.entries(state.stories || {}).map(([id, story]) => {
+      const info = story?.info || {};
+      const tags = Array.isArray(info.tags) ? info.tags : String(info.tags || info.genre || '').split(/[,;|]/).map(x => x.trim()).filter(Boolean);
+      return { id, story, info, tags, views: countStoryViews(story), updated: storyLatestUpdate(story), chapters: Object.keys(story?.chapters || {}).length, words: countStoryWords(story) };
+    }).filter(x => (!search || normalizeSearchText(`${x.info.name || x.id} ${x.id} ${x.tags.join(' ')}`).includes(search))
+      && (!genre || x.tags.includes(genre))
+      && (!status || (x.info.status || 'Đang ra') === status));
+    const sorters = {
+      views: (a,b) => b.views - a.views || b.updated - a.updated,
+      updated: (a,b) => b.updated - a.updated || b.views - a.views,
+      chapters: (a,b) => b.chapters - a.chapters || b.views - a.views,
+      words: (a,b) => b.words - a.words || b.views - a.views
+    };
+    entries.sort(sorters[sort] || sorters.views);
+    const genreSelect = document.getElementById('rankingGenre');
+    if (genreSelect && !genreSelect.dataset.ready) {
+      const allGenres = [...new Set(Object.values(state.stories || {}).flatMap(st => Array.isArray(st?.info?.tags) ? st.info.tags : String(st?.info?.tags || st?.info?.genre || '').split(/[,;|]/).map(x=>x.trim()).filter(Boolean)))].sort((a,b)=>a.localeCompare(b,'vi'));
+      genreSelect.insertAdjacentHTML('beforeend', allGenres.map(g=>`<option value="${esc(g)}">${esc(g)}</option>`).join(''));
+      genreSelect.dataset.ready = '1';
+    }
+    const visible = entries.slice(0, expanded ? 30 : 5);
+    if (!visible.length) {
+      box.innerHTML = `<p class="py-5 text-center text-xs opacity-65">Chưa tìm thấy tác phẩm phù hợp.</p>`;
+      return;
+    }
+    const metric = x => sort === 'chapters' ? `${x.chapters} chương` : sort === 'words' ? `${formatNum(x.words)} chữ` : sort === 'updated' ? (x.updated ? new Date(x.updated).toLocaleDateString('vi-VN') : 'Chưa cập nhật') : `${formatNum(x.views)} lượt đọc`;
+    box.innerHTML = visible.map((x,i) => `<button type="button" onclick="app.openStoryDetail('${esc(x.id)}')" class="ranking-row">
+      <span class="ranking-position rank-${i+1}">${String(i+1).padStart(2,'0')}</span>
+      <img loading="lazy" decoding="async" src="${esc(x.info.cover || `https://placehold.co/72x96/1a1333/f0d9ff?text=${encodeURIComponent(x.info.name || 'MC')}`)}" onerror="this.src='https://placehold.co/72x96/1a1333/f0d9ff?text=MC'" alt="" class="ranking-cover">
+      <span class="min-w-0 flex-1 text-left"><b class="ranking-name">${esc(x.info.name || x.id)}</b><small class="ranking-sub">${esc(x.tags.slice(0,2).join(' · ') || 'Tác phẩm Miêu Các')}</small></span>
+      <span class="ranking-metric">${metric(x)}</span><span class="ranking-chevron">›</span>
+    </button>`).join('');
+    if (expanded && entries.length > visible.length) box.insertAdjacentHTML('beforeend', `<p class="text-center text-[10px] opacity-60 pt-3">Đang hiển thị ${visible.length}/${entries.length} tác phẩm phù hợp.</p>`);
+  },
+
+  drawStoryTarot() {
+    const entries = Object.entries(state.stories || {}).filter(([,s]) => s?.info && (s.info.name || s.info.cover));
+    if (!entries.length) { showToast('Kho truyện chưa có tác phẩm để bốc bài.', 'info'); return; }
+    const [id, story] = entries[Math.floor(Math.random() * entries.length)];
+    const info = story.info || {};
+    const cover = info.cover || `https://placehold.co/420x620/160f25/e9d5ff?text=${encodeURIComponent(info.name || 'Miêu Các')}`;
+    let modal = document.getElementById('storyTarotModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'storyTarotModal';
+      modal.className = 'story-tarot-overlay';
+      modal.addEventListener('click', e => { if (e.target === modal) modal.classList.add('hidden'); });
+      document.body.appendChild(modal);
+    }
+    const omens = ['Lá bài hé mở một cánh cửa phủ sương…','Có một câu chuyện đang gọi tên người đọc.','Trong màn đêm tĩnh lặng, một trang sách khẽ mở.','Định mệnh hôm nay được viết bằng những dòng chữ.','Một bí mật đang chờ được khám phá…'];
+    const omen = omens[Math.floor(Math.random() * omens.length)];
+    modal.innerHTML = `<div class="story-tarot-card" role="dialog" aria-modal="true" aria-label="Lá bài tarot gợi ý truyện">
+      <button class="story-tarot-close" onclick="document.getElementById('storyTarotModal').classList.add('hidden')" aria-label="Đóng">×</button>
+      <div class="tarot-topline">✧ THE VEIL OF STORIES ✧</div><div class="tarot-card-frame">
+        <div class="tarot-card-symbol">☾ ✦ ☽</div><img src="${esc(cover)}" alt="${esc(info.name || 'Bìa truyện')}" class="tarot-story-cover" loading="lazy">
+        <div class="tarot-card-caption">THE UNKNOWN TALE</div>
+      </div>
+      <p class="tarot-omen">${omen}</p><h3 class="tarot-story-name">${esc(info.name || id)}</h3>
+      <p class="tarot-story-meta">${esc((Array.isArray(info.tags) ? info.tags : []).slice(0,3).join(' · ') || info.status || 'Tác phẩm Miêu Các')}</p>
+      <div class="flex gap-2 mt-5"><button onclick="app.openStoryDetail('${esc(id)}');document.getElementById('storyTarotModal').classList.add('hidden')" class="tarot-open-btn">Mở câu chuyện ✦</button><button onclick="app.drawStoryTarot()" class="tarot-again-btn">Rút lại ↻</button></div>
+    </div>`;
+    modal.classList.remove('hidden');
   },
 
   renderRecentChapters() {
@@ -2686,19 +3447,52 @@ const app = {
 
     state.storyChapterItems = sortedChaps;
     state.storyChapterRendered = sortedChaps.length;
+
+    // Truyện liên quan: ưu tiên truyện có ít nhất một thể loại/tag trùng với truyện hiện tại.
+    const normalizeStoryTags = (value) => (Array.isArray(value) ? value : String(value || '').split(/[,;|]/))
+      .map(x => String(x).trim()).filter(Boolean);
+    const currentTags = normalizeStoryTags(info.tags?.length ? info.tags : (info.genre || info.category || ''));
+    const currentTagKeys = new Set(currentTags.map(x => x.toLocaleLowerCase('vi')));
+    const relatedStories = Object.entries(state.stories || {})
+      .filter(([sid, other]) => sid !== storyId && currentTagKeys.size > 0)
+      .map(([sid, other]) => {
+        const oi = other.info || {};
+        const tags = normalizeStoryTags(oi.tags?.length ? oi.tags : (oi.genre || oi.category || ''));
+        const matched = tags.filter(t => currentTagKeys.has(t.toLocaleLowerCase('vi')));
+        return { id: sid, info: oi, tags, matched, count: Object.keys(other.chapters || {}).length };
+      })
+      .filter(x => x.matched.length)
+      .sort((a,b) => b.matched.length - a.matched.length || storyLatestUpdate(state.stories[b.id]) - storyLatestUpdate(state.stories[a.id]))
+      .slice(0, 12);
+    const relatedStoriesHtml = relatedStories.length ? `
+      <section class="story-related-section mt-7" aria-label="Truyện liên quan">
+        <div class="flex items-end justify-between gap-3 mb-3">
+          <div><h3 class="text-lg sm:text-xl font-serif font-bold pink-blue-text">✦ Truyện liên quan</h3>
+          <p class="text-[11px] opacity-65 mt-1">Những truyện cùng thể loại với truyện này</p></div>
+          <span class="text-[10px] opacity-55 shrink-0">Kéo ngang để xem thêm →</span>
+        </div>
+        <div class="story-related-track" role="list">
+          ${relatedStories.map(item => `<button role="listitem" type="button" class="story-related-card" onclick="app.openStoryDetail('${esc(item.id)}')">
+            <img loading="lazy" decoding="async" src="${esc(item.info.cover || `https://placehold.co/240x340/180d2d/f5c2e7?text=${encodeURIComponent(item.info.name || 'Miêu Các')}`)}" alt="Bìa ${esc(item.info.name || item.id)}" onerror="this.src='https://placehold.co/240x340/180d2d/f5c2e7?text=Mieu+Cas'">
+            <span class="story-related-card-title">${esc(item.info.name || item.id)}</span>
+            <span class="story-related-card-tags">${item.matched.slice(0,2).map(t => `#${esc(t)}`).join(' · ')}</span>
+            <span class="story-related-card-count">${item.count} chương</span>
+          </button>`).join('')}
+        </div>
+      </section>` : '';
+
     const container = document.getElementById('storyDetailContainer');
     container.innerHTML = `
       <div class="gothic-card p-6 sm:p-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <!-- Đĩa quay 360 độ nằm chính giữa cột trái -->
           <div class="lg:col-span-5 flex flex-col items-center justify-center">
-            <div class="vinyl-container">
-              <div class="vinyl-disc">
-                <img loading="lazy" decoding="async" src="${esc(cover)}" onerror="this.src='https://placehold.co/300x300/1a1333/f472b6?text=Miêu+Các'" alt="${esc(info.name)}" class="vinyl-cover">
-                <div class="vinyl-center-hole"></div>
-              </div>
+            <div class="story-gothic-cover-frame">
+              <div class="story-gothic-cover-ornament" aria-hidden="true">✦</div>
+              <img loading="lazy" decoding="async" src="${esc(cover)}" onerror="this.src='https://placehold.co/420x620/160d2b/e9c9ff?text=Mieu+Cas'" alt="Bìa truyện ${esc(info.name)}" class="story-gothic-cover-image">
+              <div class="story-gothic-cover-shine" aria-hidden="true"></div>
             </div>
-            <span class="text-[11px] opacity-70 mt-4 tracking-wider uppercase">💿 Đĩa Bìa Xoay 360° Độc Bản</span>
+            <span class="text-[11px] opacity-70 mt-3 tracking-[.18em] uppercase">✦ Tuyển tập Miêu Các ✦</span>
           </div>
 
           <!-- Thông tin truyện & Khung Giá Full Màu Vàng -->
@@ -2783,6 +3577,7 @@ const app = {
         </div>
       </div>
       <div class="gothic-card p-5"><div id="storyCommentsBox"></div></div>
+      ${relatedStoriesHtml}
     `;
     this.renderComments('story', storyId, null, 'storyCommentsBox');
     // Danh sách chương là nội dung người đọc cần nhất: đưa thẳng vào vùng nhìn trên điện thoại.
@@ -2805,15 +3600,15 @@ const app = {
       const u = state.currentUser;
       const ownerOrAdmin = !!u && (u.role === 'admin' || state.stories?.[storyId]?.info?.publisherId === u.id);
       const unlocked = ownerOrAdmin || this.hasPurchasedChapter(storyId, cid);
+      const paid = price > 0 || points > 0;
       let badgeHtml = '';
-      if (isUnpublished && !ownerOrAdmin) badgeHtml = `<span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-700/70 text-slate-300 border border-slate-500/30">⏳ Chưa xuất bản</span>`;
-      else if (unlocked && (price > 0 || points > 0)) badgeHtml = `<span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-500/20 text-emerald-300">✅ Đã mở</span>`;
-      else if ((price > 0 || points > 0) && !unlocked) badgeHtml = `<span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-500/20 text-amber-300">🔒 Chưa mua chương${price > 0 ? ` · ${formatMoney(price)}` : ''}${points > 0 ? ` · ⭐ ${points} điểm` : ''}</span>`;
-      else badgeHtml = `<span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-sky-500/15 text-sky-300">Miễn phí</span>`;
-      return `<div onclick="app.handleChapterClick('${esc(storyId)}','${esc(cid)}')" style="content-visibility:auto;contain-intrinsic-size:72px;contain:layout paint style" class="p-3.5 rounded-xl bg-white/5 hover:bg-pink-500/15 border border-white/10 hover:border-pink-400/40 cursor-pointer transition flex items-center justify-between gap-3"><div class="min-w-0"><div class="font-semibold text-sm truncate">${hasPass ? '🔑 ' : ''}Chương ${esc(cid)}: ${esc(ch.title || 'Không tiêu đề')}</div><div class="text-[11px] opacity-70 mt-1 flex flex-wrap gap-x-3 gap-y-1"><span>📅 ${chapterPublishDate(ch)}</span><span>📝 ${formatNum(ch.wordCount || countStoryWords({chapters:{[cid]:ch}}))} chữ</span><span>👁️ ${formatNum(ch.views || 0)} lượt đọc</span></div></div><div class="shrink-0">${badgeHtml}</div></div>`;
+      if (isUnpublished && !ownerOrAdmin) badgeHtml = `<span class="chapter-status-badge chapter-unpublished">⏳ Chưa xuất bản</span>`;
+      else if (paid) badgeHtml = `<div class="chapter-badge-stack">${(isVip || price > 0) ? `<span class="chapter-status-badge chapter-vip">👑 VIP</span>` : ''}${price > 0 ? `<span class="chapter-status-badge chapter-price">${formatMoney(price)}</span>` : ''}${points > 0 ? `<span class="chapter-status-badge chapter-points">⭐ ${points} điểm</span>` : ''}<span class="chapter-status-badge ${unlocked ? 'chapter-unlocked' : 'chapter-locked'}">${unlocked ? '✓ Đã mở' : '🔒 Chưa mua'}</span></div>`;
+      else badgeHtml = `<span class="chapter-status-badge chapter-free">Miễn phí</span>`;
+      return `<div onclick="app.handleChapterClick('${esc(storyId)}','${esc(cid)}')" style="content-visibility:auto;contain-intrinsic-size:82px;contain:layout paint style" class="chapter-card-mobile p-3.5 rounded-xl bg-white/5 hover:bg-pink-500/15 border border-white/10 hover:border-pink-400/40 cursor-pointer transition"><div class="chapter-card-main"><div class="chapter-card-title">${hasPass ? '🔑 ' : ''}Chương ${esc(cid)}: ${esc(ch.title || 'Không tiêu đề')}</div><div class="chapter-card-meta"><span>📅 ${chapterPublishDate(ch)}</span><span>📝 ${formatNum(ch.wordCount || countStoryWords({chapters:{[cid]:ch}}))} chữ</span><span>👁️ ${formatNum(ch.views || 0)} lượt đọc</span></div></div><div class="chapter-card-badges">${badgeHtml}</div></div>`;
     }).join('');
   },
-  async toggleBookmark(storyId) {
+  async toggleBookmark(storyId, buttonEl = null) {
     const u = state.currentUser;
     if (!u || u.role !== 'customer') {
       showToast('Vui lòng đăng nhập tài khoản độc giả để lưu truyện!', 'error');
@@ -2824,14 +3619,26 @@ const app = {
     const snap = await get(bmRef);
     if (snap.exists()) {
       await remove(bmRef);
+      state.customers[u.id] = { ...(state.customers[u.id] || {}), bookmarks: { ...(state.customers[u.id]?.bookmarks || {}) } };
+      delete state.customers[u.id].bookmarks[storyId];
       showToast('Đã bỏ lưu truyện khỏi tủ.', 'info');
     } else {
       await set(bmRef, Date.now());
+      state.customers[u.id] = { ...(state.customers[u.id] || {}), bookmarks: { ...(state.customers[u.id]?.bookmarks || {}), [storyId]: Date.now() } };
       await logActivity('save', `đã lưu truyện ${state.stories[storyId]?.info?.name || storyId}`, storyId);
       showToast('Đã lưu truyện vào tủ sách cá nhân! 🔖', 'success');
     }
     this.renderStoryDetail(storyId);
     this.renderSidebarUserPanels();
+    // Cập nhật icon tim ngay tại card, không dựng lại toàn bộ lưới truyện.
+    const savedNow = !!state.customers?.[u.id]?.bookmarks?.[storyId];
+    const heart = buttonEl || [...document.querySelectorAll('.story-heart-btn')].find(el => el.closest('[data-story-id]')?.dataset.storyId === storyId);
+    if (heart) {
+      heart.classList.toggle('is-saved', savedNow);
+      heart.setAttribute('aria-pressed', savedNow ? 'true' : 'false');
+      heart.setAttribute('aria-label', savedNow ? 'Bỏ lưu truyện' : 'Lưu truyện');
+      heart.textContent = savedNow ? '♥' : '♡';
+    }
   },
 
   async rateStory(storyId, stars) {
@@ -2924,7 +3731,7 @@ const app = {
     if (back) back.onclick = () => this.openStoryDetail(storyId, false);
     const area = document.getElementById('readerCanvasBlocks');
     if (area) area.innerHTML = `<div style="max-width:720px;margin:24px auto;padding:32px 22px;border:1.5px dashed ${accent};border-radius:22px;background:linear-gradient(160deg,${pale},#fffaf0);text-align:center;color:#5b4638;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px">
-      <div style="width:62px;height:62px;border-radius:50%;background:#fff;border:1px solid ${accent}55;display:grid;place-items:center;font-size:28px">🐈‍⬛🔒</div>
+      <div style="width:62px;height:62px;border-radius:50%;background:#fff;border:1px solid ${accent}55;display:grid;place-items:center;font-size:28px">🐾🔒</div>
       <div style="font-size:10px;font-weight:800;letter-spacing:.08em;color:${accent}">${unpublished ? 'CHƯƠNG VIP · CHƯA NIÊM YẾT GIÁ' : 'CHƯƠNG VIP · CHƯA MỞ KHÓA'}</div>
       <div style="font-family:Georgia,serif;font-size:clamp(20px,4vw,28px);font-weight:bold;line-height:1.2;color:${accent}">${title}</div>
       <p style="max-width:460px;font-size:12px;line-height:1.8;color:#8a715d">${desc}</p>
@@ -3067,7 +3874,7 @@ const app = {
     document.getElementById('readerStoryName').textContent = story.info?.name || storyId;
     document.getElementById('readerChapterTitle').textContent = `Chương ${chapterId}: ${ch.title || ''}`;
     let meta = document.getElementById('readerChapterMeta');
-    if (!meta) { meta = document.createElement('div'); meta.id = 'readerChapterMeta'; meta.className = 'text-[10px] opacity-65 mt-1'; document.getElementById('readerStoryName').after(meta); }
+    if (!meta) { meta = document.createElement('div'); meta.id = 'readerChapterMeta'; meta.className = 'text-[10px] opacity-65 mt-1'; document.getElementById('readerChapterTitle').after(meta); }
     meta.innerHTML = `📅 ${chapterPublishDate(ch)}　 📝 ${formatNum(ch.wordCount || countStoryWords({chapters:{[chapterId]:ch}}))} chữ　 👁️ ${formatNum((Number(ch.views)||0)+1)} lượt đọc`;
     document.getElementById('readerBackBtn').onclick = () => this.openStoryDetail(storyId, false);
 
@@ -3158,6 +3965,11 @@ const app = {
       midnight: { bg: '#091526', text: '#e0f2fe', sub: 'rgba(56,189,248,0.12)' }
     };
     const palette = themeMap[state.readerSettings.theme] || themeMap.gothic;
+    // Khi giao diện tổng thể ở chế độ sáng, luôn dùng chữ đậm để nội dung không bị nhạt trên nền sáng.
+    if (document.documentElement.getAttribute('data-theme') === 'light') {
+      palette.bg = '#fff7fb';
+      palette.text = '#493348';
+    }
     wrapper.style.background = palette.bg;
 
     // Parse HTML nội dung chương thành các đoạn văn bản & hình ảnh
@@ -3955,6 +4767,7 @@ const app = {
       `<option value="${esc(id)}">${esc(s.info?.name || id)} (${esc(id)})</option>`
     ).join('');
     if (state.studioStoryId) sel.value = state.studioStoryId;
+    this.refreshStudioPricingStoryDropdown();
   },
 
   studioAutoSlug() {
@@ -4020,6 +4833,7 @@ const app = {
       `<option value="${esc(cid)}">Chương ${esc(cid)}: ${esc(c.title || 'Chưa đặt tên')}</option>`
     ).join('');
     this.studioResetChapter();
+    const priceStory = document.getElementById('studioPricingStorySelect'); if (priceStory) { priceStory.value = id; if (document.getElementById('studioPanel-pricing') && !document.getElementById('studioPanel-pricing').classList.contains('hidden')) this.renderStudioPricing(); }
   },
 
   async studioSaveStory() {
@@ -4186,6 +5000,7 @@ const app = {
       ? ' (Đang để chế độ VIP chưa giá -> Chưa xuất bản)'
       : '';
     showToast(`💾 Đã lưu Chương ${nextId}: ${title}${statusMsg}`, 'success');
+    if (document.getElementById('studioPanel-pricing') && !document.getElementById('studioPanel-pricing').classList.contains('hidden')) this.renderStudioPricing();
   },
 
   async studioDeleteChapter() {
@@ -4208,9 +5023,87 @@ const app = {
   // ==================== BẢNG QUẢN TRỊ ADMIN ====================
   currentAdminTab: 'topups',
 
+  async refreshAdminIdentity() {
+    if (state.currentUser?.role !== 'admin') return;
+    try {
+      const snap = await get(ref(db, 'siteSettings/adminProfile'));
+      const p = snap.exists() ? snap.val() : {};
+      const name = p.name || 'Meow';
+      const title = p.title || 'Quản trị viên tối cao';
+      const av = document.getElementById('adminIdentityAvatar');
+      if (av) { av.innerHTML = p.avatar ? `<img src="${esc(p.avatar)}" alt="Ảnh đại diện quản trị">` : '👑'; av.style.backgroundImage = ''; }
+      const strip = document.querySelector('.admin-identity-strip');
+      if (strip) { strip.style.backgroundImage = p.cover ? `linear-gradient(90deg,rgba(17,10,26,.88),rgba(17,10,26,.7)),url("${String(p.cover).replace(/"/g,'%22')}")` : ''; strip.style.backgroundSize='cover'; strip.style.backgroundPosition='center'; }
+      const n = document.getElementById('adminIdentityName'); if (n) n.textContent = name;
+      const t = document.getElementById('adminIdentityTitle'); if (t) t.textContent = p.bio ? `${title} · ${p.bio}` : title;
+      this.adminProfileCache = p;
+    } catch(e) {}
+  },
+
+  openAdminProfileEditor() {
+    if (state.currentUser?.role !== 'admin') return;
+    const p = this.adminProfileCache || {};
+    const titles = ['Quản trị viên tối cao','Chủ nhân Miêu Các','Đại quản gia','Người sáng lập','Tổng biên tập','Giám tuyển văn chương','Quản lý thư viện','Hoàng gia Miêu Các'];
+    let modal = document.getElementById('adminProfileModal');
+    if (!modal) {
+      modal = document.createElement('div'); modal.id = 'adminProfileModal'; modal.className = 'admin-profile-modal hidden';
+      document.body.appendChild(modal);
+    }
+    modal.innerHTML = `<div class="admin-profile-panel">
+      <div class="flex items-center justify-between gap-3"><div><div class="text-[9px] tracking-[.2em] text-purple-300 font-bold">MIÊU CÁC · ADMIN IDENTITY</div><h3 class="text-xl font-bold mt-1">✦ Chỉnh sửa thông tin quản trị</h3></div><button onclick="document.getElementById('adminProfileModal').classList.add('hidden')" class="w-9 h-9 rounded-full border border-white/20">×</button></div>
+      <div class="flex items-center gap-3 mt-4"><img id="adminProfileAvatarPreview" class="admin-profile-preview" src="${esc(p.avatar || 'https://placehold.co/100x100/39224d/f5d8ff?text=M')}" onerror="this.src='https://placehold.co/100x100/39224d/f5d8ff?text=M'"><div class="min-w-0 flex-1"><label class="admin-profile-field !mt-0">Ảnh đại diện<input id="adminProfileAvatar" value="${esc(p.avatar || '')}" placeholder="Dán link ảnh hoặc tải ảnh lên"></label><input type="file" accept="image/*" class="mt-2 text-xs w-full" onchange="app.uploadAdminProfileImage(event,'avatar')"></div></div>
+      <label class="admin-profile-field">Ảnh bìa / ảnh nền hồ sơ<input id="adminProfileCover" value="${esc(p.cover || '')}" placeholder="Link ảnh bìa"><input type="file" accept="image/*" class="mt-2 text-xs w-full" onchange="app.uploadAdminProfileImage(event,'cover')"></label>
+      <label class="admin-profile-field">Tên hiển thị<input id="adminProfileName" value="${esc(p.name || 'Meow')}"></label>
+      <label class="admin-profile-field">Giới thiệu<textarea id="adminProfileBio">${esc(p.bio || '')}</textarea></label>
+      <label class="admin-profile-field">Danh hiệu<select id="adminProfileTitle">${titles.map(t=>`<option ${((p.title||titles[0])===t)?'selected':''}>${esc(t)}</option>`).join('')}</select></label>
+      <div class="grid grid-cols-2 gap-2"><label class="admin-profile-field">Tên đăng nhập<input id="adminProfileLoginName" value="${esc(p.loginName || 'Meow')}"></label><label class="admin-profile-field">Mật khẩu mới<input id="adminProfileLoginPassword" type="password" placeholder="Để trống nếu giữ mật khẩu cũ" autocomplete="new-password"></label></div>
+      <p class="text-[10px] opacity-60 mt-2">Ảnh tải lên được lưu trực tiếp trong hồ sơ quản trị. Danh hiệu chỉ là nhãn hiển thị do quản trị chọn.</p>
+      <div class="flex gap-2 mt-5"><button onclick="app.saveAdminProfile()" class="flex-1 py-3 rounded-xl pink-blue-gradient text-white text-xs font-bold">💾 Lưu thay đổi</button><button onclick="document.getElementById('adminProfileModal').classList.add('hidden')" class="px-4 rounded-xl border border-white/20 text-xs">Hủy</button></div>
+    </div>`;
+    modal.classList.remove('hidden');
+    modal.onclick = e => { if (e.target === modal) modal.classList.add('hidden'); };
+    document.getElementById('adminProfileAvatar').oninput = e => { const im=document.getElementById('adminProfileAvatarPreview'); if(im) im.src=e.target.value; };
+  },
+
+  uploadAdminProfileImage(event, field) {
+    const file = event.target.files?.[0]; if (!file) return;
+    if (file.size > 2*1024*1024) { showToast('Ảnh nên dưới 2MB để lưu ổn định.', 'error'); event.target.value=''; return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const id = field === 'avatar' ? 'adminProfileAvatar' : 'adminProfileCover';
+      const input = document.getElementById(id); if (input) input.value = reader.result;
+      if (field === 'avatar') { const preview=document.getElementById('adminProfileAvatarPreview'); if(preview) preview.src=reader.result; }
+      showToast('Đã thêm ảnh vào hồ sơ, hãy bấm Lưu thay đổi.', 'info');
+    };
+    reader.readAsDataURL(file);
+  },
+
+  async saveAdminProfile() {
+    if (state.currentUser?.role !== 'admin') return;
+    const old = this.adminProfileCache || {};
+    const profile = {
+      name: document.getElementById('adminProfileName').value.trim() || 'Meow',
+      avatar: document.getElementById('adminProfileAvatar').value.trim(),
+      cover: document.getElementById('adminProfileCover').value.trim(),
+      bio: document.getElementById('adminProfileBio').value.trim(),
+      title: document.getElementById('adminProfileTitle').value,
+      loginName: document.getElementById('adminProfileLoginName').value.trim() || 'Meow',
+      loginPassword: document.getElementById('adminProfileLoginPassword').value || old.loginPassword || 'quynh241201'
+    };
+    try {
+      await set(ref(db, 'siteSettings/adminProfile'), profile);
+      this.adminProfileCache = profile;
+      const session = { ...state.currentUser, name: profile.name + ' (Admin)' };
+      this.setSession(session);
+      document.getElementById('adminProfileModal')?.classList.add('hidden');
+      this.refreshAdminIdentity();
+      showToast('Đã lưu hồ sơ quản trị Miêu Các!', 'success');
+    } catch(e) { showToast('Không lưu được hồ sơ: '+e.message, 'error'); }
+  },
+
   switchAdminTab(tab) {
     this.currentAdminTab = tab;
-    ['topups', 'customers', 'featured', 'appearance', 'checkin'].forEach(t => {
+    ['topups', 'customers', 'vipaccess', 'featured', 'appearance', 'checkin'].forEach(t => {
       const btn = document.getElementById('aTab-' + t);
       if (btn) {
         btn.className = t === tab
@@ -4220,6 +5113,7 @@ const app = {
     });
     this.renderAdminCurrentTab();
     this.renderAdminSearch();
+    this.refreshAdminIdentity();
   },
 
   renderAdminSearch() {
@@ -4231,6 +5125,128 @@ const app = {
     const stories = Object.entries(state.stories).filter(([id,st]) => !sq || id.toLowerCase().includes(sq) || (st.info?.name || '').toLowerCase().includes(sq) || (st.info?.author || '').toLowerCase().includes(sq));
     box.innerHTML = `${cq ? `<div class="mb-2 text-xs font-bold">Khách hàng (${customers.length})</div>${customers.slice(0,12).map(([id,c])=>`<button onclick="app.adminOpenCustomer('${esc(id)}')" class="mr-2 mb-2 p-2 rounded-lg bg-white/5 border border-white/10 text-xs">${esc(c.name || id)} · ${esc(id)}</button>`).join('')}` : ''}${sq ? `<div class="mb-2 mt-3 text-xs font-bold">Truyện (${stories.length})</div>${stories.slice(0,12).map(([id,st])=>`<button onclick="app.openStoryDetail('${esc(id)}')" class="mr-2 mb-2 p-2 rounded-lg bg-white/5 border border-white/10 text-xs">${esc(st.info?.name || id)}</button>`).join('')}` : ''}`;
   },
+  renderAdminVipAccess() {
+    const box = document.getElementById('adminTabContent');
+    if (!box || state.currentUser?.role !== 'admin') return;
+    const customers = Object.entries(state.customers || {}).sort((a,b)=>(a[1]?.name||a[0]).localeCompare(b[1]?.name||b[0]));
+    const stories = Object.entries(state.stories || {}).sort((a,b)=>(a[1]?.info?.name||a[0]).localeCompare(b[1]?.info?.name||b[0]));
+    const selectedCustomer = document.getElementById('vipAdminCustomer')?.value || '';
+    const selectedStory = document.getElementById('vipAdminStory')?.value || '';
+    const mode = this.vipAdminMode || 'full';
+    box.innerHTML = `
+      <div class="space-y-4">
+        <div class="p-4 rounded-2xl bg-pink-500/10 border border-pink-400/25 space-y-2">
+          <h3 class="font-bold text-lg pink-blue-text">👑 Cấp VIP truyện cho khách</h3>
+          <p class="text-xs opacity-75">Chỉ cấp quyền VIP Full bộ hoặc VIP từng chương. Chỉ khi tích chọn “Cộng điểm” thì hệ thống mới cộng điểm tích lũy. Bỏ tích là chỉ cấp quyền, không cộng điểm.</p>
+          <p class="text-[11px] opacity-70">Quy đổi điểm: 100.000đ giá VIP = 1 điểm. Thu hồi quyền VIP không trừ lại điểm đã cộng.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <label class="text-xs font-bold">Chọn khách hàng
+            <input id="vipAdminCustomerSearch" oninput="app.filterAdminVipCustomers()" placeholder="Tìm tên / ID / Gmail" class="w-full mt-1 p-3 rounded-xl bg-black/20 border border-pink-400/30">
+            <select id="vipAdminCustomer" onchange="app.renderAdminVipAccessList()" class="w-full mt-1 p-3 rounded-xl bg-black/20 border border-pink-400/30"><option value="">🐱 Chọn khách</option>${customers.map(([id,c])=>`<option value="${esc(id)}" ${id===selectedCustomer?'selected':''}>${esc(c.name||id)} · ${esc(id)} · ${esc(c.email||c.mail||'')}</option>`).join('')}</select>
+          </label>
+          <label class="text-xs font-bold">Chọn truyện
+            <input id="vipAdminStorySearch" oninput="app.filterAdminVipStories()" placeholder="Tìm tên truyện" class="w-full mt-1 p-3 rounded-xl bg-black/20 border border-pink-400/30">
+            <select id="vipAdminStory" onchange="app.renderAdminVipAccessList()" class="w-full mt-1 p-3 rounded-xl bg-black/20 border border-pink-400/30"><option value="">📚 Chọn truyện</option>${stories.map(([id,st])=>`<option value="${esc(id)}" ${id===selectedStory?'selected':''}>${esc(st.info?.name||id)}</option>`).join('')}</select>
+          </label>
+        </div>
+        <div class="vipTabs flex gap-2 p-1 rounded-xl bg-white/5 border border-pink-400/20">
+          <button type="button" onclick="app.setAdminVipMode('full')" class="flex-1 px-3 py-2 rounded-lg ${mode==='full'?'pink-blue-gradient text-white':'opacity-70'}">💖 VIP Full bộ</button>
+          <button type="button" onclick="app.setAdminVipMode('chapter')" class="flex-1 px-3 py-2 rounded-lg ${mode==='chapter'?'pink-blue-gradient text-white':'opacity-70'}">🌸 VIP Chương lẻ</button>
+        </div>
+        <div id="vipAdminAccessList" class="space-y-2"></div>
+      </div>`;
+    this.renderAdminVipAccessList();
+  },
+
+  filterAdminVipCustomers() {
+    const q=(document.getElementById('vipAdminCustomerSearch')?.value||'').toLowerCase().trim();
+    const sel=document.getElementById('vipAdminCustomer'); if(!sel)return;
+    const old=sel.value;
+    sel.innerHTML='<option value="">🐱 Chọn khách</option>'+Object.entries(state.customers||{}).filter(([id,c])=>!q||`${id} ${c.name||''} ${c.email||c.mail||''}`.toLowerCase().includes(q)).map(([id,c])=>`<option value="${esc(id)}">${esc(c.name||id)} · ${esc(id)}</option>`).join('');
+    if([...sel.options].some(o=>o.value===old))sel.value=old;
+  },
+
+  filterAdminVipStories() {
+    const q=(document.getElementById('vipAdminStorySearch')?.value||'').toLowerCase().trim();
+    const sel=document.getElementById('vipAdminStory'); if(!sel)return;
+    const old=sel.value;
+    sel.innerHTML='<option value="">📚 Chọn truyện</option>'+Object.entries(state.stories||{}).filter(([id,st])=>!q||`${id} ${st.info?.name||''} ${st.info?.author||''}`.toLowerCase().includes(q)).map(([id,st])=>`<option value="${esc(id)}">${esc(st.info?.name||id)}</option>`).join('');
+    if([...sel.options].some(o=>o.value===old))sel.value=old;
+  },
+
+  setAdminVipMode(mode) { this.vipAdminMode=mode==='chapter'?'chapter':'full'; this.renderAdminVipAccess(); },
+
+  openAdminVipForCustomer(cid) { this.switchAdminTab('vipaccess'); setTimeout(()=>{const sel=document.getElementById('vipAdminCustomer'); if(sel){sel.value=cid;this.renderAdminVipAccessList();}},0); },
+
+  async renderAdminVipAccessList() {
+    const box=document.getElementById('vipAdminAccessList'); if(!box)return;
+    const cid=document.getElementById('vipAdminCustomer')?.value||'';
+    const sid=document.getElementById('vipAdminStory')?.value||'';
+    if(!cid||!sid){box.innerHTML='<p class="text-xs opacity-60 p-3">Chọn khách hàng và truyện để hiện quyền VIP có thể cấp.</p>';return;}
+    const story=state.stories?.[sid]; if(!story){box.textContent='Không tìm thấy truyện.';return;}
+    const mode=this.vipAdminMode||'full';
+    if(mode==='full'){
+      const active=!!state.customers?.[cid]?.books?.[sid]?.vip;
+      const price=Number(story.info?.price??story.info?.fullPrice??story.info?.bookPrice??0);
+      const pointValue=price>0?(price/100000).toFixed(4):'0';
+      box.innerHTML=`<div class="vipAccessItem flex-wrap"><span class="flex-1 min-w-0">📚 <b>${esc(story.info?.name||sid)}</b><br><small>Giá Full bộ: ${price>0?formatMoney(price):'Chưa đặt giá'} · Nếu tích cộng điểm: +${pointValue} điểm</small></span><div class="flex items-center gap-2 flex-wrap"><label class="vipPointOption"><input id="vipAdminAddPoints" type="checkbox"> Cộng điểm</label><button type="button" onclick="app.toggleAdminVipFull('${esc(cid)}','${esc(sid)}')">${active?'❌ Thu hồi VIP Full':'👑 Cấp VIP Full'}</button></div></div>`;
+      return;
+    }
+    const chapters=Object.entries(story.chapters||{}).sort((a,b)=>Number(a[0])-Number(b[0]));
+    const eligible=chapters.filter(([,ch])=>ch.vip===true||ch.vip===1||ch.vip==='true'||ch.isVip===true||Number(ch.price)>0||Number(ch.vipPrice)>0);
+    if(!eligible.length){box.innerHTML='<p class="text-xs opacity-60 p-3">Truyện này chưa có chương được đánh dấu VIP hoặc có giá VIP.</p>';return;}
+    box.innerHTML=eligible.map(([chId,ch])=>{
+      const active=!!state.customers?.[cid]?.chapterVip?.[sid]?.[chId];
+      const price=Number(ch.price??ch.vipPrice??ch.vip_price??ch.priceVip??0)||0;
+      return `<div class="vipAccessItem flex-wrap"><span class="flex-1 min-w-0">📖 <b>Chương ${esc(chId)}: ${esc(ch.title||'Chưa đặt tên')}</b><br><small>Giá VIP: ${price>0?formatMoney(price):'Chưa đặt giá'} · Nếu tích cộng điểm: +${(price/100000).toFixed(4)} điểm</small></span><div class="flex items-center gap-2 flex-wrap"><label class="vipPointOption"><input type="checkbox" class="vipAdminChapterAddPoints" data-chapter="${esc(chId)}"> Cộng điểm</label><button type="button" onclick="app.toggleAdminVipChapter('${esc(cid)}','${esc(sid)}','${esc(chId)}')">${active?'❌ Thu hồi':'👑 Cấp VIP'}</button></div></div>`;
+    }).join('');
+  },
+
+  async toggleAdminVipFull(cid,sid) {
+    if(state.currentUser?.role!=='admin')return;
+    const active=!!state.customers?.[cid]?.books?.[sid]?.vip;
+    const addPoints=!!document.getElementById('vipAdminAddPoints')?.checked;
+    const story=state.stories?.[sid];
+    const price=Number(story?.info?.price??story?.info?.fullPrice??story?.info?.bookPrice??0)||0;
+    const grantKey=`full_${sid}`;
+    try{
+      if(active){await update(ref(db),{[`customers/${cid}/books/${sid}`]:null,[`meowVipPointGrants/${cid}/${grantKey}`]:null});if(state.customers?.[cid]?.books)delete state.customers[cid].books[sid];}
+      else{
+        const now=Date.now();
+        await update(ref(db),{[`customers/${cid}/books/${sid}`]:{vip:true,full:true,access:'full',purchased:true,purchasedAt:now},[`meowVipPointGrants/${cid}/${grantKey}`]:addPoints?{active:true,amount:price,storyId:sid,type:'full',createdAt:now,grantedBy:state.currentUser.id}:null});
+        state.customers[cid]??={};state.customers[cid].books??={};state.customers[cid].books[sid]={vip:true,full:true,access:'full',purchased:true,purchasedAt:now};
+        if(addPoints&&price>0){const pts=Number((price/100000).toFixed(4));await runTransaction(ref(db,`customers/${cid}/points`),v=>Number(((Number(v)||0)+pts).toFixed(4)));state.customers[cid].points=Number(((Number(state.customers[cid].points)||0)+pts).toFixed(4));}
+        else if(addPoints&&price<=0){showToast('Đã cấp VIP nhưng truyện chưa có giá Full bộ nên không thể tính điểm.', 'info');}
+      }
+      showToast(active?'Đã thu hồi VIP Full bộ. Điểm đã cộng được giữ nguyên.':`Đã cấp VIP Full bộ${addPoints&&price>0?` và cộng ${(price/100000).toFixed(4)} điểm`: ' (không cộng điểm)'}.`,'success');
+      this.renderAdminVipAccessList();
+    }catch(e){showToast('Không cập nhật được VIP: '+e.message,'error');}
+  },
+
+  async toggleAdminVipChapter(cid,sid,chId) {
+    if(state.currentUser?.role!=='admin')return;
+    const path=`customers/${cid}/chapterVip/${sid}/${chId}`;
+    const active=!!state.customers?.[cid]?.chapterVip?.[sid]?.[chId];
+    const checkbox=[...document.querySelectorAll('.vipAdminChapterAddPoints')].find(x=>x.dataset.chapter===chId);
+    const addPoints=!!checkbox?.checked;
+    const ch=state.stories?.[sid]?.chapters?.[chId]||{};
+    const price=Number(ch.price??ch.vipPrice??ch.vip_price??ch.priceVip??0)||0;
+    const grantKey=`chapter_${sid}_${chId}`;
+    try{
+      if(active){await update(ref(db),{[path]:null,[`meowVipPointGrants/${cid}/${grantKey}`]:null});if(state.customers?.[cid]?.chapterVip?.[sid])delete state.customers[cid].chapterVip[sid][chId];}
+      else{
+        const now=Date.now();
+        await update(ref(db),{[path]:true,[`meowVipPointGrants/${cid}/${grantKey}`]:addPoints?{active:true,amount:price,storyId:sid,chapterId:chId,type:'chapter',createdAt:now,grantedBy:state.currentUser.id}:null});
+        state.customers[cid]??={};state.customers[cid].chapterVip??={};state.customers[cid].chapterVip[sid]??={};state.customers[cid].chapterVip[sid][chId]=true;
+        if(addPoints&&price>0){const pts=Number((price/100000).toFixed(4));await runTransaction(ref(db,`customers/${cid}/points`),v=>Number(((Number(v)||0)+pts).toFixed(4)));state.customers[cid].points=Number(((Number(state.customers[cid].points)||0)+pts).toFixed(4));}
+        else if(addPoints&&price<=0){showToast('Đã cấp VIP chương nhưng chương chưa có giá nên không thể tính điểm.','info');}
+      }
+      showToast(active?'Đã thu hồi VIP chương. Điểm đã cộng được giữ nguyên.':`Đã cấp VIP chương${addPoints&&price>0?` và cộng ${(price/100000).toFixed(4)} điểm`:' (không cộng điểm)'}.`,'success');
+      this.renderAdminVipAccessList();
+    }catch(e){showToast('Không cập nhật được VIP chương: '+e.message,'error');}
+  },
+
   adminOpenCustomer(id) { this.switchAdminTab('customers'); setTimeout(() => { const el=document.getElementById('adminCustomerSearch'); if(el) el.value=id; this.renderAdminCurrentTab(); },0); },
 
   renderAdminCurrentTab() {
@@ -4240,12 +5256,21 @@ const app = {
 
     if (this.currentAdminTab === 'appearance') {
       box.innerHTML = `<div class="max-w-2xl space-y-4 p-4 rounded-2xl bg-white/5 border border-pink-400/25">
-        <h3 class="font-bold text-lg pink-blue-text">🐈‍⬛ Thay ảnh icon logo Miêu Các</h3>
+        <h3 class="font-bold text-lg pink-blue-text">🐾 Thay ảnh logo Miêu Các</h3>
         <p class="text-xs opacity-70">Dán link ảnh trực tiếp (https://...). Ảnh sẽ thay icon mèo cạnh tên Miêu Các ở đầu trang và chân trang.</p>
         <label class="block text-xs font-bold" for="adminLogoUrl">Link ảnh logo</label>
         <input id="adminLogoUrl" value="${esc(state.siteLogoUrl || '')}" placeholder="https://.../logo.png" class="w-full p-3 rounded-xl bg-black/20 border border-pink-400/30 text-sm">
-        <div class="flex items-center gap-3"><div id="adminLogoPreview" class="w-16 h-16 rounded-xl overflow-hidden bg-black/20 flex items-center justify-center text-3xl">🐈‍⬛</div><span class="text-xs opacity-70">Xem trước ảnh logo</span></div>
-        <div class="flex flex-wrap gap-2"><button onclick="app.previewSiteLogo()" class="px-4 py-2 rounded-xl border border-sky-400/30 text-xs">Xem trước</button><button onclick="app.saveSiteLogo()" class="px-5 py-2 rounded-xl pink-blue-gradient text-white text-xs font-bold">💾 Lưu ảnh logo</button><button onclick="app.saveSiteLogo(true)" class="px-4 py-2 rounded-xl border border-rose-400/30 text-xs">Khôi phục mèo mặc định</button></div>
+        <div class="flex items-center gap-3"><div id="adminLogoPreview" class="w-16 h-16 rounded-xl overflow-hidden bg-black/20 flex items-center justify-center text-3xl">🐾</div><span class="text-xs opacity-70">Xem trước ảnh logo</span></div>
+        <div class="flex flex-wrap gap-2"><button onclick="app.previewSiteLogo()" class="px-4 py-2 rounded-xl border border-sky-400/30 text-xs">Xem trước</button><button onclick="app.saveSiteLogo()" class="px-5 py-2 rounded-xl pink-blue-gradient text-white text-xs font-bold">💾 Lưu ảnh logo</button><button onclick="app.saveSiteLogo(true)" class="px-4 py-2 rounded-xl border border-rose-400/30 text-xs">Khôi phục biểu tượng mặc định</button></div>
+      </div>
+      <div class="max-w-2xl space-y-3 p-4 rounded-2xl bg-white/5 border border-pink-400/25">
+        <h3 class="font-bold text-lg pink-blue-text">✉️ Cập nhật chân trang</h3>
+        <p class="text-xs opacity-70">Dán địa chỉ/link vào đây. Ở chân trang chỉ hiện tên Gmail, Page, Facebook; bấm vào sẽ mở địa chỉ đã lưu.</p>
+        <label class="block text-xs font-bold">Facebook<input id="adminFooterFacebook" type="url" value="${esc(state.footerInfo?.facebook || '')}" placeholder="https://facebook.com/..." class="block w-full mt-1 p-3 rounded-xl bg-black/20 border border-pink-400/30"></label>
+        <label class="block text-xs font-bold">Page<input id="adminFooterPage" type="url" value="${esc(state.footerInfo?.page || '')}" placeholder="https://facebook.com/..." class="block w-full mt-1 p-3 rounded-xl bg-black/20 border border-pink-400/30"></label>
+        <label class="block text-xs font-bold">Gmail<input id="adminFooterGmail" type="email" value="${esc(state.footerInfo?.gmail || '')}" placeholder="Dán địa chỉ Gmail" class="block w-full mt-1 p-3 rounded-xl bg-black/20 border border-pink-400/30"></label>
+        <label class="block text-xs font-bold">Giới thiệu chân trang<textarea id="adminFooterAbout" rows="4" class="block w-full mt-1 p-3 rounded-xl bg-black/20 border border-pink-400/30">${esc(state.footerInfo?.about || '')}</textarea></label>
+        <button onclick="app.saveFooterInfo()" class="px-5 py-3 rounded-xl pink-blue-gradient text-white text-xs font-bold">💾 Lưu thông tin chân trang</button>
       </div>`;
       this.previewSiteLogo();
     } else if (this.currentAdminTab === 'checkin') {
@@ -4317,6 +5342,7 @@ const app = {
                     ${canPub ? '✍️ Đã cấp quyền đăng truyện (Bấm thu hồi)' : '➕ Cấp quyền đăng truyện'}
                   </button>
                   <button onclick="app.${c.isVip ? 'adminRevokeVip' : 'adminGrantVip'}('${esc(cid)}')" class="px-3.5 py-2 rounded-xl font-bold ${c.isVip ? 'bg-amber-500/20 text-amber-300 border border-amber-400/40' : 'bg-purple-500/20 text-purple-300 border border-purple-400/40'}">${c.isVip ? '👑 VIP · Thu hồi' : '👑 Cấp VIP + điểm'}</button>
+                  <button onclick="app.openAdminVipForCustomer('${esc(cid)}')" class="px-3.5 py-2 rounded-xl font-bold bg-pink-500/20 text-pink-300 border border-pink-400/40">📚 Cấp VIP truyện</button>
                   <button onclick="app.adminDirectDeposit('${esc(cid)}')" class="px-3.5 py-2 rounded-xl font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">💰 Nạp hộ</button>
                 </div>
               </div>
@@ -4324,6 +5350,8 @@ const app = {
           }).join('')}
         </div>
       `;
+    } else if (this.currentAdminTab === 'vipaccess') {
+      this.renderAdminVipAccess();
     } else if (this.currentAdminTab === 'featured') {
       const allStories = Object.entries(state.stories);
       box.innerHTML = `
@@ -4363,8 +5391,13 @@ const app = {
     const items = Object.entries(state.stories).map(([id,st]) => {
       const latest = Math.max(Number(st.info?.updatedAt)||0, ...Object.values(st.chapters||{}).map(ch=>Number(ch.updatedAt||ch.createdAt)||0));
       return [id,st,latest];
-    }).filter(x => x[2] >= cutoff).sort((a,b)=>b[2]-a[2]);
-    box.innerHTML = items.length ? items.map(([id,st,updated])=>`<button onclick="app.openStoryDetail('${esc(id)}')" class="flex gap-3 text-left p-2 rounded-xl bg-white/5 border border-white/10"><img loading="lazy" decoding="async" src="${esc(st.info?.cover||'')}" class="w-12 h-16 rounded-lg object-cover"><span class="min-w-0"><b class="text-xs">${esc(st.info?.name||id)}</b><small class="block opacity-60 mt-1">Cập nhật ${new Date(updated).toLocaleDateString('vi-VN')}</small></span></button>`).join('') : '<p class="opacity-60">Chưa có truyện cập nhật trong 7 ngày gần đây.</p>';
+    }).filter(x => x[2] >= cutoff).sort((a,b)=>b[2]-a[2]).slice(0,18);
+    box.innerHTML = items.length ? items.map(([id,st,updated],i)=>`
+      <button type="button" onclick="app.openStoryDetail('${esc(id)}')" class="recent-tarot-card" aria-label="Mở truyện ${esc(st.info?.name||id)}">
+        <span class="recent-tarot-card-glow"></span><span class="recent-tarot-index">✦ ${String(i+1).padStart(2,'0')} · ARCANA</span>
+        <img loading="lazy" decoding="async" src="${esc(st.info?.cover||'https://placehold.co/240x340/171026/e8c5ff?text=Mieu+Cas')}" alt="${esc(st.info?.name||id)}" onerror="this.src='https://placehold.co/240x340/171026/e8c5ff?text=Mieu+Cas'">
+        <span class="recent-tarot-info"><b>${esc(st.info?.name||id)}</b><small>Cập nhật ${new Date(updated).toLocaleDateString('vi-VN')}</small></span>
+      </button>`).join('') : '<p class="opacity-60 p-3">Chưa có truyện cập nhật trong 7 ngày gần đây.</p>';
   },
 
   renderActivityFeed() {
@@ -4398,7 +5431,7 @@ const app = {
     const q=(document.getElementById('chapterIndexSearch')?.value||'').toLowerCase().trim(), sort=document.getElementById('chapterIndexSort')?.value||'old';
     let arr=Object.entries(story.chapters||{}).filter(([id,ch])=>`${id} ${ch.title||''}`.toLowerCase().includes(q));
     arr.sort((a,b)=>sort==='new'?Number(b[0])-Number(a[0]):sort==='az'?(a[1].title||'').localeCompare(b[1].title||''):sort==='za'?(b[1].title||'').localeCompare(a[1].title||''):Number(a[0])-Number(b[0]));
-    document.getElementById('chapterIndexList').innerHTML=arr.map(([id,ch])=>{const vip=ch.vip===true||ch.vip===1||ch.vip==='true';const price=Number(ch.price)||0,points=Number(ch.points)||0;const label=vip?`👑 VIP${price>0?` · ${formatMoney(price)}`:''}${points>0?` · ⭐ ${points} điểm`:''}`:'Miễn phí';return `<button onclick="app.closeChapterIndex();app.handleChapterClick('${esc(sid)}','${esc(id)}')" class="chapter-index-item w-full text-left p-3 rounded-xl bg-white/5 border border-white/10 text-xs hover:border-pink-400/50"><div class="flex items-start justify-between gap-2"><b>Chương ${esc(id)}: ${esc(ch.title||'')}</b><strong class="shrink-0 ${vip?'text-amber-400':'text-sky-400'}">${label}</strong></div><span class="block opacity-70 mt-1">${formatNum(ch.wordCount||0)} chữ · 👁 ${formatNum(ch.views||0)}</span></button>`}).join('')||'<p class="opacity-60 text-xs">Không có chương phù hợp.</p>';
+    document.getElementById('chapterIndexList').innerHTML=arr.map(([id,ch])=>{const vip=ch.vip===true||ch.vip===1||ch.vip==='true';const price=Number(ch.price)||0,points=Number(ch.points)||0;const paid=price>0||points>0;const badges=paid?`${(vip||price>0)?'<span class="chapter-status-badge chapter-vip">👑 VIP</span>':''}${price>0?`<span class="chapter-status-badge chapter-price">${formatMoney(price)}</span>`:''}${points>0?`<span class="chapter-status-badge chapter-points">⭐ ${points} điểm</span>`:''}`:'<span class="chapter-status-badge chapter-free">Miễn phí</span>';return `<button onclick="app.closeChapterIndex();app.handleChapterClick('${esc(sid)}','${esc(id)}')" class="chapter-index-item w-full text-left p-3 rounded-xl bg-white/5 border border-white/10 hover:border-pink-400/50"><div class="chapter-index-title">Chương ${esc(id)}: ${esc(ch.title||'')}</div><div class="chapter-index-badges">${badges}</div><span class="chapter-index-meta">${formatNum(ch.wordCount||0)} chữ · 👁 ${formatNum(ch.views||0)}</span></button>`}).join('')||'<p class="opacity-60 text-xs">Không có chương phù hợp.</p>';
   },
 
   async renderComments(type, storyId, chapterId, targetId) {
@@ -4678,6 +5711,7 @@ window.addEventListener('resize', () => {
 }, { passive: true });
 
 window.app = app;
+app.renderFooterInfo();
 
 
 app.init();
@@ -4703,5 +5737,289 @@ app.init();
   window.addEventListener('pageshow',()=>{if(!hasMieuDeepLink() || state.storyDataReady) setPageLoading(false);});
 })();
 </script>
+
+<script id="mieu-age-gate-script">
+(() => {
+  const KEY = 'mieuCac_age18_confirmed_until';
+  const gate = document.getElementById('mieuAgeGate');
+  if (!gate) return;
+  const now = Date.now();
+  let until = 0;
+  try { until = Number(localStorage.getItem(KEY) || 0); } catch (_) {}
+  if (until > now) {
+    gate.remove();
+    return;
+  }
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+  // Hiển thị bảng xác nhận trực tiếp, không còn hiệu ứng cánh.
+  gate.classList.add('age-gate-panel-revealed');
+  const closeGate = () => {
+    gate.classList.add('age-gate-leaving');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    window.setTimeout(() => gate.remove(), 600);
+  };
+  document.getElementById('mieuAgeEnter')?.addEventListener('click', () => {
+    try { localStorage.setItem(KEY, String(Date.now() + 24 * 60 * 60 * 1000)); } catch (_) {}
+    closeGate();
+  });
+  document.getElementById('mieuAgeExit')?.addEventListener('click', () => {
+    window.location.replace('https://www.google.com/');
+  });
+  gate.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      document.getElementById('mieuAgeExit')?.click();
+    }
+  });
+  document.getElementById('mieuAgeEnter')?.focus({ preventScroll: true });
+})();
+</script>
+
+
+<style id="mieu-chapter-layout-fix">
+  #storyDetailContainer #storyChapterGrid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important;width:100%;min-width:0}
+  #storyDetailContainer .chapter-card-mobile{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center!important;gap:12px!important;width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
+  #storyDetailContainer .chapter-card-main{min-width:0;width:100%}
+  #storyDetailContainer .chapter-card-title{font-size:13px;font-weight:700;line-height:1.5;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+  #storyDetailContainer .chapter-card-meta{display:flex;flex-wrap:wrap;gap:4px 11px;margin-top:6px;font-size:10px;line-height:1.5;opacity:.72}
+  #storyDetailContainer .chapter-card-badges{display:flex;justify-content:flex-end;align-items:center;max-width:190px;min-width:0}
+  .chapter-badge-stack{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:5px;max-width:100%}
+  .chapter-status-badge{display:inline-flex;align-items:center;justify-content:center;max-width:100%;padding:5px 8px;border-radius:8px;font-size:10px;line-height:1.25;font-weight:800;white-space:normal;text-align:center;overflow-wrap:anywhere}
+  .chapter-vip{color:#fbbf24;background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.32)}
+  .chapter-price{color:#fde68a;background:rgba(217,119,6,.2);border:1px solid rgba(245,158,11,.28)}
+  .chapter-points{color:#c4b5fd;background:rgba(139,92,246,.16);border:1px solid rgba(167,139,250,.25)}
+  .chapter-unlocked{color:#6ee7b7;background:rgba(16,185,129,.14)}
+  .chapter-locked{color:#fcd34d;background:rgba(245,158,11,.14)}
+  .chapter-unpublished{color:#cbd5e1;background:rgba(71,85,105,.3)}
+  .chapter-free{color:#7dd3fc;background:rgba(14,165,233,.13)}
+  #chapterIndexModal>div{min-height:0;max-height:min(88dvh,850px);width:min(100%,680px)}
+  #chapterIndexList{min-height:0;max-height:calc(88dvh - 150px);overflow-y:auto;overscroll-behavior:contain;padding:2px 3px 8px}
+  #chapterIndexModal .chapter-index-item{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:7px 12px;min-width:0;box-sizing:border-box}
+  #chapterIndexModal .chapter-index-title{min-width:0;font-size:12px;font-weight:700;line-height:1.45;overflow-wrap:anywhere;word-break:break-word}
+  #chapterIndexModal .chapter-index-badges{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px;min-width:0}
+  #chapterIndexModal .chapter-index-meta{grid-column:1/-1;font-size:10px;line-height:1.4;opacity:.7}
+  @media(max-width:600px){
+    #storyDetailContainer #storyChapterGrid{grid-template-columns:minmax(0,1fr)!important;gap:9px!important}
+    #storyDetailContainer .chapter-card-mobile{grid-template-columns:minmax(0,1fr)!important;gap:8px!important;padding:12px!important}
+    #storyDetailContainer .chapter-card-badges{justify-content:flex-start;max-width:100%}
+    #storyDetailContainer .chapter-badge-stack{justify-content:flex-start}
+    #storyDetailContainer .chapter-status-badge{font-size:10px;padding:5px 8px}
+    #chapterIndexModal{padding:8px!important;align-items:center!important}
+    #chapterIndexModal>div{width:100%;max-height:90dvh;padding:12px!important;border-radius:18px}
+    #chapterIndexModal .chapter-index-item{grid-template-columns:minmax(0,1fr)!important;gap:7px}
+    #chapterIndexModal .chapter-index-badges{justify-content:flex-start}
+    #chapterIndexList{max-height:calc(90dvh - 145px)}
+  }
+  html[data-theme="light"] .chapter-vip{color:#8a5700}
+  html[data-theme="light"] .chapter-price{color:#8a5700}
+  html[data-theme="light"] .chapter-points{color:#6841a5}
+  html[data-theme="light"] .chapter-unlocked{color:#087a55}
+  html[data-theme="light"] .chapter-locked{color:#8a5700}
+  html[data-theme="light"] .chapter-free{color:#126b9b}
+</style>
+
+<style>
+/* V26 reader header refinement (late override for mobile browsers) */
+#readerTopBar .reader-title-luxury{display:flex;align-items:center;gap:14px}
+#readerTopBar .reader-title-copy{min-width:0;flex:1;padding:5px 0 7px}
+#readerTopBar .reader-title-kicker{display:flex;align-items:center;gap:9px;min-width:0}
+#readerTopBar #readerStoryName{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(13px,3.2vw,17px)!important;font-weight:800!important;letter-spacing:.13em!important;text-transform:uppercase!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#readerTopBar #readerChapterTitle{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(20px,4.6vw,29px)!important;line-height:1.16!important;font-weight:800!important;letter-spacing:-.015em!important;margin:5px 0 0!important}
+#readerTopBar .reader-title-rule{height:1px;margin-top:9px;background:linear-gradient(90deg,transparent,#c18cdd88,#e8c5ef,transparent);position:relative}
+#readerTopBar .reader-title-rule i{position:absolute;width:5px;height:5px;border-radius:50%;background:#f1d3ff;left:50%;top:-2px;box-shadow:0 0 9px #d99aff}
+#readerChapterMeta{display:block!important;margin-top:5px!important;font-size:10px!important;letter-spacing:.02em}
+html[data-theme="light"] #readerTopBar #readerChapterTitle{color:#57345f!important}
+@media(max-width:520px){#readerTopBar .reader-title-luxury{gap:10px}}
+</style>
+
 </body>
 </html>
+
+<style id="mieu-reader-open-layout-v2">
+/* Nội dung truyện: bỏ hẳn thẻ/khung, mở rộng không gian đọc */
+#readerCanvasWrapper.reader-protected{
+  background:transparent!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;padding:0!important;margin:0 auto!important;
+  overflow:visible!important;max-width:900px;width:100%;
+}
+#readerCanvasWrapper:after{display:none!important;content:none!important}
+#readerCanvasWrapper>div:first-child{display:none!important}
+#readerCanvasBlocks{width:100%;align-items:stretch!important;gap:0!important}
+#readerCanvasBlocks canvas{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;margin:0!important}
+#readerCanvasBlocks img{margin:22px auto!important;border-radius:12px!important}
+/* Chỉ giữ tên truyện/chương ở đầu; cụm nút chuyển xuống thanh nổi */
+#readerTopBar .flex.items-center.gap-2{display:none!important}
+#readerTopBar{z-index:39!important;top:0!important}
+.reader-floating-nav{
+  position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translate(-50%,0);
+  z-index:9990;display:flex;align-items:center;justify-content:center;gap:8px;
+  width:max-content;max-width:calc(100vw - 24px);padding:8px;
+  border:1px solid rgba(215,126,183,.42);border-radius:18px;
+  background:rgba(25,17,34,.92);color:#fff7ff;box-shadow:0 10px 35px rgba(35,12,38,.24);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease,transform .22s ease,visibility .22s;
+}
+.reader-floating-nav.is-visible{opacity:1;visibility:visible;pointer-events:auto}
+.reader-floating-nav button{padding:10px 15px;border:1px solid rgba(230,164,210,.35);border-radius:12px;font-size:13px;font-weight:800;white-space:nowrap;background:rgba(255,255,255,.07);color:inherit}
+.reader-floating-nav .reader-float-next{background:linear-gradient(110deg,#c34aa9,#6275f5);border-color:transparent;color:#fff}
+.reader-floating-nav.is-hidden-down{opacity:0;transform:translate(-50%,18px);visibility:hidden;pointer-events:none}
+@media(max-width:640px){
+ #readerTopBar{position:relative!important;top:auto!important;padding:8px 0!important;margin:0 0 10px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+ #readerTopBar>.flex{border:0!important;padding-bottom:0!important;justify-content:center!important}
+ #readerStoryName{font-size:11px!important}
+ #readerChapterTitle{font-size:18px!important;line-height:1.5!important}
+ #readerCanvasWrapper{max-width:none!important}
+ #readerCanvasBlocks canvas{max-width:100vw!important}
+ .reader-floating-nav{bottom:calc(10px + env(safe-area-inset-bottom));gap:6px;padding:7px;border-radius:16px}
+ .reader-floating-nav button{padding:10px 13px;font-size:12px}
+ #view-reader{gap:10px!important}
+}
+/* Chế độ sáng toàn trang: hồng pastel dịu, chữ tím mận đậm */
+html[data-theme="light"] body{background:linear-gradient(145deg,#fff7fb 0%,#fff0f7 48%,#f8f1ff 100%)!important;color:#493348!important}
+html[data-theme="light"] #readerCanvasWrapper{background:transparent!important;color:#493348!important}
+html[data-theme="light"] #readerTopBar #readerStoryName{color:#76536f!important}
+html[data-theme="light"] #readerTopBar #readerChapterTitle{color:#a64d88!important}
+html[data-theme="light"] .reader-floating-nav{background:rgba(255,246,252,.96);color:#57364f;border-color:#e8bfd9;box-shadow:0 8px 28px rgba(172,104,151,.2)}
+html[data-theme="light"] .reader-floating-nav button{background:#fff8fc;color:#754a6c;border-color:#e8c8dc}
+html[data-theme="light"] .reader-floating-nav .reader-float-next{background:linear-gradient(110deg,#e58abb,#9b91ed);color:#fff;border:0}
+</style>
+
+<script id="mieu-reader-floating-nav-v2">
+(()=>{
+ let lastY=window.scrollY||0, raf=false, hideTimer=null;
+ const nav=()=>document.getElementById('readerFloatingNav');
+ const readerActive=()=>{const r=document.getElementById('view-reader');return !!r&&!r.classList.contains('hidden')};
+ const show=()=>{const n=nav();if(!n||!readerActive())return;n.classList.add('is-visible');n.classList.remove('is-hidden-down');clearTimeout(hideTimer);hideTimer=setTimeout(()=>{if((window.scrollY||0)>160)n.classList.add('is-hidden-down')},2600)};
+ window.addEventListener('scroll',()=>{
+  if(raf)return;raf=true;requestAnimationFrame(()=>{
+   const y=window.scrollY||0,n=nav();
+   if(readerActive()&&n){
+    if(y<100){show()}
+    else if(y>lastY+4){n.classList.remove('is-visible');n.classList.add('is-hidden-down');clearTimeout(hideTimer)}
+    else if(y<lastY-3){show()}
+   }else if(n){n.classList.remove('is-visible');n.classList.add('is-hidden-down')}
+   lastY=y;raf=false;
+  });
+ },{passive:true});
+ const mo=new MutationObserver(()=>{if(readerActive()){show()}else{const n=nav();if(n)n.classList.remove('is-visible')}});
+ const target=document.getElementById('view-reader');if(target)mo.observe(target,{attributes:true,attributeFilter:['class']});
+ document.addEventListener('click',e=>{if(e.target.closest('#readerBackBtn')){const n=nav();if(n)n.classList.remove('is-visible')}});
+ setTimeout(()=>{if(readerActive())show()},500);
+})();
+</script>
+
+
+<style id="mieu-reader-capsule-and-gothic-cover">
+/* Reader: remove the full brand/auth header only while a chapter is open. */
+body.mieu-reader-only>header{display:none!important}
+body.mieu-reader-only>main{padding-top:10px!important}
+.reader-title-capsule{width:min(100%,720px);margin:0 auto 12px;padding:7px;border:1px solid rgba(190,132,221,.42);border-radius:19px;background:linear-gradient(135deg,rgba(24,13,43,.96),rgba(45,19,62,.93));box-shadow:0 8px 28px rgba(9,3,22,.28),inset 0 0 0 1px rgba(255,255,255,.035);backdrop-filter:blur(14px)}
+.reader-title-capsule-inner{display:flex;align-items:center;gap:10px;min-width:0;padding:3px 5px}
+.reader-back-compact{width:39px;height:39px;flex:0 0 39px;display:grid;place-items:center;border-radius:13px;border:1px solid rgba(210,160,238,.42);background:linear-gradient(145deg,rgba(155,83,190,.28),rgba(39,26,67,.75));color:#f8eaff;font-size:25px;line-height:1;box-shadow:inset 0 1px 0 #ffffff20}
+.reader-title-copy{min-width:0;flex:1;text-align:left;line-height:1.35}
+#readerTopBar #readerStoryName{font-size:10px;letter-spacing:.04em;color:#d5b5e9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.9}
+#readerTopBar #readerChapterTitle{font-size:14px;line-height:1.35;color:#f7eaff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:2px 0 0}
+.story-home-crumb{display:flex;align-items:center;margin:0 0 4px}
+.story-home-crumb button{display:inline-flex;align-items:center;gap:10px;max-width:100%;padding:9px 14px;border-radius:13px;border:1px solid rgba(173,112,205,.32);background:linear-gradient(135deg,rgba(30,17,54,.9),rgba(18,13,36,.92));color:#eadcf6;font-family:Georgia,serif;font-size:13px;box-shadow:0 4px 16px rgba(9,3,22,.18)}
+.story-home-crumb button b{font-size:20px;color:#c9a4e6;font-weight:400}
+.story-gothic-cover-frame{position:relative;width:min(72vw,290px);aspect-ratio:2/3;padding:7px;border-radius:19px;background:linear-gradient(145deg,#f0d9ff,#8f5ab4 22%,#25153f 48%,#b88bda 72%,#21122f);box-shadow:0 0 0 1px #e6c6ff55,0 14px 35px #08031399,0 0 28px #9c62cb35;isolation:isolate;overflow:hidden}
+.story-gothic-cover-frame:before{content:"";position:absolute;inset:3px;border:1px solid rgba(245,220,255,.72);border-radius:16px;pointer-events:none;z-index:3}
+.story-gothic-cover-image{width:100%;height:100%;display:block;object-fit:cover;border-radius:13px;position:relative;z-index:1;box-shadow:inset 0 0 20px #0008}
+.story-gothic-cover-ornament{position:absolute;z-index:4;top:10px;left:50%;transform:translateX(-50%);color:#f4d9ff;text-shadow:0 0 8px #d9a8ff,0 0 18px #a35ed5;font-size:18px;pointer-events:none}
+.story-gothic-cover-shine{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.13) 42%,transparent 56%);mix-blend-mode:screen}
+@media(max-width:640px){.reader-title-capsule{width:calc(100% - 2px);border-radius:16px;padding:6px}.reader-title-capsule-inner{gap:8px}.story-gothic-cover-frame{width:min(68vw,260px)}.story-home-crumb button{padding:8px 12px}}
+html[data-theme="light"] .story-home-crumb button{background:linear-gradient(135deg,#fff0f8,#f6e9ff);color:#78476c;border-color:#e8bfd9}
+html[data-theme="light"] .reader-title-capsule{background:linear-gradient(135deg,#fff0f8,#f1e5ff);border-color:#e5bfdc;box-shadow:0 8px 24px #c98bb51f}
+html[data-theme="light"] #readerTopBar #readerStoryName{color:#805a79}
+html[data-theme="light"] #readerTopBar #readerChapterTitle{color:#783b70}
+html[data-theme="light"] .reader-back-compact{color:#7b426f;background:linear-gradient(145deg,#ffe4f1,#eadfff);border-color:#e3b8d7}
+</style>
+
+
+<style id="mieu-cac-featured-masterpiece-v2">
+#featuredStoriesGrid.featured-hero{display:block!important;min-width:0!important;max-width:100%;background:radial-gradient(ellipse at 82% 18%,rgba(139,92,246,.26),transparent 40%),radial-gradient(ellipse at 15% 70%,rgba(30,64,175,.22),transparent 42%),linear-gradient(155deg,#08071d 0%,#100a2c 55%,#080719 100%);border:1px solid rgba(168,85,247,.28);box-shadow:0 18px 55px rgba(0,0,0,.35);}
+.featured-hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 12% 18%,#fff 70%,transparent),radial-gradient(1.5px 1.5px at 76% 30%,#e9d5ff 70%,transparent),radial-gradient(1px 1px at 42% 72%,#fff 70%,transparent),radial-gradient(1px 1px at 90% 82%,#c4b5fd 70%,transparent);background-size:130px 130px;opacity:.55;pointer-events:none}
+.featured-hero-glow{position:absolute;width:72vw;height:72vw;max-width:520px;max-height:520px;right:-32%;top:-5%;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(196,181,253,.42),rgba(109,40,217,.15) 45%,transparent 70%);filter:blur(7px);pointer-events:none}
+.featured-cover-wrap{width:clamp(155px,42vw,245px);height:clamp(230px,61vw,365px);filter:drop-shadow(0 15px 24px rgba(0,0,0,.55));}
+.featured-hero-cover{width:100%;height:100%;object-fit:cover;border-radius:18px;border:2px solid rgba(216,180,254,.55);box-shadow:inset 0 0 0 4px rgba(255,255,255,.08),0 0 0 5px rgba(167,139,250,.08);}
+.featured-rank{position:absolute;z-index:2;left:-17px;top:-16px;width:58px;height:58px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#a855f7,#4c1d95);border:2px solid rgba(255,255,255,.28);color:#fff;font-family:Georgia,serif;font-size:22px;font-weight:800;box-shadow:0 5px 20px #6b21a8aa}.featured-rank small{font-size:10px;letter-spacing:1px}
+.featured-kicker{display:inline-flex;align-items:center;gap:10px;padding:12px 23px;border:1px solid rgba(216,180,254,.35);border-radius:999px;background:linear-gradient(110deg,rgba(255,255,255,.08),rgba(168,85,247,.12));color:#f5dfad;font:700 14px Georgia,serif;letter-spacing:2px;box-shadow:0 6px 20px #0004}
+.featured-tag{padding:9px 15px;border-radius:999px;background:rgba(30,64,175,.2);border:1px solid rgba(96,165,250,.22);color:#e9a9d7;font:700 12px Georgia,serif;letter-spacing:1px;text-transform:uppercase}.featured-tag-count{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#ddd}
+.featured-title{max-width:900px;margin:16px auto 0;color:#f8f4ff;font:700 clamp(27px,5.6vw,48px)/1.28 Georgia,'Times New Roman',serif;text-shadow:0 3px 18px #0008}
+.featured-meta{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px;color:rgba(235,226,255,.78);font:600 14px Georgia,serif}.featured-meta i{font-style:normal;color:#8b82a8}
+.featured-read-btn,.featured-detail-btn{padding:13px 23px;border-radius:999px;font-weight:800;font-family:Georgia,serif;font-size:16px}.featured-read-btn{color:#fff;background:linear-gradient(110deg,#6d00bd,#3b00a5);box-shadow:0 8px 25px #6d28d966}.featured-detail-btn{color:#eee8ff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+.featured-dots{display:flex;justify-content:center;align-items:center;gap:9px;width:max-content;margin:18px auto 0;padding:8px 15px;border-radius:999px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.09)}
+.featured-arrow{position:absolute;z-index:5;top:43%;width:48px;height:48px;border-radius:50%;background:rgba(9,7,25,.75);border:1px solid rgba(216,180,254,.25);color:#fff;font-size:34px;line-height:1;box-shadow:0 6px 18px #0005}.featured-arrow-left{left:12px}.featured-arrow-right{right:12px}
+@media(max-width:480px){.featured-hero-inner{padding-left:16px;padding-right:16px}.featured-arrow{width:42px;height:42px;top:39%;font-size:30px}.featured-arrow-left{left:8px}.featured-arrow-right{right:8px}.featured-title{padding:0 18px}.featured-meta{gap:8px;font-size:12px}.featured-read-btn,.featured-detail-btn{padding:12px 18px;font-size:14px}}
+</style>
+
+
+
+<style id="mieu-featured-open-glow-rail-v3">
+/* Ngũ Đại Tuyệt Tác: bỏ toàn bộ khung/thẻ bao, giữ phần trình diễn thoáng */
+#featuredStoriesGrid.featured-hero{
+  position:relative!important;display:block!important;width:100%;max-width:100%;min-width:0!important;
+  overflow:hidden!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:transparent!important;isolation:isolate;padding:0 0 8px!important;
+}
+#featuredStoriesGrid.featured-hero:before{content:none!important;display:none!important}
+#featuredStoriesGrid .featured-hero-glow{width:90vw;height:90vw;right:-36%;top:0;opacity:.42;z-index:-1}
+#featuredStoriesGrid .featured-hero-inner{padding-top:24px!important;padding-bottom:12px!important}
+#featuredStoriesGrid .featured-cover-wrap{transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s ease}
+#featuredStoriesGrid .featured-hero-cover{border-radius:13px;border:1px solid rgba(221,190,255,.65);box-shadow:0 0 0 1px rgba(255,255,255,.12),0 14px 35px rgba(0,0,0,.42),0 0 28px rgba(166,103,255,.2)}
+#featuredStoriesGrid .featured-kicker{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding:10px 18px!important;color:#f5d9a6;text-shadow:0 0 12px rgba(255,214,145,.45);letter-spacing:3px}
+#featuredStoriesGrid .featured-dots{position:relative;display:flex;gap:12px;width:min(82%,330px);height:22px;align-items:center;justify-content:center;margin:22px auto 2px;padding:0 10px;border:0!important;border-radius:0!important;background:transparent!important;overflow:visible}
+#featuredStoriesGrid .featured-dots:before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(180,130,255,.45),rgba(104,190,255,.55),transparent);filter:drop-shadow(0 0 5px #a855f7)}
+#featuredStoriesGrid .featured-dots button{position:relative;z-index:1;width:26px!important;height:4px!important;min-width:26px;padding:0;border-radius:99px!important;background:rgba(190,174,220,.3)!important;box-shadow:0 0 5px rgba(167,139,250,.35);transition:width .35s ease,background .35s ease,box-shadow .35s ease}
+#featuredStoriesGrid .featured-dots button.w-8{width:42px!important;background:linear-gradient(90deg,#c05bff,#58c8ff)!important;box-shadow:0 0 7px #c05bff,0 0 16px rgba(88,200,255,.9),0 0 28px rgba(192,91,255,.48)}
+#featuredStoriesGrid .featured-arrow{backdrop-filter:blur(9px);transition:transform .2s ease,box-shadow .2s ease}
+#featuredStoriesGrid .featured-arrow:active{transform:scale(.9)}
+#featuredStoriesGrid .featured-arrow:hover{box-shadow:0 0 18px rgba(192,91,255,.45)}
+#featuredStoriesGrid .featured-title{margin-top:16px}
+html[data-theme="light"] #featuredStoriesGrid.featured-hero{background:transparent!important}
+html[data-theme="light"] #featuredStoriesGrid .featured-hero-glow{opacity:.32;background:radial-gradient(circle,rgba(244,174,215,.65),rgba(160,190,255,.35) 48%,transparent 72%)}
+html[data-theme="light"] #featuredStoriesGrid .featured-kicker{color:#a64d82;text-shadow:0 0 12px rgba(230,151,195,.35)}
+html[data-theme="light"] #featuredStoriesGrid .featured-title{color:#593b62!important;text-shadow:0 2px 14px rgba(215,159,206,.24)}
+html[data-theme="light"] #featuredStoriesGrid .featured-meta{color:#765e83}
+html[data-theme="light"] #featuredStoriesGrid .featured-meta i{color:#b58ab9}
+html[data-theme="light"] #featuredStoriesGrid .featured-tag{background:linear-gradient(110deg,rgba(255,220,239,.86),rgba(222,232,255,.9));border-color:rgba(190,150,205,.4);color:#98517f}
+html[data-theme="light"] #featuredStoriesGrid .featured-tag-count{color:#5c648b;background:linear-gradient(110deg,#fff0f8,#edf2ff)}
+html[data-theme="light"] #featuredStoriesGrid .featured-detail-btn{color:#73547a;background:linear-gradient(110deg,rgba(255,231,244,.9),rgba(229,236,255,.95));border-color:#e5c5df}
+html[data-theme="light"] #featuredStoriesGrid .featured-read-btn{background:linear-gradient(110deg,#dc79b2,#8b8de8);box-shadow:0 8px 24px rgba(194,123,190,.28)}
+html[data-theme="light"] #featuredStoriesGrid .featured-arrow{background:linear-gradient(145deg,rgba(255,235,247,.94),rgba(226,235,255,.94));border-color:#e2c4e6;color:#80517f;box-shadow:0 5px 18px rgba(170,125,180,.2)}
+html[data-theme="light"] #featuredStoriesGrid .featured-dots:before{background:linear-gradient(90deg,transparent,rgba(225,139,190,.65),rgba(116,164,238,.7),transparent)}
+html[data-theme="light"] #featuredStoriesGrid .featured-dots button{background:rgba(185,151,192,.38)!important}
+html[data-theme="light"] #featuredStoriesGrid .featured-dots button.w-8{background:linear-gradient(90deg,#e78fbd,#8eb5f4)!important;box-shadow:0 0 8px #e78fbd,0 0 17px rgba(126,174,245,.8)}
+@media(max-width:480px){#featuredStoriesGrid .featured-hero-inner{padding-left:10px!important;padding-right:10px!important}#featuredStoriesGrid .featured-arrow{top:38%;width:40px;height:40px}#featuredStoriesGrid .featured-arrow-left{left:4px}#featuredStoriesGrid .featured-arrow-right{right:4px}}
+@media(prefers-reduced-motion:reduce){#featuredStoriesGrid *{transition:none!important;animation:none!important}}
+</style>
+<script id="mieu-featured-auto-carousel-v3">
+(function(){
+  if(!window.app || window.__mieuFeaturedAutoV3) return;
+  window.__mieuFeaturedAutoV3=true;
+  const app=window.app;
+  let timer=null;
+  const delay=4800;
+  function visible(){const home=document.getElementById('view-home');return !!home && !home.classList.contains('hidden') && getComputedStyle(home).display!=='none';}
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  function start(){stop();timer=setInterval(()=>{if(visible()){app.nextFeaturedStory();}else{stop();}},delay);}
+  ['nextFeaturedStory','prevFeaturedStory','goFeaturedStory'].forEach(name=>{
+    if(typeof app[name]!=='function') return;
+    const original=app[name];
+    app[name]=function(){const result=original.apply(this,arguments);start();return result;};
+  });
+  const grid=document.getElementById('featuredStoriesGrid');
+  if(grid){
+    grid.addEventListener('mouseenter',stop);
+    grid.addEventListener('mouseleave',start);
+    grid.addEventListener('touchstart',stop,{passive:true});
+    grid.addEventListener('touchend',()=>{setTimeout(start,1800);},{passive:true});
+    grid.addEventListener('focusin',stop);
+    grid.addEventListener('focusout',()=>setTimeout(start,1200));
+  }
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
