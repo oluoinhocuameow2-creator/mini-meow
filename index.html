@@ -929,6 +929,112 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
 <link rel="preconnect" href="https://olncm-fa88c-default-rtdb.asia-southeast1.firebasedatabase.app" crossorigin>
 <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com">
 <link rel="dns-prefetch" href="https://placehold.co">
+
+
+<style id="mieu-v54-reader-themes-tts">
+/* V54: năm màu nền đọc có màu chữ tương phản riêng */
+#readerCanvasWrapper{transition:background-color .16s linear;color:inherit}
+#readerCanvasBlocks{padding:18px 14px 28px;min-height:180px}
+#readerCanvasBlocks canvas{max-width:100%;height:auto}
+.reader-tts-progress{display:grid;grid-template-columns:42px minmax(0,1fr) 42px;align-items:center;gap:8px;width:100%;font-size:10px;font-variant-numeric:tabular-nums;opacity:.9}
+.reader-tts-progress span{text-align:center;white-space:nowrap}
+#ttsSeekBar{width:100%;height:24px;min-width:0;accent-color:#db5d9e;cursor:pointer;touch-action:pan-x}
+#ttsSeekBar:disabled{opacity:.45;cursor:not-allowed}
+/* Palette của trang đọc tách biệt hoàn toàn với giao diện tối/sáng của website. */
+#readerCanvasWrapper[data-reader-theme],
+#readerCanvasWrapper[data-reader-theme] #readerCanvasBlocks{
+  background-color:var(--reader-theme-bg)!important;
+}
+#readerCanvasWrapper[data-reader-theme]{color:var(--reader-theme-text)!important}
+#readerCanvasWrapper[data-reader-theme] #readerCanvasBlocks{color:var(--reader-theme-text)!important}
+#readerCanvasWrapper[data-reader-theme] canvas{background-color:transparent}
+@media(max-width:640px){
+ #readerSettingsControls{gap:10px!important}
+ #readerSettingsControls>div{min-width:0;flex-wrap:wrap}
+ #readerSettingsControls #ttsPlayBtn{min-height:42px}
+ .reader-tts-progress{grid-template-columns:38px minmax(0,1fr) 38px}
+ #readerCanvasBlocks{padding:14px 12px 26px}
+}
+</style>
+
+
+
+<style id="mieu-v56-reader-whole-page-theme">
+/* Theme được chọn phủ toàn màn hình đọc chương, độc lập với dark/light của website. */
+body:has(#view-reader:not(.hidden)){
+  background:var(--reader-theme-bg)!important;
+  background-color:var(--reader-theme-bg)!important;
+  color:var(--reader-theme-text)!important;
+}
+#view-reader[data-reader-theme]{
+  color:var(--reader-theme-text)!important;
+  background:var(--reader-theme-bg)!important;
+  border-color:var(--reader-theme-border)!important;
+  min-height:100dvh;
+  padding:12px 12px 96px;
+  border-radius:0!important;
+}
+#view-reader[data-reader-theme] #readerTopBar{
+  color:var(--reader-theme-text)!important;
+  background:var(--reader-theme-surface)!important;
+  border:1px solid var(--reader-theme-border)!important;
+  box-shadow:0 5px 22px color-mix(in srgb,var(--reader-theme-accent) 18%,transparent)!important;
+}
+#view-reader[data-reader-theme] .reader-title-copy,
+#view-reader[data-reader-theme] .reader-title-copy :is(h1,h2,h3,span,div),
+#view-reader[data-reader-theme] .reader-title-kicker,
+#view-reader[data-reader-theme] .reader-title-rule{
+  color:var(--reader-theme-text)!important;
+}
+#view-reader[data-reader-theme] .reader-title-rule i{
+  background:var(--reader-theme-accent)!important;
+  box-shadow:0 0 10px var(--reader-theme-accent)!important;
+}
+#view-reader[data-reader-theme] .reader-bottom-nav,
+#view-reader[data-reader-theme] #readerFloatingNav{
+  color:var(--reader-theme-text)!important;
+}
+#view-reader[data-reader-theme] .reader-bottom-nav button,
+#view-reader[data-reader-theme] #readerFloatingNav button,
+#view-reader[data-reader-theme] #readerBackBtn{
+  color:var(--reader-theme-text)!important;
+  background:var(--reader-theme-surface)!important;
+  border:1px solid var(--reader-theme-border)!important;
+  box-shadow:0 4px 14px color-mix(in srgb,var(--reader-theme-accent) 20%,transparent)!important;
+}
+#view-reader[data-reader-theme] #readerFloatingNav .reader-float-next,
+#view-reader[data-reader-theme] .reader-bottom-nav button:last-child{
+  color:#fff!important;
+  background:var(--reader-theme-accent)!important;
+}
+#view-reader[data-reader-theme] #readerSettingsControls,
+#view-reader[data-reader-theme] #readerSettingsControls :is(span,label){
+  color:var(--reader-theme-text)!important;
+}
+#view-reader[data-reader-theme] #readerSettingsControls select,
+#view-reader[data-reader-theme] #readerSettingsControls button,
+#view-reader[data-reader-theme] #readerSettingsControls input{
+  color:var(--reader-theme-text)!important;
+  background:var(--reader-theme-surface)!important;
+  border-color:var(--reader-theme-border)!important;
+}
+#view-reader[data-reader-theme] .reader-tts-progress input{accent-color:var(--reader-theme-accent)!important}
+#view-reader[data-reader-theme] #readerCanvasWrapper{
+  background:var(--reader-theme-bg)!important;
+  color:var(--reader-theme-text)!important;
+  border-color:var(--reader-theme-border)!important;
+  box-shadow:none!important;
+}
+#view-reader[data-reader-theme] #readerCanvasWrapper .text-center{
+  color:var(--reader-theme-text)!important;
+}
+#view-reader[data-reader-theme] .reader-bottom-nav button:hover,
+#view-reader[data-reader-theme] #readerFloatingNav button:hover{filter:brightness(.97)}
+@media(max-width:700px){
+  #view-reader[data-reader-theme]{padding:8px 8px 104px!important;min-height:100dvh}
+}
+</style>
+
 </head>
 <body>
 
@@ -987,21 +1093,17 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
           <button id="navAdminBtn" onclick="app.navigate('admin');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="hidden w-full text-left p-3 rounded-lg text-amber-300 hover:bg-amber-500/15">👑 Quản trị</button>
         </div>
       </div>
+      <div class="header-quick-tools">
+        <button id="themeToggleBtn" onclick="app.toggleTheme()" title="Đổi chế độ Sáng / Tối" aria-label="Đổi sáng tối" class="p-2.5 rounded-xl border border-pink-400/30 hover:border-sky-400 transition text-sm font-bold">🌙</button>
+        <button id="globalSearchToggle" onclick="app.toggleGlobalSearch()" title="Tìm truyện, thể loại, chương" aria-label="Tìm kiếm" class="p-2.5 rounded-xl border border-pink-400/30 hover:border-sky-400 transition">🔎</button>
+        <button id="mieuHeaderLogoutBtn" type="button" title="Đăng xuất" aria-label="Đăng xuất" class="hidden p-2.5 rounded-xl border border-pink-400/40 hover:border-rose-400 transition text-rose-300 font-bold" style="line-height:1">↪</button>
+      </div>
     </div>
 
     <!-- Công cụ bên phải -->
     <div class="flex items-center gap-2 sm:gap-3">
-      <button id="themeToggleBtn" onclick="app.toggleTheme()" title="Đổi chế độ Sáng / Tối" class="p-2.5 rounded-xl border border-pink-400/30 hover:border-sky-400 transition text-sm font-bold">🌙</button>
-      <button id="globalSearchToggle" onclick="app.toggleGlobalSearch()" title="Tìm truyện, thể loại, chương" class="p-2.5 rounded-xl border border-pink-400/30 hover:border-sky-400 transition">🔎</button>
-      <div class="relative">
-        <button id="notifBellBtn" onclick="app.toggleNotifDropdown()" class="p-2.5 rounded-xl border border-pink-400/30 hover:border-sky-400 transition relative">🔔<span id="notifBadge" class="hidden absolute -top-1 -right-1 w-5 h-5 rounded-full bg-pink-500 text-white text-[10px] font-bold flex items-center justify-center">0</span></button>
-        <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-80 sm:w-96 gothic-card p-4 z-50 border border-pink-400/40 shadow-2xl">
-          <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10"><span class="font-bold text-sm pink-blue-text">🔔 Thông báo cập nhật mới</span><button onclick="app.markAllNotifsRead()" class="text-xs text-sky-400 hover:underline">Đánh dấu đã xem</button></div>
-          <div id="notifList" class="max-h-72 overflow-y-auto space-y-2 text-xs"></div>
-        </div>
-      </div>
       <!-- Khu vực User / Đăng nhập -->
-      <div id="headerUserArea">
+      <div id="headerUserArea" class="hidden">
         <div class="flex items-center gap-1.5">
           <button onclick="app.showAuthScreen('login');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold text-white pink-blue-gradient">🔐 Đăng nhập</button>
           <button onclick="app.showAuthScreen('register');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold border border-pink-400/40">✨ Đăng ký</button>
@@ -1049,6 +1151,11 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
       </div>
     </div>
 
+
+    <section class="recent-tarot-section">
+      <h3 class="recent-tarot-heading"><span class="recent-tarot-line"></span><span>TRUYỆN MỚI CẬP NHẬT</span><small>7 NGÀY</small></h3>
+      <div id="recentStoriesList" class="recent-tarot-rail" aria-label="Truyện mới cập nhật trong 7 ngày"></div>
+    </section>
 
     <!-- BẢNG XẾP HẠNG TÁC PHẨM -->
     <section id="homeRankingSection" class="gothic-card p-4 sm:p-5">
@@ -1106,8 +1213,8 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
           <div id="recentChaptersList" class="divide-y divide-white/10 text-sm"></div>
         </div>
         <section class="recent-tarot-section">
-          <h3 class="recent-tarot-heading"><span class="recent-tarot-line"></span><span>TRUYỆN MỚI CẬP NHẬT</span><small>7 NGÀY</small></h3>
-          <div id="recentStoriesList" class="recent-tarot-rail" aria-label="Truyện mới cập nhật trong 7 ngày"></div>
+          <h3 class="recent-tarot-heading"><span class="recent-tarot-line"></span><span>TRUYỆN HOÀN THÀNH</span><small>FULL</small></h3>
+          <div id="completedStoriesList" class="recent-tarot-rail" aria-label="Truyện đã hoàn thành"></div>
         </section>
         <div class="gothic-card p-5"><h3 class="text-lg font-serif font-bold pink-blue-text mb-3">🌙 Hoạt động gần đây</h3><div id="activityFeed" class="space-y-2 text-xs"></div></div>
         <button onclick="app.navigate('filters')" class="px-4 py-2 rounded-xl text-xs font-bold border border-pink-400/30">🔎 Mở trang bộ lọc riêng</button>
@@ -1215,11 +1322,12 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
         <div class="flex items-center gap-2">
           <span class="opacity-75 whitespace-nowrap">🎨 Màu nền:</span>
           <select id="readerThemeSelect" onchange="app.updateReaderSettings()" class="w-full px-2.5 py-1.5 rounded-lg bg-black/25 border border-pink-400/30 outline-none">
-            <option value="gothic">🌌 Tối Gothic Huyền Bí</option>
-            <option value="pinkblue">🌸 Hồng Loang Xanh</option>
-            <option value="sepia">📜 Giấy Cổ Vàng Kem</option>
-            <option value="light">☀️ Trắng Sáng Tinh Khôi</option>
-            <option value="midnight">🌊 Xanh Đêm Sâu Thẳm</option>
+            <option value="gothic">🖤 Gothic (mặc định)</option>
+            <option value="pink">🌸 Hồng dịu</option>
+            <option value="blue">🩵 Xanh dương</option>
+            <option value="matcha">🍵 Trà xanh</option>
+            <option value="brown">🤎 Nâu cà phê</option>
+            <option value="bread">🥐 Bánh mì kem</option>
           </select>
         </div>
 
@@ -1234,14 +1342,20 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
             <option value="1.4">1.4x</option>
           </select>
         </div>
+        <div class="reader-tts-progress">
+          <span id="ttsProgressLabel">00:00</span>
+          <input id="ttsSeekBar" type="range" min="0" max="1000" value="0" step="1"
+                 aria-label="Lướt đến vị trí đọc" oninput="app.seekTTS(this.value)" disabled>
+          <span id="ttsDurationLabel">--:--</span>
+        </div>
       </div>
     </div>
 
     <!-- Thanh điều khiển nổi cạnh dưới màn hình khi đọc -->
     <div id="readerFloatingNav" class="reader-floating-nav" aria-label="Điều hướng đọc truyện">
-      <button type="button" onclick="app.openReaderSettings()" class="reader-float-settings">⚙ Cài đặt</button>
-      <button type="button" onclick="app.navigateChapter(-1)">◀ Trước</button>
-      <button type="button" onclick="app.navigateChapter(1)" class="reader-float-next">Sau ▶</button>
+      <button type="button" onclick="app.openReaderSettings()" class="reader-float-settings" aria-label="Cài đặt đọc" title="Cài đặt"><span aria-hidden="true">⚙</span></button>
+      <button type="button" onclick="app.navigateChapter(-1)" aria-label="Chương trước" title="Chương trước"><span aria-hidden="true">◀</span></button>
+      <button type="button" onclick="app.navigateChapter(1)" class="reader-float-next" aria-label="Chương tiếp theo" title="Chương tiếp theo"><span aria-hidden="true">▶</span></button>
     </div>
 
     <!-- Nội dung truyện hiển thị thoáng, không đóng khung -->
@@ -1254,9 +1368,9 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
 
     <!-- Điều hướng chương đặt ngay TRÊN khung bình luận -->
     <div class="reader-bottom-nav flex flex-wrap items-center justify-center gap-3 py-4">
-      <button onclick="app.navigateChapter(-1)" class="px-5 py-2.5 rounded-xl text-sm font-bold border border-pink-400/40 hover:bg-pink-500/15">◀ Chương trước</button>
-      <button onclick="app.openChapterIndex()" class="px-5 py-2.5 rounded-xl text-sm font-bold border border-sky-400/40 hover:bg-sky-500/15">☷ Mục lục chương</button>
-      <button onclick="app.navigateChapter(1)" class="px-6 py-2.5 rounded-xl text-sm font-bold text-white pink-blue-gradient shadow-lg">Chương tiếp theo ▶</button>
+      <button aria-label="Chương trước" title="Chương trước" onclick="app.navigateChapter(-1)" class="reader-bottom-icon">◀</button>
+      <button aria-label="Mục lục chương" title="Mục lục chương" onclick="app.openChapterIndex()" class="reader-bottom-icon">☷</button>
+      <button aria-label="Chương tiếp theo" title="Chương tiếp theo" onclick="app.navigateChapter(1)" class="reader-bottom-icon reader-bottom-icon-next">▶</button>
     </div>
 
     <div class="gothic-card p-5"><div id="chapterCommentsBox"></div></div>
@@ -1459,8 +1573,9 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
               <textarea id="editProfileBioInput" rows="3" placeholder="Viết đôi dòng giới thiệu về bạn hoặc gu đọc truyện..." class="w-full px-3 py-2 rounded-xl bg-black/25 border border-pink-400/30 outline-none"></textarea>
             </div>
             <div class="md:col-span-2 flex flex-wrap gap-4"><label class="flex items-center gap-2"><input id="editHideProfile" type="checkbox" class="accent-pink-500"> Ẩn trang cá nhân khỏi người khác</label><label class="flex items-center gap-2"><input id="editHideAvatar" type="checkbox" class="accent-pink-500"> Ẩn ảnh đại diện</label></div>
-            <div class="md:col-span-2 flex justify-end">
-              <button onclick="app.saveMyProfile()" class="px-5 py-2.5 rounded-xl font-bold text-white pink-blue-gradient">💾 Lưu hồ sơ cá nhân</button>
+            <div class="md:col-span-2 flex flex-wrap justify-end gap-2">
+              <button type="button" onclick="app.closeEditProfileBox()" class="px-5 py-2.5 rounded-xl font-bold border border-pink-300/30">Đóng</button>
+              <button type="button" onclick="app.saveMyProfile()" class="px-5 py-2.5 rounded-xl font-bold text-white pink-blue-gradient">💾 Lưu hồ sơ cá nhân</button>
             </div>
           </div>
         </div>
@@ -1683,7 +1798,6 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
           <button type="button" class="admin-edit-profile-btn" onclick="app.openAdminProfileEditor()">✎ Sửa thông tin</button>
         </div>
         <div class="flex flex-wrap gap-2 text-xs">
-          <button onclick="app.switchAdminTab('topups')" id="aTab-topups" class="px-4 py-2 rounded-xl font-bold pink-blue-gradient text-white">📥 Duyệt nạp tiền</button>
           <button onclick="app.switchAdminTab('customers')" id="aTab-customers" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">👥 Quản lý khách & Cấp quyền</button>
           <button onclick="app.switchAdminTab('vipaccess')" id="aTab-vipaccess" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">👑 Cấp VIP truyện</button>
           <button onclick="app.switchAdminTab('featured')" id="aTab-featured" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">⭐ 5 Truyện nổi bật & Kho truyện</button>
@@ -1819,10 +1933,11 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
  </div>
 </div>
 
+<div id="mieuChatBackdrop" onclick="app.toggleMessenger()" aria-hidden="true"></div>
 <!-- CHAT nổi kiểu Messenger -->
 <div id="messengerWidget" class="fixed bottom-4 right-4 z-[9970]">
- <button onclick="app.toggleMessenger()" class="rounded-full w-14 h-14 pink-blue-gradient text-white text-2xl shadow-xl border border-white/30">💬</button>
- <div id="messengerPanel" class="hidden absolute bottom-16 right-0 w-[min(92vw,360px)] h-[470px] gothic-card shadow-2xl overflow-hidden flex flex-col">
+ <button id="messengerLegacyLauncher" onclick="app.toggleMessenger()" style="display:none!important">💬</button>
+ <div id="messengerPanel" aria-hidden="true" class="hidden absolute bottom-16 right-0 w-[min(92vw,360px)] h-[470px] gothic-card shadow-2xl overflow-hidden flex flex-col">
   <div class="p-3 pink-blue-gradient text-white flex justify-between items-center"><b>💬 Tin nhắn Miêu Các</b><button onclick="app.toggleMessenger()">✕</button></div>
   <div class="p-2 border-b border-white/10 space-y-2">
    <div class="flex gap-2"><button onclick="app.startGroupChat()" class="flex-1 p-2 rounded-lg bg-pink-500/20 text-xs">🌐 Chat chung</button><button onclick="app.showPrivateChatPicker()" class="flex-1 p-2 rounded-lg bg-sky-500/20 text-xs">💌 Chat riêng</button></div>
@@ -1855,10 +1970,10 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
     <div id="authLoginView" class="hidden space-y-3 text-xs">
       <button onclick="app.showAuthScreen('choice')" class="text-xs opacity-75 hover:text-pink-300">← Quay lại</button>
       <h4 class="font-bold text-base pink-blue-text">🔐 Đăng nhập độc giả</h4>
-      <label class="block font-bold">Email</label>
-      <input id="loginEmail" type="email" autocomplete="username" placeholder="email@example.com" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
-      <label class="block font-bold">Mật khẩu</label>
-      <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <label class="block font-bold">Tên đăng nhập hoặc Gmail</label>
+      <input id="loginEmail" type="text" autocomplete="username" placeholder="Tên / Gmail đã đăng ký" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <label class="block font-bold">ID khách hàng hoặc mật khẩu</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Nhập ID (tài khoản cũ) hoặc mật khẩu" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
       <button onclick="app.loginWithEmailPassword()" class="w-full py-3 rounded-xl font-bold text-sm text-white pink-blue-gradient">Đăng nhập</button>
       <div class="text-center opacity-70 py-1">Chưa có tài khoản?</div>
       <button onclick="app.showAuthScreen('register')" class="w-full py-2.5 rounded-xl border border-pink-400/35 font-bold">Tạo tài khoản riêng</button>
@@ -1880,8 +1995,8 @@ html[data-theme="light"] .story-related-card-tags{color:#a84f91}
       <h4 class="font-bold text-base pink-blue-text">✨ Tạo tài khoản độc giả</h4>
       <label class="block font-bold">Tên hiển thị *</label>
       <input id="registerName" type="text" maxlength="40" autocomplete="name" placeholder="Tên bạn muốn hiển thị" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
-      <label class="block font-bold">Email *</label>
-      <input id="registerEmail" type="email" autocomplete="email" placeholder="email@example.com" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
+      <label class="block font-bold">Gmail (không bắt buộc)</label>
+      <input id="registerEmail" type="email" autocomplete="email" placeholder="Có thể để trống" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
       <label class="block font-bold">Mật khẩu (ít nhất 6 ký tự) *</label>
       <input id="registerPassword" type="password" autocomplete="new-password" placeholder="Tạo mật khẩu" class="w-full px-3.5 py-3 rounded-xl bg-black/30 border border-pink-400/35 outline-none">
       <label class="block font-bold">Nhập lại mật khẩu *</label>
@@ -2344,6 +2459,72 @@ function getCustomerPoints(cid) {
   return Math.max(0, Number(Math.max(lifetimeFromHistory, Number(cust.points) || 0).toFixed(4)));
 }
 
+// ==================== TẢI DỮ LIỆU THEO TỪNG LỚP ====================
+// storyCatalog chỉ chứa thông tin truyện + metadata chương; storyContent giữ nội dung chương.
+// Nhờ vậy thiết bị mới không phải tải toàn bộ nội dung truyện khi vừa mở trang chủ.
+function makeStoryCatalogEntry(story) {
+  const info = story?.info || {};
+  const chapters = {};
+  Object.entries(story?.chapters || {}).forEach(([cid, ch]) => {
+    if (!ch || typeof ch !== 'object') return;
+    const meta = { ...ch };
+    delete meta.content; delete meta.text; delete meta.html; delete meta.body; delete meta.rawContent;
+    chapters[cid] = meta;
+  });
+  return { info, chapters };
+}
+async function loadMieuChapterContent(storyId, chapterId) {
+  const current = state.stories?.[storyId]?.chapters?.[chapterId] || {};
+  if (current.content || current.text) return current;
+  const token = `${storyId}/${chapterId}`;
+  window.__mieuChapterLoads = window.__mieuChapterLoads || {};
+  if (window.__mieuChapterLoads[token]) return window.__mieuChapterLoads[token];
+  const task = (async () => {
+    let snap = await get(ref(db, `storyContent/${storyId}/${chapterId}`)).catch(() => null);
+    // Tương thích dữ liệu cũ trong giai đoạn chuyển đổi.
+    if (!snap || !snap.exists()) snap = await get(ref(db, `stories/${storyId}/chapters/${chapterId}`));
+    if (!snap.exists()) throw new Error('Không tìm thấy nội dung chương.');
+    const full = snap.val() || {};
+    state.stories[storyId] = state.stories[storyId] || { info: {}, chapters: {} };
+    state.stories[storyId].chapters = state.stories[storyId].chapters || {};
+    state.stories[storyId].chapters[chapterId] = { ...state.stories[storyId].chapters[chapterId], ...full };
+    return state.stories[storyId].chapters[chapterId];
+  })().finally(() => { delete window.__mieuChapterLoads[token]; });
+  window.__mieuChapterLoads[token] = task;
+  return task;
+}
+async function migrateMieuStoriesToCatalog() {
+  if (window.__mieuCatalogMigrationRunning) return;
+  window.__mieuCatalogMigrationRunning = true;
+  try {
+    const migrationMark = await get(ref(db, 'storyCatalogMigration/version'));
+    if (Number(migrationMark.val()) >= 1) {
+      showToast('Danh mục truyện đã được tách sẵn. Thiết bị mới sẽ dùng dữ liệu gọn nhẹ.', 'success');
+      return;
+    }
+    showToast('Đang tối ưu dữ liệu truyện lần đầu. Vui lòng giữ trang quản trị mở...', 'info');
+    const allSnap = await get(ref(db, 'stories'));
+    const all = allSnap.val() || {};
+    const ids = Object.keys(all);
+    for (const sid of ids) {
+      const story = all[sid] || {};
+      const catalog = makeStoryCatalogEntry(story);
+      await set(ref(db, `storyCatalog/${sid}`), catalog);
+      if (story.chapters && Object.keys(story.chapters).length) {
+        await set(ref(db, `storyContent/${sid}`), story.chapters);
+        // Giữ tương thích cấu trúc cũ ở mức metadata, không nhân đôi nội dung chương.
+        await set(ref(db, `stories/${sid}/chapters`), catalog.chapters);
+      }
+    }
+    await set(ref(db, 'storyCatalogMigration/version'), 1);
+    window.__mieuCatalogReady = true;
+    showToast(`Đã tách danh mục và nội dung ${ids.length} truyện. Thiết bị mới sẽ tải nhẹ hơn khi vào Miêu Các!`, 'success');
+  } catch (err) {
+    console.error('Mieu catalog migration:', err);
+    showToast('Chưa thể tách dữ liệu truyện: ' + (err?.message || 'Lỗi Firebase'), 'error');
+  } finally { window.__mieuCatalogMigrationRunning = false; }
+}
+
 // ==================== ĐỒNG BỘ FIREBASE REALTIME ====================
 function initFirebaseSync() {
   if (hasMieuDeepLink()) setPageLoading(true, 'Đang kết nối và tải truyện...');
@@ -2360,32 +2541,22 @@ function initFirebaseSync() {
     document.getElementById('statOnline').textContent = formatNum(state.onlineCount);
   });
 
-  // 2. Đồng bộ Truyện (stories)
-  let initialStoriesLoaded = false;
-  onValue(ref(db, 'stories'), (snap) => {
-    const newStories = snap.val() || {};
-    const firstStoriesSnapshot = !initialStoriesLoaded;
-    if (initialStoriesLoaded) {
-      detectStoryUpdates(state.stories, newStories);
-    }
-    // Firebase vẫn là nguồn dữ liệu chuẩn; giữ cache hiển thị trước, sau đó thay snapshot realtime mới nhất.
-    // Không stringify toàn bộ nội dung chương ở mỗi lần cập nhật để tránh khóa luồng giao diện.
-    state.stories = newStories;
+  // 2. Đồng bộ danh mục truyện. Ưu tiên storyCatalog (không chứa nội dung chương).
+  // Chỉ dùng nhánh stories cũ nếu chưa có catalog để hỗ trợ lần chuyển đổi đầu tiên.
+  const applyStorySnapshot = (newStories, sourceLabel) => {
+    const firstStoriesSnapshot = !state.storyDataReady;
+    if (!firstStoriesSnapshot) detectStoryUpdates(state.stories, newStories);
+    state.stories = newStories || {};
     state.storyDataReady = true;
     tryOpenInitialDeepLink();
     if (firstStoriesSnapshot && !hasMieuDeepLink()) setPageLoading(false);
-    initialStoriesLoaded = true;
-    saveStoriesCache(newStories);
+    saveStoriesCache(state.stories);
     if (firstStoriesSnapshot) updateGlobalStats(); else scheduleGlobalStatsUpdate();
     const activeView = document.querySelector('main section:not(.hidden)')?.id || 'view-home';
     if (activeView === 'view-home') {
-      app.renderHomeStories();
-      app.renderFeaturedStories();
-      scheduleHomeSecondaryRender();
+      app.renderHomeStories(); app.renderFeaturedStories(); scheduleHomeSecondaryRender();
     }
-    if (activeView === 'view-story' && state.currentStoryId && state.stories[state.currentStoryId] && !window.__mieuReaderTransitioning) {
-      app.renderStoryDetail(state.currentStoryId, false);
-    }
+    if (activeView === 'view-story' && state.currentStoryId && state.stories[state.currentStoryId] && !window.__mieuReaderTransitioning) app.renderStoryDetail(state.currentStoryId, false);
     if (activeView === 'view-studio') app.refreshStudioStoryDropdown();
     if (activeView === 'view-profile' && state.currentUser?.role === 'customer' && ['saved', 'published'].includes(state.profileTab)) app.switchProfileTab(state.profileTab);
     if (activeView === 'view-admin' && state.currentUser?.role === 'admin' && app.currentAdminTab === 'featured') app.renderAdminCurrentTab();
@@ -2400,12 +2571,26 @@ function initFirebaseSync() {
         }
       } catch(e) {}
     }
-  }, (error) => {
-    if (!initialStoriesLoaded) {
-      state.storyDataReady = true;
-      setPageLoading(false);
-      showToast('Không thể tải dữ liệu truyện. Kiểm tra mạng hoặc quyền Firebase nhé.', 'error');
+  };
+  get(ref(db, 'storyCatalogMigration/version')).then(migrationSnap => {
+    if (Number(migrationSnap.val()) >= 1) {
+      window.__mieuCatalogReady = true;
+      onValue(ref(db, 'storyCatalog'), snap => applyStorySnapshot(snap.val() || {}, 'catalog'), error => {
+        console.error('Story catalog listener:', error);
+        showToast('Không thể tải danh mục truyện. Kiểm tra quyền Firebase nhé.', 'error');
+      });
+      return;
     }
+    // Chế độ tương thích tạm thời: chỉ chạy trước khi Admin thực hiện tách dữ liệu lần đầu.
+    onValue(ref(db, 'stories'), snap => applyStorySnapshot(snap.val() || {}, 'legacy'), error => {
+      if (!state.storyDataReady) {
+        state.storyDataReady = true; setPageLoading(false);
+        showToast('Không thể tải dữ liệu truyện. Kiểm tra mạng hoặc quyền Firebase nhé.', 'error');
+      }
+    });
+  }).catch(error => {
+    console.warn('Không kiểm tra được storyCatalog, dùng dữ liệu cũ:', error);
+    onValue(ref(db, 'stories'), snap => applyStorySnapshot(snap.val() || {}, 'legacy'));
   });
 
   // Đồng bộ logo dùng chung ở header và footer
@@ -2468,31 +2653,10 @@ function initFirebaseSync() {
     if (state.currentUser?.role === 'admin' && state.currentAdminTab === 'checkin') app.renderAdminCurrentTab();
   });
 
-  // 5. Đồng bộ Khách hàng (customers)
-  onValue(ref(db, 'customers'), (snap) => {
-    state.customers = snap.val() || {};
-    scheduleGlobalStatsUpdate();
-    app.updateHeaderAndRoleUI();
-    if (state.currentUser?.role === 'customer') {
-      const walletVisible = !document.getElementById('view-wallet')?.classList.contains('hidden');
-      const profileVisible = !document.getElementById('view-profile')?.classList.contains('hidden');
-      if (walletVisible) app.renderWalletView();
-      if (profileVisible) app.renderProfileView();
-    }
-    if (state.currentUser?.role === 'admin') {
-      app.renderAdminCurrentTab();
-    }
-  });
+  // 5-6. Dữ liệu khách không tải toàn nhánh khi mở web.
+  // Khách thường chỉ nghe customers/{id}, meowWallet/{id}, meowPurchases/{id}.
+  // Tài khoản Admin mới tải danh sách tổng để quản trị.
 
-  // 6. Đồng bộ Ví tiền (meowWallet)
-  onValue(ref(db, 'meowWallet'), (snap) => {
-    state.wallets = snap.val() || {};
-    if (state.currentUser?.role === 'customer') {
-      if (!document.getElementById('view-wallet')?.classList.contains('hidden')) app.renderWalletView();
-      if (!document.getElementById('view-profile')?.classList.contains('hidden')) app.renderProfileView();
-      app.updateHeaderAndRoleUI();
-    }
-  });
 
   // 7. Đồng bộ Yêu cầu nạp tiền (meowTopupRequests)
   onValue(ref(db, 'meowWalletTransactions'), (snap) => {
@@ -2523,16 +2687,8 @@ function initFirebaseSync() {
     if (state.currentUser?.role === 'customer' && !document.getElementById('view-profile')?.classList.contains('hidden')) app.renderProfileView();
   });
 
-  // 9. Đồng bộ Lịch sử mua truyện (meowPurchases)
-  onValue(ref(db, 'meowPurchases'), (snap) => {
-    state.purchases = snap.val() || {};
-    if (state.currentStoryId && !document.getElementById('view-story')?.classList.contains('hidden')) {
-      app.renderStoryDetail(state.currentStoryId, false);
-    }
-    if (state.currentUser?.role === 'customer' && !document.getElementById('view-profile')?.classList.contains('hidden')) {
-      app.renderProfileView();
-    }
-  });
+  // 9. meowPurchases được tải theo ID khách trong startMieuCustomerSync().
+
 }
 
 // Phát hiện truyện mới / chương mới để đẩy thông báo chuông
@@ -2718,6 +2874,85 @@ function meowCommentRealId(commentId){
   return String(commentId||'').startsWith('legacy_') ? String(commentId).slice(7) : String(commentId||'');
 }
 
+
+// === MIÊU CÁC: tải dữ liệu khách theo ID, theo mô hình Mini Meow ===
+let mieuCustomerUnsubs = [];
+let mieuAdminUnsubs = [];
+let mieuActiveCustomerId = '';
+
+function mieuStopListeners(list) {
+  list.forEach(unsub => { try { if (typeof unsub === 'function') unsub(); } catch(e) {} });
+  list.length = 0;
+}
+function mieuStartCustomerSync(customerId) {
+  const id = String(customerId || '').trim();
+  if (!id || state.currentUser?.role !== 'customer') return;
+  if (mieuActiveCustomerId === id && mieuCustomerUnsubs.length) return;
+  mieuStopListeners(mieuCustomerUnsubs);
+  mieuActiveCustomerId = id;
+
+  const customerRef = ref(db, `customers/${id}`);
+  const walletRef = ref(db, `meowWallet/${id}`);
+  const purchasesRef = ref(db, `meowPurchases/${id}`);
+
+  mieuCustomerUnsubs.push(onValue(customerRef, snap => {
+    if (state.currentUser?.role !== 'customer' || String(state.currentUser?.id) !== id) return;
+    if (!snap.exists()) return;
+    const fresh = snap.val() || {};
+    state.customers = { [id]: { ...(state.customers?.[id] || {}), ...fresh, id } };
+    const displayName = fresh.displayName || fresh.name || state.currentUser?.name || id;
+    state.currentUser = { ...state.currentUser, id, name: displayName };
+    try { localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(state.currentUser)); } catch(e) {}
+    app.updateHeaderAndRoleUI();
+    if (!document.getElementById('view-profile')?.classList.contains('hidden')) app.renderProfileView();
+  }, err => console.warn('[Miêu Các] Không đồng bộ được hồ sơ khách:', err)));
+
+  mieuCustomerUnsubs.push(onValue(walletRef, snap => {
+    if (state.currentUser?.role !== 'customer' || String(state.currentUser?.id) !== id) return;
+    state.wallets = { [id]: snap.exists() ? (snap.val() || {balance:0,totalIn:0,totalOut:0}) : {balance:0,totalIn:0,totalOut:0} };
+    app.updateHeaderAndRoleUI();
+    if (!document.getElementById('view-wallet')?.classList.contains('hidden')) app.renderWalletView();
+    if (!document.getElementById('view-profile')?.classList.contains('hidden')) app.renderProfileView();
+  }, err => console.warn('[Miêu Các] Không đồng bộ được ví khách:', err)));
+
+  mieuCustomerUnsubs.push(onValue(purchasesRef, snap => {
+    if (state.currentUser?.role !== 'customer' || String(state.currentUser?.id) !== id) return;
+    state.purchases = { [id]: snap.exists() ? (snap.val() || {}) : {} };
+    if (state.currentStoryId && !document.getElementById('view-story')?.classList.contains('hidden')) {
+      app.renderStoryDetail(state.currentStoryId, false);
+    }
+    if (!document.getElementById('view-profile')?.classList.contains('hidden')) app.renderProfileView();
+  }, err => console.warn('[Miêu Các] Không đồng bộ được lịch sử mua:', err)));
+}
+
+function mieuStopCustomerSync() {
+  mieuStopListeners(mieuCustomerUnsubs);
+  mieuActiveCustomerId = '';
+}
+
+// Admin mới cần tải danh sách toàn bộ khách/ví/lịch sử mua để quản trị.
+function mieuStartAdminCustomerSync() {
+  if (state.currentUser?.role !== 'admin' || mieuAdminUnsubs.length) return;
+  mieuAdminUnsubs.push(onValue(ref(db, 'customers'), snap => {
+    state.customers = snap.val() || {};
+    scheduleGlobalStatsUpdate();
+    app.updateHeaderAndRoleUI();
+    if (state.currentUser?.role === 'admin') app.renderAdminCurrentTab();
+  }, err => console.warn('[Miêu Các] Admin không tải được danh sách khách:', err)));
+  mieuAdminUnsubs.push(onValue(ref(db, 'meowWallet'), snap => {
+    state.wallets = snap.val() || {};
+    if (state.currentUser?.role === 'admin') app.renderAdminCurrentTab();
+  }, err => console.warn('[Miêu Các] Admin không tải được ví:', err)));
+  mieuAdminUnsubs.push(onValue(ref(db, 'meowPurchases'), snap => {
+    state.purchases = snap.val() || {};
+    if (state.currentUser?.role === 'admin') app.renderAdminCurrentTab();
+  }, err => console.warn('[Miêu Các] Admin không tải được lịch sử mua:', err)));
+}
+function mieuStopAdminCustomerSync() {
+  mieuStopListeners(mieuAdminUnsubs);
+}
+
+
 const app = {
   init() {
     this.restoreSession();
@@ -2809,7 +3044,10 @@ const app = {
     const raw = priceOverride ?? document.getElementById(`studioPrice-${cid}`)?.value ?? 0;
     const price = Math.max(0, Number(raw) || 0);
     const payload = { ...chapter, price, vip: price > 0 ? true : !!chapter.vip, updatedAt: Date.now() };
-    await update(ref(db, `stories/${storyId}/chapters/${cid}`), { price: payload.price, vip: payload.vip, updatedAt: payload.updatedAt });
+    await Promise.all([
+      update(ref(db, `stories/${storyId}/chapters/${cid}`), { price: payload.price, vip: payload.vip, updatedAt: payload.updatedAt }),
+      update(ref(db, `storyCatalog/${storyId}/chapters/${cid}`), { price: payload.price, vip: payload.vip, updatedAt: payload.updatedAt })
+    ]);
     state.stories[storyId].chapters[cid] = payload;
   },
 
@@ -2930,35 +3168,60 @@ const app = {
   },
 
   async loginWithEmailPassword() {
-    const email = String(document.getElementById('loginEmail')?.value || '').trim().toLowerCase();
-    const password = String(document.getElementById('loginPassword')?.value || '');
-    if (!email || !password) { showToast('Nhập email và mật khẩu nha.', 'error'); return; }
+    const identity = String(document.getElementById('loginEmail')?.value || '').trim();
+    const credentialText = String(document.getElementById('loginPassword')?.value || '').trim();
+    if (!identity || !credentialText) { showToast('Nhập Tên/Gmail và ID/Mật khẩu nha.', 'error'); return; }
     const btn = document.querySelector('#authLoginView button[onclick*="loginWithEmailPassword"]');
     const old = btn?.textContent;
+    const norm = v => String(v || '').trim().normalize('NFKC').toLocaleLowerCase('vi').replace(/\s+/g, ' ');
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identity);
     try {
-      if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang đăng nhập...'; }
-      const credential = await signInWithEmailAndPassword(auth, email, password);
-      const user = credential.user;
-      const id = user.uid;
-      const customerRef = ref(db, `customers/${id}`);
-      let snap = await get(customerRef);
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang xác nhận...'; }
+      // Tài khoản cũ: kiểm tra trực tiếp cặp Tên/Gmail + ID, không phụ thuộc độ dài ID.
+      if (!isEmail) {
+        const legacySnap = await get(ref(db, `customers/${credentialText}`));
+        if (legacySnap.exists()) {
+          const id = credentialText, c = legacySnap.val() || {};
+          const matches = [c.name,c.displayName,c.username,c.nickname,c.customerName,c.tenKhach,c.email,c.gmail].some(v => norm(v) === norm(identity));
+          if (!matches) { showToast('Tên/Gmail không khớp với ID khách hàng.', 'error'); return; }
+          const displayName = c.displayName || c.name || identity;
+          state.customers = { ...(state.customers || {}), [id]: { ...c, id } };
+          this.setSession({ role: 'customer', id, name: displayName });
+          this.closeAuthModal(); showToast(`Đăng nhập thành công. Chào mừng ${displayName}!`, 'success');
+          this.loadCustomerExtrasInBackground(id); return;
+        }
+      }
+      let authEmail = identity.toLowerCase();
+      if (!isEmail) {
+        const key = encodeURIComponent(norm(identity)).replace(/\./g,'%2E');
+        const idx = await get(ref(db, `customerLoginIndex/${key}`));
+        if (!idx.exists() || !idx.val()?.authEmail) { showToast('Không tìm thấy tên đăng nhập. Nếu là tài khoản cũ, hãy dùng Tên/Gmail + ID.', 'error'); return; }
+        authEmail = String(idx.val().authEmail).toLowerCase();
+      }
+      const credential = await signInWithEmailAndPassword(auth, authEmail, credentialText);
+      const user = credential.user, id = user.uid;
+      const snap = await get(ref(db, `customers/${id}`));
       let customer = snap.exists() ? (snap.val() || {}) : null;
       if (!customer) {
-        customer = { name: user.displayName || email.split('@')[0], email, avatar: user.photoURL || '', cover: '', bio: '', points: 0, canPublish: false, createdAt: Date.now() };
-        await set(customerRef, customer);
+        customer = { name: user.displayName || identity, email: isEmail ? authEmail : '', authEmail, avatar: user.photoURL || '', cover: '', bio: '', points: 0, canPublish: false, createdAt: Date.now() };
+        await set(ref(db, `customers/${id}`), customer);
       }
       state.customers = { ...(state.customers || {}), [id]: { ...customer, id } };
-      this.setSession({ role: 'customer', id, name: customer.displayName || customer.name || user.displayName || email.split('@')[0] });
-      this.closeAuthModal();
-      showToast('Đăng nhập thành công. Chào mừng bạn trở lại!', 'success');
-      Promise.allSettled([
-        get(ref(db, `meowWallet/${id}`)).then(x => { state.wallets[id] = x.exists() ? x.val() : {balance:0,totalIn:0,totalOut:0}; }),
-        get(ref(db, `meowPurchases/${id}`)).then(x => { state.purchases[id] = x.exists() ? x.val() : {}; })
-      ]).then(() => { if (state.currentUser?.id === id) { this.updateHeaderAndRoleUI(); this.renderSidebarUserPanels(); } });
+      this.setSession({ role: 'customer', id, name: customer.displayName || customer.name || identity });
+      this.closeAuthModal(); showToast('Đăng nhập thành công. Chào mừng bạn trở lại!', 'success');
+      this.loadCustomerExtrasInBackground(id);
     } catch (err) {
-      const messages = { 'auth/invalid-credential':'Email hoặc mật khẩu không đúng.', 'auth/user-not-found':'Không tìm thấy tài khoản.', 'auth/wrong-password':'Mật khẩu không đúng.', 'auth/invalid-email':'Email không hợp lệ.' };
+      const messages = { 'auth/invalid-credential':'Tên/Gmail hoặc mật khẩu không đúng.', 'auth/user-not-found':'Không tìm thấy tài khoản.', 'auth/wrong-password':'Mật khẩu không đúng.', 'auth/invalid-email':'Thông tin đăng nhập không hợp lệ.' };
       showToast(messages[err?.code] || ('Không đăng nhập được: ' + (err?.message || 'Lỗi xác thực.')), 'error');
     } finally { if (btn) { btn.disabled = false; btn.textContent = old || 'Đăng nhập'; } }
+  },
+
+  loadCustomerExtrasInBackground(id) {
+    const timed = promise => Promise.race([promise, new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 9000))]);
+    Promise.allSettled([
+      timed(get(ref(db, `meowWallet/${id}`))).then(x => { state.wallets[id] = x.exists() ? (x.val() || {balance:0,totalIn:0,totalOut:0}) : {balance:0,totalIn:0,totalOut:0}; }),
+      timed(get(ref(db, `meowPurchases/${id}`))).then(x => { state.purchases[id] = x.exists() ? (x.val() || {}) : {}; })
+    ]).then(() => { if (state.currentUser?.id === id) { this.updateHeaderAndRoleUI(); this.renderSidebarUserPanels(); } });
   },
 
   async registerCustomerAccount() {
@@ -2966,35 +3229,42 @@ const app = {
     const email = String(document.getElementById('registerEmail')?.value || '').trim().toLowerCase();
     const password = String(document.getElementById('registerPassword')?.value || '');
     const password2 = String(document.getElementById('registerPassword2')?.value || '');
-    if (!name || !email || !password || !password2) { showToast('Vui lòng điền đầy đủ thông tin.', 'error'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Email chưa đúng định dạng.', 'error'); return; }
+    if (!name || !password || !password2) { showToast('Vui lòng nhập tên và mật khẩu.', 'error'); return; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Gmail chưa đúng định dạng.', 'error'); return; }
     if (password.length < 6) { showToast('Mật khẩu cần ít nhất 6 ký tự.', 'error'); return; }
     if (password !== password2) { showToast('Hai mật khẩu chưa trùng khớp.', 'error'); return; }
     const btn = document.querySelector('#authRegisterView button[onclick*="registerCustomerAccount"]');
     const old = btn?.textContent;
     try {
-      if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang kiểm tra Gmail...'; }
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang tạo tài khoản...'; }
       const canonicalEmail = value => { const v = String(value || '').trim().toLowerCase(); return v.endsWith('@gmail.com') ? v.split('@')[0].split('+')[0].replace(/\./g, '') + '@gmail.com' : v; };
-      const allCustomerSnap = await get(ref(db, 'customers'));
-      const allCustomers = allCustomerSnap.exists() ? (allCustomerSnap.val() || {}) : {};
-      const normalized = canonicalEmail(email);
-      const duplicate = Object.values(allCustomers).some(c => canonicalEmail(c?.email || c?.gmail || '') === normalized);
-      if (duplicate) { showToast('Gmail này đã có tài khoản Miêu Các. Hãy đăng nhập, không cần tạo tài khoản mới nhé!', 'error'); return; }
-      if (btn) btn.textContent = '⏳ Đang tạo tài khoản...';
-      const credential = await createUserWithEmailAndPassword(auth, email, password);
+      const loginKey = encodeURIComponent(name.normalize('NFKC').toLocaleLowerCase('vi').trim().replace(/\s+/g,' ')).replace(/\./g,'%2E');
+      const existingName = await get(ref(db, `customerLoginIndex/${loginKey}`));
+      if (existingName.exists()) { showToast('Tên đăng nhập này đã được sử dụng. Hãy chọn tên khác nhé!', 'error'); return; }
+      if (email) {
+        const allCustomerSnap = await get(ref(db, 'customers'));
+        const allCustomers = allCustomerSnap.exists() ? (allCustomerSnap.val() || {}) : {};
+        const normalized = canonicalEmail(email);
+        const duplicate = Object.values(allCustomers).some(c => canonicalEmail(c?.email || c?.gmail || '') === normalized);
+        if (duplicate) { showToast('Gmail này đã có tài khoản Miêu Các. Hãy đăng nhập nhé!', 'error'); return; }
+      }
+      // Firebase Auth cần email định danh. Khi bỏ trống Gmail, dùng email nội bộ không nhận thư.
+      const authEmail = email || `reader.${(crypto.randomUUID ? crypto.randomUUID() : (Date.now()+'-'+Math.random().toString(36).slice(2)))}@accounts.mieucac.com`;
+      const credential = await createUserWithEmailAndPassword(auth, authEmail, password);
       try { await updateProfile(credential.user, { displayName: name }); } catch(e) {}
       const id = credential.user.uid;
-      const customer = { name, displayName: name, email, avatar: '', cover: '', bio: '', points: 0, canPublish: false, createdAt: Date.now(), accountType: 'reader' };
-      await set(ref(db, `customers/${id}`), customer);
-      await set(ref(db, `meowWallet/${id}`), { balance: 0, totalIn: 0, totalOut: 0 });
+      const customer = { name, displayName: name, email, authEmail, avatar: '', cover: '', bio: '', points: 0, canPublish: false, createdAt: Date.now(), accountType: 'reader', emailProvided: !!email };
+      await Promise.all([
+        set(ref(db, `customers/${id}`), customer),
+        set(ref(db, `meowWallet/${id}`), { balance: 0, totalIn: 0, totalOut: 0 }),
+        set(ref(db, `customerLoginIndex/${loginKey}`), { id, authEmail, name })
+      ]);
       state.customers = { ...(state.customers || {}), [id]: { ...customer, id } };
-      state.wallets[id] = { balance: 0, totalIn: 0, totalOut: 0 };
-      state.purchases[id] = {};
-      this.setSession({ role: 'customer', id, name });
-      this.closeAuthModal();
+      state.wallets[id] = { balance: 0, totalIn: 0, totalOut: 0 }; state.purchases[id] = {};
+      this.setSession({ role: 'customer', id, name }); this.closeAuthModal();
       showToast('Tạo tài khoản thành công! Chào mừng bạn đến Miêu Các 💗', 'success');
     } catch (err) {
-      const messages = { 'auth/email-already-in-use':'Email này đã được đăng ký. Hãy đăng nhập nhé.', 'auth/weak-password':'Mật khẩu quá yếu.', 'auth/invalid-email':'Email không hợp lệ.' };
+      const messages = { 'auth/email-already-in-use':'Email này đã được đăng ký. Hãy đăng nhập nhé.', 'auth/weak-password':'Mật khẩu quá yếu.', 'auth/invalid-email':'Gmail không hợp lệ.' };
       showToast(messages[err?.code] || ('Không tạo được tài khoản: ' + (err?.message || 'Lỗi Firebase.')), 'error');
     } finally { if (btn) { btn.disabled = false; btn.textContent = old || '✨ Tạo tài khoản'; } }
   },
@@ -3018,7 +3288,7 @@ const app = {
       return v.split('@')[0].split('+')[0].replace(/\./g, '') + '@gmail.com';
     };
     const emailIndexKey = value => Array.from(new TextEncoder().encode(normalizeEmail(value)), b => b.toString(16).padStart(2, '0')).join('');
-    const btn = document.querySelector('#authCustomerForm button[onclick*="loginCustomerManual"]');
+    const btn = document.querySelector('#authLoginView button[onclick*="loginCustomerManual"]');
     const oldText = btn?.textContent || '';
     let busy = false;
     const timed = (promise, ms=12000) => Promise.race([promise, new Promise((_, reject) => setTimeout(() => reject(new Error('Firebase phản hồi quá chậm. Kiểm tra mạng hoặc quyền đọc /customers.')), ms))]);
@@ -3090,14 +3360,25 @@ const app = {
         if (!v.endsWith('@gmail.com')) return v;
         return v.split('@')[0].split('+')[0].replace(/\./g, '') + '@gmail.com';
       };
-      // Tìm hồ sơ đã tồn tại theo Gmail chuẩn hóa trước khi tạo hồ sơ mới.
-      const customerSnap = await get(ref(db, 'customers'));
-      const customers = customerSnap.exists() ? (customerSnap.val() || {}) : {};
+      // Tra hồ sơ theo index Gmail trước; chỉ fallback quét danh sách cũ nếu index chưa tồn tại.
       const wanted = canonicalEmail(email);
-      const existing = Object.entries(customers).find(([_, c]) => canonicalEmail(c?.email || c?.gmail || '') === wanted);
-      let id, customer;
-      if (existing) {
-        [id, customer] = existing;
+      const emailKey = Array.from(new TextEncoder().encode(wanted), b => b.toString(16).padStart(2, '0')).join('');
+      const emailIndexSnap = await get(ref(db, `customerEmailIndex/${emailKey}`));
+      let id = emailIndexSnap.exists() ? String(emailIndexSnap.val()?.id || '') : '';
+      let customer = null;
+      if (id) {
+        const customerSnap = await get(ref(db, `customers/${id}`));
+        if (customerSnap.exists()) customer = customerSnap.val() || null;
+        if (customer && canonicalEmail(customer.email || customer.gmail || '') !== wanted) { id = ''; customer = null; }
+      }
+      if (!customer) {
+        const customerSnap = await get(ref(db, 'customers'));
+        const customers = customerSnap.exists() ? (customerSnap.val() || {}) : {};
+        const existing = Object.entries(customers).find(([_, c]) => canonicalEmail(c?.email || c?.gmail || '') === wanted);
+        if (existing) [id, customer] = existing;
+      }
+      let __mieuGoogleExisting = !!customer;
+      if (__mieuGoogleExisting) {
         customer = customer || {};
         await update(ref(db, `customers/${id}`), {
           email,
@@ -3145,6 +3426,8 @@ const app = {
     }
     this.setSession({ role: 'admin', id: 'admin_meow', name: profile.name || 'Meow (Admin)' });
     this.closeAuthModal();
+    // Chuyển dữ liệu cũ sang catalog/content một lần; chỉ tài khoản Admin thực hiện.
+    migrateMieuStoriesToCatalog();
     showToast('Xin chào Quản trị viên Miêu Các! 👑', 'gold');
     this.navigate('admin');
     setTimeout(() => this.refreshAdminIdentity(), 60);
@@ -3155,6 +3438,16 @@ const app = {
     try {
       localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(userObj));
     } catch (e) {}
+    if (userObj?.role === 'customer') {
+      mieuStopAdminCustomerSync();
+      mieuStartCustomerSync(userObj.id);
+    } else if (userObj?.role === 'admin') {
+      mieuStopCustomerSync();
+      mieuStartAdminCustomerSync();
+    } else {
+      mieuStopCustomerSync();
+      mieuStopAdminCustomerSync();
+    }
     this.updateHeaderAndRoleUI();
     this.renderSidebarUserPanels();
   },
@@ -3164,13 +3457,23 @@ const app = {
       const saved = JSON.parse(localStorage.getItem(SESSION_STORAGE_KEY) || 'null');
       if (saved && saved.role && saved.id) {
         state.currentUser = saved;
+        if (saved.role === 'customer') setTimeout(() => mieuStartCustomerSync(saved.id), 0);
+        if (saved.role === 'admin') {
+          setTimeout(() => mieuStartAdminCustomerSync(), 0);
+          setTimeout(() => migrateMieuStoriesToCatalog(), 1400);
+        }
       }
     } catch (e) {}
     this.updateHeaderAndRoleUI();
   },
 
   logout() {
+    mieuStopCustomerSync();
+    mieuStopAdminCustomerSync();
     state.currentUser = null;
+    state.customers = {};
+    state.wallets = {};
+    state.purchases = {};
     try {
       localStorage.removeItem(SESSION_STORAGE_KEY);
     } catch (e) {}
@@ -3779,7 +4082,7 @@ const app = {
       if (storyRefreshInFlight.has(storyId)) return storyRefreshInFlight.get(storyId);
       const task = (async () => {
         try {
-          const freshSnap = await get(ref(db, `stories/${storyId}`));
+          const freshSnap = await get(ref(db, window.__mieuCatalogReady ? `storyCatalog/${storyId}` : `stories/${storyId}`));
           if (window.__mieuStoryOpenToken !== openToken || state.currentStoryId !== storyId) return;
           if (freshSnap.exists()) {
             const freshStory = freshSnap.val();
@@ -3803,6 +4106,7 @@ const app = {
 
     if (incView) {
       runTransaction(ref(db, `stories/${storyId}/info/views`), (v) => (Number(v) || 0) + 1);
+      if (window.__mieuCatalogReady) runTransaction(ref(db, `storyCatalog/${storyId}/info/views`), v => (Number(v) || 0) + 1);
     }
   },
 
@@ -4255,19 +4559,32 @@ const app = {
       }
     }
 
-    // Chỉ mở trình đọc khi chương đã được mở khóa từ trước hoặc là chương miễn phí.
-    this.openChapterReader(storyId, chapterId);
+    // Chỉ tải nội dung chương sau khi khách đã qua kiểm tra quyền đọc/mua.
+    try {
+      if (!ch.content && !ch.text) {
+        setPageLoading(true, 'Đang tải nội dung chương...');
+        await loadMieuChapterContent(storyId, chapterId);
+      }
+      this.openChapterReader(storyId, chapterId);
+    } catch (err) {
+      showToast('Chưa tải được chương này: ' + (err?.message || 'Lỗi kết nối'), 'error');
+    } finally { setPageLoading(false); }
   },
 
   // ==================== TRÌNH ĐỌC CANVAS CHỐNG COPY + AUDIO TTS ====================
-  openChapterReader(storyId, chapterId, options = {}) {
-    const story = state.stories[storyId];
-    const ch = story?.chapters?.[chapterId];
-    if (!ch) return;
+  async openChapterReader(storyId, chapterId, options = {}) {
+    let story = state.stories[storyId];
+    let ch = story?.chapters?.[chapterId];
+    if (!story || !ch) return;
+    if (!ch.content && !ch.text) {
+      try { ch = await loadMieuChapterContent(storyId, chapterId); story = state.stories[storyId]; }
+      catch (err) { showToast('Chưa tải được nội dung chương: ' + (err?.message || 'Lỗi kết nối'), 'error'); return; }
+    }
 
     state.currentStoryId = storyId;
     state.currentChapterId = chapterId;
     runTransaction(ref(db, `stories/${storyId}/chapters/${chapterId}/views`), v => (Number(v)||0)+1);
+    runTransaction(ref(db, `storyCatalog/${storyId}/chapters/${chapterId}/views`), v => (Number(v)||0)+1);
 
     document.getElementById('readerStoryName').textContent = story.info?.name || storyId;
     document.getElementById('readerChapterTitle').textContent = `Chương ${chapterId}: ${ch.title || ''}`;
@@ -4305,7 +4622,7 @@ const app = {
       };
       if ('requestIdleCallback' in window) requestIdleCallback(paintComments, {timeout:700});
       else setTimeout(paintComments, 180);
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      // Không cuộn cưỡng bức lần hai sau khi canvas bắt đầu vẽ: tránh Safari bật về đầu.
     }, 90);
   },
 
@@ -4367,6 +4684,14 @@ const app = {
     const wrapper = document.getElementById('readerCanvasWrapper');
     const container = document.getElementById('readerCanvasBlocks');
     if (!wrapper || !container) return;
+    const readerViewForStability = document.getElementById('view-reader');
+    const preserveReaderPosition = !!(readerViewForStability && !readerViewForStability.classList.contains('hidden') && container.childNodes.length);
+    const savedReaderScrollY = window.scrollY || window.pageYOffset || 0;
+    const previousContainerMinHeight = container.style.minHeight;
+    if (preserveReaderPosition) {
+      const heldHeight = Math.max(container.scrollHeight, container.getBoundingClientRect().height);
+      if (heldHeight > 0) container.style.minHeight = heldHeight + 'px';
+    }
 
     const wmUser = state.currentUser || {};
     const wmCustomer = state.customers?.[wmUser.id] || {};
@@ -4375,17 +4700,54 @@ const app = {
     wrapper.dataset.meowWatermark = `MIÊU CÁC - Ổ LƯỜI NHỎ CỦA MEOW · ${wmName} · ${wmId}`;
 
     const themeMap = {
-      gothic: { bg: '#110d1f', text: '#f3e8ff' },
-      pinkblue: { bg: '#1a102b', text: '#fce7f3' },
-      sepia: { bg: '#f6eedc', text: '#3b2f2f' },
-      light: { bg: '#ffffff', text: '#1e1b2e' },
-      midnight: { bg: '#091526', text: '#e0f2fe' }
+      gothic: { bg: '#17111f', text: '#eee1fa' },
+      pink:   { bg: '#fff0f6', text: '#57243d' },
+      blue:   { bg: '#eaf4ff', text: '#183957' },
+      matcha: { bg: '#edf5e8', text: '#29452e' },
+      brown:  { bg: '#30251f', text: '#f6e8d8' },
+      bread:  { bg: '#fff4df', text: '#503923' }
     };
-    const palette = { ...(themeMap[state.readerSettings.theme] || themeMap.gothic) };
-    if (document.documentElement.getAttribute('data-theme') === 'light') {
-      palette.bg = '#fff7fb'; palette.text = '#493348';
+    const palette = { ...(themeMap[state.readerSettings.theme] || themeMap.pink) };
+    // Áp dụng palette cho TOÀN BỘ màn hình đọc, không chỉ canvas nội dung.
+    const readerView = document.getElementById('view-reader');
+    const root = document.documentElement;
+    const body = document.body;
+    const themeKey = state.readerSettings.theme || 'pink';
+    const accentMap = {
+      gothic: { accent:'#b98ad8', soft:'#382747', border:'#8f6bab', surface:'#21172e' },
+      pink:   { accent:'#b85b91', soft:'#f8d7e8', border:'#d99abb', surface:'#fff8fc' },
+      blue:   { accent:'#477eae', soft:'#cfe5fb', border:'#91b9df', surface:'#f5faff' },
+      matcha: { accent:'#64875c', soft:'#d9e9d1', border:'#a9c59c', surface:'#f7fbf4' },
+      brown:  { accent:'#bd9270', soft:'#574338', border:'#8a6b55', surface:'#3a2d25' },
+      bread:  { accent:'#b58a4f', soft:'#f4e2bd', border:'#d8bd8e', surface:'#fffaf0' }
+    };
+    const accents = accentMap[themeKey] || accentMap.pink;
+    const themeTargets = [root, body, readerView, wrapper, container].filter(Boolean);
+    themeTargets.forEach(el => {
+      el.style.setProperty('--reader-theme-bg', palette.bg);
+      el.style.setProperty('--reader-theme-text', palette.text);
+      el.style.setProperty('--reader-theme-accent', accents.accent);
+      el.style.setProperty('--reader-theme-soft', accents.soft);
+      el.style.setProperty('--reader-theme-border', accents.border);
+      el.style.setProperty('--reader-theme-surface', accents.surface);
+    });
+    if (readerView) {
+      readerView.dataset.readerTheme = themeKey;
+      readerView.style.setProperty('background', themeKey === 'gothic'
+        ? 'radial-gradient(ellipse at 15% 12%, #39203f 0%, #17111f 48%, #101827 100%)'
+        : palette.bg, 'important');
+      readerView.style.setProperty('color', palette.text, 'important');
     }
-    wrapper.style.background = palette.bg;
+    body.dataset.readerTheme = themeKey;
+    // Theme đọc luôn được ưu tiên hơn dark mode của toàn website.
+    wrapper.style.setProperty('background', palette.bg, 'important');
+    wrapper.style.setProperty('background-color', palette.bg, 'important');
+    wrapper.style.setProperty('color', palette.text, 'important');
+    wrapper.dataset.readerTheme = state.readerSettings.theme || 'pink';
+    wrapper.style.setProperty('--reader-theme-bg', palette.bg);
+    wrapper.style.setProperty('--reader-theme-text', palette.text);
+    container.style.setProperty('background', palette.bg, 'important');
+    container.style.setProperty('color', palette.text, 'important');
     container.replaceChildren();
     wrapper.setAttribute('aria-busy', 'true');
 
@@ -4415,18 +4777,30 @@ const app = {
     const maxWidth = Math.max(180, Math.min(820, (wrapper.clientWidth || window.innerWidth) - 40));
     const fontSize = state.readerSettings.fontSize;
     const lineHeight = Math.round(fontSize * (Number(state.readerSettings.lineHeight) || 1.75));
-    const fontSpec = `${fontSize}px ${state.readerSettings.font}`;
-    const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 700 ? 1 : 1.25);
+    const fontSpec = `500 ${fontSize}px ${state.readerSettings.font}`;
+    // Canvas quá lớn/nhiều lớp gây khựng trên điện thoại; giới hạn DPR để giảm tải GPU/RAM.
+    const isSmallDevice = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
+    const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1), isSmallDevice ? 1.5 : 1.8);
     const measureCanvas = document.createElement('canvas');
     const mCtx = measureCanvas.getContext('2d', { alpha: true });
     if (!mCtx) return;
     mCtx.font = fontSpec;
+    const wordWidthCache = new Map();
+    const getWordWidth = word => {
+      let width = wordWidthCache.get(word);
+      if (width == null) {
+        width = mCtx.measureText(word + ' ').width;
+        if (wordWidthCache.size > 6000) wordWidthCache.clear();
+        wordWidthCache.set(word, width);
+      }
+      return width;
+    };
 
     const jobs = [];
     let paragraphBuffer = [];
     const flushParagraphs = () => {
       // Gộp vài đoạn văn vào một canvas để giảm hàng trăm node/canvas ở chương dài.
-      while (paragraphBuffer.length) jobs.push({ type: 'text', paragraphs: paragraphBuffer.splice(0, 4) });
+      while (paragraphBuffer.length) jobs.push({ type: 'text', paragraphs: paragraphBuffer.splice(0, 6) });
     };
     blocks.forEach(block => {
       if (block.type === 'text') paragraphBuffer.push(block.text);
@@ -4440,7 +4814,10 @@ const app = {
       const frameStart = performance.now();
       let done = 0;
       const batchFragment = document.createDocumentFragment();
-      while (jobIndex < jobs.length && done < 3 && performance.now() - frameStart < 6) {
+      // Mỗi frame chỉ dựng tối đa 1 khối trên mobile để không tranh thời gian cuộn/chạm.
+      const maxJobsPerFrame = isSmallDevice ? 3 : 4;
+      const frameBudget = isSmallDevice ? 6 : 8;
+      while (jobIndex < jobs.length && done < maxJobsPerFrame && performance.now() - frameStart < frameBudget) {
         const job = jobs[jobIndex++];
         if (job.type === 'img') {
           if (job.src) {
@@ -4458,7 +4835,7 @@ const app = {
             const availableWidth = maxWidth - 20;
             for (let wi = 0; wi < words.length; wi++) {
               const word = words[wi];
-              const wordWidth = mCtx.measureText(word + ' ').width;
+              const wordWidth = getWordWidth(word);
               if (line.trim() && lineWidth + wordWidth > availableWidth) {
                 lines.push(line); line = word + ' '; lineWidth = wordWidth;
               } else { line += word + ' '; lineWidth += wordWidth; }
@@ -4472,13 +4849,36 @@ const app = {
           canvas.height = Math.max(1, Math.round(canvasHeight * dpr));
           canvas.style.width = `${maxWidth}px`; canvas.style.height = `${canvasHeight}px`;
           canvas.className = 'max-w-full block pointer-events-none';
+          canvas.style.backgroundColor = palette.bg;
           const ctx = canvas.getContext('2d', { alpha: true });
           if (ctx) {
-            ctx.scale(dpr, dpr); ctx.font = fontSpec; ctx.fillStyle = palette.text; ctx.textBaseline = 'top';
+            ctx.scale(dpr, dpr);
+            ctx.font = fontSpec;
+            ctx.fillStyle = palette.text;
+            ctx.textBaseline = 'top';
+            ctx.textRendering = 'geometricPrecision';
+            ctx.imageSmoothingEnabled = true;
             lines.forEach((line, i) => ctx.fillText(line, 10, 12 + i * lineHeight));
-            ctx.save(); ctx.globalAlpha = 0.06; ctx.translate(maxWidth / 2, canvasHeight / 2); ctx.rotate(-Math.PI / 7);
-            ctx.textAlign = 'center'; ctx.font = 'bold 13px sans-serif'; ctx.fillText('MIÊU CÁC - Ổ LƯỜI NHỎ CỦA MEOW', 0, -8);
-            ctx.font = '11px sans-serif'; ctx.fillText(`${wmName} · ${wmId}`, 0, 12); ctx.restore();
+
+            // Watermark kiểu trang truyện: dấu chéo lặp lại, có thương hiệu + tài khoản đọc.
+            // Đủ rõ để nhận diện khi chụp màn hình nhưng giữ độ tương phản thấp để không che chữ.
+            ctx.save();
+            ctx.globalAlpha = 0.115;
+            ctx.fillStyle = palette.text;
+            ctx.textAlign = 'center';
+            ctx.translate(maxWidth / 2, canvasHeight / 2);
+            ctx.rotate(-Math.PI / 7);
+            const stamp = 'MIÊU CÁC  •  Ổ LƯỜI NHỎ CỦA MEOW';
+            const readerStamp = `BẢN ĐỌC CÁ NHÂN  •  ${wmName}  •  ${wmId}`;
+            ctx.font = '700 13px sans-serif';
+            const repeatGap = 310;
+            for (let y = -canvasHeight; y <= canvasHeight; y += repeatGap) {
+              ctx.fillText(stamp, 0, y);
+              ctx.font = '600 10px sans-serif';
+              ctx.fillText(readerStamp, 0, y + 19);
+              ctx.font = '700 13px sans-serif';
+            }
+            ctx.restore();
             batchFragment.appendChild(canvas);
           }
         }
@@ -4490,12 +4890,109 @@ const app = {
         else setTimeout(renderNextBatch, 16);
       } else {
         wrapper.removeAttribute('aria-busy');
+        if (preserveReaderPosition) {
+          container.style.minHeight = previousContainerMinHeight;
+          requestAnimationFrame(() => window.scrollTo({ top: savedReaderScrollY, left: 0, behavior: 'auto' }));
+        }
       }
     };
     if (jobs.length) (window.requestAnimationFrame || (fn => setTimeout(fn,16)))(renderNextBatch);
   },
 
-  // Audio Đọc Truyện (Text-to-Speech tiếng Việt)
+  // Audio Đọc Truyện: chia câu thành đoạn ngắn để iOS/Safari và Android
+  // không ngắt giữa chương dài; thanh lướt di chuyển theo tiến độ đọc.
+  prepareTTS() {
+    const ch = state.stories[state.currentStoryId]?.chapters?.[state.currentChapterId];
+    if (!ch) return null;
+    const tmp = document.createElement('div');
+    tmp.innerHTML = ch.content || ch.text || '';
+    const raw = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
+    if (!raw) return null;
+
+    // Mỗi đoạn ngắn hơn giới hạn thực tế thường gặp của SpeechSynthesis trên điện thoại.
+    const sentences = raw.match(/[^.!?。！？]+[.!?。！？]*/g) || [raw];
+    const chunks = [];
+    let buffer = '';
+    sentences.forEach(sentence => {
+      const part = sentence.trim();
+      if (!part) return;
+      if ((buffer + ' ' + part).trim().length > 220 && buffer) {
+        chunks.push(buffer.trim()); buffer = part;
+      } else buffer = (buffer + ' ' + part).trim();
+      while (buffer.length > 220) {
+        let cut = buffer.lastIndexOf(' ', 220);
+        if (cut < 100) cut = 220;
+        chunks.push(buffer.slice(0, cut).trim());
+        buffer = buffer.slice(cut).trim();
+      }
+    });
+    if (buffer) chunks.push(buffer);
+    return chunks;
+  },
+
+  updateTTSProgress() {
+    const bar = document.getElementById('ttsSeekBar');
+    const label = document.getElementById('ttsProgressLabel');
+    const duration = document.getElementById('ttsDurationLabel');
+    const chunks = window.__mieuTTSChunks || [];
+    const index = Math.min(window.__mieuTTSIndex || 0, Math.max(0, chunks.length - 1));
+    const fmt = n => {
+      n = Math.max(0, Math.floor(n));
+      return String(Math.floor(n / 60)).padStart(2,'0') + ':' + String(n % 60).padStart(2,'0');
+    };
+    // Ước lượng thời gian theo số ký tự, chỉ dùng để hiển thị vị trí tương đối.
+    const totalChars = chunks.reduce((n,x)=>n+x.length,0) || 1;
+    const doneChars = chunks.slice(0,index).reduce((n,x)=>n+x.length,0);
+    const totalSec = Math.max(1, Math.round(totalChars / 14));
+    const doneSec = Math.round(totalSec * doneChars / totalChars);
+    if (bar) {
+      bar.max = Math.max(1, chunks.length - 1);
+      bar.value = index;
+      bar.disabled = !chunks.length;
+    }
+    if (label) label.textContent = fmt(doneSec);
+    if (duration) duration.textContent = fmt(totalSec);
+  },
+
+  speakTTSFrom(index = 0) {
+    if (!('speechSynthesis' in window)) return;
+    const chunks = window.__mieuTTSChunks || [];
+    if (!chunks.length) return;
+    window.__mieuTTSIndex = Math.max(0, Math.min(chunks.length - 1, Number(index) || 0));
+    const btn = document.getElementById('ttsPlayBtn');
+    const rate = Number(document.getElementById('ttsRateSelect')?.value) || 1;
+    const speakNext = () => {
+      if (window.__mieuTTSStopped) return;
+      const i = window.__mieuTTSIndex;
+      if (i >= chunks.length) {
+        window.__mieuTTSStopped = true;
+        if (btn) btn.textContent = '🔊 Nghe Audio';
+        this.updateTTSProgress();
+        return;
+      }
+      this.updateTTSProgress();
+      const utter = new SpeechSynthesisUtterance(chunks[i]);
+      utter.lang = 'vi-VN';
+      utter.rate = rate;
+      utter.onend = () => {
+        if (window.__mieuTTSStopped) return;
+        window.__mieuTTSIndex = i + 1;
+        // Nhường một nhịp để Safari mobile không bỏ mất câu tiếp theo.
+        setTimeout(() => {
+          if (!window.__mieuTTSStopped) speakNext();
+        }, 90);
+      };
+      utter.onerror = event => {
+        if (window.__mieuTTSStopped || event.error === 'canceled' || event.error === 'interrupted') return;
+        if (btn) btn.textContent = '▶️ Thử phát lại';
+      };
+      window.__mieuTTSUtterance = utter;
+      window.speechSynthesis.speak(utter);
+      if (btn) btn.textContent = '⏸ Tạm dừng';
+    };
+    speakNext();
+  },
+
   toggleTTS() {
     if (!('speechSynthesis' in window)) {
       showToast('Trình duyệt của bạn không hỗ trợ đọc Audio tự động.', 'error');
@@ -4504,39 +5001,57 @@ const app = {
     const btn = document.getElementById('ttsPlayBtn');
     if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
       window.speechSynthesis.pause();
-      btn.textContent = '▶️ Tiếp tục Audio';
+      if (btn) btn.textContent = '▶️ Tiếp tục Audio';
       return;
     }
     if (window.speechSynthesis.paused) {
       window.speechSynthesis.resume();
-      btn.textContent = '⏸ Tạm dừng';
+      if (btn) btn.textContent = '⏸ Tạm dừng';
       return;
     }
-
-    const ch = state.stories[state.currentStoryId]?.chapters?.[state.currentChapterId];
-    if (!ch) return;
-    const tmp = document.createElement('div');
-    tmp.innerHTML = ch.content || '';
-    const plainText = tmp.textContent.trim();
-    if (!plainText) return;
-
+    const chunks = this.prepareTTS();
+    if (!chunks?.length) return;
     window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(plainText);
-    utter.lang = 'vi-VN';
-    utter.rate = Number(document.getElementById('ttsRateSelect').value) || 1;
-    utter.onend = () => {
-      btn.textContent = '🔊 Nghe Audio';
-    };
-    window.speechSynthesis.speak(utter);
-    btn.textContent = '⏸ Tạm dừng';
+    window.__mieuTTSChunks = chunks;
+    window.__mieuTTSStopped = false;
+    this.speakTTSFrom(0);
+  },
+
+  seekTTS(value) {
+    const chunks = window.__mieuTTSChunks || [];
+    if (!chunks.length) return;
+    const wasActive = window.speechSynthesis?.speaking || window.speechSynthesis?.paused;
+    if (!wasActive) {
+      // Khi chưa phát, chuẩn bị nội dung để người đọc có thể chọn vị trí bắt đầu.
+      const prepared = this.prepareTTS();
+      if (prepared?.length) window.__mieuTTSChunks = prepared;
+    }
+    window.__mieuTTSStopped = true;
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    window.__mieuTTSStopped = false;
+    const next = Math.max(0, Math.min((window.__mieuTTSChunks || []).length - 1, Number(value) || 0));
+    window.__mieuTTSIndex = next;
+    this.updateTTSProgress();
+    if (wasActive) this.speakTTSFrom(next);
+    else {
+      const btn = document.getElementById('ttsPlayBtn');
+      if (btn) btn.textContent = '▶️ Phát từ đây';
+    }
   },
 
   stopTTS() {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
+    window.__mieuTTSStopped = true;
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    window.__mieuTTSChunks = [];
+    window.__mieuTTSIndex = 0;
     const btn = document.getElementById('ttsPlayBtn');
     if (btn) btn.textContent = '🔊 Nghe Audio';
+    const bar = document.getElementById('ttsSeekBar');
+    if (bar) { bar.value = 0; bar.disabled = true; }
+    const label = document.getElementById('ttsProgressLabel');
+    const duration = document.getElementById('ttsDurationLabel');
+    if (label) label.textContent = '00:00';
+    if (duration) duration.textContent = '--:--';
   },
 
   // ==================== VÍ TIỀN, QR BIDV & ĐỔI ĐIỂM ====================
@@ -5020,7 +5535,32 @@ const app = {
   },
 
   toggleEditProfileBox() {
-    document.getElementById('editProfileBox').classList.toggle('hidden');
+    const box = document.getElementById('editProfileBox');
+    const u = state.currentUser;
+    if (!box || !u || u.role !== 'customer') {
+      showToast('Hãy đăng nhập tài khoản độc giả để chỉnh sửa hồ sơ nha.', 'error');
+      return;
+    }
+    // Nạp dữ liệu mới nhất vào biểu mẫu mỗi lần mở, tránh form rỗng hoặc dữ liệu cũ.
+    const cust = state.customers?.[u.id] || {};
+    document.getElementById('editProfileNameInput').value = cust.name || u.name || '';
+    document.getElementById('editProfileAvatarInput').value = cust.profileAvatar || cust.avatar || '';
+    document.getElementById('editProfileCoverInput').value = cust.cover || '';
+    document.getElementById('editProfileBioInput').value = cust.bio || '';
+    document.getElementById('editHideProfile').checked = !!cust.hideProfile;
+    document.getElementById('editHideAvatar').checked = !!cust.hideAvatar;
+    box.classList.remove('hidden');
+    box.style.display = 'grid';
+    box.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => box.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
+  },
+
+  closeEditProfileBox() {
+    const box = document.getElementById('editProfileBox');
+    if (!box) return;
+    box.classList.add('hidden');
+    box.style.display = '';
+    box.setAttribute('aria-expanded', 'false');
   },
 
   uploadProfileImage(e, field) {
@@ -5046,9 +5586,25 @@ const app = {
     const hideAvatar = document.getElementById('editHideAvatar').checked;
 
     const finalAvatar = avatar || state.customers[u.id]?.profileAvatar || state.customers[u.id]?.avatar || '';
-    await update(ref(db, `customers/${u.id}`), { name, avatar: finalAvatar, profileAvatar: finalAvatar, cover: cover || state.customers[u.id]?.cover || '', bio, hideProfile, hideAvatar });
-    this.toggleEditProfileBox();
-    showToast('💾 Đã cập nhật hồ sơ cá nhân!', 'success');
+    const finalCover = cover || state.customers[u.id]?.cover || '';
+    try {
+      await update(ref(db, `customers/${u.id}`), {
+        name, avatar: finalAvatar, profileAvatar: finalAvatar,
+        cover: finalCover, bio, hideProfile, hideAvatar
+      });
+      state.customers[u.id] = {
+        ...(state.customers[u.id] || {}), name, avatar: finalAvatar,
+        profileAvatar: finalAvatar, cover: finalCover, bio, hideProfile, hideAvatar
+      };
+      state.currentUser.name = name;
+      this.closeEditProfileBox();
+      this.renderProfileView();
+      this.updateHeaderAndRoleUI();
+      showToast('💾 Đã cập nhật hồ sơ cá nhân!', 'success');
+    } catch (err) {
+      console.error('Lưu hồ sơ thất bại:', err);
+      showToast('Chưa lưu được hồ sơ. Kiểm tra kết nối Firebase rồi thử lại nha.', 'error');
+    }
   },
 
   switchProfileTab(tab) {
@@ -5412,7 +5968,12 @@ const app = {
     };
     if (!oldInfo.createdAt) infoPayload.createdAt = Date.now();
 
-    await set(ref(db, `stories/${code}/info`), infoPayload);
+    await Promise.all([
+      set(ref(db, `stories/${code}/info`), infoPayload),
+      set(ref(db, `storyCatalog/${code}/info`), infoPayload)
+    ]);
+    if (!state.stories[code]) state.stories[code] = { info: infoPayload, chapters: {} };
+    else state.stories[code].info = infoPayload;
     state.studioStoryId = code;
     state.studioCoverData = '';
     showToast(`💾 Đã lưu truyện "${name}" thành công!`, 'success');
@@ -5431,7 +5992,11 @@ const app = {
     });
     if (!ok) return;
 
-    await remove(ref(db, `stories/${state.studioStoryId}`));
+    await Promise.all([
+      remove(ref(db, `stories/${state.studioStoryId}`)),
+      remove(ref(db, `storyCatalog/${state.studioStoryId}`)),
+      remove(ref(db, `storyContent/${state.studioStoryId}`))
+    ]);
     this.studioResetStory();
     showToast('Đã xóa truyện khỏi hệ thống.', 'info');
   },
@@ -5472,13 +6037,17 @@ const app = {
     this.studioCountWords();
   },
 
-  studioLoadChapter(cid) {
+  async studioLoadChapter(cid) {
     if (!cid || !state.studioStoryId) {
       this.studioResetChapter();
       return;
     }
-    const ch = state.stories[state.studioStoryId]?.chapters?.[cid];
+    let ch = state.stories[state.studioStoryId]?.chapters?.[cid];
     if (!ch) return;
+    if (!ch.content && !ch.text) {
+      try { ch = await loadMieuChapterContent(state.studioStoryId, cid); }
+      catch (err) { showToast('Không tải được nội dung chương: ' + (err?.message || 'Lỗi Firebase'), 'error'); return; }
+    }
     state.studioChapterId = cid;
     document.getElementById('stChapterTitle').value = ch.title || '';
     document.getElementById('stChapterVip').checked = !!ch.vip;
@@ -5525,7 +6094,12 @@ const app = {
     // Ghi Firebase trước; cập nhật state ngay để listener chậm trên điện thoại
     // không ghi đè checkbox VIP / giá / điểm bằng dữ liệu cũ.
     const savedStoryId = state.studioStoryId;
-    await set(ref(db, `stories/${savedStoryId}/chapters/${nextId}`), payload);
+    const chapterMeta = { ...payload }; delete chapterMeta.content; delete chapterMeta.text; delete chapterMeta.html; delete chapterMeta.body; delete chapterMeta.rawContent;
+    await Promise.all([
+      set(ref(db, `stories/${savedStoryId}/chapters/${nextId}`), chapterMeta),
+      set(ref(db, `storyCatalog/${savedStoryId}/chapters/${nextId}`), chapterMeta),
+      set(ref(db, `storyContent/${savedStoryId}/${nextId}`), payload)
+    ]);
     if (!state.stories[savedStoryId]) state.stories[savedStoryId] = { info: {}, chapters: {} };
     if (!state.stories[savedStoryId].chapters) state.stories[savedStoryId].chapters = {};
     state.stories[savedStoryId].chapters[nextId] = { ...payload };
@@ -5559,7 +6133,11 @@ const app = {
     });
     if (!ok) return;
 
-    await remove(ref(db, `stories/${state.studioStoryId}/chapters/${state.studioChapterId}`));
+    await Promise.all([
+      remove(ref(db, `stories/${state.studioStoryId}/chapters/${state.studioChapterId}`)),
+      remove(ref(db, `storyCatalog/${state.studioStoryId}/chapters/${state.studioChapterId}`)),
+      remove(ref(db, `storyContent/${state.studioStoryId}/${state.studioChapterId}`))
+    ]);
     this.studioLoadStory(state.studioStoryId);
     showToast('Đã xóa chương.', 'info');
   },
@@ -5647,8 +6225,9 @@ const app = {
   },
 
   switchAdminTab(tab) {
+    if (tab === 'topups') tab = 'customers';
     this.currentAdminTab = tab;
-    ['topups', 'customers', 'vipaccess', 'featured', 'appearance', 'checkin'].forEach(t => {
+    ['customers', 'vipaccess', 'featured', 'appearance', 'checkin'].forEach(t => {
       const btn = document.getElementById('aTab-' + t);
       if (btn) {
         btn.className = t === tab
@@ -5943,6 +6522,24 @@ const app = {
         <img loading="lazy" decoding="async" src="${esc(st.info?.cover||'https://placehold.co/240x340/171026/e8c5ff?text=Mieu+Cas')}" alt="${esc(st.info?.name||id)}" onerror="this.src='https://placehold.co/240x340/171026/e8c5ff?text=Mieu+Cas'">
         <span class="recent-tarot-info"><b>${esc(st.info?.name||id)}</b><small>Cập nhật ${new Date(updated).toLocaleDateString('vi-VN')}</small></span>
       </button>`).join('') : '<p class="opacity-60 p-3">Chưa có truyện cập nhật trong 7 ngày gần đây.</p>';
+    this.renderCompletedStories();
+  },
+
+  renderCompletedStories() {
+    const box = document.getElementById('completedStoriesList'); if (!box) return;
+    const items = Object.entries(state.stories).filter(([id,st]) => {
+      const status = String(st.info?.status || '').trim().toLocaleLowerCase('vi');
+      return status === 'hoàn thành' || status === 'hoàn tất' || status === 'completed' || status === 'full';
+    }).map(([id,st]) => {
+      const updated = Math.max(Number(st.info?.updatedAt)||0, ...Object.values(st.chapters||{}).map(ch=>Number(ch.updatedAt||ch.createdAt)||0));
+      return [id,st,updated];
+    }).sort((a,b)=>b[2]-a[2]).slice(0,24);
+    box.innerHTML = items.length ? items.map(([id,st,updated],i)=>`
+      <button type="button" onclick="app.openStoryDetail('${esc(id)}')" class="recent-tarot-card" aria-label="Mở truyện hoàn thành ${esc(st.info?.name||id)}">
+        <span class="recent-tarot-card-glow"></span><span class="recent-tarot-index">✦ ${String(i+1).padStart(2,'0')} · COMPLETE</span>
+        <img loading="lazy" decoding="async" src="${esc(st.info?.cover||'https://placehold.co/240x340/171026/e8c5ff?text=Mieu+Cas')}" alt="${esc(st.info?.name||id)}" onerror="this.src='https://placehold.co/240x340/171026/e8c5ff?text=Mieu+Cas'">
+        <span class="recent-tarot-info"><b>${esc(st.info?.name||id)}</b><small>✓ Đã hoàn thành</small></span>
+      </button>`).join('') : '<p class="opacity-60 p-3">Chưa có truyện hoàn thành.</p>';
   },
 
   renderActivityFeed() {
@@ -6092,9 +6689,27 @@ const app = {
     box.classList.remove('hidden');
   },
   toggleMessenger() {
-    const p=document.getElementById('messengerPanel');p.classList.toggle('hidden');
-    if(!p.classList.contains('hidden')&&!state.currentUser)this.openAuthModal();
-    if(!p.classList.contains('hidden')) this.populateChatNames();
+    const p=document.getElementById('messengerPanel');
+    const backdrop=document.getElementById('mieuChatBackdrop');
+    if(!p) return;
+    const opening = p.getAttribute('aria-hidden') !== 'false';
+    if(opening){
+      p.classList.remove('hidden');
+      p.setAttribute('aria-hidden','false');
+      p.style.setProperty('display','flex','important');
+      if(backdrop){backdrop.classList.add('is-open');backdrop.setAttribute('aria-hidden','false');}
+      document.body.classList.add('mieu-chat-open');
+      this.populateChatNames();
+      if(!state.currentUser){
+        const title=document.getElementById('chatConversationTitle');
+        if(title) title.textContent='Đăng nhập để bắt đầu trò chuyện cùng Miêu Các';
+      }
+    }else{
+      p.classList.add('hidden');p.setAttribute('aria-hidden','true');
+      p.style.setProperty('display','none','important');
+      if(backdrop){backdrop.classList.remove('is-open');backdrop.setAttribute('aria-hidden','true');}
+      document.body.classList.remove('mieu-chat-open');
+    }
   },
   populateChatNames() {
     const list=document.getElementById('chatUserNames');
@@ -6418,7 +7033,7 @@ html[data-theme="light"] #readerTopBar #readerChapterTitle{color:#57345f!importa
 
 <!-- V42: nhạc nền toàn trang (trình duyệt có thể yêu cầu chạm để bật tiếng) -->
 <video id="mieuSiteMusic" src="https://files.catbox.moe/ctxnez.mp4" preload="none" loop playsinline style="display:none" aria-hidden="true"></video>
-<button id="mieuSiteMusicToggle" type="button" onclick="window.mieuToggleSiteMusic && window.mieuToggleSiteMusic()">♫ Bật nhạc</button>
+<button id="mieuSiteMusicToggle" type="button" onclick="window.mieuToggleSiteMusic && window.mieuToggleSiteMusic()" style="display:none!important">♫ Bật nhạc</button>
 <script>
 (function(){
  const media=document.getElementById('mieuSiteMusic'),btn=document.getElementById('mieuSiteMusicToggle');if(!media)return;media.volume=.24;
@@ -6436,6 +7051,1187 @@ html[data-theme="light"] #readerTopBar #readerChapterTitle{color:#57345f!importa
    else {pausedForGuide=false;label();}
  };
  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(!media.paused)media.pause();label()}else if(!document.querySelector('#view-guide:not(.hidden)')&&userEnabled){play()}});
+})();
+</script>
+
+<style id="mieu-v52-reader-auth-stability">
+  #readerCanvasBlocks canvas { image-rendering:auto!important; opacity:1!important; filter:none!important; transform:none!important; }
+  #readerCanvasWrapper, #readerCanvasBlocks { overflow-anchor:none!important; contain:none!important; }
+  #readerCanvasBlocks { display:flex; flex-direction:column; align-items:stretch; gap:0; }
+  #readerCanvasBlocks canvas { max-width:100%!important; }
+  #readerCanvasBlocks img { height:auto; }
+  @media(max-width:700px){#readerCanvasBlocks canvas{image-rendering:auto}#readerCanvasWrapper{overscroll-behavior:auto!important}}
+</style>
+
+
+<style id="mieu-v57-crisp-smooth-watermark">
+/* Chữ canvas sắc nét hơn; tránh filter/transition làm nặng GPU khi vuốt nhanh. */
+#readerCanvasBlocks canvas{
+  image-rendering:auto!important;
+  filter:none!important;
+  transition:none!important;
+  backface-visibility:hidden;
+  contain:layout paint style;
+  content-visibility:auto;
+}
+#readerCanvasBlocks{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-anchor:none;
+}
+#readerCanvasWrapper{scrollbar-gutter:stable}
+@media(max-width:700px){
+  #readerCanvasBlocks canvas{will-change:auto!important}
+}
+</style>
+
+
+<style id="mieu-v59-safe-watermark">
+#mieuReaderWatermark{
+ position:fixed;inset:0;z-index:28;pointer-events:none;overflow:hidden;
+ display:none;contain:layout style;
+}
+#mieuReaderWatermark.is-visible{display:block}
+#mieuReaderWatermark .mieu-wm-grid{
+ position:absolute;inset:-25%;display:grid;
+ grid-template-columns:repeat(4,minmax(220px,1fr));
+ grid-auto-rows:170px;gap:0 8px;transform:rotate(-23deg);
+}
+#mieuReaderWatermark .mieu-wm-cell{
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ gap:4px;white-space:nowrap;text-align:center;user-select:none;
+ color:rgba(183,112,157,.12);
+ font:700 15px/1.25 Arial,sans-serif;letter-spacing:.25px;
+ -webkit-font-smoothing:antialiased;text-shadow:0 0 .35px currentColor;
+}
+#mieuReaderWatermark .mieu-wm-cell small{font:600 9px/1.3 Arial,sans-serif}
+#mieuReaderWatermark .mieu-wm-cell em{font:500 9px/1.3 Arial,sans-serif;font-style:normal}
+@media(max-width:700px){
+ #mieuReaderWatermark .mieu-wm-grid{grid-template-columns:repeat(4,minmax(205px,1fr));grid-auto-rows:150px}
+ #mieuReaderWatermark .mieu-wm-cell{font-size:14px}
+ #mieuReaderWatermark .mieu-wm-cell small,#mieuReaderWatermark .mieu-wm-cell em{font-size:8px}
+}
+</style>
+<script id="mieu-v59-safe-watermark-js">
+(function(){
+ 'use strict';
+ function getUserInfo(){
+   try{
+     const u=(typeof state!=='undefined' && state.currentUser) ? state.currentUser : {};
+     const name=u.name||u.displayName||u.username||'Độc giả';
+     const id=u.id||u.uid||u.customerId||u.userId||'Khách';
+     return {name:String(name),id:String(id)};
+   }catch(_){return {name:'Độc giả',id:'Khách'};}
+ }
+ function update(){
+   try{
+     const reader=document.getElementById('view-reader');
+     if(!reader)return;
+     let layer=document.getElementById('mieuReaderWatermark');
+     if(!layer){
+       layer=document.createElement('div');layer.id='mieuReaderWatermark';
+       layer.setAttribute('aria-hidden','true');
+       const grid=document.createElement('div');grid.className='mieu-wm-grid';
+       for(let i=0;i<32;i++){
+         const cell=document.createElement('div');cell.className='mieu-wm-cell';
+         const brand=document.createElement('strong');brand.textContent='Ổ LƯỜI NHỎ CỦA MEOW';
+         const site=document.createElement('small');site.textContent='MIÊU CÁC  •  BẢN ĐỌC CÁ NHÂN';
+         const identity=document.createElement('em');identity.className='mieu-wm-identity';
+         cell.append(brand,site,identity);grid.appendChild(cell);
+       }
+       layer.appendChild(grid);document.body.appendChild(layer);
+     }
+     const u=getUserInfo();
+     layer.querySelectorAll('.mieu-wm-identity').forEach(el=>{el.textContent=u.name+'  •  ID KHÁCH: '+u.id;});
+     const visible=getComputedStyle(reader).display!=='none' &&
+                   getComputedStyle(reader).visibility!=='hidden' &&
+                   !reader.hidden;
+     layer.classList.toggle('is-visible',visible);
+   }catch(err){/* Watermark lỗi không được phép làm gián đoạn việc đọc chương. */}
+ }
+ window.mieuUpdateReaderWatermark=update;
+ function start(){
+   update();
+   const reader=document.getElementById('view-reader');
+   if(reader){
+     new MutationObserver(update).observe(reader,{attributes:true,attributeFilter:['style','class','hidden']});
+   }
+   document.addEventListener('click',()=>{setTimeout(update,0);},true);
+   window.addEventListener('hashchange',update);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});
+ else start();
+})();
+</script>
+
+
+<style id="mieu-v61-fast-scroll-gothic-default">
+#view-reader, #readerCanvasWrapper, #readerCanvasBlocks{
+  scroll-behavior:auto!important;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-y:contain;
+}
+#readerCanvasBlocks{touch-action:pan-y;overflow-anchor:none}
+#readerCanvasBlocks canvas{
+  display:block;max-width:100%;height:auto;
+  filter:none!important;transition:none!important;
+  transform:none!important;will-change:auto!important;
+}
+#readerCanvasBlocks img{content-visibility:auto}
+@media(max-width:700px){
+  #readerCanvasWrapper{-webkit-overflow-scrolling:touch}
+  #readerCanvasBlocks canvas{backface-visibility:visible}
+}
+</style>
+
+
+<!-- THANH CỐ ĐỊNH TOÀN WEB: NHẠC · CHAT · THÔNG BÁO -->
+<nav id="mieuBottomDock" aria-label="Tiện ích nhanh">
+  <button type="button" id="dockMusicBtn" aria-label="Bật hoặc tắt nhạc" title="Nhạc" onclick="window.mieuToggleSiteMusic && window.mieuToggleSiteMusic()">
+    <span class="dock-icon" aria-hidden="true">♫</span><span class="dock-label" id="dockMusicLabel">Nhạc</span>
+  </button>
+  <button type="button" id="dockChatBtn" aria-label="Mở chat" title="Chat" onclick="app.toggleMessenger()">
+    <span class="dock-icon" aria-hidden="true">✉</span><span class="dock-label">Chat</span>
+  </button>
+  <button type="button" id="dockNotifBtn" aria-label="Thông báo" title="Thông báo" onclick="mieuOpenTarotNotifications()">
+    <span class="dock-icon" aria-hidden="true">✧</span><span class="dock-label">Tin</span><i id="dockNotifBadge" class="hidden">0</i>
+  </button>
+  <button type="button" id="dockAccountBtn" aria-label="Tài khoản" title="Đăng nhập hoặc đăng ký" onclick="if(state.currentUser){app.navigate('profile')}else{app.openAuthModal()}">
+    <span class="dock-icon dock-user-icon" aria-hidden="true">♙</span><span class="dock-label" id="dockAccountLabel">Tài khoản</span>
+  </button>
+</nav>
+
+<div id="mieuTarotNotifOverlay" class="mieu-tarot-overlay hidden" onclick="if(event.target===this)mieuCloseTarotNotifications()">
+  <section class="mieu-tarot-card" role="dialog" aria-modal="true" aria-label="Thông báo Miêu Các">
+    <button class="mieu-tarot-close" onclick="mieuCloseTarotNotifications()" aria-label="Đóng">×</button>
+    <div class="mieu-tarot-kicker">✦ THE MESSAGE ORACLE ✦</div>
+    <div class="mieu-tarot-emblem">☽</div>
+    <h2>Thông Điệp Từ Miêu Các</h2>
+    <p class="mieu-tarot-subtitle">Những tin tức vừa được gửi đến nàng</p>
+    <div id="mieuTarotNotifContent" class="mieu-tarot-content"></div>
+    <button class="mieu-tarot-action" onclick="app.markAllNotifsRead();mieuCloseTarotNotifications()">Đã xem tất cả ✦</button>
+  </section>
+</div>
+
+<script>
+function mieuOpenTarotNotifications(){
+  const src=document.getElementById('notifList');
+  const dest=document.getElementById('mieuTarotNotifContent');
+  if(dest){
+    dest.innerHTML=src && src.innerHTML.trim()
+      ? src.innerHTML
+      : '<div class="mieu-tarot-empty">✧ Chưa có thông báo mới ✧<small>Khi có tin nhắn hoặc cập nhật, thông điệp sẽ xuất hiện tại đây</small></div>';
+  }
+  document.getElementById('mieuTarotNotifOverlay')?.classList.remove('hidden');
+}
+function mieuCloseTarotNotifications(){document.getElementById('mieuTarotNotifOverlay')?.classList.add('hidden')}
+function mieuSyncDockMusic(){
+  const media=document.getElementById('mieuSiteMusic'),label=document.getElementById('dockMusicLabel');
+  if(media&&label)label.textContent=media.paused?'Bật nhạc':'Tắt nhạc';
+}
+document.addEventListener('click',e=>{
+  if(e.target.closest('#dockMusicBtn'))setTimeout(mieuSyncDockMusic,250);
+});
+document.addEventListener('play',e=>{if(e.target?.id==='mieuSiteMusic')mieuSyncDockMusic()},true);
+document.addEventListener('pause',e=>{if(e.target?.id==='mieuSiteMusic')mieuSyncDockMusic()},true);
+setInterval(()=>{
+  const src=document.getElementById('notifBadge'),dest=document.getElementById('dockNotifBadge');
+  if(src&&dest){dest.textContent=src.textContent;dest.classList.toggle('hidden',src.classList.contains('hidden'))}
+},1200);
+</script>
+
+
+<style id="mieu-v62-bottom-dock-tarot">
+/* Header: logo + menu + theme + search cùng một hàng */
+.header-quick-tools{display:flex;align-items:center;gap:6px;flex:0 0 auto}
+.header-quick-tools button{width:39px;height:39px;display:grid;place-items:center;padding:0!important;border-radius:12px!important;background:rgba(255,255,255,.045)}
+@media(max-width:640px){
+  header>.max-w-7xl,header .max-w-7xl{display:flex;flex-wrap:wrap;align-items:center;gap:8px!important}
+  header .max-w-7xl>div:first-child{display:flex;align-items:center;gap:7px!important;flex-wrap:nowrap;min-width:0}
+  header .max-w-7xl>div:first-child>div:first-child h1{font-size:clamp(15px,4.4vw,20px)!important}
+  header .max-w-7xl>div:first-child>div:first-child #siteLogoHeaderWrap{width:38px!important;height:38px!important}
+  .header-quick-tools{gap:5px}
+  .header-quick-tools button{width:36px;height:36px}
+  #mainMenuBtn{width:36px;height:36px;padding:0!important}
+  header .max-w-7xl>div:last-child{width:100%;justify-content:flex-start;gap:8px!important}
+}
+/* Persistent translucent Gothic dock */
+#mieuBottomDock{
+  position:fixed;left:50%;bottom:calc(9px + env(safe-area-inset-bottom));transform:translateX(-50%);
+  z-index:2147482000;width:min(94vw,470px);min-height:58px;padding:7px 9px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:7px;
+  border:1px solid rgba(203,164,235,.48);border-radius:19px;
+  background:linear-gradient(135deg,rgba(31,21,45,.88),rgba(12,11,25,.91));
+  box-shadow:0 12px 34px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.1);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)
+}
+#mieuBottomDock button{position:relative;min-width:0;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:8px 5px;border:1px solid rgba(195,157,222,.25);border-radius:13px;
+  color:#eadcf8;background:rgba(255,255,255,.035);font-size:11px;font-weight:700;white-space:nowrap}
+#mieuBottomDock button:active{background:rgba(180,131,220,.2)}
+#mieuBottomDock .dock-icon{font:21px/1 'Cormorant Garamond',Georgia,serif;color:#e5c7ff;text-shadow:0 0 12px #bb8ce8}
+#mieuBottomDock #dockNotifBadge{position:absolute;top:2px;right:7px;min-width:16px;height:16px;padding:0 4px;border-radius:20px;background:#d94c91;color:white;font:700 9px/16px Arial;text-align:center}
+#mieuBottomDock #dockNotifBadge.hidden{display:none}
+#mieuSiteMusicToggle{display:none!important}
+/* Keep content clear of the fixed dock */
+body{padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+#messengerWidget{position:static!important}
+#messengerWidget>button{display:none!important}
+#messengerPanel{position:fixed!important;left:50%!important;right:auto!important;bottom:calc(82px + env(safe-area-inset-bottom))!important;transform:translateX(-50%);z-index:2147482100!important;
+  width:min(92vw,390px)!important;height:min(68dvh,550px)!important;max-height:calc(100dvh - 115px)!important;
+  border:1px solid rgba(218,184,244,.72)!important;border-radius:23px!important;
+  background:radial-gradient(circle at 85% 8%,rgba(165,111,211,.2),transparent 36%),linear-gradient(145deg,#21162f,#0d0b18 75%,#1d1429)!important;
+  box-shadow:0 24px 75px #000b,inset 0 0 0 3px rgba(230,204,255,.06)!important}
+#messengerPanel>div:first-child{background:linear-gradient(120deg,#6e438d,#a35d9c)!important;padding:14px 16px!important}
+#messengerPanel>div:nth-child(2){background:rgba(255,255,255,.025);border-color:#b996d32c}
+#messengerPanel #chatMessages{background:rgba(4,3,10,.18)}
+#messengerPanel input{border-color:#b996d34c!important;background:rgba(0,0,0,.22)!important;color:#f5eaff!important}
+#pageScrollControls{right:8px!important;bottom:calc(91px + env(safe-area-inset-bottom))!important;gap:6px!important}
+#pageScrollControls button{width:32px!important;height:32px!important;opacity:.72!important;
+  background:rgba(40,27,57,.52)!important;border:1px solid rgba(210,178,235,.42)!important;
+  box-shadow:0 3px 12px #0005!important;backdrop-filter:blur(7px);font-size:0!important}
+#pageScrollControls button:first-child:after{font-size:20px!important}
+#pageScrollControls button:last-child:after{font-size:20px!important}
+#pageScrollControls button:before{font-size:8px!important;top:1px!important;right:5px!important}
+.mieu-tarot-overlay{position:fixed;inset:0;z-index:2147482200;display:flex;align-items:center;justify-content:center;padding:15px;background:rgba(5,3,12,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.mieu-tarot-overlay.hidden{display:none!important}
+.mieu-tarot-card{position:relative;width:min(100%,410px);max-height:84dvh;overflow:auto;padding:25px 20px 20px;text-align:center;border:1px solid rgba(221,188,247,.68);border-radius:25px;color:#f2e7ff;
+  background:radial-gradient(ellipse at 50% 0%,rgba(140,88,183,.34),transparent 48%),linear-gradient(155deg,#261a37,#0d0b18 72%,#21162d);
+  box-shadow:0 25px 90px #000b,inset 0 0 0 4px rgba(228,198,255,.055)}
+.mieu-tarot-close{position:absolute;right:12px;top:11px;width:34px;height:34px;border-radius:50%;border:1px solid #d9b8ef55;background:#ffffff0b;color:#f2e5ff;font-size:23px}
+.mieu-tarot-kicker{font:700 9px 'JetBrains Mono',monospace;letter-spacing:.2em;color:#d7b6f0}
+.mieu-tarot-emblem{margin:10px auto 2px;color:#e8cda1;font:42px 'Cormorant Garamond',serif;text-shadow:0 0 20px #c99aff}
+.mieu-tarot-card h2{font:700 25px 'Cormorant Garamond',Georgia,serif;color:#f4e3ff}
+.mieu-tarot-subtitle{font-size:11px;color:#c0a9d4;margin:5px 0 16px}
+.mieu-tarot-content{max-height:45dvh;overflow:auto;text-align:left;padding:10px;border:1px solid #c5a1df38;border-radius:14px;background:#09071166}
+.mieu-tarot-content:empty{display:none}
+.mieu-tarot-content>div{padding:9px 10px;margin:0 0 7px;border:1px solid #b995d32e;border-radius:11px;background:linear-gradient(135deg,#281c38,#151020);color:#eee2f8}
+.mieu-tarot-empty{padding:22px 8px;text-align:center;color:#e3c7f7;font:italic 16px 'Cormorant Garamond',serif}
+.mieu-tarot-empty small{display:block;margin-top:8px;color:#bba8cc;font:10px 'Be Vietnam Pro',sans-serif}
+.mieu-tarot-action{width:100%;margin-top:14px;padding:12px;border:1px solid #d3aeea66;border-radius:13px;background:linear-gradient(110deg,#70458e,#a75e9d);color:white;font-weight:800;font-size:11px}
+[data-theme="light"] #mieuBottomDock{background:rgba(255,249,254,.92);border-color:#e1c4e5;box-shadow:0 10px 28px #9876a333}
+[data-theme="light"] #mieuBottomDock button{color:#63496f;background:#fff8fc;border-color:#e5cde7}
+[data-theme="light"] #messengerPanel{background:linear-gradient(145deg,#fffaff,#f1eafa)!important;color:#563c63!important}
+[data-theme="light"] #messengerPanel #chatMessages{background:#fff8fc}
+[data-theme="light"] .mieu-tarot-card{background:linear-gradient(155deg,#fffaff,#f1eafa 72%,#fff4f9);color:#563c63;border-color:#d8b9e6}
+[data-theme="light"] .mieu-tarot-card h2{color:#704b83}
+[data-theme="light"] .mieu-tarot-subtitle{color:#806b8d}
+[data-theme="light"] .mieu-tarot-content{background:#fff8fc;border-color:#e8d8ed}
+[data-theme="light"] .mieu-tarot-content>div{background:linear-gradient(135deg,#fff,#f7effb);color:#563c63;border-color:#e5d4ed}
+@media(max-width:520px){
+ #mieuBottomDock{width:calc(100vw - 22px);min-height:54px;padding:6px;border-radius:17px}
+ #mieuBottomDock button{font-size:10px;gap:5px}
+ #mieuBottomDock .dock-icon{font-size:19px}
+ #messengerPanel{bottom:calc(72px + env(safe-area-inset-bottom))!important}
+ #pageScrollControls{right:6px!important;bottom:calc(75px + env(safe-area-inset-bottom))!important}
+}
+</style>
+
+
+<style id="mieu-v63-reader-dock-chat-fix">
+/* Không hiển thị thanh tiện ích khi đang đọc chương */
+body.mieu-reading #mieuBottomDock,
+body.mieu-reading #mieuTarotNotifOverlay{display:none!important}
+body.mieu-reading{padding-bottom:0!important}
+/* Chat dùng trạng thái hiển thị tường minh, tránh class flex ghi đè hidden */
+#messengerPanel.hidden{display:none!important}
+#messengerPanel:not(.hidden){display:flex!important}
+#messengerPanel[aria-hidden="true"]{display:none!important}
+#messengerPanel[aria-hidden="false"]{display:flex!important}
+#messengerWidget{position:static!important;z-index:auto!important}
+#messengerPanel{pointer-events:auto!important;isolation:isolate}
+#mieuBottomDock{transition:opacity .16s ease,transform .16s ease}
+@media(max-width:640px){
+ #messengerPanel{bottom:calc(78px + env(safe-area-inset-bottom))!important;width:calc(100vw - 24px)!important;height:min(66dvh,520px)!important;max-height:calc(100dvh - 105px)!important}
+}
+</style>
+<script id="mieu-v63-reader-state-sync">
+(function(){
+ const reader=document.getElementById('view-reader');
+ const dock=document.getElementById('mieuBottomDock');
+ const panel=document.getElementById('messengerPanel');
+ if(!reader||!dock)return;
+ function sync(){
+   const active=!reader.classList.contains('hidden') && reader.getClientRects().length>0;
+   document.body.classList.toggle('mieu-reading',active);
+   if(active && panel && !panel.classList.contains('hidden')){
+     panel.classList.add('hidden');panel.style.setProperty('display','none','important');panel.setAttribute('aria-hidden','true');
+   }
+ }
+ new MutationObserver(sync).observe(reader,{attributes:true,attributeFilter:['class','style']});
+ document.addEventListener('click',e=>{if(e.target.closest('#dockChatBtn')||e.target.closest('#dockNotifBtn'))setTimeout(sync,0)},true);
+ sync();
+})();
+</script>
+
+
+<style id="mieu-v64-bottom-dock-chat-modal">
+/* Dock full-width, flush bottom like the mobile tab bar in the reference */
+#mieuBottomDock{
+  left:0!important;right:0!important;bottom:0!important;transform:none!important;
+  width:100%!important;max-width:none!important;min-height:68px!important;
+  padding:8px 12px calc(8px + env(safe-area-inset-bottom))!important;
+  border-radius:18px 18px 0 0!important;border-left:0!important;border-right:0!important;border-bottom:0!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important;
+  background:linear-gradient(180deg,rgba(32,22,46,.97),rgba(10,8,18,.985))!important;
+  box-shadow:0 -8px 28px rgba(0,0,0,.38),inset 0 1px rgba(231,205,255,.14)!important;
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)
+}
+#mieuBottomDock button{
+  min-height:49px!important;border-radius:13px!important;
+  background:rgba(255,255,255,.035)!important;border:1px solid rgba(204,169,230,.25)!important;
+  flex-direction:row!important;font-size:12px!important
+}
+#mieuBottomDock .dock-icon{font-size:21px!important}
+body{padding-bottom:calc(83px + env(safe-area-inset-bottom))!important}
+body.mieu-reading #mieuBottomDock{display:none!important}
+body.mieu-reading{padding-bottom:0!important}
+
+/* Chat backdrop + centered tarot popup */
+#mieuChatBackdrop{
+ position:fixed;inset:0;z-index:2147482201;background:rgba(5,3,12,.76);
+ -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:none
+}
+#mieuChatBackdrop.is-open{display:block}
+#messengerWidget{position:static!important;z-index:auto!important}
+#messengerPanel{
+ position:fixed!important;left:50%!important;right:auto!important;top:50%!important;
+ bottom:auto!important;transform:translate(-50%,-50%)!important;
+ z-index:2147482202!important;width:min(92vw,410px)!important;
+ height:min(72dvh,590px)!important;max-height:calc(100dvh - 34px)!important;
+ border:1px solid rgba(221,188,247,.72)!important;border-radius:25px!important;
+ overflow:hidden!important;
+ background:radial-gradient(ellipse at 50% 0%,rgba(147,93,188,.25),transparent 46%),linear-gradient(155deg,#261a37,#0d0b18 76%,#21162d)!important;
+ box-shadow:0 25px 85px #000c,inset 0 0 0 4px rgba(230,204,255,.055)!important
+}
+#messengerPanel.hidden,#messengerPanel[aria-hidden="true"]{display:none!important}
+#messengerPanel:not(.hidden)[aria-hidden="false"]{display:flex!important}
+#messengerPanel>div:first-child{
+ background:linear-gradient(115deg,#644080,#9b5b9e)!important;
+ min-height:52px;padding:13px 16px!important
+}
+#messengerPanel>div:nth-child(2){background:rgba(255,255,255,.025)!important}
+#messengerPanel #chatMessages{background:rgba(5,3,12,.22)!important}
+#messengerPanel input{background:rgba(0,0,0,.22)!important;color:#f5eaff!important;border-color:#c49bdd55!important}
+@media(max-width:520px){
+ #mieuBottomDock{min-height:64px!important;padding-left:8px!important;padding-right:8px!important}
+ #mieuBottomDock button{font-size:11px!important;gap:6px!important}
+ #messengerPanel{width:calc(100vw - 24px)!important;height:min(74dvh,590px)!important}
+}
+[data-theme="light"] #mieuBottomDock{
+ background:linear-gradient(180deg,rgba(255,250,255,.98),rgba(244,235,250,.99))!important;
+ border-top:1px solid #d8bee4!important;box-shadow:0 -8px 25px #9876a333!important
+}
+[data-theme="light"] #mieuBottomDock button{color:#62466f!important;background:#fff8fc!important;border-color:#e5cde7!important}
+</style>
+
+
+<style id="mieu-v65-icon-dock-chat-fix">
+#headerUserArea{display:none!important}
+#mieuBottomDock{
+ position:fixed!important;left:0!important;right:0!important;bottom:0!important;transform:none!important;
+ width:100%!important;max-width:none!important;min-height:68px!important;
+ padding:7px 10px calc(7px + env(safe-area-inset-bottom))!important;
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important;
+ border-radius:17px 17px 0 0!important;border-left:0!important;border-right:0!important;border-bottom:0!important;
+ background:linear-gradient(180deg,rgba(35,24,49,.97),rgba(12,9,20,.99))!important;
+ box-shadow:0 -8px 28px #0007,inset 0 1px #e8d0ff25!important;
+ -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)
+}
+#mieuBottomDock button{min-width:0!important;min-height:50px!important;padding:4px 2px!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;
+ border:1px solid #c7a2df36!important;border-radius:12px!important;background:#ffffff08!important;color:#f0e2ff!important}
+#mieuBottomDock .dock-icon{font:24px/1 Georgia,serif!important;color:#e4c5ff!important;text-shadow:0 0 12px #bb8ce8}
+#mieuBottomDock .dock-label{font:600 9px/1.15 'Be Vietnam Pro',sans-serif!important;opacity:.78!important}
+#mieuBottomDock .dock-user-icon{font-size:26px!important;opacity:.58!important}
+#mieuBottomDock #dockNotifBadge{top:0!important;right:calc(50% - 19px)!important}
+body{padding-bottom:calc(82px + env(safe-area-inset-bottom))!important}
+body.mieu-reading #mieuBottomDock{display:none!important}
+/* Chat is a real centered modal, not an absolutely positioned child of a hidden widget */
+#messengerWidget{position:static!important;z-index:auto!important}
+#messengerPanel{position:fixed!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;
+ transform:translate(-50%,-50%)!important;z-index:2147483002!important;
+ width:min(92vw,410px)!important;height:min(72dvh,590px)!important;max-height:calc(100dvh - 30px)!important;
+ display:none!important;flex-direction:column!important;overflow:hidden!important;pointer-events:auto!important;
+ border:1px solid #d7b7efaa!important;border-radius:24px!important;
+ background:radial-gradient(ellipse at 50% 0%,#875aa044,transparent 48%),linear-gradient(155deg,#261a37,#0d0b18 75%,#21162d)!important;
+ box-shadow:0 25px 90px #000d,inset 0 0 0 4px #e8d0ff0d!important}
+#messengerPanel.hidden,#messengerPanel[aria-hidden="true"]{display:none!important}
+#messengerPanel:not(.hidden)[aria-hidden="false"]{display:flex!important}
+#mieuChatBackdrop{position:fixed!important;inset:0!important;z-index:2147483001!important;display:none!important;background:#05030cc9!important;
+ -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);pointer-events:auto!important}
+#mieuChatBackdrop.is-open{display:block!important}
+#authModal{z-index:2147483005!important}
+#mieuTarotNotifOverlay{z-index:2147483004!important}
+@media(max-width:520px){
+ #mieuBottomDock{min-height:64px!important;padding-left:7px!important;padding-right:7px!important;gap:6px!important}
+ #mieuBottomDock button{min-height:48px!important}
+ #messengerPanel{width:calc(100vw - 22px)!important;height:min(74dvh,590px)!important}
+}
+[data-theme="light"] #mieuBottomDock{background:linear-gradient(180deg,#fffafffa,#f2eafa)!important;border-top:1px solid #dec5e9!important}
+[data-theme="light"] #mieuBottomDock button{background:#fff9!important;color:#62466f!important;border-color:#d9c2e6!important}
+</style>
+<script id="mieu-v65-dock-account-sync">
+(function(){
+ function sync(){
+  const u=(typeof state!=='undefined'&&state.currentUser)?state.currentUser:null;
+  const label=document.getElementById('dockAccountLabel');
+  const btn=document.getElementById('dockAccountBtn');
+  if(label)label.textContent=u?'Cá nhân':'Tài khoản';
+  if(btn)btn.setAttribute('aria-label',u?'Mở trang cá nhân':'Đăng nhập hoặc đăng ký');
+ }
+ window.mieuSyncDockAccount=sync;
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync,{once:true});else sync();
+ document.addEventListener('click',()=>setTimeout(sync,0),true);
+ const oldSetSession=window.app?.setSession;
+ if(typeof oldSetSession==='function'&&window.app){window.app.setSession=function(){const r=oldSetSession.apply(this,arguments);sync();return r;};}
+})();
+</script>
+
+
+<style id="mieu-v66-stable-reader-controls">
+/* Icon-only reader controls with a steady hit area; no bounce while scrolling */
+.reader-floating-nav{gap:9px!important;padding:7px!important;transition:opacity .12s linear,visibility .12s linear!important;transform:translate(-50%,0)!important;will-change:opacity}
+.reader-floating-nav.is-hidden-down{transform:translate(-50%,0)!important}
+.reader-floating-nav button{width:43px!important;height:43px!important;min-width:43px!important;padding:0!important;display:grid!important;place-items:center!important;font-size:20px!important;line-height:1!important;border-radius:13px!important;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.reader-floating-nav .reader-float-settings{font-size:21px!important}
+.reader-bottom-nav{gap:10px!important}
+.reader-bottom-icon{width:42px!important;height:42px!important;display:grid!important;place-items:center!important;border:1px solid var(--reader-theme-border,#9b75b4)!important;border-radius:13px!important;background:var(--reader-theme-surface,#21172e)!important;color:var(--reader-theme-text,#f5eaff)!important;font-size:19px!important;touch-action:manipulation}
+.reader-bottom-icon-next{background:linear-gradient(110deg,#c34aa9,#6275f5)!important;color:#fff!important;border:0!important}
+#readerCanvasBlocks{overflow-anchor:none!important;overflow:visible!important}
+#readerCanvasWrapper{overflow-anchor:none!important}
+@media(max-width:640px){.reader-floating-nav{bottom:calc(8px + env(safe-area-inset-bottom))!important;gap:7px!important;padding:6px!important}.reader-floating-nav button{width:40px!important;height:40px!important;min-width:40px!important;font-size:19px!important}.reader-bottom-icon{width:40px!important;height:40px!important}}
+@media(prefers-reduced-motion:reduce){.reader-floating-nav{transition:none!important}}
+</style>
+
+
+<style id="mieu-v67-account-chat-audio-fix">
+/* Tài khoản trên thanh dưới: avatar luôn có vùng bấm rõ ràng */
+#mieuBottomDock #dockAccountBtn{cursor:pointer;position:relative;z-index:2}
+#mieuBottomDock #dockAccountBtn .dock-account-avatar{width:29px;height:29px;display:block;object-fit:cover;border-radius:50%;border:1.5px solid #e8c8ff;box-shadow:0 0 0 2px #9d6bc455}
+#mieuBottomDock #dockAccountBtn .dock-user-icon{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;font-size:23px}
+#mieuBottomDock #dockAccountBtn .dock-label{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+#mieuChatBackdrop{cursor:pointer}
+#messengerPanel{pointer-events:auto;overscroll-behavior:contain}
+#messengerPanel #chatMessages{min-height:0;overscroll-behavior:contain}
+#messengerPanel input{min-height:42px;font-size:16px!important}
+#messengerPanel button{touch-action:manipulation}
+@media(max-width:520px){
+ #mieuBottomDock #dockAccountBtn .dock-account-avatar,
+ #mieuBottomDock #dockAccountBtn .dock-user-icon{width:27px;height:27px}
+}
+</style>
+<script id="mieu-v67-account-chat-audio-fix">
+(function(){
+ 'use strict';
+ const byId=id=>document.getElementById(id);
+ const getUser=()=>{try{return (typeof state!=='undefined'&&state.currentUser)||null}catch(e){return null}};
+
+ // Tài khoản: khách chưa đăng nhập mở lựa chọn Đăng nhập/Đăng ký;
+ // đã đăng nhập mở trang cá nhân và hiển thị ảnh đại diện.
+ function syncDockAccount(){
+   const btn=byId('dockAccountBtn'), label=byId('dockAccountLabel');
+   if(!btn)return;
+   const user=getUser();
+   const customer=user?.role==='customer' ? ((typeof state!=='undefined'&&state.customers?.[user.id])||{}) : {};
+   const avatar=String(customer.avatar||customer.photoURL||'').trim();
+   btn.innerHTML = user
+     ? (avatar
+       ? '<img class="dock-account-avatar" src="'+avatar.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" alt="Ảnh đại diện"><span class="dock-label" id="dockAccountLabel">Cá nhân</span>'
+       : '<span class="dock-user-icon" aria-hidden="true">♙</span><span class="dock-label" id="dockAccountLabel">Cá nhân</span>')
+     : '<span class="dock-user-icon" aria-hidden="true">♙</span><span class="dock-label" id="dockAccountLabel">Tài khoản</span>';
+   if(label && !user)label.textContent='Tài khoản';
+   btn.setAttribute('aria-label',user?'Mở trang cá nhân':'Đăng nhập hoặc đăng ký');
+   btn.title=user?'Trang cá nhân':'Đăng nhập hoặc đăng ký';
+ }
+ window.mieuSyncDockAccount=syncDockAccount;
+ window.mieuDockAccountClick=function(){
+   const user=getUser();
+   if(user){ if(window.app&&typeof app.navigate==='function') app.navigate('profile'); }
+   else if(window.app&&typeof app.openAuthModal==='function'){
+     app.openAuthModal();
+     if(typeof app.showAuthScreen==='function')app.showAuthScreen('choice');
+   }else{
+     const modal=byId('authModal');
+     if(modal){modal.classList.remove('hidden');modal.classList.add('flex');}
+   }
+ };
+ const accountBtn=byId('dockAccountBtn');
+ if(accountBtn){
+   accountBtn.onclick=function(e){e.preventDefault();e.stopPropagation();window.mieuDockAccountClick();};
+ }
+ // Cập nhật avatar sau khi đăng nhập/đổi hồ sơ/đồng bộ Firebase.
+ const wrapSession=()=>{
+   if(!window.app||window.__mieuV67SessionWrapped)return;
+   window.__mieuV67SessionWrapped=true;
+   const original=app.setSession;
+   if(typeof original==='function')app.setSession=function(){
+     const result=original.apply(this,arguments);
+     setTimeout(syncDockAccount,0);
+     return result;
+   };
+   const originalUI=app.updateHeaderAndRoleUI;
+   if(typeof originalUI==='function')app.updateHeaderAndRoleUI=function(){
+     const result=originalUI.apply(this,arguments);
+     setTimeout(syncDockAccount,0);
+     return result;
+   };
+ };
+ wrapSession();
+ document.addEventListener('DOMContentLoaded',()=>{wrapSession();syncDockAccount();});
+ window.addEventListener('load',syncDockAccount);
+ setTimeout(syncDockAccount,0);
+
+ // Chat: dùng trạng thái mở/đóng tường minh, không toggle ngược khi chạm backdrop.
+ window.mieuCloseMessenger=function(){
+   const panel=byId('messengerPanel'), backdrop=byId('mieuChatBackdrop');
+   if(panel){panel.classList.add('hidden');panel.setAttribute('aria-hidden','true');panel.style.setProperty('display','none','important');}
+   if(backdrop){backdrop.classList.remove('is-open');backdrop.setAttribute('aria-hidden','true');}
+   document.body.classList.remove('mieu-chat-open');
+ };
+ window.mieuOpenMessenger=function(){
+   const panel=byId('messengerPanel'), backdrop=byId('mieuChatBackdrop');
+   if(!panel)return;
+   panel.classList.remove('hidden');panel.setAttribute('aria-hidden','false');
+   panel.style.setProperty('display','flex','important');
+   if(backdrop){backdrop.classList.add('is-open');backdrop.setAttribute('aria-hidden','false');}
+   document.body.classList.add('mieu-chat-open');
+   try{if(window.app&&typeof app.populateChatNames==='function')app.populateChatNames();}catch(e){}
+   if(!getUser()){
+     const title=byId('chatConversationTitle');
+     if(title)title.textContent='Đăng nhập để bắt đầu trò chuyện cùng Miêu Các';
+   }
+   setTimeout(()=>byId('chatMessageInput')?.focus({preventScroll:true}),100);
+ };
+ if(window.app){
+   app.toggleMessenger=function(){
+     const panel=byId('messengerPanel');
+     const isOpen=!!panel&&!panel.classList.contains('hidden')&&panel.getAttribute('aria-hidden')==='false';
+     if(isOpen)window.mieuCloseMessenger();else window.mieuOpenMessenger();
+   };
+ }
+ const backdrop=byId('mieuChatBackdrop');
+ if(backdrop){
+   backdrop.onclick=function(e){if(e.target===backdrop)window.mieuCloseMessenger();};
+ }
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&byId('messengerPanel')?.getAttribute('aria-hidden')==='false')window.mieuCloseMessenger();});
+
+ // Nhạc web: thử autoplay, nhưng trình duyệt di động chỉ cho phát tiếng sau tương tác.
+ const site=byId('mieuSiteMusic'), siteLabel=byId('dockMusicLabel');
+ let siteWanted=true, siteGestureReady=false;
+ function syncMusicLabel(){if(siteLabel)siteLabel.textContent=site&&!site.paused?'Tắt nhạc':'Bật nhạc';}
+ async function playSite(){
+   if(!site||!siteWanted)return false;
+   try{site.muted=false;site.volume=.24;await site.play();syncMusicLabel();return true;}
+   catch(e){syncMusicLabel();return false;}
+ }
+ window.mieuToggleSiteMusic=function(){
+   if(!site)return;
+   if(!site.paused){siteWanted=false;site.pause();syncMusicLabel();}
+   else{siteWanted=true;playSite();}
+ };
+ if(site){
+   site.loop=true;site.playsInline=true;site.preload='auto';site.volume=.24;
+   // Lần tải trang thử phát có tiếng; nếu bị chặn, bật ngay sau chạm đầu tiên.
+   playSite();
+   const firstGesture=()=>{
+     siteGestureReady=true;
+     if(siteWanted&&!document.querySelector('#view-guide:not(.hidden)'))playSite();
+     const guide=byId('mieuGuideMusic');
+     if(guide&&document.querySelector('#view-guide:not(.hidden)'))playGuide();
+   };
+   ['pointerdown','touchend','keydown'].forEach(type=>document.addEventListener(type,firstGesture,{once:true,capture:true,passive:type!=='keydown'}));
+   site.addEventListener('play',syncMusicLabel);site.addEventListener('pause',syncMusicLabel);
+ }
+
+ // Cổng Thiên Khải: lỗi cũ đặt volume=0 khi tự phát nên nhạc có chạy nhưng hoàn toàn im lặng.
+ const guide=byId('mieuGuideMusic'), guideBtn=byId('mieuGuideMusicToggle');
+ async function playGuide(){
+   if(!guide)return false;
+   try{guide.muted=false;guide.volume=.38;await guide.play();if(guideBtn)guideBtn.textContent='♫ Tắt nhạc cổng';return true;}
+   catch(e){if(guideBtn)guideBtn.textContent='♫ Chạm để phát nhạc cổng';return false;}
+ }
+ window.mieuPlayGuideMusic=playGuide;
+ if(guide){guide.loop=true;guide.playsInline=true;guide.preload='auto';}
+ if(window.app){
+   app.toggleGuideMusic=function(){
+     if(!guide)return;
+     if(!guide.paused){guide.pause();if(guideBtn)guideBtn.textContent='♫ Phát nhạc cổng';}
+     else playGuide();
+   };
+   // Bao lại điều hướng: phát nhạc cổng khi vào, dừng khi rời cổng.
+   const oldNavigate=app.navigate;
+   if(typeof oldNavigate==='function'&&!app.__mieuV67NavigateWrapped){
+     app.__mieuV67NavigateWrapped=true;
+     app.navigate=function(viewName,options){
+       const result=oldNavigate.call(this,viewName,options);
+       if(viewName==='guide'){
+         if(site&&!site.paused)site.pause();
+         // Gọi play ngay trong thao tác điều hướng; nếu bị chặn, thao tác chạm kế tiếp sẽ thử lại.
+         playGuide();
+       }else if(guide){
+         guide.pause();try{guide.currentTime=0;}catch(e){}
+         if(guideBtn)guideBtn.textContent='♫ Phát nhạc cổng';
+         if(siteWanted)playSite();
+       }
+       return result;
+     };
+   }
+ }
+ // Đồng bộ nhãn khi dock được bấm và khi trình duyệt tạm dừng media.
+ document.addEventListener('play',e=>{if(e.target===site)syncMusicLabel();},true);
+ document.addEventListener('pause',e=>{if(e.target===site)syncMusicLabel();},true);
+ syncMusicLabel();
+})();
+</script>
+
+
+<!-- V69: tách chat modal khỏi stacking context để lớp phủ không che chính khung chat -->
+<style id="mieu-v69-chat-layer-fix">
+  #mieuChatBackdrop{
+    position:fixed!important;inset:0!important;z-index:2147483000!important;
+    display:none!important;visibility:hidden!important;opacity:0!important;
+    background:rgba(5,3,12,.58)!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+    pointer-events:none!important;
+  }
+  body.mieu-chat-open #mieuChatBackdrop{
+    display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+  }
+  #messengerPanel{
+    position:fixed!important;left:50%!important;top:48%!important;right:auto!important;bottom:auto!important;
+    transform:translate3d(-50%,-50%,0)!important;
+    z-index:2147483001!important;
+    width:min(92vw,430px)!important;height:min(70dvh,610px)!important;
+    max-height:calc(100dvh - 36px)!important;min-height:340px!important;
+    margin:0!important;display:none!important;visibility:hidden!important;opacity:0!important;
+    flex-direction:column!important;overflow:hidden!important;pointer-events:none!important;
+    isolation:isolate!important;box-sizing:border-box!important;
+    background:linear-gradient(155deg,#291d39 0%,#100d1b 72%,#21162e)!important;
+    color:#f5eaff!important;border:1px solid rgba(221,188,247,.82)!important;
+    border-radius:23px!important;box-shadow:0 22px 70px rgba(0,0,0,.72),0 0 0 1px #d8b2ef22!important;
+  }
+  body.mieu-chat-open #messengerPanel,
+  #messengerPanel.mieu-chat-visible{
+    display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+  }
+  #messengerPanel>div:first-child{flex:0 0 auto!important;min-height:54px!important;background:linear-gradient(110deg,#694080,#a15d9e)!important}
+  #messengerPanel>div:nth-child(2){flex:0 0 auto!important;background:#ffffff08!important}
+  #messengerPanel #chatMessages{flex:1 1 0!important;min-height:0!important;overflow-y:auto!important;background:#08061188!important;-webkit-overflow-scrolling:touch!important}
+  #messengerPanel>div:last-child{flex:0 0 auto!important;padding-bottom:max(9px,env(safe-area-inset-bottom))!important;background:#171020!important}
+  #messengerPanel input,#messengerPanel textarea{font-size:16px!important;color:#fff!important}
+  #messengerPanel button{touch-action:manipulation!important}
+  [data-theme="light"] #messengerPanel{background:linear-gradient(155deg,#fffaff,#f2eafa)!important;color:#563c63!important}
+  [data-theme="light"] #messengerPanel #chatMessages{background:#fff9fd!important}
+  @media(max-width:520px){
+    #messengerPanel{width:calc(100vw - 24px)!important;height:min(70dvh,590px)!important;min-height:320px!important;top:47%!important}
+  }
+  @media(max-height:560px){#messengerPanel{height:calc(100dvh - 24px)!important;min-height:0!important;top:50%!important}}
+</style>
+<script id="mieu-v69-chat-layer-fix-js">
+(()=>{
+ 'use strict';
+ const panel=document.getElementById('messengerPanel');
+ const backdrop=document.getElementById('mieuChatBackdrop');
+ if(!panel||!backdrop)return;
+ // Reparent both fixed layers to BODY so no transformed/filtered ancestor can trap their z-index.
+ if(panel.parentElement!==document.body)document.body.appendChild(panel);
+ if(backdrop.parentElement!==document.body)document.body.appendChild(backdrop);
+ window.mieuCloseMessenger=function(){
+   document.body.classList.remove('mieu-chat-open');
+   panel.classList.remove('mieu-chat-visible');panel.classList.add('hidden');
+   panel.setAttribute('aria-hidden','true');panel.style.removeProperty('display');
+   backdrop.classList.remove('is-open');backdrop.setAttribute('aria-hidden','true');
+ };
+ window.mieuOpenMessenger=function(){
+   panel.classList.remove('hidden');panel.classList.add('mieu-chat-visible');
+   panel.setAttribute('aria-hidden','false');panel.style.removeProperty('display');
+   backdrop.classList.add('is-open');backdrop.setAttribute('aria-hidden','false');
+   document.body.classList.add('mieu-chat-open');
+   try{window.app?.populateChatNames?.()}catch(e){}
+   setTimeout(()=>document.getElementById('chatMessageInput')?.focus({preventScroll:true}),140);
+ };
+ if(window.app)window.app.toggleMessenger=function(){
+   if(document.body.classList.contains('mieu-chat-open'))window.mieuCloseMessenger();
+   else window.mieuOpenMessenger();
+ };
+ backdrop.addEventListener('click',e=>{if(e.target===backdrop)window.mieuCloseMessenger()});
+ panel.querySelectorAll('button[onclick*="toggleMessenger"]').forEach(btn=>{
+   btn.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();window.mieuCloseMessenger()},true);
+ });
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('mieu-chat-open'))window.mieuCloseMessenger()});
+ // Keep initial state closed and avoid stale inline styles from previous versions.
+ window.mieuCloseMessenger();
+})();
+</script>
+
+
+<script>
+/* V70: audio handoff without leaving the guide soundtrack at volume zero. */
+(function(){
+  const site=document.getElementById('mieuSiteMusic');
+  const guide=document.getElementById('mieuGuideMusic');
+  const guideBtn=document.getElementById('mieuGuideMusicToggle');
+  if(!site||!guide)return;
+  let siteWanted=true, guideWanted=true;
+  const inGuide=()=>{const v=document.getElementById('view-guide');return !!v&&!v.classList.contains('hidden')&&getComputedStyle(v).display!=='none'};
+  const sync=()=>{if(guideBtn)guideBtn.textContent=guide.paused?'♫ Phát nhạc cổng':'♫ Tắt nhạc cổng';};
+  async function startGuide(){
+    guideWanted=true;
+    site.pause();
+    guide.muted=false; guide.volume=.38; guide.loop=true; guide.playsInline=true;
+    if(guide.paused){try{await guide.play()}catch(e){if(guideBtn)guideBtn.textContent='♫ Chạm để phát nhạc cổng';}}
+    sync();
+  }
+  async function startSite(){
+    guide.pause();
+    if(!siteWanted)return;
+    site.muted=false;site.volume=.24;site.loop=true;site.playsInline=true;
+    if(site.paused){try{await site.play()}catch(e){}}
+  }
+  if(window.app&&typeof app.navigate==='function'&&!app.__mieuV70Music){
+    app.__mieuV70Music=true;
+    const previous=app.navigate;
+    app.navigate=function(name,...args){
+      const result=previous.call(this,name,...args);
+      if(name==='guide'){
+        // The old navigation routine may have started this video at volume 0.
+        // Explicitly restore audible volume even if it is already playing.
+        guideWanted=true;site.pause();guide.muted=false;guide.volume=.38;
+        if(guide.paused)startGuide();else sync();
+      }else{
+        guide.pause();sync();
+        if(siteWanted)startSite();
+      }
+      return result;
+    };
+  }
+  app && (app.toggleGuideMusic=function(){
+    if(!guide.paused){guideWanted=false;guide.pause();sync();}
+    else{guideWanted=true;guide.muted=false;guide.volume=.38;const p=guide.play();if(p&&p.catch)p.catch(()=>{if(guideBtn)guideBtn.textContent='♫ Chạm để phát nhạc cổng';});sync();}
+  });
+  guide.addEventListener('play',sync);guide.addEventListener('pause',sync);
+  guide.addEventListener('canplay',()=>{if(guideWanted&&inGuide()){guide.muted=false;guide.volume=.38;if(guide.paused)guide.play().catch(()=>{});}});
+  // When the user enters via a direct link or reload, keep the handoff consistent.
+  if(inGuide()){site.pause();guide.muted=false;guide.volume=.38;if(guideWanted&&guide.paused)guide.play().catch(()=>{});}
+  sync();
+})();
+</script>
+
+
+<style id="mieu-v71-smooth-gates-reader">
+/* V71: cổng trung tâm thấp rõ hơn, cân đối trên mobile */
+.mieu-gates-wrap{padding-bottom:clamp(42px,7vw,66px)!important}
+.mieu-gate-center{margin-top:64px!important}
+@media(max-width:640px){
+  .mieu-gates-grid{align-items:start!important}
+  .mieu-gate-center{margin-top:48px!important;min-height:204px}
+  .mieu-gates-wrap{padding-bottom:52px!important}
+}
+/* Thao tác chạm gọn, tránh hiệu ứng nặng gây khựng */
+.mieu-gate,.reader-bottom-icon,#readerFloatPrev,#readerFloatNext{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.reader-bottom-icon:active,.reader-float-next:active,.mieu-gate:active{filter:brightness(1.14)}
+#readerCanvasWrapper{overscroll-behavior:contain}
+#readerCanvasBlocks{overflow-anchor:none}
+@media(max-width:700px){
+  #readerCanvasBlocks canvas{content-visibility:auto;contain:paint;}
+  #readerCanvasBlocks img{height:auto;max-width:100%;}
+}
+</style>
+<script id="mieu-v71-reader-prefetch">
+(()=>{
+ 'use strict';
+ if(window.__mieuV71Ready)return;window.__mieuV71Ready=true;
+ const scheduleIdle=fn=>('requestIdleCallback'in window)?requestIdleCallback(fn,{timeout:1100}):setTimeout(fn,350);
+ const safeToPrefetch=meta=>!!meta&&!meta.content&&!meta.text&&!meta.password&&!meta.vip&&!meta.isVip;
+ let prefetchToken=0;
+ // Nạp trước chương liền kề miễn phí sau khi chương hiện tại đã mở thành công.
+ // Không tải trước chương VIP/chương có mật khẩu để không bỏ qua kiểm tra quyền đọc.
+ function prefetchNeighbors(storyId,chapterId){
+   const token=++prefetchToken;
+   scheduleIdle(()=>{
+     if(token!==prefetchToken||state.currentStoryId!==storyId||String(state.currentChapterId)!==String(chapterId))return;
+     const story=state.stories?.[storyId];if(!story)return;
+     const ids=Object.keys(story.chapters||{}).sort((a,b)=>Number(a)-Number(b));
+     const at=ids.indexOf(String(chapterId));if(at<0)return;
+     const targets=[ids[at+1],ids[at-1]].filter(Boolean);
+     // Chỉ lấy trước một chương kế tiếp và một chương trước, không tải cả bộ truyện.
+     targets.forEach((id,i)=>{
+       const meta=story.chapters[id];
+       if(!safeToPrefetch(meta))return;
+       setTimeout(()=>{
+         if(token!==prefetchToken||state.currentStoryId!==storyId)return;
+         loadMieuChapterContent(storyId,id).catch(()=>{});
+       },i*180);
+     });
+   });
+ }
+ // Giữ nguyên luồng kiểm tra quyền, lưu lịch sử, đếm lượt xem và render của bản gốc.
+ const originalOpen=window.app?.openChapterReader;
+ if(typeof originalOpen==='function'&&!app.__mieuV71OpenWrapped){
+   app.__mieuV71OpenWrapped=true;
+   app.openChapterReader=async function(storyId,chapterId,options){
+     const result=await originalOpen.call(this,storyId,chapterId,options);
+     if(state.stories?.[storyId]?.chapters?.[chapterId]?.content||state.stories?.[storyId]?.chapters?.[chapterId]?.text)
+       prefetchNeighbors(storyId,String(chapterId));
+     return result;
+   };
+ }
+ // Chặn nhấn liên tục gây nhiều lần chuyển chương cạnh tranh nhau.
+ const originalNavigate=window.app?.navigateChapter;
+ if(typeof originalNavigate==='function'&&!app.__mieuV71NavWrapped){
+   app.__mieuV71NavWrapped=true;
+   let navLock=false;
+   app.navigateChapter=function(delta){
+     if(navLock)return;
+     navLock=true;
+     try{return originalNavigate.call(this,delta)}
+     finally{setTimeout(()=>{navLock=false},220)}
+   };
+ }
+ // Đảm bảo vùng đọc ưu tiên phản hồi cuộn/chạm trong khi canvas đang vẽ theo từng frame.
+ const canvas=document.getElementById('readerCanvasBlocks');
+ if(canvas){canvas.style.overflowAnchor='none';}
+})();
+</script>
+
+
+
+<!-- V72: Cổng Thiên Khải hạ sâu + hiệu ứng chiều sâu 3D -->
+<style id="mieu-v72-deep-3d-center-gate">
+  .mieu-gates-wrap{
+    perspective:1200px!important;
+    perspective-origin:50% 42%!important;
+    padding-bottom:clamp(48px,8vw,82px)!important;
+  }
+  .mieu-gates-grid{
+    align-items:start!important;
+    transform-style:preserve-3d!important;
+    overflow:visible!important;
+  }
+  .mieu-gate{
+    transform:perspective(950px) rotateX(5deg) translateZ(0)!important;
+    transform-origin:50% 100%!important;
+    box-shadow:
+      0 3px 0 rgba(232,205,255,.28),
+      0 8px 0 rgba(70,42,91,.8),
+      0 18px 28px rgba(0,0,0,.62),
+      0 30px 52px rgba(0,0,0,.42),
+      inset 0 2px 3px rgba(255,255,255,.2),
+      inset 0 -12px 24px rgba(0,0,0,.48)!important;
+    backface-visibility:hidden;
+  }
+  .mieu-gate-left,.mieu-gate-right{
+    transform:perspective(950px) rotateX(5deg) translateZ(-10px)!important;
+    filter:drop-shadow(0 14px 13px rgba(0,0,0,.38));
+  }
+  .mieu-gate-center{
+    /* Hạ cổng giữa sâu hơn nhiều so với hai cổng bên */
+    margin-top:clamp(104px,15vw,156px)!important;
+    min-height:clamp(270px,34vw,310px)!important;
+    transform:perspective(900px) rotateX(11deg) translateZ(24px) scale(1.035)!important;
+    transform-origin:50% 100%!important;
+    border-width:2px!important;
+    box-shadow:
+      0 2px 0 #fff0c788,
+      0 7px 0 #78552f,
+      0 14px 0 #35233b,
+      0 25px 32px rgba(0,0,0,.72),
+      0 42px 66px rgba(0,0,0,.52),
+      0 0 28px rgba(255,218,151,.28),
+      inset 0 2px 4px rgba(255,247,220,.35),
+      inset 0 -16px 28px rgba(0,0,0,.52)!important;
+    filter:drop-shadow(0 18px 16px rgba(0,0,0,.48));
+    z-index:2;
+  }
+  .mieu-gate-center:before{
+    border-width:2px!important;
+    box-shadow:inset 0 0 0 4px #fff1c70c,0 0 14px #ffe6a833!important;
+  }
+  .mieu-gate-center .mieu-gate-symbol{
+    box-shadow:inset 0 0 30px #ffe6a855,0 0 22px #ffe6a866,0 8px 16px #0008!important;
+  }
+  @media(max-width:640px){
+    .mieu-gates-wrap{padding-bottom:58px!important}
+    .mieu-gates-grid{gap:7px!important}
+    .mieu-gate-left,.mieu-gate-right{transform:perspective(800px) rotateX(5deg) translateZ(-8px)!important}
+    .mieu-gate-center{
+      margin-top:clamp(112px,25vw,142px)!important;
+      min-height:clamp(236px,64vw,270px)!important;
+      transform:perspective(800px) rotateX(10deg) translateZ(18px) scale(1.025)!important;
+    }
+  }
+  @media(prefers-reduced-motion:reduce){.mieu-gate{transform:none!important;filter:none!important}}
+</style>
+
+<style id="mieu-v73-account-settings">
+#mieuBottomDock #dockSettingsBtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+#mieuBottomDock #dockSettingsBtn .dock-icon{font-size:22px}
+#mieuAccountSettings{position:fixed;inset:0;z-index:2147483200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(5,3,12,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#mieuAccountSettings.is-open{display:flex}
+#mieuAccountSettings .mieu-settings-card{width:min(430px,100%);max-height:min(78dvh,650px);overflow:auto;border:1px solid #a87acb88;border-radius:24px;background:linear-gradient(155deg,#281934,#130f20 75%);color:#f6eaff;box-shadow:0 24px 80px #000b,0 0 35px #a65bd333;padding:20px}
+#mieuAccountSettings .mieu-setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #ffffff18}
+#mieuAccountSettings .mieu-setting-controls{display:flex;align-items:center;gap:9px}
+#mieuAccountSettings button.mieu-step{width:38px;height:38px;border:1px solid #bd8bdc66;border-radius:12px;background:#ffffff0d;font-size:20px}
+#mieuAccountSettings .mieu-setting-value{min-width:54px;text-align:center;font-weight:700;color:#f3bce8}
+#mieuAccountSettings .mieu-logout{background:linear-gradient(100deg,#d64d9d,#745ce8);color:white;border-radius:13px;padding:11px 17px;font-weight:700}
+#mieuProfileLogout{margin-top:18px;padding:15px;border:1px solid #d77aa955;border-radius:17px;background:linear-gradient(120deg,#d44b9818,#7859c51a)}
+#mieuProfileLogout button{border:1px solid #f28ab477;border-radius:11px;padding:10px 15px;color:#ffd9eb;font-weight:700}
+@media(max-width:520px){#mieuBottomDock #dockSettingsBtn .dock-label{font-size:9px}}
+</style>
+<script id="mieu-v73-account-settings">
+(function(){
+ 'use strict';
+ const $=id=>document.getElementById(id);
+ const user=()=>{try{return state.currentUser||null}catch(_){return null}};
+ const safe=(v)=>Math.max(0.8,Math.min(1.3,Math.round(Number(v)*100)/100));
+ const safeText=(v)=>Math.max(0.85,Math.min(1.4,Math.round(Number(v)*100)/100));
+ function applyScale(){
+   let z=1,t=1;
+   try{z=safe(localStorage.getItem('mieu_web_zoom')||1);t=safeText(localStorage.getItem('mieu_text_zoom')||1)}catch(_){}
+   document.documentElement.style.zoom=String(z);
+   document.documentElement.style.fontSize=(t*100)+'%';
+   const zv=$('mieuWebZoomValue'),tv=$('mieuTextZoomValue');
+   if(zv)zv.textContent=Math.round(z*100)+'%';
+   if(tv)tv.textContent=Math.round(t*100)+'%';
+ }
+ function readScale(key,def){try{return Number(localStorage.getItem(key))||def}catch(_){return def}}
+ function changeScale(key,delta,fn){
+   const val=fn(readScale(key,1)+delta);
+   try{localStorage.setItem(key,String(val))}catch(_){}
+   applyScale();
+ }
+ function addSettings(){
+   if(!$('mieuAccountSettings')){
+     const wrap=document.createElement('div');wrap.id='mieuAccountSettings';wrap.setAttribute('aria-hidden','true');
+     wrap.innerHTML=`<section class="mieu-settings-card" role="dialog" aria-modal="true" aria-label="Cài đặt web">
+       <div class="flex items-center justify-between gap-3 mb-3"><div><div class="text-[10px] tracking-[.25em] text-fuchsia-200">MIÊU CÁC · SETTINGS</div><h2 class="text-xl font-bold mt-1">⚙️ Cài đặt web</h2></div><button type="button" onclick="window.mieuCloseWebSettings()" class="w-9 h-9 rounded-full border border-white/20">×</button></div>
+       <p class="text-xs opacity-65 mb-3">Điều chỉnh hiển thị riêng trên thiết bị này.</p>
+       <div class="mieu-setting-row"><div><b class="text-sm">🔎 Phóng to web</b><p class="text-[11px] opacity-60 mt-1">Thu/phóng toàn bộ giao diện</p></div><div class="mieu-setting-controls"><button class="mieu-step" onclick="window.mieuChangeWebZoom(-0.05)">−</button><span class="mieu-setting-value" id="mieuWebZoomValue">100%</span><button class="mieu-step" onclick="window.mieuChangeWebZoom(0.05)">+</button></div></div>
+       <div class="mieu-setting-row"><div><b class="text-sm">🔤 Phóng to chữ web</b><p class="text-[11px] opacity-60 mt-1">Tăng/giảm cỡ chữ</p></div><div class="mieu-setting-controls"><button class="mieu-step" onclick="window.mieuChangeTextZoom(-0.05)">−</button><span class="mieu-setting-value" id="mieuTextZoomValue">100%</span><button class="mieu-step" onclick="window.mieuChangeTextZoom(0.05)">+</button></div></div>
+       <div class="flex gap-2 mt-4"><button class="flex-1 rounded-xl border border-white/20 py-2 text-xs" onclick="window.mieuResetWebZoom()">↺ Đặt lại</button><button class="flex-1 rounded-xl py-2 text-xs font-bold bg-fuchsia-500/20 border border-fuchsia-300/30" onclick="window.mieuCloseWebSettings()">Xong</button></div>
+     </section>`;
+     wrap.addEventListener('click',e=>{if(e.target===wrap)window.mieuCloseWebSettings()});
+     document.body.appendChild(wrap);
+   }
+   applyScale();
+ }
+ window.mieuOpenWebSettings=()=>{addSettings();$('mieuAccountSettings').classList.add('is-open');$('mieuAccountSettings').setAttribute('aria-hidden','false')};
+ window.mieuCloseWebSettings=()=>{$('mieuAccountSettings')?.classList.remove('is-open');$('mieuAccountSettings')?.setAttribute('aria-hidden','true')};
+ window.mieuChangeWebZoom=d=>changeScale('mieu_web_zoom',d,safe);
+ window.mieuChangeTextZoom=d=>changeScale('mieu_text_zoom',d,safeText);
+ window.mieuResetWebZoom=()=>{try{localStorage.setItem('mieu_web_zoom','1');localStorage.setItem('mieu_text_zoom','1')}catch(_){}applyScale()};
+ function syncAccount(){
+   const btn=$('dockAccountBtn');if(!btn)return;
+   const u=user(),c=u?.role==='customer'?(state.customers?.[u.id]||{}):{};
+   const ava=u?.role==='admin'?'':String(c.profileAvatar||c.avatar||c.photoURL||'').trim();
+   btn.innerHTML=u?(ava?`<img class="dock-account-avatar" src="${ava.replace(/&/g,'&amp;').replace(/"/g,'&quot;')}" alt="Ảnh đại diện"><span class="dock-label">Cá nhân</span>`:`<span class="dock-user-icon">${u.role==='admin'?'♛':'♙'}</span><span class="dock-label">${u.role==='admin'?'Quản trị':'Cá nhân'}</span>`):'<span class="dock-user-icon">♙</span><span class="dock-label">Tài khoản</span>';
+   btn.setAttribute('aria-label',u?'Mở trang cá nhân':'Đăng nhập hoặc đăng ký');
+   btn.title=u?'Mở trang cá nhân':'Đăng nhập hoặc đăng ký';
+ }
+ window.mieuSyncDockAccount=syncAccount;
+ window.mieuDockAccountClick=function(){
+   const u=user();
+   if(u){if(u.role==='admin')app.navigate('admin');else app.navigate('profile');}
+   else app.openAuthModal();
+ };
+ function install(){
+   const btn=$('dockAccountBtn');
+   if(btn)btn.onclick=e=>{e.preventDefault();e.stopPropagation();window.mieuDockAccountClick()};
+   const dock=$('mieuBottomDock');
+   if(dock&&!$('dockSettingsBtn')){
+     const b=document.createElement('button');b.type='button';b.id='dockSettingsBtn';b.title='Cài đặt web';b.setAttribute('aria-label','Cài đặt web');
+     b.innerHTML='<span class="dock-icon" aria-hidden="true">⚙</span><span class="dock-label">Cài đặt</span>';
+     b.addEventListener('click',window.mieuOpenWebSettings);dock.appendChild(b);
+   }
+   // Bổ sung nút đăng xuất ngay trong trang cá nhân.
+   const profile=$('profileLoggedContent');
+   if(profile&&!$('mieuProfileLogout')){
+     const box=document.createElement('div');box.id='mieuProfileLogout';
+     box.innerHTML='<div class="flex flex-wrap items-center justify-between gap-3"><div><b class="text-sm">Tài khoản Miêu Các</b><p class="text-[11px] opacity-65 mt-1">Quản lý phiên đăng nhập trên thiết bị này</p></div><button type="button" onclick="app.logout()">↪ Đăng xuất</button></div>';
+     profile.appendChild(box);
+   }
+   applyScale();syncAccount();
+ }
+ // Đảm bảo modal đăng nhập biến mất sau khi setSession xác nhận thành công.
+ function wrapApp(){
+   if(!window.app||window.__mieuV73Wrapped)return;
+   window.__mieuV73Wrapped=true;
+   if(typeof app.setSession==='function'){
+     const old=app.setSession;
+     app.setSession=function(){
+       const result=old.apply(this,arguments);
+       setTimeout(()=>{
+         if(user()){
+           const m=$('authModal');if(m){m.classList.add('hidden');m.classList.remove('flex');}
+         }
+         syncAccount();install();
+       },0);
+       return result;
+     };
+   }
+   if(typeof app.logout==='function'){
+     const oldLogout=app.logout;
+     app.logout=function(){const r=oldLogout.apply(this,arguments);setTimeout(syncAccount,0);return r};
+   }
+   if(typeof app.renderProfileView==='function'){
+     const oldRender=app.renderProfileView;
+     app.renderProfileView=function(){const r=oldRender.apply(this,arguments);setTimeout(install,0);return r};
+   }
+   if(typeof app.updateHeaderAndRoleUI==='function'){
+     const oldUI=app.updateHeaderAndRoleUI;
+     app.updateHeaderAndRoleUI=function(){const r=oldUI.apply(this,arguments);setTimeout(syncAccount,0);return r};
+   }
+ }
+ wrapApp();
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{wrapApp();install()},{once:true});else install();
+ window.addEventListener('load',()=>{wrapApp();install()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')window.mieuCloseWebSettings()});
+})();
+</script>
+
+<style id="mieu-v73-five-tab-dock">
+#mieuBottomDock{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:6px!important}
+#mieuBottomDock button{padding-left:1px!important;padding-right:1px!important}
+@media(max-width:380px){#mieuBottomDock .dock-label{font-size:8px!important}}
+</style>
+
+<style id="mieu-v74-account-zoom-fix">
+#mieuBottomDock #dockAccountBtn .dock-account-avatar{width:31px;height:31px;object-fit:cover;border-radius:50%;display:block;border:2px solid #e8c8ff;box-shadow:0 0 0 2px #9d6bc455,0 0 12px #d88cff55}
+#mieuBottomDock #dockAccountBtn .dock-user-icon{width:31px;height:31px;display:grid;place-items:center;font-size:25px}
+#mieuProfileLogout{display:block!important}
+#mieuProfileLogout button{cursor:pointer}
+</style>
+<script id="mieu-v74-account-zoom-fix">
+(function(){
+ 'use strict';
+ const byId=id=>document.getElementById(id);
+ const SESSION_KEY='mieuCac_session_v1';
+ function getSession(){
+   try{
+     if(typeof state!=='undefined'&&state.currentUser&&state.currentUser.id&&state.currentUser.role)return state.currentUser;
+     const saved=JSON.parse(localStorage.getItem(SESSION_KEY)||'null');
+     if(saved&&saved.id&&saved.role){
+       if(typeof state!=='undefined')state.currentUser=saved;
+       return saved;
+     }
+   }catch(e){}
+   return null;
+ }
+ function readNumber(key,fallback){try{const n=Number(localStorage.getItem(key));return Number.isFinite(n)&&n>0?n:fallback}catch(e){return fallback}}
+ function clamp(n,min,max){return Math.max(min,Math.min(max,Math.round(n*100)/100))}
+ function applyZoom(){
+   const zoom=clamp(readNumber('mieu_web_zoom',1),.8,3);
+   const text=clamp(readNumber('mieu_text_zoom',1),.85,1.8);
+   document.documentElement.style.zoom=String(zoom);
+   document.documentElement.style.fontSize=(text*100)+'%';
+   const a=byId('mieuWebZoomValue'),b=byId('mieuTextZoomValue');
+   if(a)a.textContent=Math.round(zoom*100)+'%';
+   if(b)b.textContent=Math.round(text*100)+'%';
+ }
+ window.mieuChangeWebZoom=function(delta){
+   const n=clamp(readNumber('mieu_web_zoom',1)+Number(delta||0),.8,3);
+   try{localStorage.setItem('mieu_web_zoom',String(n))}catch(e){}
+   applyZoom();
+ };
+ window.mieuChangeTextZoom=function(delta){
+   const n=clamp(readNumber('mieu_text_zoom',1)+Number(delta||0),.85,1.8);
+   try{localStorage.setItem('mieu_text_zoom',String(n))}catch(e){}
+   applyZoom();
+ };
+ window.mieuResetWebZoom=function(){
+   try{localStorage.setItem('mieu_web_zoom','1');localStorage.setItem('mieu_text_zoom','1')}catch(e){}
+   applyZoom();
+ };
+ function getAvatar(u){
+   try{
+     const c=state.customers?.[u.id]||{};
+     return c.profileAvatar||c.avatar||c.photoURL||c.photo||u.avatar||u.photoURL||'';
+   }catch(e){return u.avatar||u.photoURL||''}
+ }
+ function syncDock(){
+   const btn=byId('dockAccountBtn');if(!btn)return;
+   const u=getSession();
+   btn.replaceChildren();
+   if(u){
+     const avatar=getAvatar(u);
+     if(avatar){
+       const img=document.createElement('img');img.className='dock-account-avatar';img.alt='Ảnh đại diện';img.src=avatar;
+       img.onerror=()=>{img.remove();const icon=document.createElement('span');icon.className='dock-user-icon';icon.textContent=u.role==='admin'?'♛':'♙';btn.insertBefore(icon,btn.firstChild)};
+       btn.appendChild(img);
+     }else{
+       const icon=document.createElement('span');icon.className='dock-user-icon';icon.textContent=u.role==='admin'?'♛':'♙';btn.appendChild(icon);
+     }
+   }else{
+     const icon=document.createElement('span');icon.className='dock-user-icon';icon.textContent='♙';btn.appendChild(icon);
+   }
+   const label=document.createElement('span');label.className='dock-label';label.textContent=u?(u.role==='admin'?'Quản trị':'Cá nhân'):'Tài khoản';btn.appendChild(label);
+   btn.setAttribute('aria-label',u?'Mở trang cá nhân':'Đăng nhập hoặc đăng ký');
+   btn.title=u?'Mở trang cá nhân':'Đăng nhập hoặc đăng ký';
+ }
+ function closeAuth(){
+   const m=byId('authModal');if(m){m.classList.add('hidden');m.classList.remove('flex')}
+ }
+ window.mieuDockAccountClick=function(){
+   let u=getSession();
+   if(!u){
+     if(window.app&&typeof app.restoreSession==='function'){try{app.restoreSession()}catch(e){}u=getSession()}
+   }
+   if(u){
+     closeAuth();
+     if(u.role==='admin'){app.navigate('admin');return}
+     app.navigate('profile');
+     // Đảm bảo trang cá nhân phản ánh phiên vừa khôi phục, không hiện guest/modal.
+     const guest=byId('profileGuestNotice'),content=byId('profileLoggedContent');
+     if(guest)guest.classList.add('hidden');
+     if(content)content.classList.remove('hidden');
+     if(typeof app.renderProfileView==='function')app.renderProfileView();
+     setTimeout(syncDock,0);
+   }else{
+     if(window.app&&typeof app.openAuthModal==='function')app.openAuthModal();
+   }
+ };
+ function ensureLogout(){
+   const profile=byId('profileLoggedContent');if(!profile||byId('mieuProfileLogout'))return;
+   const box=document.createElement('div');box.id='mieuProfileLogout';
+   box.className='mt-5 p-4 rounded-2xl border border-pink-400/30 bg-pink-500/10';
+   box.innerHTML='<div class="flex flex-wrap items-center justify-between gap-3"><div><b class="text-sm">Tài khoản Miêu Các</b><p class="text-xs opacity-70 mt-1">Bạn có thể đăng xuất khỏi thiết bị này.</p></div><button type="button" class="px-4 py-2 rounded-xl border border-pink-300/50 text-sm font-bold" id="mieuV74LogoutBtn">↪ Đăng xuất</button></div>';
+   profile.appendChild(box);
+   byId('mieuV74LogoutBtn').addEventListener('click',()=>{closeAuth();if(window.app&&typeof app.logout==='function')app.logout();setTimeout(syncDock,0)});
+ }
+ function bind(){
+   const btn=byId('dockAccountBtn');
+   if(btn)btn.onclick=function(e){e.preventDefault();e.stopPropagation();window.mieuDockAccountClick()};
+   ensureLogout();applyZoom();syncDock();
+ }
+ // Đồng bộ lại ngay sau khi app xác nhận session, cập nhật hồ sơ hoặc đăng xuất.
+ function wrapApp(){
+   if(!window.app||window.__mieuV74Wrapped)return;
+   window.__mieuV74Wrapped=true;
+   ['setSession','updateHeaderAndRoleUI','logout'].forEach(name=>{
+     const old=app[name];if(typeof old!=='function')return;
+     app[name]=function(){
+       const result=old.apply(this,arguments);
+       setTimeout(()=>{bind();if(name==='logout')closeAuth()},30);
+       return result;
+     };
+   });
+   const oldNavigate=app.navigate;
+   if(typeof oldNavigate==='function')app.navigate=function(view,opts){
+     const result=oldNavigate.apply(this,arguments);
+     if(view==='profile'){
+       setTimeout(()=>{
+         const u=getSession(),guest=byId('profileGuestNotice'),content=byId('profileLoggedContent');
+         if(u&&u.role==='customer'){if(guest)guest.classList.add('hidden');if(content)content.classList.remove('hidden');ensureLogout();syncDock()}
+       },0);
+     }
+     return result;
+   };
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{wrapApp();bind()},{once:true});
+ else{wrapApp();bind()}
+ window.addEventListener('load',()=>{wrapApp();bind()});
+ document.addEventListener('click',e=>{if(e.target.closest('#dockAccountBtn')){setTimeout(()=>{wrapApp();syncDock()},20)}},true);
 })();
 </script>
 </body>
@@ -6495,16 +8291,13 @@ html[data-theme="light"] .reader-floating-nav .reader-float-next{background:line
  let lastY=window.scrollY||0, raf=false, hideTimer=null;
  const nav=()=>document.getElementById('readerFloatingNav');
  const readerActive=()=>{const r=document.getElementById('view-reader');return !!r&&!r.classList.contains('hidden')};
- const show=()=>{const n=nav();if(!n||!readerActive())return;n.classList.add('is-visible');n.classList.remove('is-hidden-down');clearTimeout(hideTimer);hideTimer=setTimeout(()=>{if((window.scrollY||0)>160)n.classList.add('is-hidden-down')},2600)};
+ const show=()=>{const n=nav();if(!n||!readerActive())return;n.classList.add('is-visible');n.classList.remove('is-hidden-down');clearTimeout(hideTimer)};
  window.addEventListener('scroll',()=>{
   if(raf)return;raf=true;requestAnimationFrame(()=>{
-   const y=window.scrollY||0,n=nav();
-   if(readerActive()&&n){
-    if(y<100){show()}
-    else if(y>lastY+4){n.classList.remove('is-visible');n.classList.add('is-hidden-down');clearTimeout(hideTimer)}
-    else if(y<lastY-3){show()}
-   }else if(n){n.classList.remove('is-visible');n.classList.add('is-hidden-down')}
-   lastY=y;raf=false;
+   const n=nav();
+   if(readerActive()&&n){n.classList.add('is-visible');n.classList.remove('is-hidden-down');clearTimeout(hideTimer)}
+   else if(n){n.classList.remove('is-visible');n.classList.add('is-hidden-down')}
+   lastY=window.scrollY||0;raf=false;
   });
  },{passive:true});
  const mo=new MutationObserver(()=>{if(readerActive()){show()}else{const n=nav();if(n)n.classList.remove('is-visible')}});
@@ -6625,5 +8418,374 @@ html[data-theme="light"] #featuredStoriesGrid .featured-dots button.w-8{backgrou
   }
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
+
+
+<!-- V51: Safari/iOS scroll, reader rendering and lightweight first paint -->
+<style id="mieu-v51-safari-performance">
+  :root { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  html { min-height: 100%; scroll-padding-top: 12px; }
+  body { min-height: 100%; -webkit-overflow-scrolling: touch; }
+  /* Safari can miscalculate skipped/contained regions during long-page scrolling.
+     Keep real layout for reader and story cards to prevent scroll anchoring jumps. */
+  .gothic-card, .docs-paper, #readerCanvasBlocks,
+  #allStoriesGrid > .gothic-card,
+  #readerCanvasBlocks canvas, #readerCanvasBlocks img,
+  .story-grid .gothic-card, .featured-item,
+  .story-related-track {
+    content-visibility: visible !important;
+    contain-intrinsic-size: auto !important;
+  }
+  #readerCanvasBlocks {
+    contain: none !important;
+    overflow-anchor: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  #readerCanvasBlocks canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    image-rendering: auto;
+    transform: none;
+  }
+  #readerCanvasBlocks img { display:block; max-width:100%; height:auto; }
+  #readerCanvasWrapper, #view-reader { overflow-anchor:auto !important; }
+  img { max-width:100%; }
+  button, a, [role="button"] { touch-action: manipulation; }
+  input, textarea, select { font-size:16px; }
+  /* Modern viewport units with a fallback for older Safari. */
+  .min-h-screen { min-height:100vh; min-height:100svh; }
+  @supports (height: 100dvh) {
+    .mieu-full-viewport { min-height:100dvh; }
+  }
+  @media (max-width:760px) {
+    .gothic-card, .story-home-card, .story-related-card {
+      -webkit-backdrop-filter:none !important;
+      backdrop-filter:none !important;
+    }
+    .mesh-bg { filter:none !important; }
+    #readerCanvasWrapper { overscroll-behavior-y:contain; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    *,*::before,*::after {
+      scroll-behavior:auto !important;
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+    }
+  }
+</style>
+<script>
+/* Safari scroll restoration: don't force the reader back to top after render. */
+(function(){
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e) {}
+  let lastY = 0, scheduled = false;
+  window.addEventListener('scroll', function(){
+    lastY = window.scrollY || document.documentElement.scrollTop || 0;
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(function(){ scheduled = false; });
+  }, {passive:true});
+})();
+</script>
+
+
+<!-- V68: sửa chat modal bị chỉ hiện lớp nền + thử phát nhạc lại ổn định trên Android -->
+<style id="mieu-v68-chat-audio-stability">
+  /* Không blur toàn bộ trang; lớp nền chỉ tối nhẹ phía sau hộp chat. */
+  #mieuChatBackdrop,
+  #mieuChatBackdrop.is-open {
+    position:fixed!important;inset:0!important;
+    z-index:2147483000!important;
+    background:rgba(5,3,12,.66)!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+    display:none!important;visibility:hidden!important;opacity:0!important;
+    pointer-events:none!important;
+  }
+  #mieuChatBackdrop.is-open {
+    display:block!important;visibility:visible!important;opacity:1!important;
+    pointer-events:auto!important;
+  }
+  #messengerPanel {
+    position:fixed!important;left:50%!important;top:50%!important;
+    right:auto!important;bottom:auto!important;
+    transform:translate3d(-50%,-50%,0)!important;
+    z-index:2147483001!important;
+    width:min(92vw,410px)!important;
+    height:min(74dvh,590px)!important;
+    max-height:calc(100dvh - 28px)!important;
+    flex-direction:column!important;overflow:hidden!important;
+    pointer-events:auto!important;visibility:visible;
+  }
+  body.mieu-chat-open #messengerPanel,
+  #messengerPanel.mieu-chat-visible {
+    display:flex!important;visibility:visible!important;opacity:1!important;
+  }
+  body.mieu-chat-open #mieuChatBackdrop {display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+  #messengerPanel.hidden,
+  #messengerPanel[aria-hidden="true"]:not(.mieu-chat-visible) {display:none!important}
+  #messengerPanel #chatMessages{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important}
+  #messengerPanel input,#messengerPanel textarea{font-size:16px!important}
+  @media(max-width:520px){#messengerPanel{width:calc(100vw - 22px)!important;height:min(76dvh,620px)!important}}
+</style>
+<script id="mieu-v68-chat-audio-stability">
+(()=>{
+ 'use strict';
+ const $=id=>document.getElementById(id);
+ const userIsInGuide=()=>{const v=$('view-guide');return !!v&&!v.classList.contains('hidden')&&getComputedStyle(v).display!=='none'};
+ // Keep chat state explicit; CSS class is the single reliable visibility switch.
+ window.mieuCloseMessenger=function(){
+   const p=$('messengerPanel'),b=$('mieuChatBackdrop');
+   document.body.classList.remove('mieu-chat-open');
+   if(p){p.classList.remove('mieu-chat-visible');p.classList.add('hidden');p.setAttribute('aria-hidden','true');p.style.setProperty('display','none','important');}
+   if(b){b.classList.remove('is-open');b.setAttribute('aria-hidden','true');}
+ };
+ window.mieuOpenMessenger=function(){
+   const p=$('messengerPanel'),b=$('mieuChatBackdrop');if(!p)return;
+   p.classList.remove('hidden');p.classList.add('mieu-chat-visible');p.setAttribute('aria-hidden','false');p.style.setProperty('display','flex','important');
+   if(b){b.classList.add('is-open');b.setAttribute('aria-hidden','false');}
+   document.body.classList.add('mieu-chat-open');
+   try{window.app?.populateChatNames?.()}catch(e){}
+   setTimeout(()=>{$('chatMessageInput')?.focus({preventScroll:true})},120);
+ };
+ if(window.app)window.app.toggleMessenger=function(){
+   const p=$('messengerPanel');
+   if(p&&document.body.classList.contains('mieu-chat-open'))window.mieuCloseMessenger();else window.mieuOpenMessenger();
+ };
+ const backdrop=$('mieuChatBackdrop');
+ if(backdrop)backdrop.onclick=e=>{if(e.target===backdrop)window.mieuCloseMessenger()};
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('mieu-chat-open'))window.mieuCloseMessenger()});
+ // Audio: re-attempt on each genuine user gesture, not just the first gesture.
+ // Skip music buttons so pointerdown cannot start playback and then have click pause it.
+ const site=$('mieuSiteMusic'),guide=$('mieuGuideMusic');
+ let siteWanted=true,guideWanted=true,sitePending=false,guidePending=false;
+ const siteLabel=$('dockMusicLabel'),guideBtn=$('mieuGuideMusicToggle');
+ const syncSite=()=>{if(siteLabel)siteLabel.textContent=site&&!site.paused?'Tắt nhạc':'Bật nhạc'};
+ const syncGuide=()=>{if(guideBtn)guideBtn.textContent=guide&&!guide.paused?'♫ Tắt nhạc cổng':'♫ Phát nhạc cổng'};
+ async function trySite(){
+   if(!site||!siteWanted||userIsInGuide()||!site.paused||sitePending)return;
+   sitePending=true;
+   try{site.muted=false;site.volume=.24;await site.play()}catch(e){}finally{sitePending=false;syncSite()}
+ }
+ async function tryGuide(){
+   if(!guide||!guideWanted||!userIsInGuide()||!guide.paused||guidePending)return;
+   guidePending=true;
+   try{guide.muted=false;guide.volume=.38;await guide.play()}catch(e){}finally{guidePending=false;syncGuide()}
+ }
+ window.mieuToggleSiteMusic=function(){
+   if(!site)return;
+   if(!site.paused){siteWanted=false;site.pause()}else{siteWanted=true;site.muted=false;site.volume=.24;const p=site.play();if(p?.catch)p.catch(()=>{})}syncSite();
+ };
+ if(window.app)window.app.toggleGuideMusic=function(){
+   if(!guide)return;
+   if(!guide.paused){guideWanted=false;guide.pause()}else{guideWanted=true;guide.muted=false;guide.volume=.38;const p=guide.play();if(p?.catch)p.catch(()=>{})}syncGuide();
+ };
+ function retryFromGesture(e){
+   if(e&&e.target?.closest?.('#dockMusicBtn,#mieuSiteMusicToggle,#mieuGuideMusicToggle'))return;
+   if(userIsInGuide())tryGuide();else trySite();
+ }
+ ['pointerup','touchend','keydown'].forEach(type=>document.addEventListener(type,retryFromGesture,{capture:true,passive:type!=='keydown'}));
+ if(site){site.loop=true;site.playsInline=true;site.preload='auto';site.volume=.24;site.addEventListener('canplay',()=>{if(siteWanted&&!userIsInGuide())trySite()});site.addEventListener('play',syncSite);site.addEventListener('pause',syncSite);}
+ if(guide){guide.loop=true;guide.playsInline=true;guide.preload='auto';guide.volume=.38;guide.addEventListener('canplay',()=>{if(guideWanted&&userIsInGuide())tryGuide()});guide.addEventListener('play',syncGuide);guide.addEventListener('pause',syncGuide);}
+ // Navigation audio handoff; play() rejection is retried on the next gesture.
+ if(window.app&&typeof app.navigate==='function'&&!app.__mieuV68AudioNav){
+   app.__mieuV68AudioNav=true;const old=app.navigate;
+   app.navigate=function(name,...args){const result=old.call(this,name,...args);
+     if(name==='guide'){if(site&&!site.paused)site.pause();guideWanted=true;tryGuide()}
+     else if(guide){guide.pause();if(siteWanted)trySite()}
+     return result;
+   };
+ }
+ syncSite();syncGuide();
+})();
+</script>
+
+
+<style id="mieu-profile-dock-modal-fix">
+  /* Nút đăng xuất nhỏ nằm trên tab Cá nhân ở thanh dưới, tuyệt đối không nằm trên logo */
+  #mieuLogoLogoutBtn{display:none!important}
+  #mieuBottomDock{z-index:1200!important}
+  #mieuBottomDock .dock-logout-mini{
+    position:absolute;right:5px;top:3px;z-index:5;
+    width:20px;height:20px;display:grid;place-items:center;
+    border:1px solid rgba(255,220,240,.75);border-radius:50%;
+    background:linear-gradient(135deg,#f472b6,#8b5cf6);color:#fff;
+    font:800 11px/1 Arial;box-shadow:0 2px 8px #0006;cursor:pointer;
+  }
+  #mieuBottomDock #dockAccountBtn{position:relative}
+  #editProfileBox:not(.hidden){
+    display:grid!important;visibility:visible!important;opacity:1!important;
+    position:relative!important;z-index:2!important;
+  }
+  #editProfileBox input,#editProfileBox textarea{min-height:42px}
+  /* Dialog luôn nổi phía trên nội dung và thanh tiện ích */
+  [aria-modal="true"],.mieu-tarot-overlay,.meow-buy-overlay,
+  .meow-unpublished-overlay,.admin-profile-modal,#authModal,
+  #pageLoadingOverlay,.popup-overlay,.modal-overlay{
+    z-index:10050!important;
+  }
+</style>
+
+
+
+
+
+
+
+<style id="mieu-profile-editor-real-fix">
+  #mieuProfileEditorOverlay{
+    position:fixed;inset:0;z-index:10080;display:none;place-items:center;
+    padding:16px;background:rgba(7,5,14,.82);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  }
+  #mieuProfileEditorOverlay.is-open{display:grid!important}
+  #mieuProfileEditorDialog{
+    width:min(720px,100%);max-height:88vh;overflow:auto;
+    overscroll-behavior:contain;padding:18px;
+    border:1px solid rgba(232,121,249,.5);border-radius:22px;
+    background:linear-gradient(145deg,#21152f,#100d1c 72%);
+    color:#f7eafa;box-shadow:0 24px 90px rgba(0,0,0,.7);
+  }
+  #mieuProfileEditorDialog #editProfileBox{
+    display:grid!important;visibility:visible!important;opacity:1!important;
+    margin:0!important;padding:0!important;border:0!important;
+  }
+  #mieuProfileEditorDialog input:not([type=checkbox]):not([type=file]),
+  #mieuProfileEditorDialog textarea{
+    width:100%;min-height:42px;color:inherit;
+    background:rgba(0,0,0,.28)!important;
+  }
+  #mieuProfileEditorDialog input[type=file]{max-width:100%}
+  #mieuProfileEditorDialog button{cursor:pointer}
+</style>
+<script id="mieu-profile-editor-real-fix">
+(function(){
+  if(window.__mieuProfileEditorRealFix)return;
+  window.__mieuProfileEditorRealFix=true;
+  const byId=id=>document.getElementById(id);
+  let oldClose=null;
+
+  function currentUser(){
+    try{return (typeof state!=='undefined' && state.currentUser) ? state.currentUser : null}
+    catch(e){return null}
+  }
+  function currentCustomer(){
+    const u=currentUser();
+    try{return u && typeof state!=='undefined' ? (state.customers?.[u.id]||{}) : {}}
+    catch(e){return {}}
+  }
+  function ensureModal(){
+    let overlay=byId('mieuProfileEditorOverlay');
+    if(!overlay){
+      overlay=document.createElement('div');
+      overlay.id='mieuProfileEditorOverlay';
+      overlay.innerHTML=
+        '<section id="mieuProfileEditorDialog" role="dialog" aria-modal="true" aria-labelledby="mieuProfileEditorTitle">'+
+          '<header class="flex items-center justify-between gap-3 mb-4">'+
+            '<div><h3 id="mieuProfileEditorTitle" class="text-lg font-bold">✏️ Chỉnh sửa hồ sơ &amp; Giới thiệu</h3>'+
+            '<p class="text-xs opacity-70 mt-1">Cập nhật thông tin tài khoản Miêu Các</p></div>'+
+            '<button type="button" id="mieuProfileEditorCloseTop" class="px-3 py-2 rounded-xl border border-pink-300/30" aria-label="Đóng">✕</button>'+
+          '</header><div id="mieuProfileEditorMount"></div>'+
+        '</section>';
+      document.body.appendChild(overlay);
+      overlay.addEventListener('click',e=>{
+        if(e.target===overlay)closeModal();
+      });
+      byId('mieuProfileEditorCloseTop').addEventListener('click',closeModal);
+    }
+    const box=byId('editProfileBox');
+    const mount=byId('mieuProfileEditorMount');
+    if(box && mount && box.parentElement!==mount){
+      mount.appendChild(box);
+    }
+    return overlay;
+  }
+  function fillFields(){
+    const u=currentUser(), c=currentCustomer();
+    if(!u)return;
+    const name=byId('editProfileNameInput');
+    const avatar=byId('editProfileAvatarInput');
+    const cover=byId('editProfileCoverInput');
+    const bio=byId('editProfileBioInput');
+    const hideProfile=byId('editHideProfile');
+    const hideAvatar=byId('editHideAvatar');
+    if(name)name.value=c.name||u.name||'';
+    if(avatar)avatar.value=c.profileAvatar||c.avatar||'';
+    if(cover)cover.value=c.cover||'';
+    if(bio)bio.value=c.bio||'';
+    if(hideProfile)hideProfile.checked=!!c.hideProfile;
+    if(hideAvatar)hideAvatar.checked=!!c.hideAvatar;
+  }
+  function openModal(){
+    const u=currentUser();
+    const box=byId('editProfileBox');
+    if(!u || u.role!=='customer' || !box){
+      try{if(typeof showToast==='function')showToast('Không tìm thấy phiên đăng nhập độc giả. Hãy tải lại trang rồi thử lại nha.','error')}catch(e){}
+      return;
+    }
+    const overlay=ensureModal();
+    if(!overlay)return;
+    fillFields();
+    box.classList.remove('hidden');
+    box.removeAttribute('hidden');
+    box.style.setProperty('display','grid','important');
+    overlay.classList.add('is-open');
+    document.body.style.overflow='hidden';
+    setTimeout(()=>byId('editProfileNameInput')?.focus({preventScroll:true}),50);
+  }
+  function closeModal(){
+    const overlay=byId('mieuProfileEditorOverlay');
+    if(overlay)overlay.classList.remove('is-open');
+    document.body.style.overflow='';
+    const box=byId('editProfileBox');
+    if(box){
+      box.classList.add('hidden');
+      box.style.removeProperty('display');
+    }
+  }
+
+  // Bind directly to the actual lexical app object used by the page's inline handlers.
+  function bindAppMethods(){
+    try{
+      if(typeof app==='undefined' || !app)return;
+      if(typeof app.closeEditProfileBox==='function' && !app.__mieuCloseWrapped){
+        oldClose=app.closeEditProfileBox;
+        app.closeEditProfileBox=function(){
+          try{oldClose.apply(this,arguments)}catch(e){}
+          closeModal();
+        };
+        app.__mieuCloseWrapped=true;
+      }
+    }catch(e){}
+  }
+
+  // Capture the click before the inline onclick. This avoids relying on window.app,
+  // a session-storage key, or a handler that may already have failed.
+  document.addEventListener('click',function(e){
+    const edit=e.target.closest('#view-profile button[onclick*="toggleEditProfileBox"]');
+    if(edit){
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      bindAppMethods();
+      openModal();
+      return;
+    }
+    const close=e.target.closest('#mieuProfileEditorDialog button[onclick*="closeEditProfileBox"]');
+    if(close){
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      closeModal();
+    }
+  },true);
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',bindAppMethods,{once:true});
+  }else bindAppMethods();
+  window.addEventListener('load',bindAppMethods);
+  // The SPA may recreate the profile form after navigation; reattach it to the modal
+  // only when the user opens the editor, never at page startup.
 })();
 </script>
