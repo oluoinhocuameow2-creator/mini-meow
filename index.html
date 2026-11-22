@@ -1091,8 +1091,6 @@ body:has(#view-reader:not(.hidden)){
           <button onclick="app.navigate('profile');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="block w-full text-left p-3 rounded-lg hover:bg-pink-500/15">📜 Tủ sách & Cá nhân</button>
           <button id="navStudioBtn" onclick="app.navigate('studio');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="hidden w-full text-left p-3 rounded-lg text-sky-300 hover:bg-sky-500/15">✍️ Đăng truyện</button>
           <button id="navAdminBtn" onclick="app.navigate('admin');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="hidden w-full text-left p-3 rounded-lg text-amber-300 hover:bg-amber-500/15">👑 Quản trị</button>
-          <div id="menuLogoutDivider" class="hidden my-1 border-t border-pink-400/20"></div>
-          <button id="menuLogoutBtn" type="button" onclick="document.getElementById('mainMenuDropdown').classList.add('hidden');app.logout()" class="hidden w-full text-left p-3 rounded-lg text-rose-300 font-bold hover:bg-rose-500/15">↪ Đăng xuất tài khoản</button>
         </div>
       </div>
       <div class="header-quick-tools">
@@ -2049,6 +2047,10 @@ body:has(#view-reader:not(.hidden)){
         <div class="text-xs opacity-75 mb-1">👥 Số Tài Khoản</div>
         <div id="statAccounts" class="text-xl sm:text-2xl font-bold text-sky-400 font-mono">0</div>
       </div>
+      <div class="p-4 rounded-2xl bg-black/25 border border-purple-400/30 text-center">
+        <div class="text-xs opacity-75 mb-1">✍️ Số Chữ Toàn Web</div>
+        <div id="statWords" class="text-xl sm:text-2xl font-bold text-purple-400 font-mono">0</div>
+      </div>
       <div class="p-4 rounded-2xl bg-black/25 border border-amber-400/30 text-center col-span-2 sm:col-span-1">
         <div class="text-xs opacity-75 mb-1">👁️ Lượt Xem Toàn Web</div>
         <div id="statViews" class="text-xl sm:text-2xl font-bold text-amber-400 font-mono">0</div>
@@ -2473,70 +2475,21 @@ function makeStoryCatalogEntry(story) {
 }
 async function loadMieuChapterContent(storyId, chapterId) {
   const current = state.stories?.[storyId]?.chapters?.[chapterId] || {};
-  const hasBody = value => {
-    if (typeof value === 'string') return value.trim().length > 0;
-    if (!value || typeof value !== 'object') return false;
-    return ['content','contentHtml','contentHTML','text','html','body','rawContent','chapterContent','chapter_content','contentText','bodyHtml','bodyHTML','content_body','paragraphs']
-      .some(key => value[key] != null && String(value[key]).trim() !== '');
-  };
-  if (hasBody(current)) return current;
-
+  if (current.content || current.text) return current;
   const token = `${storyId}/${chapterId}`;
   window.__mieuChapterLoads = window.__mieuChapterLoads || {};
   if (window.__mieuChapterLoads[token]) return window.__mieuChapterLoads[token];
-
   const task = (async () => {
-    let full = null;
-    let source = '';
-    // Meow Story Studio stores the complete chapter body here.
-    const contentSnap = await get(ref(db, `storyContent/${storyId}/${chapterId}`)).catch(() => null);
-    if (contentSnap?.exists()) {
-      const raw = contentSnap.val();
-      full = typeof raw === 'string' ? { content: raw } : (raw || {});
-      source = 'storyContent';
-    }
-
-    // Compatibility for older Studio versions that stored body in stories.
-    if (!hasBody(full)) {
-      const legacySnap = await get(ref(db, `stories/${storyId}/chapters/${chapterId}`)).catch(() => null);
-      if (legacySnap?.exists()) {
-        const raw = legacySnap.val();
-        const legacy = typeof raw === 'string' ? { content: raw } : (raw || {});
-        if (hasBody(legacy)) {
-          full = { ...(full || {}), ...legacy };
-          source = 'stories';
-        }
-      }
-    }
-
-    if (!hasBody(full)) {
-      console.error('[Miêu Các] Không tìm thấy phần thân chương trên Firebase', {
-        storyId, chapterId,
-        tried: [`storyContent/${storyId}/${chapterId}`, `stories/${storyId}/chapters/${chapterId}`],
-        contentExists: !!contentSnap?.exists()
-      });
-      throw new Error(`Chưa có nội dung tại storyContent/${storyId}/${chapterId}. Bà mở Studio, vào chương đó rồi bấm Lưu chương lại nhé.`);
-    }
-
-    // Chuẩn hóa trường nội dung để trình đọc và các chức năng cũ cùng nhận được.
-    if (typeof full === 'string') full = { content: full };
-    const body = full.content || full.contentHtml || full.contentHTML || full.html ||
-      full.body || full.rawContent || full.chapterContent || full.chapter_content ||
-      full.contentText || full.bodyHtml || full.bodyHTML || full.content_body ||
-      full.paragraphs || full.text || '';
-    full.content = typeof body === 'string' ? body : String(body ?? '');
-
+    let snap = await get(ref(db, `storyContent/${storyId}/${chapterId}`)).catch(() => null);
+    // Tương thích dữ liệu cũ trong giai đoạn chuyển đổi.
+    if (!snap || !snap.exists()) snap = await get(ref(db, `stories/${storyId}/chapters/${chapterId}`));
+    if (!snap.exists()) throw new Error('Không tìm thấy nội dung chương.');
+    const full = snap.val() || {};
     state.stories[storyId] = state.stories[storyId] || { info: {}, chapters: {} };
     state.stories[storyId].chapters = state.stories[storyId].chapters || {};
-    state.stories[storyId].chapters[chapterId] = {
-      ...state.stories[storyId].chapters[chapterId],
-      ...full,
-      content: full.content
-    };
-    console.info(`[Miêu Các] Đã tải nội dung chương từ ${source}`, storyId, chapterId);
+    state.stories[storyId].chapters[chapterId] = { ...state.stories[storyId].chapters[chapterId], ...full };
     return state.stories[storyId].chapters[chapterId];
   })().finally(() => { delete window.__mieuChapterLoads[token]; });
-
   window.__mieuChapterLoads[token] = task;
   return task;
 }
@@ -2626,24 +2579,6 @@ function initFirebaseSync() {
         console.error('Story catalog listener:', error);
         showToast('Không thể tải danh mục truyện. Kiểm tra quyền Firebase nhé.', 'error');
       });
-
-      // Theo dõi thêm nhánh gốc mà Meow Story Studio đang ghi.
-      // Dùng để bổ sung truyện/chương mới ngay cả khi catalog listener đến chậm.
-      onValue(ref(db, 'stories'), snap => {
-        const studioStories = snap.val() || {};
-        const merged = { ...(state.stories || {}) };
-        Object.entries(studioStories).forEach(([sid, raw]) => {
-          if (!raw || typeof raw !== 'object') return;
-          const old = merged[sid] || { info: {}, chapters: {} };
-          const info = raw.info ? { ...(old.info || {}), ...raw.info } : (old.info || {});
-          const chapters = { ...(old.chapters || {}) };
-          Object.entries(raw.chapters || {}).forEach(([cid, meta]) => {
-            chapters[cid] = { ...(chapters[cid] || {}), ...(meta || {}) };
-          });
-          merged[sid] = { ...old, info, chapters };
-        });
-        applyStorySnapshot(merged, 'studio-stories-bridge');
-      }, error => console.error('[Miêu Các] Studio stories listener:', error));
       return;
     }
     // Chế độ tương thích tạm thời: chỉ chạy trước khi Admin thực hiện tách dữ liệu lần đầu.
@@ -2828,6 +2763,7 @@ function updateGlobalStats() {
   const totalStories = entries.length;
   const totalAccounts = Object.keys(state.customers || {}).length;
   let totalWords = 0, totalViews = 0, index = 0;
+  const wordNode = document.getElementById('statWords');
   const viewNode = document.getElementById('statViews');
   const storyNode = document.getElementById('statStories');
   const accountNode = document.getElementById('statAccounts');
@@ -2841,6 +2777,10 @@ function updateGlobalStats() {
            (!deadline || deadline.timeRemaining() > 2 || processed === 0)) {
       const story = entries[index++][1];
       totalViews += countStoryViews(story);
+      const chapters = Object.values(story?.chapters || {});
+      for (let i = 0; i < chapters.length; i++) {
+        totalWords += Number(chapters[i]?.wordCount) || 0;
+      }
       processed++;
     }
     if (index < entries.length) {
@@ -2849,6 +2789,7 @@ function updateGlobalStats() {
       return;
     }
     if (jobId !== globalStatsJobId) return;
+    if (wordNode) wordNode.textContent = formatNum(totalWords);
     if (viewNode) viewNode.textContent = formatNum(totalViews);
   };
   if ('requestIdleCallback' in window) requestIdleCallback(processChunk, {timeout: 250});
@@ -3547,8 +3488,6 @@ const app = {
     const area = document.getElementById('headerUserArea');
     const navStudio = document.getElementById('navStudioBtn');
     const navAdmin = document.getElementById('navAdminBtn');
-    const menuLogout = document.getElementById('menuLogoutBtn');
-    const menuLogoutDivider = document.getElementById('menuLogoutDivider');
     const mobStudio = document.getElementById('mobileStudioBtn') || {classList:{add(){},toggle(){}}};
     const mobAdmin = document.getElementById('mobileAdminBtn') || {classList:{add(){},toggle(){}}};
     const footerLinks = document.getElementById('footerRoleLinks');
@@ -3557,8 +3496,6 @@ const app = {
       area.innerHTML = `<div class="flex items-center gap-1.5"><button onclick="app.showAuthScreen('login');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold text-white pink-blue-gradient shadow-lg">🔐 Đăng nhập</button><button onclick="app.showAuthScreen('register');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold border border-pink-400/40">✨ Đăng ký</button></div>`;
       navStudio.classList.add('hidden');
       navAdmin.classList.add('hidden');
-      if (menuLogout) menuLogout.classList.add('hidden');
-      if (menuLogoutDivider) menuLogoutDivider.classList.add('hidden');
       mobStudio.classList.add('hidden');
       mobAdmin.classList.add('hidden');
       footerLinks.innerHTML = `
@@ -3579,8 +3516,6 @@ const app = {
     navStudio.classList.toggle('hidden', !canPublish);
     mobStudio.classList.toggle('hidden', !canPublish);
     navAdmin.classList.toggle('hidden', !isAdmin);
-    if (menuLogout) menuLogout.classList.remove('hidden');
-    if (menuLogoutDivider) menuLogoutDivider.classList.remove('hidden');
     mobAdmin.classList.toggle('hidden', !isAdmin);
 
     area.innerHTML = `
