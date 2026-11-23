@@ -2519,6 +2519,111 @@ function mieuHasChapterBody(chapter) {
   return !!mieuChapterBodyString(chapter);
 }
 
+// Đếm chữ theo cùng quy tắc Studio: số cụm phân tách bằng khoảng trắng.
+// Chỉ dùng body đã tải hợp lệ hoặc metadata; không tải hàng loạt chương.
+function mieuCountWordsFromChapter(chapter) {
+  const body = mieuChapterBodyString(chapter);
+  if (!body) return null;
+  const plain = body
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;|&#160;/gi, ' ')
+    .replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>')
+    .replace(/&quot;|&#39;|&apos;/gi, ' ')
+    .replace(/\s+/g, ' ').trim();
+  return plain ? plain.split(/\s+/).filter(Boolean).length : 0;
+}
+function mieuGetChapterWordCount(chapter) {
+  if (!chapter || typeof chapter !== 'object') return 0;
+  const saved = chapter.wordCount ?? chapter.totalWords ?? chapter.wordsCount ?? chapter.word_count ?? chapter.contentWordCount ?? chapter.textWordCount;
+  if (saved !== null && saved !== undefined && saved !== '') {
+    const n = Number(String(saved).replace(/[ ,]/g, ''));
+    if (Number.isFinite(n) && n > 0) return Math.floor(n);
+    if (Number.isFinite(n) && n === 0) return mieuCountWordsFromChapter(chapter) ?? 0;
+  }
+  return mieuCountWordsFromChapter(chapter) ?? 0;
+}
+// Tự bổ sung wordCount còn thiếu từ nhánh legacy nhưng chỉ đọc đúng scalar
+// stories/{id}/chapters/{chapterId}/wordCount, không tải body chương.
+let mieuWordCountBackfillTask = null;
+function mieuBackfillMissingWordCountsFromLegacyMetadata() {
+  if (mieuWordCountBackfillTask) return mieuWordCountBackfillTask;
+  mieuWordCountBackfillTask = (async () => {
+    const jobs = [];
+    for (const [sid, story] of Object.entries(state.stories || {})) {
+      for (const [cid, chapter] of Object.entries(story?.chapters || {})) {
+        const saved = chapter?.wordCount ?? chapter?.totalWords ?? chapter?.wordsCount ?? chapter?.word_count ?? chapter?.contentWordCount ?? chapter?.textWordCount;
+        if (saved !== undefined && saved !== null && saved !== '') continue;
+        jobs.push([String(sid), String(cid), chapter]);
+      }
+    }
+    let cursor = 0, changed = 0;
+    const workers = Array.from({ length: Math.min(2, jobs.length) }, async () => {
+      while (cursor < jobs.length) {
+        const [sid, cid, chapter] = jobs[cursor++];
+        try {
+          const snap = await get(ref(db, `stories/${sid}/chapters/${cid}/wordCount`));
+          if (!snap.exists()) continue;
+          const count = Number(snap.val());
+          if (!Number.isFinite(count) || count < 0) continue;
+          const currentStory = state.stories?.[sid];
+          const currentChapter = currentStory?.chapters?.[cid];
+          if (!currentChapter) continue;
+          currentChapter.wordCount = Math.floor(count);
+          update(ref(db, `storyCatalog/${sid}/chapters/${cid}`), { wordCount: Math.floor(count), wordCountUpdatedAt: Date.now() }).catch(() => {});
+          changed++;
+        } catch (err) { console.debug('[Miêu Các] WordCount metadata backfill pending:', sid, cid, err); }
+      }
+    });
+    await Promise.all(workers);
+    if (changed) {
+      saveStoriesCache(state.stories);
+      scheduleGlobalStatsUpdate();
+      if (state.currentStoryId && document.getElementById('view-story') && !document.getElementById('view-story').classList.contains('hidden')) app.renderStoryDetail(state.currentStoryId, false);
+    }
+    return changed;
+  })().finally(() => { mieuWordCountBackfillTask = null; });
+  return mieuWordCountBackfillTask;
+}
+
+function mieuSaveDiscoveredWordCount(storyId, chapterId, chapter) {
+  const count = mieuCountWordsFromChapter(chapter);
+  if (count === null) return;
+  const existing = Number(chapter?.wordCount);
+  if (Number.isFinite(existing) && existing === count) return;
+  chapter.wordCount = count;
+  const stamp = Date.now();
+  // Chỉ đồng bộ con số metadata, không đưa nội dung chương lên storyCatalog.
+  update(ref(db, `storyCatalog/${storyId}/chapters/${chapterId}`), { wordCount: count, wordCountUpdatedAt: stamp })
+    .catch(err => console.warn('[Miêu Các] Chưa đồng bộ được wordCount:', err));
+  update(ref(db, `stories/${storyId}/chapters/${chapterId}`), { wordCount: count, wordCountUpdatedAt: stamp })
+    .catch(err => console.warn('[Miêu Các] Chưa cập nhật được wordCount legacy:', err));
+  // Chân trang và tổng chữ truyện cập nhật ngay sau khi chương được đếm.
+  if (typeof scheduleGlobalStatsUpdate === 'function') scheduleGlobalStatsUpdate();
+  window.dispatchEvent(new CustomEvent('meow:chapters-updated', { detail: { storyId, chapterId, wordCount: count } }));
+}
+
+// Ghép metadata Firebase mới với phần nội dung đã cache thành công.
+// Metadata luôn lấy từ Firebase; cache chỉ được phép bổ sung body, không ghi đè title/views/wordCount/updatedAt/VIP/giá.
+function mergeMieuFreshChapterWithCachedBody(freshMeta, cachedChapter) {
+  // Firebase là nguồn mới nhất cho metadata; cache chỉ bổ sung body đã tải thành công.
+  const fresh = freshMeta || {};
+  const merged = { ...(cachedChapter || {}), ...fresh };
+  // Không để wordCount cũ trong cache sống lại nếu Firebase không còn trường đó.
+  for (const key of ['wordCount','totalWords','wordsCount','word_count','contentWordCount','textWordCount']) {
+    if (!Object.prototype.hasOwnProperty.call(fresh, key)) delete merged[key];
+  }
+  const cachedBody = mieuChapterBodyString(cachedChapter);
+  if (cachedBody) merged.content = cachedBody;
+  else {
+    for (const key of ['content','text','html','body','rawContent']) {
+      if (!Object.prototype.hasOwnProperty.call(fresh, key)) delete merged[key];
+    }
+  }
+  return merged;
+}
+
 async function loadMieuChapterContent(storyId, chapterId) {
   const sid = String(storyId);
   const cid = String(chapterId);
@@ -2537,7 +2642,9 @@ async function loadMieuChapterContent(storyId, chapterId) {
   const local = normalizeChapter(current);
   if (mieuHasChapterBody(local)) {
     state.stories[sid].chapters[cid] = { ...current, ...local };
-    return state.stories[sid].chapters[cid];
+    const readyChapter = state.stories[sid].chapters[cid];
+    if (readyChapter.wordCount === undefined || readyChapter.wordCount === null || readyChapter.wordCount === '' || Number(readyChapter.wordCount) === 0) mieuSaveDiscoveredWordCount(sid, cid, readyChapter);
+    return readyChapter;
   }
 
   const token = `${sid}/${cid}`;
@@ -2583,9 +2690,11 @@ async function loadMieuChapterContent(storyId, chapterId) {
           const latestChapter = latestStory.chapters[cid] || {};
           state.stories[sid] = latestStory;
           latestStory.chapters[cid] = { ...latestChapter, ...normalized, content: normalized.content };
+          const loadedChapter = latestStory.chapters[cid];
+          if (loadedChapter.wordCount === undefined || loadedChapter.wordCount === null || loadedChapter.wordCount === '' || Number(loadedChapter.wordCount) === 0) mieuSaveDiscoveredWordCount(sid, cid, loadedChapter);
           // Cache nội dung chương đã mở thành công trên thiết bị; lần đọc lại không gọi Firebase.
           saveStoriesCache(state.stories);
-          return latestStory.chapters[cid];
+          return loadedChapter;
         }
       } catch (error) {
         lastError = error;
@@ -2653,7 +2762,9 @@ window.mieuReloadWebData = async function() {
       const oldStory = previous[sid];
       if (!story.chapters) story.chapters = {};
       Object.entries(oldStory?.chapters || {}).forEach(([cid, oldCh]) => {
-        if (mieuHasChapterBody(oldCh) && story.chapters[cid]) story.chapters[cid] = { ...story.chapters[cid], ...oldCh };
+        if (mieuHasChapterBody(oldCh) && story.chapters[cid]) {
+          story.chapters[cid] = mergeMieuFreshChapterWithCachedBody(story.chapters[cid], oldCh);
+        }
       });
     });
     if (state.storyDataReady) detectStoryUpdates(previous, incoming);
@@ -2713,7 +2824,7 @@ function initFirebaseSync() {
       if (!oldStory?.chapters || !freshStory?.chapters) return;
       Object.entries(oldStory.chapters).forEach(([cid, oldChapter]) => {
         if (!mieuHasChapterBody(oldChapter) || !freshStory.chapters[cid]) return;
-        freshStory.chapters[cid] = { ...freshStory.chapters[cid], ...oldChapter };
+        freshStory.chapters[cid] = mergeMieuFreshChapterWithCachedBody(freshStory.chapters[cid], oldChapter);
       });
     });
     if (!firstStoriesSnapshot) detectStoryUpdates(state.stories, incoming);
@@ -2723,11 +2834,19 @@ function initFirebaseSync() {
     if (firstStoriesSnapshot && !hasMieuDeepLink()) setPageLoading(false);
     saveStoriesCache(state.stories);
     if (firstStoriesSnapshot) updateGlobalStats(); else scheduleGlobalStatsUpdate();
+    // Mỗi lần tải web, kiểm tra metadata cũ thiếu số chữ bằng các lượt đọc scalar nhẹ.
+    void mieuBackfillMissingWordCountsFromLegacyMetadata();
+    window.dispatchEvent(new CustomEvent('meow:catalog-ready', { detail: { source: sourceLabel, storyCount: Object.keys(incoming).length } }));
     const activeView = document.querySelector('main section:not(.hidden)')?.id || 'view-home';
     if (activeView === 'view-home') {
-      app.renderHomeStories(); app.renderFeaturedStories(); scheduleHomeSecondaryRender();
+      app.renderHomeStories(); app.renderFeaturedStories();
+      // Danh sách truyện/chương mới lấy trực tiếp metadata từ catalog, cập nhật ngay khi có snapshot.
+      app.renderRecentStories(); app.renderRecentChapters(); app.renderHomeRanking();
+      scheduleHomeSecondaryRender();
     }
     if (activeView === 'view-story' && state.currentStoryId && state.stories[state.currentStoryId] && !window.__mieuReaderTransitioning) app.renderStoryDetail(state.currentStoryId, false);
+    // Mục lục popup có thể vẫn mở phía trên reader; cập nhật view count kể cả khi reader là view nền.
+    if (!document.getElementById('chapterIndexModal')?.classList.contains('hidden')) app.renderChapterIndex();
     if (activeView === 'view-studio') app.refreshStudioStoryDropdown();
     if (activeView === 'view-profile' && state.currentUser?.role === 'customer' && ['saved', 'published'].includes(state.profileTab)) app.switchProfileTab(state.profileTab);
     if (activeView === 'view-admin' && state.currentUser?.role === 'admin' && app.currentAdminTab === 'featured') app.renderAdminCurrentTab();
@@ -2962,7 +3081,7 @@ function updateGlobalStats() {
   const readSavedWordCount = ch => {
     if (!ch || typeof ch !== 'object') return null;
     // wordCount là trường chuẩn được Studio ghi; các alias chỉ dùng cho dữ liệu cũ.
-    const candidates = [ch.wordCount, ch.totalWords, ch.wordsCount, ch.word_count];
+    const candidates = [ch.wordCount, ch.totalWords, ch.wordsCount, ch.word_count, ch.contentWordCount, ch.textWordCount];
     for (const value of candidates) {
       if (value === null || value === undefined || value === '') continue;
       const n = typeof value === 'string'
@@ -2970,7 +3089,8 @@ function updateGlobalStats() {
         : Number(value);
       if (Number.isFinite(n) && n >= 0) return Math.floor(n);
     }
-    return null;
+    // Chỉ đếm body đã có sẵn trong cache; không tự tải nội dung chương.
+    return mieuCountWordsFromChapter(ch);
   };
 
   const processChunk = (deadline) => {
@@ -3000,8 +3120,8 @@ function updateGlobalStats() {
     if (wordNode) {
       wordNode.textContent = formatNum(totalWords);
       wordNode.title = chaptersMissingCount
-        ? `Tổng chính xác theo wordCount đã lưu của ${formatNum(chaptersCounted)} chương; còn ${formatNum(chaptersMissingCount)} chương chưa có thống kê chữ. Không tải nội dung chương để tránh tăng Downloads Firebase.`
-        : `Tổng số chữ chính xác theo wordCount đã lưu của ${formatNum(chaptersCounted)} chương.`;
+        ? `Đã cộng số chữ của ${formatNum(chaptersCounted)} chương có wordCount hoặc nội dung đã tải; còn ${formatNum(chaptersMissingCount)} chương cũ chưa có metadata số chữ. Khi mở chương, Miêu Các sẽ tự đếm và lưu wordCount lên Firebase. Không tải hàng loạt nội dung để tránh tăng Downloads.`
+        : `Tổng số chữ toàn web đã đồng bộ từ wordCount của ${formatNum(chaptersCounted)} chương.`;
       wordNode.dataset.complete = chaptersMissingCount ? 'false' : 'true';
     }
     if (viewNode) viewNode.textContent = formatNum(totalViews);
@@ -3042,16 +3162,13 @@ function normalizeSearchText(value) {
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
 }
 function countStoryWords(story) {
-  // Chỉ cộng số chữ Studio đã lưu. Không ước lượng theo độ dài HTML vì dễ sai lệch lớn.
+  // Ưu tiên wordCount metadata; nếu body đã có sẵn trong cache thì đếm tại chỗ.
+  // Không tự tải nội dung các chương chưa mở để tránh tăng Downloads Firebase.
   let total = 0;
-  for (const ch of Object.values(story?.chapters || {})) {
-    const raw = ch?.wordCount ?? ch?.totalWords ?? ch?.wordsCount ?? ch?.word_count;
-    if (raw === null || raw === undefined || raw === '') continue;
-    const n = typeof raw === 'string' ? Number(raw.replace(/[,\s]/g, '')) : Number(raw);
-    if (Number.isFinite(n) && n >= 0) total += Math.floor(n);
-  }
+  for (const ch of Object.values(story?.chapters || {})) total += mieuGetChapterWordCount(ch);
   return total;
 }
+
 function chapterPublishDate(ch) {
   const stamp = Number(ch?.publishedAt || ch?.createdAt || ch?.updatedAt || 0);
   return stamp ? new Date(stamp).toLocaleDateString('vi-VN') : 'Chưa cập nhật ngày';
@@ -4120,7 +4237,7 @@ const app = {
           sName,
           cid,
           title: ch.title || `Chương ${cid}`,
-          updatedAt: Number(ch.updatedAt || ch.createdAt) || 0,
+          updatedAt: Number(ch.updatedAt || ch.publishedAt || ch.createdAt || s?.info?.updatedAt) || Number(cid) || 0,
           vip: !!ch.vip,
           price: Number(ch.price) || 0,
           points: Number(ch.points) || 0
@@ -4322,7 +4439,7 @@ const app = {
             if (previousStory?.chapters && freshStory?.chapters) {
               Object.entries(previousStory.chapters).forEach(([cid, oldChapter]) => {
                 if (mieuHasChapterBody(oldChapter) && freshStory.chapters[cid]) {
-                  freshStory.chapters[cid] = { ...freshStory.chapters[cid], ...oldChapter };
+                  freshStory.chapters[cid] = mergeMieuFreshChapterWithCachedBody(freshStory.chapters[cid], oldChapter);
                 }
               });
             }
@@ -4341,7 +4458,7 @@ const app = {
       return task;
     };
     if (!cachedStory) { await refreshStory(); if (!state.stories?.[storyId]) return; }
-    // Cached story opens immediately; the global Firebase stories listener refreshes it in the background.
+    // Cached story opens immediately; the global Firebase storyCatalog listener refreshes metadata in the background.
 
 
     if (incView) {
@@ -4534,7 +4651,7 @@ const app = {
       if (isUnpublished && !ownerOrAdmin) badgeHtml = `<span class="chapter-status-badge chapter-unpublished">⏳ Chưa xuất bản</span>`;
       else if (paid) badgeHtml = `<div class="chapter-badge-stack">${(isVip || price > 0) ? `<span class="chapter-status-badge chapter-vip">👑 VIP</span>` : ''}${price > 0 ? `<span class="chapter-status-badge chapter-price">${formatMoney(price)}</span>` : ''}${points > 0 ? `<span class="chapter-status-badge chapter-points">⭐ ${points} điểm</span>` : ''}<span class="chapter-status-badge ${unlocked ? 'chapter-unlocked' : 'chapter-locked'}">${unlocked ? '✓ Đã mở' : '🔒 Chưa mua'}</span></div>`;
       else badgeHtml = `<span class="chapter-status-badge chapter-free">Miễn phí</span>`;
-      return `<div onclick="app.handleChapterClick('${esc(storyId)}','${esc(cid)}')" style="content-visibility:auto;contain-intrinsic-size:82px;contain:layout paint style" class="chapter-card-mobile p-3.5 rounded-xl bg-white/5 hover:bg-pink-500/15 border border-white/10 hover:border-pink-400/40 cursor-pointer transition"><div class="chapter-card-main"><div class="chapter-card-title">${hasPass ? '🔑 ' : ''}Chương ${esc(cid)}: ${esc(ch.title || 'Không tiêu đề')}</div><div class="chapter-card-meta"><span>📅 ${chapterPublishDate(ch)}</span><span>📝 ${formatNum(ch.wordCount || countStoryWords({chapters:{[cid]:ch}}))} chữ</span><span>👁️ ${formatNum(ch.views || 0)} lượt đọc</span></div></div><div class="chapter-card-badges">${badgeHtml}</div></div>`;
+      return `<div onclick="app.handleChapterClick('${esc(storyId)}','${esc(cid)}')" style="content-visibility:auto;contain-intrinsic-size:82px;contain:layout paint style" class="chapter-card-mobile p-3.5 rounded-xl bg-white/5 hover:bg-pink-500/15 border border-white/10 hover:border-pink-400/40 cursor-pointer transition"><div class="chapter-card-main"><div class="chapter-card-title">${hasPass ? '🔑 ' : ''}Chương ${esc(cid)}: ${esc(ch.title || 'Không tiêu đề')}</div><div class="chapter-card-meta"><span>📅 ${chapterPublishDate(ch)}</span><span>📝 ${formatNum(mieuGetChapterWordCount(ch))} chữ</span><span>👁️ ${formatNum(ch.views || 0)} lượt đọc</span></div></div><div class="chapter-card-badges">${badgeHtml}</div></div>`;
     }).join('');
   },
   async toggleBookmark(storyId, buttonEl = null) {
@@ -4823,14 +4940,28 @@ const app = {
 
     state.currentStoryId = storyId;
     state.currentChapterId = chapterId;
-    runTransaction(ref(db, `stories/${storyId}/chapters/${chapterId}/views`), v => (Number(v)||0)+1);
-    runTransaction(ref(db, `storyCatalog/${storyId}/chapters/${chapterId}/views`), v => (Number(v)||0)+1);
+    const previousChapterViews = Number(ch.views) || 0;
+    ch.views = previousChapterViews + 1;
+    const legacyViewTxn = runTransaction(ref(db, `stories/${storyId}/chapters/${chapterId}/views`), v => (Number(v)||0)+1);
+    const catalogViewTxn = runTransaction(ref(db, `storyCatalog/${storyId}/chapters/${chapterId}/views`), v => (Number(v)||0)+1);
+    Promise.allSettled([legacyViewTxn, catalogViewTxn]).then(results => {
+      const committed = results.find(x => x.status === 'fulfilled' && x.value?.committed);
+      if (committed) {
+        const actual = Number(committed.value.snapshot.val()) || ch.views;
+        ch.views = actual;
+        if (state.currentStoryId === storyId) {
+          if (!document.getElementById('chapterIndexModal')?.classList.contains('hidden')) this.renderChapterIndex();
+          const detailVisible = !document.getElementById('view-story')?.classList.contains('hidden');
+          if (detailVisible) this.renderStoryDetail(storyId, false);
+        }
+      }
+    });
 
     document.getElementById('readerStoryName').textContent = story.info?.name || storyId;
     document.getElementById('readerChapterTitle').textContent = `Chương ${chapterId}: ${ch.title || ''}`;
     let meta = document.getElementById('readerChapterMeta');
     if (!meta) { meta = document.createElement('div'); meta.id = 'readerChapterMeta'; meta.className = 'text-[10px] opacity-65 mt-1'; document.getElementById('readerChapterTitle').after(meta); }
-    meta.innerHTML = `📅 ${chapterPublishDate(ch)}　 📝 ${formatNum(ch.wordCount || countStoryWords({chapters:{[chapterId]:ch}}))} chữ　 👁️ ${formatNum((Number(ch.views)||0)+1)} lượt đọc`;
+    meta.innerHTML = `📅 ${chapterPublishDate(ch)}　 📝 ${formatNum(mieuGetChapterWordCount(ch))} chữ　 👁️ ${formatNum((Number(ch.views)||0)+1)} lượt đọc`;
     document.getElementById('readerBackBtn').onclick = () => this.openStoryDetail(storyId, false);
 
     // Lưu lịch sử đang đọc
@@ -6297,14 +6428,19 @@ const app = {
     // không ghi đè checkbox VIP / giá / điểm bằng dữ liệu cũ.
     const savedStoryId = state.studioStoryId;
     const chapterMeta = { ...payload }; delete chapterMeta.content; delete chapterMeta.text; delete chapterMeta.html; delete chapterMeta.body; delete chapterMeta.rawContent;
+    const updatedChapterCount = Object.keys(chaps).filter(id => id !== nextId).length + 1;
+    const updatedInfo = { ...(state.stories[savedStoryId]?.info || {}), chapterCount: updatedChapterCount, updatedAt: payload.updatedAt };
     await Promise.all([
       set(ref(db, `stories/${savedStoryId}/chapters/${nextId}`), chapterMeta),
       set(ref(db, `storyCatalog/${savedStoryId}/chapters/${nextId}`), chapterMeta),
+      update(ref(db, `stories/${savedStoryId}/info`), { chapterCount: updatedChapterCount, updatedAt: payload.updatedAt }),
+      update(ref(db, `storyCatalog/${savedStoryId}/info`), { chapterCount: updatedChapterCount, updatedAt: payload.updatedAt }),
       set(ref(db, `storyContent/${savedStoryId}/${nextId}`), payload)
     ]);
     if (!state.stories[savedStoryId]) state.stories[savedStoryId] = { info: {}, chapters: {} };
     if (!state.stories[savedStoryId].chapters) state.stories[savedStoryId].chapters = {};
     state.stories[savedStoryId].chapters[nextId] = { ...payload };
+    state.stories[savedStoryId].info = { ...(state.stories[savedStoryId].info || {}), chapterCount: updatedChapterCount, updatedAt: payload.updatedAt };
     state.studioChapterId = nextId;
     const chapterSelect = document.getElementById('stChapterSelect');
     if (chapterSelect) {
@@ -6320,7 +6456,7 @@ const app = {
       ? ' (Đang để chế độ VIP chưa giá -> Chưa xuất bản)'
       : '';
     saveStoriesCache(state.stories);
-    this.renderRecentChapters(); this.renderRecentStories();
+    this.renderRecentChapters(); this.renderRecentStories(); this.renderHomeStories(); this.renderHomeRanking();
     scheduleGlobalStatsUpdate();
     showToast(`💾 Đã lưu Chương ${nextId}: ${title}${statusMsg}`, 'success');
     if (document.getElementById('studioPanel-pricing') && !document.getElementById('studioPanel-pricing').classList.contains('hidden')) this.renderStudioPricing();
@@ -6777,7 +6913,7 @@ const app = {
     const q=(document.getElementById('chapterIndexSearch')?.value||'').toLowerCase().trim(), sort=document.getElementById('chapterIndexSort')?.value||'old';
     let arr=Object.entries(story.chapters||{}).filter(([id,ch])=>`${id} ${ch.title||''}`.toLowerCase().includes(q));
     arr.sort((a,b)=>sort==='new'?Number(b[0])-Number(a[0]):sort==='az'?(a[1].title||'').localeCompare(b[1].title||''):sort==='za'?(b[1].title||'').localeCompare(a[1].title||''):Number(a[0])-Number(b[0]));
-    document.getElementById('chapterIndexList').innerHTML=arr.map(([id,ch])=>{const vip=ch.vip===true||ch.vip===1||ch.vip==='true';const price=Number(ch.price)||0,points=Number(ch.points)||0;const paid=price>0||points>0;const badges=paid?`${(vip||price>0)?'<span class="chapter-status-badge chapter-vip">👑 VIP</span>':''}${price>0?`<span class="chapter-status-badge chapter-price">${formatMoney(price)}</span>`:''}${points>0?`<span class="chapter-status-badge chapter-points">⭐ ${points} điểm</span>`:''}`:'<span class="chapter-status-badge chapter-free">Miễn phí</span>';return `<button onclick="app.closeChapterIndex();app.handleChapterClick('${esc(sid)}','${esc(id)}')" class="chapter-index-item w-full text-left p-3 rounded-xl bg-white/5 border border-white/10 hover:border-pink-400/50"><div class="chapter-index-title">Chương ${esc(id)}: ${esc(ch.title||'')}</div><div class="chapter-index-badges">${badges}</div><span class="chapter-index-meta">${formatNum(ch.wordCount||0)} chữ · 👁 ${formatNum(ch.views||0)}</span></button>`}).join('')||'<p class="opacity-60 text-xs">Không có chương phù hợp.</p>';
+    document.getElementById('chapterIndexList').innerHTML=arr.map(([id,ch])=>{const vip=ch.vip===true||ch.vip===1||ch.vip==='true';const price=Number(ch.price)||0,points=Number(ch.points)||0;const paid=price>0||points>0;const badges=paid?`${(vip||price>0)?'<span class="chapter-status-badge chapter-vip">👑 VIP</span>':''}${price>0?`<span class="chapter-status-badge chapter-price">${formatMoney(price)}</span>`:''}${points>0?`<span class="chapter-status-badge chapter-points">⭐ ${points} điểm</span>`:''}`:'<span class="chapter-status-badge chapter-free">Miễn phí</span>';return `<button onclick="app.closeChapterIndex();app.handleChapterClick('${esc(sid)}','${esc(id)}')" class="chapter-index-item w-full text-left p-3 rounded-xl bg-white/5 border border-white/10 hover:border-pink-400/50"><div class="chapter-index-title">Chương ${esc(id)}: ${esc(ch.title||'')}</div><div class="chapter-index-badges">${badges}</div><span class="chapter-index-meta">${formatNum(mieuGetChapterWordCount(ch))} chữ · 👁 ${formatNum(ch.views||0)}</span></button>`}).join('')||'<p class="opacity-60 text-xs">Không có chương phù hợp.</p>';
   },
 
   async renderComments(type, storyId, chapterId, targetId, liveSharedData = undefined) {
