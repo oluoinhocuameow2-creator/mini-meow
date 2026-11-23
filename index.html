@@ -2154,6 +2154,7 @@ const state = {
   checkinPointsByDayConfigured: false,
   todayCheckin: false,
   onlineCount: 1,
+  publicAccountCount: null,
   currentUser: null, // { role: 'customer' | 'admin', id: '...', name: '...' }
   profileTab: 'purchased',
   selectedTag: '',
@@ -2639,6 +2640,41 @@ async function migrateMieuStoriesToCatalog() {
   } finally { window.__mieuCatalogMigrationRunning = false; }
 }
 
+// Làm mới thủ công danh mục metadata; tuyệt đối không đọc nhánh stories/storyContent.
+window.mieuReloadWebData = async function() {
+  const btn = document.getElementById('mieuReloadWebDataBtn');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang tải...'; }
+  try {
+    const snap = await get(ref(db, 'storyCatalog'));
+    const incoming = snap.val() || {};
+    if (!Object.keys(incoming).length) throw new Error('Danh mục truyện đang trống; dữ liệu cache được giữ nguyên.');
+    const previous = state.stories || {};
+    Object.entries(incoming).forEach(([sid, story]) => {
+      const oldStory = previous[sid];
+      if (!story.chapters) story.chapters = {};
+      Object.entries(oldStory?.chapters || {}).forEach(([cid, oldCh]) => {
+        if (mieuHasChapterBody(oldCh) && story.chapters[cid]) story.chapters[cid] = { ...story.chapters[cid], ...oldCh };
+      });
+    });
+    if (state.storyDataReady) detectStoryUpdates(previous, incoming);
+    state.stories = incoming;
+    state.storyDataReady = true;
+    saveStoriesCache(state.stories);
+    app.renderHomeStories(); app.renderFeaturedStories(); app.renderHomeRanking();
+    app.renderRecentChapters(); app.renderRecentStories(); app.renderSidebarUserPanels();
+    updateGlobalStats();
+    if (state.currentStoryId && document.getElementById('view-story') && !document.getElementById('view-story').classList.contains('hidden')) app.renderStoryDetail(state.currentStoryId, false);
+    showToast('Đã làm mới danh sách truyện và chương mới. Nội dung chương vẫn chỉ tải khi mở.', 'success');
+    return true;
+  } catch (err) {
+    console.error('mieuReloadWebData:', err);
+    showToast('Không thể làm mới dữ liệu: ' + (err?.message || 'Lỗi kết nối Firebase'), 'error');
+    return false;
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = '↻ Tải dữ liệu mới'; }
+  }
+};
+
 // ==================== ĐỒNG BỘ FIREBASE REALTIME ====================
 function initFirebaseSync() {
   // Hàm có thể bị gọi lại khi khởi tạo giao diện; không gắn listener Firebase lần hai.
@@ -2646,6 +2682,13 @@ function initFirebaseSync() {
   window.__mieuFirebaseSyncStarted = true;
   if (hasMieuDeepLink()) setPageLoading(true, 'Đang kết nối và tải truyện...');
   restoreStoriesCache();
+  // Bộ đếm tài khoản gọn nhẹ: không tải toàn bộ customers cho khách truy cập.
+  onValue(ref(db, 'publicStats/accountCount'), snap => {
+    const value = snap.val();
+    state.publicAccountCount = value === null || value === undefined ? null : Math.max(0, Number(value) || 0);
+    scheduleGlobalStatsUpdate();
+  }, err => console.warn('[Miêu Các] Không đọc được bộ đếm tài khoản:', err));
+
   // 1. Theo dõi người dùng Online
   const sessionId = 'sess_' + Math.random().toString(36).slice(2, 10) + '_' + Date.now();
   const myOnlineRef = ref(db, `meowOnline/${sessionId}`);
@@ -2837,10 +2880,16 @@ function detectStoryUpdates(oldS, newS) {
       const oldChaps = oldS[sid]?.chapters || {};
       const newChaps = story?.chapters || {};
       Object.entries(newChaps).forEach(([cid, ch]) => {
-        if (!oldChaps[cid]) {
-          pushNotification(`📖 "${info.name || sid}" vừa cập nhật Chương ${cid}: ${ch.title || ''}`, sid, cid);
+        const oldChapter = oldChaps[cid];
+        if (!oldChapter) {
+          pushNotification(`📖 "${info.name || sid}" vừa đăng Chương ${cid}: ${ch.title || ''}`, sid, cid);
+        } else if (Number(ch.updatedAt || ch.createdAt || 0) > Number(oldChapter.updatedAt || oldChapter.createdAt || 0)) {
+          pushNotification(`✨ "${info.name || sid}" vừa cập nhật Chương ${cid}: ${ch.title || ''}`, sid, cid);
         }
       });
+      if (Number(info.updatedAt || 0) > Number(oldS[sid]?.info?.updatedAt || 0)) {
+        pushNotification(`🪄 Truyện "${info.name || sid}" vừa được cập nhật thông tin`, sid, null);
+      }
     }
   });
 }
@@ -2898,14 +2947,17 @@ function updateGlobalStats() {
   const jobId = ++globalStatsJobId;
   const entries = Object.entries(state.stories || {});
   const totalStories = entries.length;
-  const totalAccounts = Object.keys(state.customers || {}).length;
+  const totalAccounts = Number.isFinite(Number(state.publicAccountCount)) ? Math.max(0, Math.floor(Number(state.publicAccountCount))) : null;
   let totalWords = 0, totalViews = 0, index = 0, chaptersCounted = 0, chaptersMissingCount = 0;
   const wordNode = document.getElementById('statWords');
   const viewNode = document.getElementById('statViews');
   const storyNode = document.getElementById('statStories');
   const accountNode = document.getElementById('statAccounts');
   if (storyNode) storyNode.textContent = formatNum(totalStories);
-  if (accountNode) accountNode.textContent = formatNum(totalAccounts);
+  if (accountNode) {
+    accountNode.textContent = totalAccounts === null ? '—' : formatNum(totalAccounts);
+    accountNode.title = totalAccounts === null ? 'Đang chờ bộ đếm tài khoản công khai được đồng bộ từ quản trị viên.' : 'Số tài khoản đã đăng ký, đồng bộ qua publicStats/accountCount.';
+  }
 
   const readSavedWordCount = ch => {
     if (!ch || typeof ch !== 'object') return null;
@@ -2968,7 +3020,10 @@ async function logActivity(type, text, storyId = '') {
 
 // ==================== CONTROLLER CHÍNH CỦA ỨNG DỤNG ====================
 function countStoryViews(story) {
-  return Object.values(story?.chapters || {}).reduce((sum, ch) => sum + (Number(ch?.views) || 0), 0);
+  // Một lượt mở trang truyện nằm ở info.views; lượt mở từng chương nằm ở chapters/*/views.
+  const storyPageViews = Number(story?.info?.views) || 0;
+  const chapterViews = Object.values(story?.chapters || {}).reduce((sum, ch) => sum + (Number(ch?.views) || 0), 0);
+  return storyPageViews + chapterViews;
 }
 function storyLatestUpdate(story) {
   const info = story?.info || {};
@@ -3095,6 +3150,9 @@ function mieuStartAdminCustomerSync() {
   if (state.currentUser?.role !== 'admin' || mieuAdminUnsubs.length) return;
   mieuAdminUnsubs.push(onValue(ref(db, 'customers'), snap => {
     state.customers = snap.val() || {};
+    const actualCount = Object.keys(state.customers).length;
+    runTransaction(ref(db, 'publicStats/accountCount'), current => actualCount).catch(err => console.warn('[Miêu Các] Không đồng bộ được tổng tài khoản:', err));
+    state.publicAccountCount = actualCount;
     scheduleGlobalStatsUpdate();
     app.updateHeaderAndRoleUI();
     if (state.currentUser?.role === 'admin') app.renderAdminCurrentTab();
@@ -3419,7 +3477,13 @@ const app = {
         set(ref(db, `meowWallet/${id}`), { balance: 0, totalIn: 0, totalOut: 0 }),
         set(ref(db, `customerLoginIndex/${loginKey}`), { id, authEmail, name })
       ]);
+      // Cộng bộ đếm công khai sau khi tạo tài khoản thành công; không đọc toàn bộ danh sách khách.
+      try {
+        const accountCountResult = await runTransaction(ref(db, 'publicStats/accountCount'), current => current === null || current === undefined ? undefined : (Number(current) || 0) + 1);
+        if (accountCountResult.committed) state.publicAccountCount = Number(accountCountResult.snapshot.val()) || 0;
+      } catch (counterError) { console.warn('[Miêu Các] Chưa cập nhật được bộ đếm tài khoản:', counterError); }
       state.customers = { ...(state.customers || {}), [id]: { ...customer, id } };
+      scheduleGlobalStatsUpdate();
       state.wallets[id] = { balance: 0, totalIn: 0, totalOut: 0 }; state.purchases[id] = {};
       this.setSession({ role: 'customer', id, name }); this.closeAuthModal();
       showToast('Tạo tài khoản thành công! Chào mừng bạn đến Miêu Các 💗', 'success');
@@ -6111,6 +6175,9 @@ const app = {
     else state.stories[code].info = infoPayload;
     state.studioStoryId = code;
     state.studioCoverData = '';
+    saveStoriesCache(state.stories);
+    this.renderHomeStories(); this.renderRecentStories(); this.renderSidebarUserPanels();
+    scheduleGlobalStatsUpdate();
     showToast(`💾 Đã lưu truyện "${name}" thành công!`, 'success');
     this.refreshStudioStoryDropdown();
   },
@@ -6252,6 +6319,9 @@ const app = {
     const statusMsg = (vip && price === 0 && points === 0)
       ? ' (Đang để chế độ VIP chưa giá -> Chưa xuất bản)'
       : '';
+    saveStoriesCache(state.stories);
+    this.renderRecentChapters(); this.renderRecentStories();
+    scheduleGlobalStatsUpdate();
     showToast(`💾 Đã lưu Chương ${nextId}: ${title}${statusMsg}`, 'success');
     if (document.getElementById('studioPanel-pricing') && !document.getElementById('studioPanel-pricing').classList.contains('hidden')) this.renderStudioPricing();
   },
@@ -8106,6 +8176,7 @@ body.mieu-reading #mieuBottomDock{display:none!important}
      wrap.innerHTML=`<section class="mieu-settings-card" role="dialog" aria-modal="true" aria-label="Cài đặt web">
        <div class="flex items-center justify-between gap-3 mb-3"><div><div class="text-[10px] tracking-[.25em] text-fuchsia-200">MIÊU CÁC · SETTINGS</div><h2 class="text-xl font-bold mt-1">⚙️ Cài đặt web</h2></div><button type="button" onclick="window.mieuCloseWebSettings()" class="w-9 h-9 rounded-full border border-white/20">×</button></div>
        <p class="text-xs opacity-65 mb-3">Điều chỉnh hiển thị riêng trên thiết bị này.</p>
+       <div class="rounded-xl border border-fuchsia-300/25 bg-fuchsia-400/10 p-3 mb-3"><div class="font-bold text-sm">🔄 Dữ liệu Miêu Các</div><p class="text-[11px] opacity-70 mt-1 mb-2">Tải lại danh sách truyện và chương mới từ Firebase, không tải toàn bộ nội dung chương.</p><button id="mieuReloadWebDataBtn" type="button" onclick="window.mieuReloadWebData()" class="w-full rounded-xl py-2.5 text-sm font-bold bg-fuchsia-500/25 border border-fuchsia-300/40">↻ Tải dữ liệu mới</button></div>
        <div class="mieu-setting-row"><div><b class="text-sm">🔎 Phóng to web</b><p class="text-[11px] opacity-60 mt-1">Thu/phóng toàn bộ giao diện</p></div><div class="mieu-setting-controls"><button class="mieu-step" onclick="window.mieuChangeWebZoom(-0.05)">−</button><span class="mieu-setting-value" id="mieuWebZoomValue">100%</span><button class="mieu-step" onclick="window.mieuChangeWebZoom(0.05)">+</button></div></div>
        <div class="mieu-setting-row"><div><b class="text-sm">🔤 Phóng to chữ web</b><p class="text-[11px] opacity-60 mt-1">Tăng/giảm cỡ chữ</p></div><div class="mieu-setting-controls"><button class="mieu-step" onclick="window.mieuChangeTextZoom(-0.05)">−</button><span class="mieu-setting-value" id="mieuTextZoomValue">100%</span><button class="mieu-step" onclick="window.mieuChangeTextZoom(0.05)">+</button></div></div>
        <div class="flex gap-2 mt-4"><button class="flex-1 rounded-xl border border-white/20 py-2 text-xs" onclick="window.mieuResetWebZoom()">↺ Đặt lại</button><button class="flex-1 rounded-xl py-2 text-xs font-bold bg-fuchsia-500/20 border border-fuchsia-300/30" onclick="window.mieuCloseWebSettings()">Xong</button></div>
