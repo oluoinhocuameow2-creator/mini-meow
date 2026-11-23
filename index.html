@@ -2442,12 +2442,17 @@ function memberAvatarHtml(uid, src, size='w-10 h-10') {
 }
 function meowTitleHtml(uid) { const t=getMeowTitle(getCustomerPoints(uid)); return `<span class="meow-title-badge ${t.tier}">${t.name}</span>`; }
 
-// Tính điểm tích lũy của khách (100.000đ = 1 điểm, giữ số lẻ thập phân)
+// Tính điểm tích lũy của khách (100.000đ = 1 điểm, giữ số lẻ thập phân).
+// Memo hóa theo đúng các object nguồn: tránh quét toàn bộ giao dịch lặp lại
+// cho từng avatar/thẻ chương; tự tính lại khi Firebase thay snapshot mới.
+const meowCustomerPointsMemo = new Map();
 function getCustomerPoints(cid) {
   if (!cid) return 0;
   const cust = state.customers[cid] || {};
   const txs = state.walletTransactions || {};
   const grants = state.vipPointGrants?.[cid] || {};
+  const memo = meowCustomerPointsMemo.get(String(cid));
+  if (memo && memo.cust === cust && memo.txs === txs && memo.grants === grants && memo.savedPoints === cust.points) return memo.value;
   let eligibleTotal = 0;
   Object.values(txs).forEach(t => {
     if (!t || String(t.customerId || '') !== String(cid) || t.type !== 'deposit' || t.voided || t.reversing) return;
@@ -2458,7 +2463,11 @@ function getCustomerPoints(cid) {
   const vipTotal = Object.values(grants).reduce((sum,g) => sum + (g && g.active === true && Number(g.amount) > 0 ? Number(g.amount) : 0), 0);
   const lifetimeFromHistory = Math.floor((eligibleTotal + vipTotal) / 100000);
   // Không làm mất điểm cũ đã lưu trực tiếp trên hồ sơ khách.
-  return Math.max(0, Number(Math.max(lifetimeFromHistory, Number(cust.points) || 0).toFixed(4)));
+  const value = Math.max(0, Number(Math.max(lifetimeFromHistory, Number(cust.points) || 0).toFixed(4)));
+  meowCustomerPointsMemo.set(String(cid), { cust, txs, grants, savedPoints: cust.points, value });
+  // Giới hạn bộ nhớ nếu web có nhiều tài khoản từng xem.
+  if (meowCustomerPointsMemo.size > 1500) meowCustomerPointsMemo.clear();
+  return value;
 }
 
 // ==================== TẢI DỮ LIỆU THEO TỪNG LỚP ====================
@@ -3062,12 +3071,13 @@ function scheduleGlobalStatsUpdate() {
 let globalStatsJobId = 0;
 function updateGlobalStats() {
   // Thống kê từ metadata wordCount đã được Studio lưu cùng từng chương.
-  // Không tải storyContent hàng loạt để tránh tiêu hao thêm Downloads Firebase.
+  // Chia nhỏ cả cấp truyện lẫn cấp chương để không khóa luồng giao diện khi catalog lớn.
   const jobId = ++globalStatsJobId;
   const entries = Object.entries(state.stories || {});
   const totalStories = entries.length;
   const totalAccounts = Number.isFinite(Number(state.publicAccountCount)) ? Math.max(0, Math.floor(Number(state.publicAccountCount))) : null;
-  let totalWords = 0, totalViews = 0, index = 0, chaptersCounted = 0, chaptersMissingCount = 0;
+  let totalWords = 0, totalViews = 0, storyIndex = 0, chapterRows = null, chapterIndex = 0;
+  let chaptersCounted = 0, chaptersMissingCount = 0;
   const wordNode = document.getElementById('statWords');
   const viewNode = document.getElementById('statViews');
   const storyNode = document.getElementById('statStories');
@@ -3080,40 +3090,39 @@ function updateGlobalStats() {
 
   const readSavedWordCount = ch => {
     if (!ch || typeof ch !== 'object') return null;
-    // wordCount là trường chuẩn được Studio ghi; các alias chỉ dùng cho dữ liệu cũ.
     const candidates = [ch.wordCount, ch.totalWords, ch.wordsCount, ch.word_count, ch.contentWordCount, ch.textWordCount];
     for (const value of candidates) {
       if (value === null || value === undefined || value === '') continue;
-      const n = typeof value === 'string'
-        ? Number(value.replace(/[,\s]/g, ''))
-        : Number(value);
+      const n = typeof value === 'string' ? Number(value.replace(/[ ,]/g, '')) : Number(value);
       if (Number.isFinite(n) && n >= 0) return Math.floor(n);
     }
-    // Chỉ đếm body đã có sẵn trong cache; không tự tải nội dung chương.
+    // Chỉ đếm body đã có sẵn trong cache; tuyệt đối không tải nội dung từ Firebase ở đây.
     return mieuCountWordsFromChapter(ch);
   };
 
   const processChunk = (deadline) => {
     if (jobId !== globalStatsJobId) return;
+    const started = performance.now();
     let processed = 0;
-    while (index < entries.length && processed < 12 &&
-           (!deadline || deadline.timeRemaining() > 2 || processed === 0)) {
-      const story = entries[index++][1];
-      totalViews += countStoryViews(story);
-      const chapters = Object.values(story?.chapters || {});
-      for (const chapter of chapters) {
-        const savedCount = readSavedWordCount(chapter);
-        if (savedCount === null) chaptersMissingCount++;
-        else {
-          totalWords += savedCount;
-          chaptersCounted++;
-        }
+    while (storyIndex < entries.length && processed < 180 && performance.now() - started < 7 &&
+           (!deadline || deadline.timeRemaining() > 1 || processed === 0)) {
+      if (!chapterRows) {
+        const story = entries[storyIndex][1];
+        totalViews += countStoryViews(story);
+        chapterRows = Object.values(story?.chapters || {});
+        chapterIndex = 0;
+        if (!chapterRows.length) { storyIndex++; chapterRows = null; continue; }
       }
+      const chapter = chapterRows[chapterIndex++];
+      const savedCount = readSavedWordCount(chapter);
+      if (savedCount === null) chaptersMissingCount++;
+      else { totalWords += savedCount; chaptersCounted++; }
       processed++;
+      if (chapterIndex >= chapterRows.length) { storyIndex++; chapterRows = null; }
     }
-    if (index < entries.length) {
-      if ('requestIdleCallback' in window) requestIdleCallback(processChunk, {timeout: 250});
-      else setTimeout(() => processChunk(null), 0);
+    if (storyIndex < entries.length) {
+      if ('requestIdleCallback' in window) requestIdleCallback(processChunk, { timeout: 300 });
+      else setTimeout(() => processChunk(null), 16);
       return;
     }
     if (jobId !== globalStatsJobId) return;
@@ -3126,9 +3135,10 @@ function updateGlobalStats() {
     }
     if (viewNode) viewNode.textContent = formatNum(totalViews);
   };
-  if ('requestIdleCallback' in window) requestIdleCallback(processChunk, {timeout: 250});
-  else setTimeout(() => processChunk(null), 0);
+  if ('requestIdleCallback' in window) requestIdleCallback(processChunk, { timeout: 300 });
+  else setTimeout(() => processChunk(null), 16);
 }
+
 async function logActivity(type, text, storyId = '') {
   const u = state.currentUser;
   if (!u || u.role !== 'customer') return;
@@ -7574,10 +7584,35 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('play',e=>{if(e.target?.id==='mieuSiteMusic')mieuSyncDockMusic()},true);
 document.addEventListener('pause',e=>{if(e.target?.id==='mieuSiteMusic')mieuSyncDockMusic()},true);
-setInterval(()=>{
-  const src=document.getElementById('notifBadge'),dest=document.getElementById('dockNotifBadge');
-  if(src&&dest){dest.textContent=src.textContent;dest.classList.toggle('hidden',src.classList.contains('hidden'))}
-},1200);
+// Đồng bộ badge bằng MutationObserver thay vì polling 1,2 giây/lần.
+// Không tạo công việc nền liên tục khi người dùng đang đọc hoặc thao tác.
+(function mieuObserveDockNotificationBadge(){
+  const sync=()=>{
+    const src=document.getElementById('notifBadge'),dest=document.getElementById('dockNotifBadge');
+    if(src&&dest){
+      if(dest.textContent!==src.textContent) dest.textContent=src.textContent;
+      dest.classList.toggle('hidden',src.classList.contains('hidden'));
+    }
+  };
+  const start=()=>{
+    sync();
+    const src=document.getElementById('notifBadge');
+    if(src && !src.__mieuDockObserver){
+      const observer=new MutationObserver(sync);
+      observer.observe(src,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class']});
+      src.__mieuDockObserver=observer;
+    }
+    // Badge có thể được render muộn; quan sát DOM một lần để bắt lúc nó xuất hiện.
+    if(!document.getElementById('notifBadge')){
+      const rootObserver=new MutationObserver(()=>{
+        if(document.getElementById('notifBadge')){rootObserver.disconnect();start();}
+      });
+      rootObserver.observe(document.body,{childList:true,subtree:true});
+    }
+  };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true});
+  else start();
+})();
 </script>
 
 
