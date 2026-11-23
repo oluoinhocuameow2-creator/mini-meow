@@ -1091,12 +1091,13 @@ body:has(#view-reader:not(.hidden)){
           <button onclick="app.navigate('profile');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="block w-full text-left p-3 rounded-lg hover:bg-pink-500/15">📜 Tủ sách & Cá nhân</button>
           <button id="navStudioBtn" onclick="app.navigate('studio');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="hidden w-full text-left p-3 rounded-lg text-sky-300 hover:bg-sky-500/15">✍️ Đăng truyện</button>
           <button id="navAdminBtn" onclick="app.navigate('admin');document.getElementById('mainMenuDropdown').classList.add('hidden')" class="hidden w-full text-left p-3 rounded-lg text-amber-300 hover:bg-amber-500/15">👑 Quản trị</button>
+          <div id="navMenuAccountDivider" class="hidden my-1 border-t border-pink-300/20"></div>
+          <button id="navLogoutBtn" onclick="document.getElementById('mainMenuDropdown').classList.add('hidden');app.logout()" class="hidden w-full text-left p-3 rounded-lg text-rose-300 font-bold hover:bg-rose-500/15">↪ Đăng xuất</button>
         </div>
       </div>
       <div class="header-quick-tools">
         <button id="themeToggleBtn" onclick="app.toggleTheme()" title="Đổi chế độ Sáng / Tối" aria-label="Đổi sáng tối" class="p-2.5 rounded-xl border border-pink-400/30 hover:border-sky-400 transition text-sm font-bold">🌙</button>
         <button id="globalSearchToggle" onclick="app.toggleGlobalSearch()" title="Tìm truyện, thể loại, chương" aria-label="Tìm kiếm" class="p-2.5 rounded-xl border border-pink-400/30 hover:border-sky-400 transition">🔎</button>
-        <button id="mieuHeaderLogoutBtn" type="button" title="Đăng xuất" aria-label="Đăng xuất" class="hidden p-2.5 rounded-xl border border-pink-400/40 hover:border-rose-400 transition text-rose-300 font-bold" style="line-height:1">↪</button>
       </div>
     </div>
 
@@ -1573,9 +1574,8 @@ body:has(#view-reader:not(.hidden)){
               <textarea id="editProfileBioInput" rows="3" placeholder="Viết đôi dòng giới thiệu về bạn hoặc gu đọc truyện..." class="w-full px-3 py-2 rounded-xl bg-black/25 border border-pink-400/30 outline-none"></textarea>
             </div>
             <div class="md:col-span-2 flex flex-wrap gap-4"><label class="flex items-center gap-2"><input id="editHideProfile" type="checkbox" class="accent-pink-500"> Ẩn trang cá nhân khỏi người khác</label><label class="flex items-center gap-2"><input id="editHideAvatar" type="checkbox" class="accent-pink-500"> Ẩn ảnh đại diện</label></div>
-            <div class="md:col-span-2 flex flex-wrap justify-end gap-2">
-              <button type="button" onclick="app.closeEditProfileBox()" class="px-5 py-2.5 rounded-xl font-bold border border-pink-300/30">Đóng</button>
-              <button type="button" onclick="app.saveMyProfile()" class="px-5 py-2.5 rounded-xl font-bold text-white pink-blue-gradient">💾 Lưu hồ sơ cá nhân</button>
+            <div class="md:col-span-2 flex justify-end">
+              <button onclick="app.saveMyProfile()" class="px-5 py-2.5 rounded-xl font-bold text-white pink-blue-gradient">💾 Lưu hồ sơ cá nhân</button>
             </div>
           </div>
         </div>
@@ -1798,6 +1798,7 @@ body:has(#view-reader:not(.hidden)){
           <button type="button" class="admin-edit-profile-btn" onclick="app.openAdminProfileEditor()">✎ Sửa thông tin</button>
         </div>
         <div class="flex flex-wrap gap-2 text-xs">
+          <button onclick="app.switchAdminTab('topups')" id="aTab-topups" class="px-4 py-2 rounded-xl font-bold pink-blue-gradient text-white">📥 Duyệt nạp tiền</button>
           <button onclick="app.switchAdminTab('customers')" id="aTab-customers" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">👥 Quản lý khách & Cấp quyền</button>
           <button onclick="app.switchAdminTab('vipaccess')" id="aTab-vipaccess" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">👑 Cấp VIP truyện</button>
           <button onclick="app.switchAdminTab('featured')" id="aTab-featured" class="px-4 py-2 rounded-xl font-bold border border-pink-400/30">⭐ 5 Truyện nổi bật & Kho truyện</button>
@@ -2473,23 +2474,136 @@ function makeStoryCatalogEntry(story) {
   });
   return { info, chapters };
 }
+function mieuChapterBodyString(value, depth = 0) {
+  if (depth > 5 || value == null) return '';
+  if (typeof value === 'string') return value.trim() ? value : '';
+  if (typeof value === 'number') return String(value);
+  if (Array.isArray(value)) {
+    return value.map(item => {
+      if (typeof item === 'string' || typeof item === 'number') return String(item);
+      if (item && typeof item === 'object') {
+        return mieuChapterBodyString(
+          item.html ?? item.content ?? item.text ?? item.body ?? item.paragraph ?? item.value,
+          depth + 1
+        );
+      }
+      return '';
+    }).filter(Boolean).join('\n\n');
+  }
+  if (typeof value === 'object') {
+    const preferred = [
+      'content', 'html', 'contentHtml', 'contentHTML', 'body', 'bodyHtml',
+      'bodyHTML', 'text', 'rawContent', 'chapterContent', 'chapter_content',
+      'contentText', 'content_body', 'paragraphs', 'blocks', 'data', 'payload'
+    ];
+    for (const key of preferred) {
+      if (Object.prototype.hasOwnProperty.call(value, key)) {
+        const found = mieuChapterBodyString(value[key], depth + 1);
+        if (found) return found;
+      }
+    }
+    // Hỗ trợ dữ liệu dạng map các đoạn: { "0": "...", "1": "..." }.
+    const keys = Object.keys(value);
+    if (keys.length && keys.every(k => /^\d+$/.test(k))) {
+      return keys.sort((a,b) => Number(a)-Number(b))
+        .map(k => mieuChapterBodyString(value[k], depth + 1))
+        .filter(Boolean).join('\n\n');
+    }
+  }
+  return '';
+}
+
+function mieuHasChapterBody(chapter) {
+  if (!chapter || typeof chapter !== 'object') return false;
+  return !!mieuChapterBodyString(chapter);
+}
+
 async function loadMieuChapterContent(storyId, chapterId) {
-  const current = state.stories?.[storyId]?.chapters?.[chapterId] || {};
-  if (current.content || current.text) return current;
-  const token = `${storyId}/${chapterId}`;
+  const sid = String(storyId);
+  const cid = String(chapterId);
+  const storyNow = state.stories?.[sid];
+  const current = storyNow?.chapters?.[cid] || {};
+
+  const normalizeChapter = raw => {
+    if (typeof raw === 'string') return { content: raw };
+    if (!raw || typeof raw !== 'object') return {};
+    const normalized = { ...raw };
+    const body = mieuChapterBodyString(raw);
+    if (body) normalized.content = body;
+    return normalized;
+  };
+
+  const local = normalizeChapter(current);
+  if (mieuHasChapterBody(local)) {
+    state.stories[sid].chapters[cid] = { ...current, ...local };
+    return state.stories[sid].chapters[cid];
+  }
+
+  const token = `${sid}/${cid}`;
   window.__mieuChapterLoads = window.__mieuChapterLoads || {};
   if (window.__mieuChapterLoads[token]) return window.__mieuChapterLoads[token];
+
   const task = (async () => {
-    let snap = await get(ref(db, `storyContent/${storyId}/${chapterId}`)).catch(() => null);
-    // Tương thích dữ liệu cũ trong giai đoạn chuyển đổi.
-    if (!snap || !snap.exists()) snap = await get(ref(db, `stories/${storyId}/chapters/${chapterId}`));
-    if (!snap.exists()) throw new Error('Không tìm thấy nội dung chương.');
-    const full = snap.val() || {};
-    state.stories[storyId] = state.stories[storyId] || { info: {}, chapters: {} };
-    state.stories[storyId].chapters = state.stories[storyId].chapters || {};
-    state.stories[storyId].chapters[chapterId] = { ...state.stories[storyId].chapters[chapterId], ...full };
-    return state.stories[storyId].chapters[chapterId];
-  })().finally(() => { delete window.__mieuChapterLoads[token]; });
+    let lastError = null;
+    // Mini Meow đọc trực tiếp stories/{storyId}/chapters/{chapterId}.
+    // Miêu Các bản tách dữ liệu đọc storyContent/{storyId}/{chapterId}.
+    // Thử cả hai dạng và dạng bọc chapters để tương thích dữ liệu cũ.
+    const paths = [
+      `storyContent/${sid}/${cid}`,
+      `storyContent/${sid}/chapters/${cid}`,
+      `stories/${sid}/chapters/${cid}`
+    ];
+
+    const readWithTimeout = async (path, ms = 12000) => {
+      let timer;
+      try {
+        return await Promise.race([
+          get(ref(db, path)),
+          new Promise((_, reject) => {
+            timer = setTimeout(
+              () => reject(new Error('Firebase phản hồi chậm khi đọc ' + path)),
+              ms
+            );
+          })
+        ]);
+      } finally {
+        if (timer) clearTimeout(timer);
+      }
+    };
+
+    for (const path of paths) {
+      try {
+        const snap = await readWithTimeout(path);
+        if (!snap || !snap.exists()) continue;
+        const normalized = normalizeChapter(snap.val());
+        if (mieuHasChapterBody(normalized)) {
+          const latestStory = state.stories?.[sid] || { info: {}, chapters: {} };
+          latestStory.chapters = latestStory.chapters || {};
+          const latestChapter = latestStory.chapters[cid] || {};
+          state.stories[sid] = latestStory;
+          latestStory.chapters[cid] = { ...latestChapter, ...normalized, content: normalized.content };
+          // Cache nội dung chương đã mở thành công trên thiết bị; lần đọc lại không gọi Firebase.
+          saveStoriesCache(state.stories);
+          return latestStory.chapters[cid];
+        }
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    if (lastError) {
+      throw new Error(
+        'Chưa đọc được nội dung chương từ Firebase. Có thể kết nối/dịch vụ đang chậm hoặc quyền đọc bị giới hạn. Chi tiết: ' +
+        lastError.message
+      );
+    }
+    throw new Error(
+      'Đã tìm thấy thông tin chương nhưng chưa tìm thấy phần nội dung. Đã thử cả storyContent và đường dẫn chương Mini Meow đang sử dụng.'
+    );
+  })().finally(() => {
+    delete window.__mieuChapterLoads[token];
+  });
+
   window.__mieuChapterLoads[token] = task;
   return task;
 }
@@ -2527,6 +2641,9 @@ async function migrateMieuStoriesToCatalog() {
 
 // ==================== ĐỒNG BỘ FIREBASE REALTIME ====================
 function initFirebaseSync() {
+  // Hàm có thể bị gọi lại khi khởi tạo giao diện; không gắn listener Firebase lần hai.
+  if (window.__mieuFirebaseSyncStarted) return;
+  window.__mieuFirebaseSyncStarted = true;
   if (hasMieuDeepLink()) setPageLoading(true, 'Đang kết nối và tải truyện...');
   restoreStoriesCache();
   // 1. Theo dõi người dùng Online
@@ -2545,8 +2662,19 @@ function initFirebaseSync() {
   // Chỉ dùng nhánh stories cũ nếu chưa có catalog để hỗ trợ lần chuyển đổi đầu tiên.
   const applyStorySnapshot = (newStories, sourceLabel) => {
     const firstStoriesSnapshot = !state.storyDataReady;
-    if (!firstStoriesSnapshot) detectStoryUpdates(state.stories, newStories);
-    state.stories = newStories || {};
+    const incoming = newStories || {};
+    // Snapshot danh mục chỉ có metadata: giữ lại body đã tải thành công trong phiên/cache.
+    // Tránh việc listener metadata ghi đè cache nội dung chương đã mở.
+    Object.entries(incoming).forEach(([sid, freshStory]) => {
+      const oldStory = state.stories?.[sid];
+      if (!oldStory?.chapters || !freshStory?.chapters) return;
+      Object.entries(oldStory.chapters).forEach(([cid, oldChapter]) => {
+        if (!mieuHasChapterBody(oldChapter) || !freshStory.chapters[cid]) return;
+        freshStory.chapters[cid] = { ...freshStory.chapters[cid], ...oldChapter };
+      });
+    });
+    if (!firstStoriesSnapshot) detectStoryUpdates(state.stories, incoming);
+    state.stories = incoming;
     state.storyDataReady = true;
     tryOpenInitialDeepLink();
     if (firstStoriesSnapshot && !hasMieuDeepLink()) setPageLoading(false);
@@ -2572,25 +2700,33 @@ function initFirebaseSync() {
       } catch(e) {}
     }
   };
+  // Luôn nghe danh mục metadata. Tuyệt đối không nghe toàn nhánh stories làm fallback,
+  // vì nhánh legacy có thể chứa toàn bộ nội dung tất cả chương và gây tăng Downloads.
   get(ref(db, 'storyCatalogMigration/version')).then(migrationSnap => {
-    if (Number(migrationSnap.val()) >= 1) {
-      window.__mieuCatalogReady = true;
-      onValue(ref(db, 'storyCatalog'), snap => applyStorySnapshot(snap.val() || {}, 'catalog'), error => {
-        console.error('Story catalog listener:', error);
-        showToast('Không thể tải danh mục truyện. Kiểm tra quyền Firebase nhé.', 'error');
-      });
-      return;
-    }
-    // Chế độ tương thích tạm thời: chỉ chạy trước khi Admin thực hiện tách dữ liệu lần đầu.
-    onValue(ref(db, 'stories'), snap => applyStorySnapshot(snap.val() || {}, 'legacy'), error => {
-      if (!state.storyDataReady) {
-        state.storyDataReady = true; setPageLoading(false);
-        showToast('Không thể tải dữ liệu truyện. Kiểm tra mạng hoặc quyền Firebase nhé.', 'error');
+    window.__mieuCatalogReady = Number(migrationSnap.val()) >= 1;
+    onValue(ref(db, 'storyCatalog'), snap => {
+      const catalog = snap.val() || {};
+      if (!Object.keys(catalog).length) {
+        // Không để snapshot catalog rỗng ghi đè dữ liệu cache đang có trên thiết bị.
+        if (!state.storyCacheReady) applyStorySnapshot({}, 'catalog');
+        state.storyDataReady = true;
+        setPageLoading(false);
+        showToast('Danh mục storyCatalog đang trống. Miêu Các giữ cache hiện có và không tự tải toàn bộ nội dung truyện để tránh tốn Downloads.', 'warning');
+        return;
       }
+      applyStorySnapshot(catalog, 'catalog');
+    }, error => {
+      console.error('Story catalog listener:', error);
+      if (!state.storyDataReady) { state.storyDataReady = true; setPageLoading(false); }
+      showToast('Không thể tải danh sách chương/danh mục. Kiểm tra kết nối hoặc quyền Firebase nhé.', 'error');
     });
   }).catch(error => {
-    console.warn('Không kiểm tra được storyCatalog, dùng dữ liệu cũ:', error);
-    onValue(ref(db, 'stories'), snap => applyStorySnapshot(snap.val() || {}, 'legacy'));
+    // Không chuyển sang đọc stories toàn bộ khi kiểm tra marker lỗi.
+    console.warn('Không kiểm tra được catalog migration marker:', error);
+    onValue(ref(db, 'storyCatalog'), snap => applyStorySnapshot(snap.val() || {}, 'catalog'), err => {
+      if (!state.storyDataReady) { state.storyDataReady = true; setPageLoading(false); }
+      showToast('Không thể tải danh mục truyện từ Firebase.', 'error');
+    });
   });
 
   // Đồng bộ logo dùng chung ở header và footer
@@ -2757,18 +2893,33 @@ function scheduleGlobalStatsUpdate() {
 
 let globalStatsJobId = 0;
 function updateGlobalStats() {
-  // Chia nhỏ phép tính để điện thoại không bị khựng khi kho truyện lớn.
+  // Thống kê từ metadata wordCount đã được Studio lưu cùng từng chương.
+  // Không tải storyContent hàng loạt để tránh tiêu hao thêm Downloads Firebase.
   const jobId = ++globalStatsJobId;
   const entries = Object.entries(state.stories || {});
   const totalStories = entries.length;
   const totalAccounts = Object.keys(state.customers || {}).length;
-  let totalWords = 0, totalViews = 0, index = 0;
+  let totalWords = 0, totalViews = 0, index = 0, chaptersCounted = 0, chaptersMissingCount = 0;
   const wordNode = document.getElementById('statWords');
   const viewNode = document.getElementById('statViews');
   const storyNode = document.getElementById('statStories');
   const accountNode = document.getElementById('statAccounts');
   if (storyNode) storyNode.textContent = formatNum(totalStories);
   if (accountNode) accountNode.textContent = formatNum(totalAccounts);
+
+  const readSavedWordCount = ch => {
+    if (!ch || typeof ch !== 'object') return null;
+    // wordCount là trường chuẩn được Studio ghi; các alias chỉ dùng cho dữ liệu cũ.
+    const candidates = [ch.wordCount, ch.totalWords, ch.wordsCount, ch.word_count];
+    for (const value of candidates) {
+      if (value === null || value === undefined || value === '') continue;
+      const n = typeof value === 'string'
+        ? Number(value.replace(/[,\s]/g, ''))
+        : Number(value);
+      if (Number.isFinite(n) && n >= 0) return Math.floor(n);
+    }
+    return null;
+  };
 
   const processChunk = (deadline) => {
     if (jobId !== globalStatsJobId) return;
@@ -2778,8 +2929,13 @@ function updateGlobalStats() {
       const story = entries[index++][1];
       totalViews += countStoryViews(story);
       const chapters = Object.values(story?.chapters || {});
-      for (let i = 0; i < chapters.length; i++) {
-        totalWords += Number(chapters[i]?.wordCount) || 0;
+      for (const chapter of chapters) {
+        const savedCount = readSavedWordCount(chapter);
+        if (savedCount === null) chaptersMissingCount++;
+        else {
+          totalWords += savedCount;
+          chaptersCounted++;
+        }
       }
       processed++;
     }
@@ -2789,13 +2945,18 @@ function updateGlobalStats() {
       return;
     }
     if (jobId !== globalStatsJobId) return;
-    if (wordNode) wordNode.textContent = formatNum(totalWords);
+    if (wordNode) {
+      wordNode.textContent = formatNum(totalWords);
+      wordNode.title = chaptersMissingCount
+        ? `Tổng chính xác theo wordCount đã lưu của ${formatNum(chaptersCounted)} chương; còn ${formatNum(chaptersMissingCount)} chương chưa có thống kê chữ. Không tải nội dung chương để tránh tăng Downloads Firebase.`
+        : `Tổng số chữ chính xác theo wordCount đã lưu của ${formatNum(chaptersCounted)} chương.`;
+      wordNode.dataset.complete = chaptersMissingCount ? 'false' : 'true';
+    }
     if (viewNode) viewNode.textContent = formatNum(totalViews);
   };
   if ('requestIdleCallback' in window) requestIdleCallback(processChunk, {timeout: 250});
   else setTimeout(() => processChunk(null), 0);
 }
-
 async function logActivity(type, text, storyId = '') {
   const u = state.currentUser;
   if (!u || u.role !== 'customer') return;
@@ -2826,14 +2987,13 @@ function normalizeSearchText(value) {
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
 }
 function countStoryWords(story) {
-  // Fast path: use wordCount saved by the editor. Legacy chapters without it
-  // use a cheap length estimate instead of regex-tokenizing huge HTML strings.
+  // Chỉ cộng số chữ Studio đã lưu. Không ước lượng theo độ dài HTML vì dễ sai lệch lớn.
   let total = 0;
   for (const ch of Object.values(story?.chapters || {})) {
-    const saved = Number(ch?.wordCount);
-    if (saved > 0) { total += saved; continue; }
-    const raw = String(ch?.content || ch?.text || '');
-    if (raw) total += Math.max(0, Math.round(raw.replace(/<[^>]*>/g, ' ').length / 6));
+    const raw = ch?.wordCount ?? ch?.totalWords ?? ch?.wordsCount ?? ch?.word_count;
+    if (raw === null || raw === undefined || raw === '') continue;
+    const n = typeof raw === 'string' ? Number(raw.replace(/[,\s]/g, '')) : Number(raw);
+    if (Number.isFinite(n) && n >= 0) total += Math.floor(n);
   }
   return total;
 }
@@ -3488,6 +3648,8 @@ const app = {
     const area = document.getElementById('headerUserArea');
     const navStudio = document.getElementById('navStudioBtn');
     const navAdmin = document.getElementById('navAdminBtn');
+    const navLogout = document.getElementById('navLogoutBtn');
+    const navMenuAccountDivider = document.getElementById('navMenuAccountDivider');
     const mobStudio = document.getElementById('mobileStudioBtn') || {classList:{add(){},toggle(){}}};
     const mobAdmin = document.getElementById('mobileAdminBtn') || {classList:{add(){},toggle(){}}};
     const footerLinks = document.getElementById('footerRoleLinks');
@@ -3496,6 +3658,8 @@ const app = {
       area.innerHTML = `<div class="flex items-center gap-1.5"><button onclick="app.showAuthScreen('login');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold text-white pink-blue-gradient shadow-lg">🔐 Đăng nhập</button><button onclick="app.showAuthScreen('register');document.getElementById('authModal').classList.remove('hidden');document.getElementById('authModal').classList.add('flex')" class="px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold border border-pink-400/40">✨ Đăng ký</button></div>`;
       navStudio.classList.add('hidden');
       navAdmin.classList.add('hidden');
+      navLogout?.classList.add('hidden');
+      navMenuAccountDivider?.classList.add('hidden');
       mobStudio.classList.add('hidden');
       mobAdmin.classList.add('hidden');
       footerLinks.innerHTML = `
@@ -3517,6 +3681,9 @@ const app = {
     mobStudio.classList.toggle('hidden', !canPublish);
     navAdmin.classList.toggle('hidden', !isAdmin);
     mobAdmin.classList.toggle('hidden', !isAdmin);
+    // Cả khách và Admin đều thấy nút Đăng xuất trong menu chính sau khi đăng nhập.
+    navLogout?.classList.remove('hidden');
+    navMenuAccountDivider?.classList.remove('hidden');
 
     area.innerHTML = `
       <div class="flex items-center gap-2">
@@ -4082,11 +4249,20 @@ const app = {
       if (storyRefreshInFlight.has(storyId)) return storyRefreshInFlight.get(storyId);
       const task = (async () => {
         try {
-          const freshSnap = await get(ref(db, window.__mieuCatalogReady ? `storyCatalog/${storyId}` : `stories/${storyId}`));
+          const freshSnap = await get(ref(db, `storyCatalog/${storyId}`));
           if (window.__mieuStoryOpenToken !== openToken || state.currentStoryId !== storyId) return;
           if (freshSnap.exists()) {
             const freshStory = freshSnap.val();
-            // Firebase là nguồn chính; cập nhật state nhưng tránh render nặng lần hai.
+            // Giữ cache body các chương đã đọc; refresh này chỉ làm mới metadata.
+            const previousStory = state.stories?.[storyId];
+            if (previousStory?.chapters && freshStory?.chapters) {
+              Object.entries(previousStory.chapters).forEach(([cid, oldChapter]) => {
+                if (mieuHasChapterBody(oldChapter) && freshStory.chapters[cid]) {
+                  freshStory.chapters[cid] = { ...freshStory.chapters[cid], ...oldChapter };
+                }
+              });
+            }
+            // Firebase là nguồn metadata chính; không tải body chương ở bước này.
             state.stories = { ...(state.stories || {}), [storyId]: freshStory };
             storyRefreshAt.set(storyId, Date.now());
             saveStoriesCache(state.stories);
@@ -4561,7 +4737,7 @@ const app = {
 
     // Chỉ tải nội dung chương sau khi khách đã qua kiểm tra quyền đọc/mua.
     try {
-      if (!ch.content && !ch.text) {
+      if (!mieuHasChapterBody(ch)) {
         setPageLoading(true, 'Đang tải nội dung chương...');
         await loadMieuChapterContent(storyId, chapterId);
       }
@@ -4576,7 +4752,7 @@ const app = {
     let story = state.stories[storyId];
     let ch = story?.chapters?.[chapterId];
     if (!story || !ch) return;
-    if (!ch.content && !ch.text) {
+    if (!mieuHasChapterBody(ch)) {
       try { ch = await loadMieuChapterContent(storyId, chapterId); story = state.stories[storyId]; }
       catch (err) { showToast('Chưa tải được nội dung chương: ' + (err?.message || 'Lỗi kết nối'), 'error'); return; }
     }
@@ -4754,7 +4930,7 @@ const app = {
     // Phân tích nội dung một lần, sau đó vẽ lần lượt theo từng frame để
     // trình duyệt vẫn phản hồi cuộn/chạm trên điện thoại chương dài.
     const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = ch.content || ch.text || 'Nội dung chương đang cập nhật...';
+    tempDiv.innerHTML = mieuChapterBodyString(ch) || 'Nội dung chương đang cập nhật...';
     const blocks = [];
     const addText = raw => {
       String(raw || '').replace(/\u00a0/g, ' ').replace(/\r\n?/g, '\n')
@@ -5535,32 +5711,7 @@ const app = {
   },
 
   toggleEditProfileBox() {
-    const box = document.getElementById('editProfileBox');
-    const u = state.currentUser;
-    if (!box || !u || u.role !== 'customer') {
-      showToast('Hãy đăng nhập tài khoản độc giả để chỉnh sửa hồ sơ nha.', 'error');
-      return;
-    }
-    // Nạp dữ liệu mới nhất vào biểu mẫu mỗi lần mở, tránh form rỗng hoặc dữ liệu cũ.
-    const cust = state.customers?.[u.id] || {};
-    document.getElementById('editProfileNameInput').value = cust.name || u.name || '';
-    document.getElementById('editProfileAvatarInput').value = cust.profileAvatar || cust.avatar || '';
-    document.getElementById('editProfileCoverInput').value = cust.cover || '';
-    document.getElementById('editProfileBioInput').value = cust.bio || '';
-    document.getElementById('editHideProfile').checked = !!cust.hideProfile;
-    document.getElementById('editHideAvatar').checked = !!cust.hideAvatar;
-    box.classList.remove('hidden');
-    box.style.display = 'grid';
-    box.setAttribute('aria-expanded', 'true');
-    requestAnimationFrame(() => box.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
-  },
-
-  closeEditProfileBox() {
-    const box = document.getElementById('editProfileBox');
-    if (!box) return;
-    box.classList.add('hidden');
-    box.style.display = '';
-    box.setAttribute('aria-expanded', 'false');
+    document.getElementById('editProfileBox').classList.toggle('hidden');
   },
 
   uploadProfileImage(e, field) {
@@ -5586,25 +5737,9 @@ const app = {
     const hideAvatar = document.getElementById('editHideAvatar').checked;
 
     const finalAvatar = avatar || state.customers[u.id]?.profileAvatar || state.customers[u.id]?.avatar || '';
-    const finalCover = cover || state.customers[u.id]?.cover || '';
-    try {
-      await update(ref(db, `customers/${u.id}`), {
-        name, avatar: finalAvatar, profileAvatar: finalAvatar,
-        cover: finalCover, bio, hideProfile, hideAvatar
-      });
-      state.customers[u.id] = {
-        ...(state.customers[u.id] || {}), name, avatar: finalAvatar,
-        profileAvatar: finalAvatar, cover: finalCover, bio, hideProfile, hideAvatar
-      };
-      state.currentUser.name = name;
-      this.closeEditProfileBox();
-      this.renderProfileView();
-      this.updateHeaderAndRoleUI();
-      showToast('💾 Đã cập nhật hồ sơ cá nhân!', 'success');
-    } catch (err) {
-      console.error('Lưu hồ sơ thất bại:', err);
-      showToast('Chưa lưu được hồ sơ. Kiểm tra kết nối Firebase rồi thử lại nha.', 'error');
-    }
+    await update(ref(db, `customers/${u.id}`), { name, avatar: finalAvatar, profileAvatar: finalAvatar, cover: cover || state.customers[u.id]?.cover || '', bio, hideProfile, hideAvatar });
+    this.toggleEditProfileBox();
+    showToast('💾 Đã cập nhật hồ sơ cá nhân!', 'success');
   },
 
   switchProfileTab(tab) {
@@ -6044,7 +6179,7 @@ const app = {
     }
     let ch = state.stories[state.studioStoryId]?.chapters?.[cid];
     if (!ch) return;
-    if (!ch.content && !ch.text) {
+    if (!mieuHasChapterBody(ch)) {
       try { ch = await loadMieuChapterContent(state.studioStoryId, cid); }
       catch (err) { showToast('Không tải được nội dung chương: ' + (err?.message || 'Lỗi Firebase'), 'error'); return; }
     }
@@ -6225,9 +6360,8 @@ const app = {
   },
 
   switchAdminTab(tab) {
-    if (tab === 'topups') tab = 'customers';
     this.currentAdminTab = tab;
-    ['customers', 'vipaccess', 'featured', 'appearance', 'checkin'].forEach(t => {
+    ['topups', 'customers', 'vipaccess', 'featured', 'appearance', 'checkin'].forEach(t => {
       const btn = document.getElementById('aTab-' + t);
       if (btn) {
         btn.className = t === tab
@@ -7842,42 +7976,8 @@ body.mieu-reading #mieuBottomDock{display:none!important}
 (()=>{
  'use strict';
  if(window.__mieuV71Ready)return;window.__mieuV71Ready=true;
- const scheduleIdle=fn=>('requestIdleCallback'in window)?requestIdleCallback(fn,{timeout:1100}):setTimeout(fn,350);
- const safeToPrefetch=meta=>!!meta&&!meta.content&&!meta.text&&!meta.password&&!meta.vip&&!meta.isVip;
- let prefetchToken=0;
- // Nạp trước chương liền kề miễn phí sau khi chương hiện tại đã mở thành công.
- // Không tải trước chương VIP/chương có mật khẩu để không bỏ qua kiểm tra quyền đọc.
- function prefetchNeighbors(storyId,chapterId){
-   const token=++prefetchToken;
-   scheduleIdle(()=>{
-     if(token!==prefetchToken||state.currentStoryId!==storyId||String(state.currentChapterId)!==String(chapterId))return;
-     const story=state.stories?.[storyId];if(!story)return;
-     const ids=Object.keys(story.chapters||{}).sort((a,b)=>Number(a)-Number(b));
-     const at=ids.indexOf(String(chapterId));if(at<0)return;
-     const targets=[ids[at+1],ids[at-1]].filter(Boolean);
-     // Chỉ lấy trước một chương kế tiếp và một chương trước, không tải cả bộ truyện.
-     targets.forEach((id,i)=>{
-       const meta=story.chapters[id];
-       if(!safeToPrefetch(meta))return;
-       setTimeout(()=>{
-         if(token!==prefetchToken||state.currentStoryId!==storyId)return;
-         loadMieuChapterContent(storyId,id).catch(()=>{});
-       },i*180);
-     });
-   });
- }
- // Giữ nguyên luồng kiểm tra quyền, lưu lịch sử, đếm lượt xem và render của bản gốc.
- const originalOpen=window.app?.openChapterReader;
- if(typeof originalOpen==='function'&&!app.__mieuV71OpenWrapped){
-   app.__mieuV71OpenWrapped=true;
-   app.openChapterReader=async function(storyId,chapterId,options){
-     const result=await originalOpen.call(this,storyId,chapterId,options);
-     if(state.stories?.[storyId]?.chapters?.[chapterId]?.content||state.stories?.[storyId]?.chapters?.[chapterId]?.text)
-       prefetchNeighbors(storyId,String(chapterId));
-     return result;
-   };
- }
- // Chặn nhấn liên tục gây nhiều lần chuyển chương cạnh tranh nhau.
+ // Không prefetch chương trước/kế tiếp. Chỉ loadMieuChapterContent khi người đọc mở đúng chương.
+ // Chặn nhấn chuyển chương liên tục để tránh các yêu cầu đọc cạnh tranh nhau.
  const originalNavigate=window.app?.navigateChapter;
  if(typeof originalNavigate==='function'&&!app.__mieuV71NavWrapped){
    app.__mieuV71NavWrapped=true;
@@ -7889,9 +7989,8 @@ body.mieu-reading #mieuBottomDock{display:none!important}
      finally{setTimeout(()=>{navLock=false},220)}
    };
  }
- // Đảm bảo vùng đọc ưu tiên phản hồi cuộn/chạm trong khi canvas đang vẽ theo từng frame.
  const canvas=document.getElementById('readerCanvasBlocks');
- if(canvas){canvas.style.overflowAnchor='none';}
+ if(canvas)canvas.style.overflowAnchor='none';
 })();
 </script>
 
@@ -8601,191 +8700,8 @@ html[data-theme="light"] #featuredStoriesGrid .featured-dots button.w-8{backgrou
 })();
 </script>
 
+<!-- V75 chapter body compatibility patch: Studio storyContent + legacy fallbacks; read-only on Firebase. -->
 
-<style id="mieu-profile-dock-modal-fix">
-  /* Nút đăng xuất nhỏ nằm trên tab Cá nhân ở thanh dưới, tuyệt đối không nằm trên logo */
-  #mieuLogoLogoutBtn{display:none!important}
-  #mieuBottomDock{z-index:1200!important}
-  #mieuBottomDock .dock-logout-mini{
-    position:absolute;right:5px;top:3px;z-index:5;
-    width:20px;height:20px;display:grid;place-items:center;
-    border:1px solid rgba(255,220,240,.75);border-radius:50%;
-    background:linear-gradient(135deg,#f472b6,#8b5cf6);color:#fff;
-    font:800 11px/1 Arial;box-shadow:0 2px 8px #0006;cursor:pointer;
-  }
-  #mieuBottomDock #dockAccountBtn{position:relative}
-  #editProfileBox:not(.hidden){
-    display:grid!important;visibility:visible!important;opacity:1!important;
-    position:relative!important;z-index:2!important;
-  }
-  #editProfileBox input,#editProfileBox textarea{min-height:42px}
-  /* Dialog luôn nổi phía trên nội dung và thanh tiện ích */
-  [aria-modal="true"],.mieu-tarot-overlay,.meow-buy-overlay,
-  .meow-unpublished-overlay,.admin-profile-modal,#authModal,
-  #pageLoadingOverlay,.popup-overlay,.modal-overlay{
-    z-index:10050!important;
-  }
-</style>
+<!-- V77: Mini Meow-compatible chapter read fallback; Firebase remains read-only in this patch. -->
 
-
-
-
-
-
-
-<style id="mieu-profile-editor-real-fix">
-  #mieuProfileEditorOverlay{
-    position:fixed;inset:0;z-index:10080;display:none;place-items:center;
-    padding:16px;background:rgba(7,5,14,.82);
-    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  }
-  #mieuProfileEditorOverlay.is-open{display:grid!important}
-  #mieuProfileEditorDialog{
-    width:min(720px,100%);max-height:88vh;overflow:auto;
-    overscroll-behavior:contain;padding:18px;
-    border:1px solid rgba(232,121,249,.5);border-radius:22px;
-    background:linear-gradient(145deg,#21152f,#100d1c 72%);
-    color:#f7eafa;box-shadow:0 24px 90px rgba(0,0,0,.7);
-  }
-  #mieuProfileEditorDialog #editProfileBox{
-    display:grid!important;visibility:visible!important;opacity:1!important;
-    margin:0!important;padding:0!important;border:0!important;
-  }
-  #mieuProfileEditorDialog input:not([type=checkbox]):not([type=file]),
-  #mieuProfileEditorDialog textarea{
-    width:100%;min-height:42px;color:inherit;
-    background:rgba(0,0,0,.28)!important;
-  }
-  #mieuProfileEditorDialog input[type=file]{max-width:100%}
-  #mieuProfileEditorDialog button{cursor:pointer}
-</style>
-<script id="mieu-profile-editor-real-fix">
-(function(){
-  if(window.__mieuProfileEditorRealFix)return;
-  window.__mieuProfileEditorRealFix=true;
-  const byId=id=>document.getElementById(id);
-  let oldClose=null;
-
-  function currentUser(){
-    try{return (typeof state!=='undefined' && state.currentUser) ? state.currentUser : null}
-    catch(e){return null}
-  }
-  function currentCustomer(){
-    const u=currentUser();
-    try{return u && typeof state!=='undefined' ? (state.customers?.[u.id]||{}) : {}}
-    catch(e){return {}}
-  }
-  function ensureModal(){
-    let overlay=byId('mieuProfileEditorOverlay');
-    if(!overlay){
-      overlay=document.createElement('div');
-      overlay.id='mieuProfileEditorOverlay';
-      overlay.innerHTML=
-        '<section id="mieuProfileEditorDialog" role="dialog" aria-modal="true" aria-labelledby="mieuProfileEditorTitle">'+
-          '<header class="flex items-center justify-between gap-3 mb-4">'+
-            '<div><h3 id="mieuProfileEditorTitle" class="text-lg font-bold">✏️ Chỉnh sửa hồ sơ &amp; Giới thiệu</h3>'+
-            '<p class="text-xs opacity-70 mt-1">Cập nhật thông tin tài khoản Miêu Các</p></div>'+
-            '<button type="button" id="mieuProfileEditorCloseTop" class="px-3 py-2 rounded-xl border border-pink-300/30" aria-label="Đóng">✕</button>'+
-          '</header><div id="mieuProfileEditorMount"></div>'+
-        '</section>';
-      document.body.appendChild(overlay);
-      overlay.addEventListener('click',e=>{
-        if(e.target===overlay)closeModal();
-      });
-      byId('mieuProfileEditorCloseTop').addEventListener('click',closeModal);
-    }
-    const box=byId('editProfileBox');
-    const mount=byId('mieuProfileEditorMount');
-    if(box && mount && box.parentElement!==mount){
-      mount.appendChild(box);
-    }
-    return overlay;
-  }
-  function fillFields(){
-    const u=currentUser(), c=currentCustomer();
-    if(!u)return;
-    const name=byId('editProfileNameInput');
-    const avatar=byId('editProfileAvatarInput');
-    const cover=byId('editProfileCoverInput');
-    const bio=byId('editProfileBioInput');
-    const hideProfile=byId('editHideProfile');
-    const hideAvatar=byId('editHideAvatar');
-    if(name)name.value=c.name||u.name||'';
-    if(avatar)avatar.value=c.profileAvatar||c.avatar||'';
-    if(cover)cover.value=c.cover||'';
-    if(bio)bio.value=c.bio||'';
-    if(hideProfile)hideProfile.checked=!!c.hideProfile;
-    if(hideAvatar)hideAvatar.checked=!!c.hideAvatar;
-  }
-  function openModal(){
-    const u=currentUser();
-    const box=byId('editProfileBox');
-    if(!u || u.role!=='customer' || !box){
-      try{if(typeof showToast==='function')showToast('Không tìm thấy phiên đăng nhập độc giả. Hãy tải lại trang rồi thử lại nha.','error')}catch(e){}
-      return;
-    }
-    const overlay=ensureModal();
-    if(!overlay)return;
-    fillFields();
-    box.classList.remove('hidden');
-    box.removeAttribute('hidden');
-    box.style.setProperty('display','grid','important');
-    overlay.classList.add('is-open');
-    document.body.style.overflow='hidden';
-    setTimeout(()=>byId('editProfileNameInput')?.focus({preventScroll:true}),50);
-  }
-  function closeModal(){
-    const overlay=byId('mieuProfileEditorOverlay');
-    if(overlay)overlay.classList.remove('is-open');
-    document.body.style.overflow='';
-    const box=byId('editProfileBox');
-    if(box){
-      box.classList.add('hidden');
-      box.style.removeProperty('display');
-    }
-  }
-
-  // Bind directly to the actual lexical app object used by the page's inline handlers.
-  function bindAppMethods(){
-    try{
-      if(typeof app==='undefined' || !app)return;
-      if(typeof app.closeEditProfileBox==='function' && !app.__mieuCloseWrapped){
-        oldClose=app.closeEditProfileBox;
-        app.closeEditProfileBox=function(){
-          try{oldClose.apply(this,arguments)}catch(e){}
-          closeModal();
-        };
-        app.__mieuCloseWrapped=true;
-      }
-    }catch(e){}
-  }
-
-  // Capture the click before the inline onclick. This avoids relying on window.app,
-  // a session-storage key, or a handler that may already have failed.
-  document.addEventListener('click',function(e){
-    const edit=e.target.closest('#view-profile button[onclick*="toggleEditProfileBox"]');
-    if(edit){
-      e.preventDefault();
-      e.stopPropagation();
-      if(e.stopImmediatePropagation)e.stopImmediatePropagation();
-      bindAppMethods();
-      openModal();
-      return;
-    }
-    const close=e.target.closest('#mieuProfileEditorDialog button[onclick*="closeEditProfileBox"]');
-    if(close){
-      e.preventDefault();
-      e.stopPropagation();
-      if(e.stopImmediatePropagation)e.stopImmediatePropagation();
-      closeModal();
-    }
-  },true);
-
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',bindAppMethods,{once:true});
-  }else bindAppMethods();
-  window.addEventListener('load',bindAppMethods);
-  // The SPA may recreate the profile form after navigation; reattach it to the modal
-  // only when the user opens the editor, never at page startup.
-})();
-</script>
+<!-- V78: accurate footer word stats from saved per-chapter wordCount metadata; no bulk content reads/writes. -->
